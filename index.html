@@ -221,9 +221,11 @@
                 width:100%;
                 max-width: 780px;
                 height:70vh;
+                margin: 0 auto;
                 padding-bottom: 70px;
                 position:fixed;
                 left:0;
+                right:0;
                 top:200px;
                 display: flex;
                 flex-direction: column;
@@ -318,8 +320,10 @@
                 modal.style.visibility = "visible";
             }
             function modalCloseAction(e) {
-                let modal = e.target.parentElement.parentElement.parentElement.parentElement;
-                modal.style.visibility = "hidden";
+                if(e.target.parentElement == document.querySelector('.modal-close-button')){
+                    let modal = e.target.parentElement.parentElement.parentElement.parentElement;
+                    modal.style.visibility = "hidden";
+                }
             }
         </script>
         <!-- 하단 네비 시작 -->

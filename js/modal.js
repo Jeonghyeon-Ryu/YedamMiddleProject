@@ -7,6 +7,8 @@ function modalOpenAction(e){
     modal.style.visibility = "visible";
 }
 function modalCloseAction(e) {
-    let modal = e.target.parentElement.parentElement.parentElement.parentElement;
-    modal.style.visibility = "hidden";
+    if(e.target.parentElement == document.querySelector('.modal-close-button')){
+        let modal = e.target.parentElement.parentElement.parentElement.parentElement;
+        modal.style.visibility = "hidden";
+    }
 }
