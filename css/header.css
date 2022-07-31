@@ -5,7 +5,7 @@ header {
     margin:0 auto;
     left:0;
     right:0;
-    z-index: 5;
+    z-index: 2;
     box-sizing: border-box;
     background: white;
 }
@@ -22,6 +22,7 @@ header {
     border-radius: 20px;
     font-size: 0.9rem;
 }
+
 .search-box>:nth-child(1){
     width:50px;
     text-align: center;
@@ -30,6 +31,12 @@ header {
     height: 100%;
     border:none;
     padding:0;
+    background: none;
+}
+.search-box a:hover{
+    background: #dfdfdf;
+}
+.search-box a input{
     background: none;
 }
 .search-box>:nth-child(2){
@@ -115,6 +122,7 @@ input {
     box-shadow: 2px 2px 2px gray; */
     border-radius: 20px;
     font-size: 0.8rem;
+    font-weight: 900;
     white-space: nowrap;
     overflow: hidden;
     position:relative;
@@ -134,8 +142,12 @@ input {
     color:#acacac;
 }
 .filter-item:hover {
-    color:black;
-    border-bottom: 2px solid black;
+    color:#ff5e5e;
+    border-bottom: 2px solid #ff5e5e;
+}
+.filter-item-clicked {
+    border-bottom: 2px solid #ff5e5e;
+    filter: opacity(0.5) drop-shadow(0 0 0 red);
 }
 hr {
     box-shadow: 2px 2px 2px gray, 4px 4px 4px #3d3d3d;

@@ -24,7 +24,7 @@
                 <div>
                     <a class="header-a" href="">
                         <div>위치</div>
-                        <input type="text" placeholder="여행지 선택">
+                        <input type="text" placeholder="여행지 선택" readonly>
                     </a>
                 </div>
                 <div>
@@ -59,40 +59,40 @@
                 <div class="filter-box">
                     <div class="filter-inner-box">
                         <div class="filter-item filter-item-first">
-                            <img src="img/filter-swimming-pool-25.png" style="color:blue">
-                            <div>수영장</div>
+                            <img src="img/filter-swimming-pool-25.png" class="filter-item-img">
+                            <div class="filter-item-name">수영장</div>
                         </div>
                         <div class="filter-item">
-                            <img src="img/filter-kitchen-room-25.png">
-                            <div>조리시설</div>
+                            <img src="img/filter-kitchen-room-25.png" class="filter-item-img">
+                            <div class="filter-item-name">조리시설</div>
                         </div>
                         <div class="filter-item">
-                            <img src="img/filter-hydrotherapy-25.png">
-                            <div>스파</div>
+                            <img src="img/filter-hydrotherapy-25.png" class="filter-item-img">
+                            <div class="filter-item-name">스파</div>
                         </div>
                         <div class="filter-item">
-                            <img src="img/filter-bbq-25.png">
-                            <div>바비큐</div>
+                            <img src="img/filter-bbq-25.png" class="filter-item-img">
+                            <div class="filter-item-name">바비큐</div>
                         </div>
                         <div class="filter-item">
-                            <img src="img/filter-activity-25.png">
-                            <div>체험활동</div>
+                            <img src="img/filter-activity-25.png" class="filter-item-img">
+                            <div class="filter-item-name">체험활동</div>
                         </div>
                         <div class="filter-item">
-                            <img src="img/filter-sleeping-in-bed-25.png">
-                            <div>침대방</div>
+                            <img src="img/filter-sleeping-in-bed-25.png" class="filter-item-img">
+                            <div class="filter-item-name">침대방</div>
                         </div>
                         <div class="filter-item">
-                            <img src="img/filter-view-quilt-25.png">
-                            <div>온돌방</div>
+                            <img src="img/filter-view-quilt-25.png" class="filter-item-img">
+                            <div class="filter-item-name">온돌방</div>
                         </div>
                         <div class="filter-item">
-                            <img src="img/filter-video-projector-25.png">
-                            <div>프로젝터</div>
+                            <img src="img/filter-video-projector-25.png" class="filter-item-img">
+                            <div class="filter-item-name">프로젝터</div>
                         </div>
-                        <div class="filter-item filter-item-last">
+                        <div class="filter-item filter-item-last" class="filter-item-img">
                             <img src="img/filter-board-game-25.png">
-                            <div>보드게임</div>
+                            <div class="filter-item-name">보드게임</div>
                         </div>
                     </div>
                 </div>
@@ -219,26 +219,29 @@
         <style>
             #modal{
                 width:100%;
-                max-width: 780px;
-                height:70vh;
+                height:100%;
                 margin: 0 auto;
-                padding-bottom: 70px;
                 position:fixed;
                 left:0;
                 right:0;
-                top:200px;
+                top:0px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                background: white;
-                border: 1px solid #c5c5c5;
-                border-radius: 20px;
                 visibility: hidden;
+                z-index: 5;
+                backdrop-filter: blur(1.5px);
+                transition: opacity 0.5s ease-in;
             }
             #modal .modal-box{
                 width:100%;
-                height:100%;
+                max-width: 780px;
+                height:80vh;
+                background: white;
+                border: 1px solid #c5c5c5;
+                border-radius: 20px;
+                position:relative;
             }
             #modal .modal-title{
                 width:100%;
@@ -248,14 +251,15 @@
                 text-align: center;
             }
             #modal h5 {
-                padding-top:10px;
+                font-size: 1rem;
                 font-weight: bold;
+                line-height: 50px;
             }
             #modal .modal-close-button{
                 position:absolute;
                 top:0;
-                right:0;
-                padding:10px;
+                right:20px;
+                line-height: 50px;
                 cursor: pointer;
             }
             #modal .modal-content {
@@ -270,27 +274,25 @@
             }
             #modal .modal-footer button[type="reset"]{
                 position: absolute;
-                left:0;
+                left:20px;
                 border: none;
                 background: #fff;
-                padding : 10px;
-                margin-left:20px;
+                line-height: 49px;
+                padding:0;
                 font-weight: bold;
             }
             #modal .modal-footer button[type="button"]{
                 position: absolute;
-                right:0;
+                right:20px;
                 border:1px solid black;
                 border-radius: 10px;
                 background: black;
                 color:#fff;
                 padding:5px;
-                margin-right: 20px;
                 font-weight: bold;
             }
-
         </style>
-        <div id="modal" role="dialog">
+        <div id="modal" class="modal-overlay" role="dialog">
             <div class="modal-box">
                 <!-- Modal Title -->
                 <div class="modal-title">
@@ -317,14 +319,31 @@
             modalCloseButton.addEventListener('click',modalCloseAction);
             function modalOpenAction(e){
                 let modal = document.querySelector('#modal');
-                modal.style.visibility = "visible";
+                // modal.style.visibility = "visible";
+                modal.style.left = '0';
+                // modal.style.opacity = 1;
             }
             function modalCloseAction(e) {
                 if(e.target.parentElement == document.querySelector('.modal-close-button')){
                     let modal = e.target.parentElement.parentElement.parentElement.parentElement;
-                    modal.style.visibility = "hidden";
+                    // modal.style.visibility = "hidden";
+                    modal.style.left = '-100vw';
+                    // modal.style.opacity = 0;
                 }
             }
+
+            // 그 외 영역 클릭 처리
+            let modal = document.querySelector('#modal');
+            console.log(modal);
+            modal.addEventListener('click', modalClickEvent);
+            function modalClickEvent(e) {
+                if(e.target.classList.contains("modal-overlay")) {
+                    // modal.style.visibility = "hidden";
+                    modal.style.left = '-100vw';
+                    // modal.style.opacity = 0;
+                }
+            }
+            
         </script>
         <!-- 하단 네비 시작 -->
         <nav>
@@ -343,7 +362,6 @@
                 </a>
             </div>
         </nav>
-        
     </div>
 <script src="js/header.js"></script>
     <!-- JavaScript Bundle with Popper -->

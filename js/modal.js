@@ -12,3 +12,5 @@ function modalCloseAction(e) {
         modal.style.visibility = "hidden";
     }
 }
+
+// modal 확인버튼 이벤트 필요
