@@ -16,7 +16,7 @@ let filterButton = document.querySelector('.filter-button');
                     // modal.style.opacity = 0;
                 }
             }
-            
+
             // 그 외 영역 클릭 처리
             let modal = document.querySelector('#modal');
             console.log(modal);
