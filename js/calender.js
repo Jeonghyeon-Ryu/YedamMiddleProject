@@ -1,9 +1,10 @@
 const init = {
-  monList: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-  dayList: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  monList: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+  dayList: ['일', '월', '화', '수', '목', '금', '토'],
   today: new Date(),
   monForChange: new Date().getMonth(),
   activeDate: new Date(),
+  activeDate2 : new Date(),
   getFirstDay: (yy, mm) => new Date(yy, mm, 1),
   getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
   nextMonth: function () {
@@ -21,7 +22,7 @@ const init = {
     return d;
   },
   addZero: (num) => (num < 10) ? '0' + num : num,
-  activeDTag: null,
+  activeDTag: 0,
   getIndex: function (node) {
     let index = 0;
     while (node = node.previousElementSibling) {
@@ -36,18 +37,22 @@ const $btnNext = document.querySelector('.btn-cal.next');
 const $btnPrev = document.querySelector('.btn-cal.prev');
 
 
-function loadDate (date, dayIn) {
+function loadDate(month, date) {
+  document.querySelector('.cal-month').textContent = month;
   document.querySelector('.cal-date').textContent = date;
-  document.querySelector('.cal-day').textContent = init.dayList[dayIn];
+}
+function loadDate2(month, date) {
+  document.querySelector('.cal-month2').textContent = month;
+  document.querySelector('.cal-date2').textContent = date;
 }
 
-
-function loadYYMM (fullDate) {
+function loadYYMM(fullDate) {
   let yy = fullDate.getFullYear();
   let mm = fullDate.getMonth();
+  console.log(mm)
+  console.log(init.monList[mm])
   let firstDay = init.getFirstDay(yy, mm);
   let lastDay = init.getLastDay(yy, mm);
-  let markToday;  // for marking today date
   
   if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
     markToday = init.today.getDate();
@@ -70,12 +75,11 @@ function loadYYMM (fullDate) {
       } else {
         let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
         trtd += '<td class="day';
-        trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
         trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
       }
       trtd += (startCount) ? ++countDay : '';
-      if (countDay === lastDay.getDate()) { 
-        startCount = 0; 
+      if (countDay === lastDay.getDate()) {
+        startCount = 0;
       }
       trtd += '</td>';
     }
@@ -85,7 +89,7 @@ function loadYYMM (fullDate) {
 }
 
 
-function createNewList (val) {
+function createNewList(val) {
   let id = new Date().getTime() + '';
   let yy = init.activeDate.getFullYear();
   let mm = init.activeDate.getMonth() + 1;
@@ -99,26 +103,46 @@ function createNewList (val) {
   eventData['memo'] = val;
   eventData['complete'] = false;
   eventData['id'] = id;
+
   init.event.push(eventData);
   $todoList.appendChild(createLi(id, val, date));
+
+  init.activeDate2=init.activeDate;
 }
 
 loadYYMM(init.today);
-loadDate(init.today.getDate(), init.today.getDay());
 
 $btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
 $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
 
+
 $calBody.addEventListener('click', (e) => {
   if (e.target.classList.contains('day')) {
-    if (init.activeDTag) {
-      init.activeDTag.classList.remove('day-active');
+    if (init.activeDTag==0) {
+      let day = Number(e.target.textContent);
+      e.target.classList.add('day-active');
+      init.activeDTag = e.target;
+      init.activeDate.setDate(day);
+      loadDate(day, init.activeDate.getMonth());
+
+      console.log('데이트' + init.activeDate)
+    }else if(init.activeDTag==1){
+      let day2 = Number(e.target.textContent);
+      init.activeDate2.setDate(day2);
+      if (init.activeDate2 <= init.activeDate) {
+        init.activeDTag.classList.remove('day-active');
+      } else {
+        loadDate(day2, init.activeDate2.getMonth());
+        e.target.classList.add('day-active');
+        init.activeDTag = null;
+        init.activeDate2.setDate(day2);
+        
+      }
+      
+      
+      
+      
     }
-    let day = Number(e.target.textContent);
-    loadDate(day, e.target.cellIndex);
-    e.target.classList.add('day-active');
-    init.activeDTag = e.target;
-    init.activeDate.setDate(day);
-    reloadTodo();
+    
   }
 });
