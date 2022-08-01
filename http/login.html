@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>login.html</title>
+    <link href="../css/modalLogin.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9f16a06d13.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div id="modal">
+        <div class="modal-box">
+            <!-- Modal Title -->
+            <div class="modal-title">
+
+                <h5>로그인 또는 회원가입</h5>
+                <div class="modal-close-button">
+                    <img src="img/close-20.png">
+                </div>
+            </div>
+            <div class="modal-content">
+                <form action="mypage.html">
+                    <div class="loginId">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="id" name="id" placeholder="아이디">
+                    </div>
+                    <div class="loginPw">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="pw" name="pw" placeholder="비밀번호">
+                    </div>
+                    <input type="submit" value="로그인">
+                    <div>
+                        <a href="findInfo.html">
+                            <span>아이디/비밀번호 찾기</span>
+                        </a>
+                    </div>
+                    <a href="agreements.html">
+                        <div> 회원가입
+                    </a>
+
+                    <button type="button" id="kakao-login-bnt" class="btn-kakao">
+                        <span>
+                            <a href="#">
+                                <i class="icon_login_kakao"></i>
+                                카카오톡으로 로그인</a>
+                        </span>
+                    </button>
+                    <button type="button" id="naver-login-bnt" class="btn-naver">
+                        <span>
+                            <a href="#"><i class="icon_login_naver"></i>
+                                네이버로 로그인</a>
+                        </span>
+                    </button>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
