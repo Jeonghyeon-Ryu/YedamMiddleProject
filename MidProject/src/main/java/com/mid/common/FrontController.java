@@ -21,7 +21,6 @@ public class FrontController extends HttpServlet {
 
 		charset = config.getInitParameter("charset");
 		mappings = new HashMap<String, Controller>();
-		System.out.println("fc");
 		mappings.put("/main.do", new MainController());
 		
 	}

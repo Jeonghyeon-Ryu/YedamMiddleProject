@@ -13,7 +13,6 @@ public class MainController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("mc");
 		RequestDispatcher rd = req.getRequestDispatcher("main/main.tiles");
 		rd.forward(req, resp);
 

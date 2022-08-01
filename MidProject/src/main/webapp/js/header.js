@@ -12,6 +12,17 @@ window.addEventListener('load',function(){
     for(filterItem of filterItems){
         filterItem.addEventListener('click',filterItemAction);
     }
+    
+    // Search Box Event
+    let location = document.querySelector('#location');
+	let checkinDate = document.querySelector('#checkin-date');
+	let checkoutDate = document.querySelector('#checkout-date');
+	let headcount = document.querySelector('#headcount');
+	
+	location.parentElement.addEventListener('click',clickSearchBox);
+	checkinDate.parentElement.addEventListener('click',clickSearchBox);
+	checkoutDate.parentElement.addEventListener('click',clickSearchBox);
+	headcount.parentElement.addEventListener('click',clickSearchBox);
 })
     
 function rightScrollFunction() {
@@ -86,7 +97,32 @@ function filterItemAction(e) {
     }else{
         item.className += ' filter-item-clicked';
     }
-
+	
+	
     // 위치, 날짜, 인원 확인 ( 없으면 추천 랜덤 리스트로 )
     // 체크된 필터 확인 후 ajax 호출
+}
+
+function clickSearchBox(e) {
+	let searchBoxItems = document.querySelectorAll('.search-box-item');
+	for(searchBoxItem of searchBoxItems){
+		searchBoxItem.classList.remove('search-box-clicked');
+		searchBoxItem.classList += ' search-box-unclicked';
+	}
+	this.parentElement.classList.remove('search-box-unclicked')
+	this.parentElement.classList += ' search-box-clicked';
+	
+	let id = this.lastElementChild.getAttribute("id");
+	
+	if(id == 'location'){
+		let locationModal = document.querySelector('#location-modal');
+		locationModal.style.display = "flex";
+        locationModal.style.top = 0;
+	}else if(id == 'checkin-date') {
+		
+	}else if(id == 'checkout-date') {
+		
+	}else if(id == 'headcount') {
+		
+	}
 }
