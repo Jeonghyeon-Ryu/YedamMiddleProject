@@ -13,9 +13,15 @@ let xhtp = new XMLHttpRequest();
 xhtp.open('get', 'js/asdf.txt');
 xhtp.send();
 xhtp.onreadystatechange = callBackThree;
-const set = new Set();
-function callBackThree() {
 
+const set = new Set();
+AOS.init({
+	duration: 1000
+});
+
+function callBackThree() {
+	let aosCheck = true;
+	let aosDelay = 0;
 	if (this.readyState == 4 && this.status == 200) {
 		data = JSON.parse(this.responseText);
 
@@ -25,15 +31,55 @@ function callBackThree() {
 			} else if (a.bname == 'a') {
 				set.add(a.name)
 			}
+			if ((a.name == 'a') || (a.bname == 'a')) {
+				let content = document.createElement('p');
+				content.setAttribute("class", "content");
+				if (a.name == 'a') {
+					content.setAttribute("id", 'send');
+				} else if (a.bname == 'a') {
+					content.setAttribute("id", 'receive');
+				}
+				content.innerText = a.ct;
+				document.getElementById("content1").append(content);
+			}
 		}
-		for (let i = 0; i < set.size; i++) {
+
+		for (let item of set.keys()) {
 			let area = document.createElement('button');
-			console.log(set);
 			area.setAttribute("class", "area");
-			area.setAttribute("id", set[i]);
-			area.setAttribute("value", set[i]);
+			area.setAttribute("id", item);
+			if (aosCheck == true) {
+				area.setAttribute("data-aos", "flip-up")
+				aosCheck = false
+			} else {
+				area.setAttribute("data-aos", "flip-down")
+				aosCheck = true;
+			}
+			area.setAttribute("data-aos-delay", aosDelay)
+			aosDelay += 300;
 			document.getElementById("content1").append(area);
+			area.attachEvent
 		}
+	}
+}
+
+function openContent() {
+	if (this.readyState == 4 && this.status == 200) {
+		data = JSON.parse(this.responseText);
+		for (let a of data) {
+			if ((a.name == 'a' && a.bname == item) || (a.name == item && a.bname == 'a')) {
+				let content = document.createElement('p');
+				content.setAttribute("class", "content");
+				if (a.name == 'a') {
+					content.setAttribute("id", 'my');
+				} else if (a.bname == 'a') {
+					content.setAttribute("id", 'you');
+				}
+				content.innerText = a.ct;
+				document.getElementById("content1").append(content);
+			}
+		}
+		document.getElementsByClassName("content").style.display = 'block'
 	}
 }
 
@@ -48,7 +94,7 @@ function openMenu() {
 }
 
 function openAllMs() {
-	content1.style.display = 'block';
+	content1.style.display = 'flex';
 	content2.style.display = 'none';
 	content3.style.display = 'none';
 	content4.style.display = 'none';
