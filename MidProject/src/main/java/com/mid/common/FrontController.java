@@ -27,13 +27,13 @@ public class FrontController extends HttpServlet {
 		charset = config.getInitParameter("charset");
 		mappings = new HashMap<String, Controller>();
 		mappings.put("/main.do", new MainController());
+		mappings.put("/message.do", new MessageController());
 		mappings.put("/loginForm.do", new LoginFormController());	//로그인폼
 		mappings.put("/login.do", new LoginOutController());		//로그인,로그아웃
 		mappings.put("/memberJoin.do", new memberJoinController());	//회원가입
 		mappings.put("/memberAgreement.do", new memberAgreementController());	//회원가입약관동의
 		mappings.put("/memberMypage.do", new MypageController());	//마이페이지
-		mappings.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.
-		
+		mappings.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.	
 	}
 
 	@Override
