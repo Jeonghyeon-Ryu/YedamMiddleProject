@@ -18,10 +18,11 @@ public class FrontController extends HttpServlet {
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-
+		
 		charset = config.getInitParameter("charset");
 		mappings = new HashMap<String, Controller>();
 		mappings.put("/main.do", new MainController());
+		mappings.put("/insert.do", new InsertController());
 		
 	}
 
