@@ -1,0 +1,165 @@
+@charset "UTF-8";
+@import 'https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.3.2/css/simple-line-icons.min.css';
+
+/* Display none 때문 animation 문제 */
+.animated{
+	-webkit-animation-duration:1s;
+	animation-duration:1s;
+	-webkit-animation-fill-mode:both;
+	animation-fill-mode:both
+}
+@keyframes zoomIn{
+	0% {
+		opacity:0;
+		-webkit-transform:scale3d(.3,.3,.3);
+		transform:scale3d(.3,.3,.3)
+	}
+	50% {
+		opacity:1
+	}
+}
+@keyframes fadeIn{
+	0%{
+		opacity:0;
+	}
+	to{
+		opacity:1;
+	}
+}
+.select {
+	position: relative;
+    display: block;
+    margin: auto;
+    width: 45%;
+    max-height: inherit;
+    overflow:auto;
+    border-bottom: 0px;
+    border-radius: 3px;
+    font-size: 12px;
+    box-shadow: 0px 1em 2em -1.5em rgba(0, 0, 0, .5);
+}
+/* 스크롤 바 CSS 부분 */
+.select::-webkit-scrollbar {
+    background-color: #fff;
+    width: 16px;
+}
+.select::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+.select::-webkit-scrollbar-thumb {
+    background-color: #babac0;
+    border-radius: 16px;
+    border: 4px solid #fff;
+}
+.select::-webkit-scrollbar-button {
+    display:none;
+}
+.select .title, .select .placeholder{
+	position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 1.5em 2em;
+    background: rgba(255, 255, 255, 1);
+    border-top: 1px solid rgba(0, 0, 0, .05);
+    cursor: pointer;
+}
+.select>i.toggle{
+	 position: absolute;
+     z-index: 4;
+     right: 1.5em;
+     top: 1.6em;
+     color: #ccc
+}
+.select>input{
+	position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    cursor: pointer;
+}
+.select>input:checked~i.toggle.icon-arrow-down {
+	display: none;
+}
+.select>input:checked~i.toggle.icon-arrow-up {
+    display: block;
+}
+.select>input:checked div.options label.option span.title {
+    display: none!important;
+}
+.select>input:not(:checked) {
+	z-index: 4;
+}
+.select>input:not(:checked)~label.option>span.title{
+	display: none;
+}
+.select>input:not(:checked)~i.toggle.icon-arrow-up {
+    display: none;
+}
+
+.select>input:not(:checked)~i.toggle.icon-arrow-down {
+    display: block;
+}
+
+
+.select>input:disabled {
+	cursor: no-drop;
+}
+.select>span.placeholder{
+	position: relative;
+    z-index: 0;
+    display: inline-block;
+    width: 100%;
+    color: #999;
+    border-top: 0px;
+}
+.select label.option {
+	display: block;
+    overflow: hidden;
+    z-index: 1;
+    width: 100%;
+    transition: all 1s ease-out;
+}
+.select label.option span.title {
+	 position: relative;
+     z-index: 2;
+     transition: background .3s ease-out;
+}
+.select label.option span.title i.icon {
+    padding-right: 8px;
+    color: rgba(146, 168, 209, 1);
+}
+.select label.option span.title:hover {
+    color: #c5c5c5;
+    background: rgba(255, 255, 255, .3);
+    box-shadow: inset 0px 1px 0px rgba(0, 0, 0, .1);
+}
+.select label.option input {
+    display: none;
+}
+.select label.option input:checked~span.title {
+    position: absolute;
+    display: block;
+    z-index: 3;
+    top: 0px;
+    font-size: 12px;
+    background: #fff;
+    border-top: 0px;
+    box-shadow: none;
+    color: inherit;
+    width: 100%;
+}
+
+.select label.option input:disabled~span.title{
+	background: #f9f9f9!important;
+                    color: #aaa;
+}
+.select label.option input:disabled~span.title:hover {
+    color: #aaa;
+    background: none;
+    cursor: no-drop;
+}
