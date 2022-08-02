@@ -122,7 +122,7 @@
                 </div>
                 <!-- Modal Content -->
                 <div class="modal-content">
-					<div class="select animated zoomIn">
+					<div id="city" class="select animated zoomIn">
    					 <!-- You can toggle select (disabled) -->
 					    <input type="radio" name="option">
 					    <i class="toggle icon icon-arrow-down"></i>

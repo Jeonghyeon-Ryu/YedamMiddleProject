@@ -6,7 +6,7 @@
 <tiles-definitions>
 	<definition name="home" template="/WEB-INF/tiles/template/template.jsp">
 		<put-attribute name="title" value="Welcome to Home!!" />
-		<put-attribute name="head" value="/WEB-INF/tiles/template/head.jsp" />
+		<put-attribute name="header" value="/WEB-INF/tiles/template/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/tiles/template/main.jsp" />
 		<put-attribute name="nav" value="/WEB-INF/tiles/template/nav.jsp" />
 	</definition>

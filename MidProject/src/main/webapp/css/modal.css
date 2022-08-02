@@ -5,14 +5,15 @@
     position:fixed;
     left:0;
     right:0;
-    top:-100%;
+    top:100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 5;
     backdrop-filter: blur(1.5px);
-    transition: opacity 0.5s ease-in;
-    display:none;
+    transition: all 0.2s ease-in;
+    display:flex;
+    visibility:hidden;
 }
 @keyframes fadeIn {
 	from {
@@ -21,6 +22,10 @@
 	to {
 		opacity:1;
 	}
+}
+.modal-active {
+	visibility : visible;
+	top:0;
 }
 .mini-modal-box{
     width:80%;

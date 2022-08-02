@@ -14,7 +14,7 @@
 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/header.css">
-<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/nav.css">
 <link rel="stylesheet" type="text/css" href="css/modal.css">
 <link rel="stylesheet" type="text/css" href="css/selectlocation.css">
@@ -22,7 +22,7 @@
 <body>
 	<div class="container">
 		<!------------------------ Headder 영역 시작 ------------------------->
-		<tiles:insertAttribute name="head"></tiles:insertAttribute>
+		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 		<!------------------------ Main 영역 시작 ------------------------->
 		<tiles:insertAttribute name="body"></tiles:insertAttribute>
 		<!-- 하단 네비 시작 -->
@@ -30,6 +30,7 @@
 	</div>
 
 	<script src="js/header.js"></script>
+	<script src="js/main.js"></script>
 	<script src="js/modal.js"></script>
 	<script src="js/selectlocation.js"></script>
 	<script
