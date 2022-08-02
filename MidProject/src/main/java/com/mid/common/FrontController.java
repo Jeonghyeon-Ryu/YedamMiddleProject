@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mid.controller.CompDetailController;
 import com.mid.controller.MainController;
+import com.mid.controller.WishListController;
 
 public class FrontController extends HttpServlet {
 
@@ -23,7 +25,8 @@ public class FrontController extends HttpServlet {
 		mappings = new HashMap<String, Controller>();
 		System.out.println("fc");
 		mappings.put("/main.do", new MainController());
-		
+		mappings.put("/compDetail.do", new CompDetailController());
+		mappings.put("/wishList.do", new WishListController());
 	}
 
 	@Override

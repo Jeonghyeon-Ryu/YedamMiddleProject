@@ -1,0 +1,20 @@
+#company-container {
+	width: 412px;
+	height: 915px;
+	margin: 0 auto;
+}
+
+#compan-title {
+	text-align: center;
+}
+
+#company-img {
+	width: 100%;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+
+#company-img-div {
+	width: 0fr;
+}

@@ -1,8 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
-<div id="container">
-	<h2>객실 상세</h2>
-	<div id="test1">
-		<span><img
+<div id="company-container">
+	<h2 id="company-title">객실 상세</h2>
+	<div id="company-img-div">
+		<span><img id="company-img"
 			src="https://file.mk.co.kr/meet/neds/2022/03/image_readtop_2022_252256_16476552624979285.jpg"
 			alt="11" style="max-width: 50%; height: auto;"></span>
 	</div>
