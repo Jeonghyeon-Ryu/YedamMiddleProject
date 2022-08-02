@@ -14,30 +14,26 @@
 		<div>
 			<form id="frm" name="frm" action="memberJoin.do" method="post">
 				<div>
-					<table border="1">
-						<tr>
-							<th width="150">아이디</th>
-							<td width="300"><input type="email" id="memberId"
-								name="memberId">&nbsp;
-								<button type="button" id="idCheck" name="idCheck"
-									value="unChecked">중복체크</button></td>
-						</tr>
-						<tr>
-							<th width="150">패스워드</th>
-							<td width="300"><input type="password" id="memberPassword"
-								name="memberPassword"></td>
-						</tr>
-						<tr>
-							<th width="150">이름</th>
-							<td width="300"><input type="text" id="memberName"
-								name="memberName"></td>
-						</tr>
-						<tr>
-							<th width="150">주소</th>
-							<td width="300"><input type="text" id="memberAddress"
-								name="memberAddress"></td>
-						</tr>
-					</table>
+					<ul>
+						<li>
+							<label for="memberId">아이디</label>
+							<input type="email" id="memberId" name="memberId"placeholder="이메일 형식으로 입력하세요"> &nbsp;
+							<button type="button" id="idCheck" name="idCheck"value="unChecked">중복체크</button>
+						</li>
+						<li>
+							<label for="memberPassword">패스워드</label>
+							<input type="password" id="memberPassword" name="memberPassword">
+						</li>
+						<li>
+						
+							<label for="memberName">이름</label>
+							<input type="text" id="memberName" name="memberName">
+						</li>
+					</ul>
+					<ul>
+						<li><label for="memberAddress">주소</label>
+						<input type="text" id="memberAddress"name="memberAddress"></li>
+					</ul>
 				</div>
 				<br />
 				<div>
