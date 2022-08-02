@@ -1,39 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        div{
-            border: 1px solid black;
+        .container {
+            width: 412px;
+            height: 915px;
+            margin: 0 auto;
         }
-        img{
-            width: 100px;
-            height: 100px;
+
+        h2 {
+            text-align: center;
         }
-        li{
+
+        img {
+            width: 100%;
+            padding-top: 10px;
+            padding-left: 10px;
+        }
+
+        li {
             list-style: none;
         }
+
+        #test1 {
+            width: 0fr;
+        }
+        /* Set the size of the div element that contains the map */
+      #map {
+        height: 300px;
+        /* The height is 400 pixels */
+        width: 50%;
+        /* The width is the width of the web page */
+      }
     </style>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+          // The location of Uluru
+          const uluru = { lat: 40.74870057421415, lng: -73.98569658832044 };
+          // The map, centered at Uluru
+          const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: uluru,
+          });
+          // The marker, positioned at Uluru
+          const marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+          });
+        }
+      </script>
 </head>
+
 <body>
-    <div>
-        @
-        <img src="https://file.mk.co.kr/meet/neds/2022/03/image_readtop_2022_252256_16476552624979285.jpg" alt="111"><br>
-        <hr>
-        <p>업체명 : </p>
-        <p>별점 : </p>
-        <p>위치 : </p>
-        <hr>
-        <p>체크인        체크아웃</p>
-        <hr>
-        <p>예약번호 : </p>
-        <p>객실정보 : </p>
-        <p>예약일자 : </p>
-        <p>결제정보 : </p>
-        <p>지도</p>
+    <div id="container">
+        <h2>예약 내역</h2>
+        <div id="test1">
+            <span><img src="https://file.mk.co.kr/meet/neds/2022/03/image_readtop_2022_252256_16476552624979285.jpg"
+                    alt="11" style="max-width:50%; height:auto;"></span>
+        </div>
+        <div>
+            <hr>
+            <div>신라호텔
+                <button>전화</button>
+                <div>
+                    <span>도로명 주소 <input type="hidden"></span>
+                </div>
+            </div>
+            <p></p>
+            <hr>
+            <div>
+                <span>체크인 <input type="hidden"></span> <span>체크아웃<input type="hidden"></span>
+            </div>
+            <hr>
+            <div>
+                <span>예약번호 : </span>
+            </div>
+            <div>
+                <span>객실정보 : </span>
+            </div>
+            <div>
+                <span>예약일자 : </span>
+            </div>
+            <hr>
+            <div>
+                <h3>지도</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOz2kmmysFlXcKaDjAkofoS-73LfVaOt0&callback=initMap&libraries=&v=weekly"
+    async
+    ></script>
+            </div>
+        </div>
     </div>
 </body>
+<script src="js/star.js"></script>
+
 </html>

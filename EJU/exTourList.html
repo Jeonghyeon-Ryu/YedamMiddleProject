@@ -5,27 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        div{
-            border: 1px solid black;
-        }
-        img{
-            width: 100px;
-            height: 100px;
-        }
-        li{
-            list-style: none;
-        }
-    </style>
+    <link rel="stylesheet" href="css/exTourList.css">
 </head>
 <body>
-    <div>
-        <ul>
-            @
-            <li><img src="https://file.mk.co.kr/meet/neds/2022/03/image_readtop_2022_252256_16476552624979285.jpg" alt=""><a href="">이름 : </a><br><a href="">날짜 : </a></li>
-            <li><img src="https://file.mk.co.kr/meet/neds/2022/03/image_readtop_2022_252256_16476552624979285.jpg" alt=""><a href="">이름 : </a><br><a href="">날짜 : </a></li>
-            11
-        </ul>
+    <div id="modal" role="dialog">
+        <div class="modal-box">
+            <!-- Modal Title -->
+            <div class="modal-title">
+                <h2>이전 여행지</h2>
+                <div class="modal-close-button">
+                    <img src="img/close-20.png">
+                </div>
+            </div>
+            <!-- Modal Content -->
+            <div class="modal-content">
+                <div class="content-list" style="cursor:pointer">
+                    <a href=""><img class="placeimg" src="https://file.mk.co.kr/meet/neds/2022/03/image_readtop_2022_252256_16476552624979285.jpg" style="max-width:100%; height:auto;"></a>
+                    <div class="textarea">
+                        <span>여행지</span><br>
+                        <span>날짜</span>
+                    </div>
+                </div>
+                <div class="content-list" style="cursor:pointer">
+                    <a href=""><img class="placeimg" src="https://file.mk.co.kr/meet/neds/2022/03/image_readtop_2022_252256_16476552624979285.jpg" style="max-width:100%; height:auto;"></a>
+                    <div class="textarea">
+                        <span>여행지</span><br>
+                        <span>날짜</span>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <!-- Modal Footer(Optional) -->
+            <div class="modal-footer">
+            </div>
+        </div>
     </div>
 </body>
 </html>
