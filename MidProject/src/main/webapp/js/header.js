@@ -84,6 +84,7 @@ function leftScrollFunction() {
 
 function filterItemAction(e) {
     let item;
+    // filter item Click class 추가
     if(e.target.classList.contains('filter-item') || e.target.classList.contains('filter-item-img') || e.target.classList.contains('filter-item-name')){
         if(e.target.classList.contains('filter-item-img') || e.target.classList.contains('filter-item-name')){
             item = e.target.parentElement;

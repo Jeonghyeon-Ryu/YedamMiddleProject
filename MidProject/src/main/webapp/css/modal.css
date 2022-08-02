@@ -31,6 +31,7 @@
     border-radius: 20px;
     position:relative;
 }
+
 .modal-box{
     width:100%;
     max-width: 780px;
@@ -65,6 +66,10 @@
     overflow-y:hidden;
     max-height: calc(50vh - 110px);
     margin-top:5px;
+}
+.mini-modal-box>.modal-content {
+	display:flex !important;
+	flex-direction:row;
 }
 .modal-footer{
     width:100%;

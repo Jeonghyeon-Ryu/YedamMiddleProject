@@ -1,9 +1,7 @@
 let filterButton = document.querySelector('.filter-button');
 filterButton.addEventListener('click',modalOpenAction);
-let modalCloseButtons = document.querySelectorAll('.modal-close-button');
-for(modalCloseButton of modalCloseButtons){
-	modalCloseButton.addEventListener('click',modalCloseAction);
-}
+let modalCloseButton = document.querySelector('#modal .modal-close-button');
+modalCloseButton.addEventListener('click',modalCloseAction);
 
 function modalOpenAction(e){
     let modal = document.querySelector('#modal');
@@ -19,12 +17,10 @@ function modalCloseAction(e) {
 }
 
 // 그 외 영역 클릭 처리
-let modals = document.querySelectorAll('.modal');
-for(modal of modals){
-	modal.addEventListener('click', modalClickEvent);
-}
+let modal = document.querySelector('#modal');
+modal.addEventListener('click', modalClickEvent);
 function modalClickEvent(e) {
-	// console.log(e.target);
+	//console.log(e.target);
     if(e.target.classList.contains("modal-overlay")) {
         e.target.style.display = "none";
         e.target.style.top = '-200%';

@@ -189,12 +189,12 @@
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>제주</span>
 					    </label>
 					</div>
-					<div class="select animated zoomIn">
+					<div id="regions" class="select animated zoomIn">
    					 <!-- You can toggle select (disabled) -->
-					    <input type="radio" name="option">
+					    <input type="radio" name="option2">
 					    <i class="toggle icon icon-arrow-down"></i>
 					    <i class="toggle icon icon-arrow-up"></i>
-					    <span class="placeholder">시도 선택</span>
+					    <span class="placeholder">군구 선택</span>
 				    </div>
                 </div>
                 <!-- Modal Footer(Optional) -->
