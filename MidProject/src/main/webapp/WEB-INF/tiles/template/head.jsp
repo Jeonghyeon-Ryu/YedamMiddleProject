@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<header>
+		<header>
              <!------------ Header / Search 영역 시작 -------------->
             <div class="search-box">
                 <div>
@@ -8,29 +8,29 @@
                         <img src="img/nav-search-25.png" width="20px">
                     </button>
                 </div>
-                <div>
-                    <a class="header-a" href="">
+                <div class="search-box-item">
+                    <div class="header-a">
                         <div>위치</div>
-                        <input type="text" placeholder="여행지 선택" readonly>
-                    </a>
+                        <input id="location" type="text" placeholder="여행지 선택" readonly>
+                    </div>
                 </div>
-                <div>
-                    <a class="header-a" href="">
+                <div class="search-box-item">
+                    <div class="header-a">
                         <div>체크인</div>
-                        <input type="datetime" placeholder="날짜 추가" readonly>
-                    </a>
+                        <input id="checkin-date" type="datetime" placeholder="날짜 추가" readonly>
+                    </div>
                 </div>
-                <div>
-                    <a class="header-a" href="">
+                <div class="search-box-item">
+                    <div class="header-a">
                         <div>체크아웃</div>
-                        <input type="datetime" placeholder="날짜 추가" readonly>
-                    </a>
+                        <input id="checkout-date" type="datetime" placeholder="날짜 추가" readonly>
+                    </div>
                 </div>
-                <div>
-                    <a href="">
+                <div class="search-box-item">
+                    <div>
                         <div>인원</div>
-                        <input type="number" placeholder="인원 수" readonly>
-                    </a>
+                        <input id="headcount" type="number" placeholder="인원 수" readonly>
+                    </div>
                 </div>
                 <div>
                     <button class="filter-button">
@@ -41,7 +41,7 @@
             <!------------ Header / Filter 영역 시작 -------------->
             <div class="filter-container row" >
                 <button class="left-scroll-button" type="button">
-                    <img src="/WEB-INF/img/arrow-back-25.png">
+                    <img src="img/arrow-back-25.png">
                 </button>
                 <div class="filter-box">
                     <div class="filter-inner-box">
@@ -89,3 +89,118 @@
             </div>
             <hr>
         </header>
+        <!-- 필터 모달창 시작 -->
+        <div id="modal" class="modal modal-overlay" role="dialog">
+            <div class="modal-box">
+                <!-- Modal Title -->
+                <div class="modal-title">
+                    <h5>필터</h5>
+                    <div class="modal-close-button">
+                        <img src="img/close-20.png">
+                    </div>
+                </div>
+                <!-- Modal Content -->
+                <div class="modal-content">
+
+                </div>
+                <!-- Modal Footer(Optional) -->
+                <div class="modal-footer">
+                    <button type="reset">전체 해제</button>
+                    <button type="button"><span>555</span> 건 조회</button>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div id="location-modal" class="modal modal-overlay" role="dialog">
+            <div class="mini-modal-box">
+                <!-- Modal Title -->
+                <div class="modal-title">
+                    <h5>지역 선택</h5>
+                    <div class="modal-close-button">
+                        <img src="img/close-20.png">
+                    </div>
+                </div>
+                <!-- Modal Content -->
+                <div class="modal-content">
+					<div class="select animated zoomIn">
+   					 <!-- You can toggle select (disabled) -->
+					    <input type="radio" name="option">
+					    <i class="toggle icon icon-arrow-down"></i>
+					    <i class="toggle icon icon-arrow-up"></i>
+					    <span class="placeholder">시도 선택</span>
+					    <label class="option">
+					        <input type="radio" name="option" value="seoul">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>서울</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="busan">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>부산</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="daegu">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>대구</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="daejeon">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>대전</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="gwangju">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>광주</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="ulsan">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>울산</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="gangwon">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>강원</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="gyeonggi">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>경기</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="incheon">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>인천</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="gyeongsangbuk">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>경북</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="gyeongsangnam">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>경남</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="chungbuk">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>충북</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="jeonbuk">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>전북</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="jeonnam">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>전남</span>
+					    </label>
+					    <label class="option">
+					        <input type="radio" name="option" value="jeju">
+					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>제주</span>
+					    </label>
+					</div>
+					<div id="regions" class="select animated zoomIn">
+   					 <!-- You can toggle select (disabled) -->
+					    <input type="radio" name="option2">
+					    <i class="toggle icon icon-arrow-down"></i>
+					    <i class="toggle icon icon-arrow-up"></i>
+					    <span class="placeholder">군구 선택</span>
+				    </div>
+                </div>
+                <!-- Modal Footer(Optional) -->
+                <div class="modal-footer">
+                    <button type="reset">전체 해제</button>
+                    <button type="button"><span>555</span> 건 조회</button>
+                </div>
+            </div>
+        </div>
