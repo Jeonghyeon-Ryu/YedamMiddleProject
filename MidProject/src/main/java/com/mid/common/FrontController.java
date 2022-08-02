@@ -23,6 +23,7 @@ public class FrontController extends HttpServlet {
 		mappings = new HashMap<String, Controller>();
 		System.out.println("fc");
 		mappings.put("/main.do", new MainController());
+		mappings.put("/message.do", new MessageController());
 		
 	}
 
