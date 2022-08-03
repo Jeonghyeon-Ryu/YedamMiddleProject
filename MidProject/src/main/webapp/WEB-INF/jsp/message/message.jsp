@@ -40,7 +40,7 @@
 
     <div id="content1">
       <div id="contentRoom"></div>
-     <form action="/sendContent.do">
+     <form action="sendContent.do">
       <div id="contentText"></div>
       모든 메시지
     </form>
