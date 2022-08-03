@@ -11,7 +11,7 @@
 	<div>
 		<hr>
 		<div>
-			신라호텔
+			업체명
 			<button>
 				전화 : <input type="hidden">
 			</button>

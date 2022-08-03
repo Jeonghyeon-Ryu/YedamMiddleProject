@@ -7,7 +7,7 @@ import java.util.List;
 import com.mid.vo.Reservation;
 
 public class ReservationDAO extends DAO {
-	
+
 	// 전체 조회
 	public List<Reservation> selectAll() {
 		connect();
@@ -37,12 +37,12 @@ public class ReservationDAO extends DAO {
 	}
 
 	// 단건 조회 - roomId
-	public Reservation selectOne(Reservation reservation) {
+	public Reservation selectOne(int roomId) {
 		String sql = "select * from reservation where room_id =?";
 		connect();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, reservation.getRoomId());
+			pstmt.setInt(1, roomId);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				Reservation vo = new Reservation();
@@ -69,7 +69,7 @@ public class ReservationDAO extends DAO {
 		connect();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1,reservation.getRoomId());
+			pstmt.setInt(1, reservation.getRoomId());
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건 업데이트.");
 		} catch (SQLException e) {
