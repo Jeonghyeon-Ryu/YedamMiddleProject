@@ -10,7 +10,7 @@ public class MessageController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Utils.foward(req, resp, "/WEB-INF/jsp/message/message.jsp");
+		Utils.forward(req, resp, "/WEB-INF/jsp/message/message.jsp");
 
 	}
 
