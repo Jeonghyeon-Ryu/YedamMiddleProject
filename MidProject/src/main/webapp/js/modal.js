@@ -20,7 +20,6 @@ function modalCloseAction(e) {
 }
 // 그 외 영역 클릭 처리
 function modalClickEvent(e) {
-	//console.log(e.target);
 	if (e.target.classList.contains("modal-overlay")) {
 		e.target.classList.toggle('modal-active');
 	}
