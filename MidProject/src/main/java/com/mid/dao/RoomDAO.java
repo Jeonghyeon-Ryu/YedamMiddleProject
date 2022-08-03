@@ -37,12 +37,12 @@ public class RoomDAO extends DAO {
 	}
 	
 	// 단건 조회 - roomId
-	public Room selectOne(Room room) {
+	public Room selectOne(int roomId) {
 		String sql = "select * from room where room_id =?";
 		connect();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, room.getRoomId());
+			pstmt.setInt(1, roomId);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				Room vo = new Room();

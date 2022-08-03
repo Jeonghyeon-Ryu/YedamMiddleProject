@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -11,7 +12,7 @@
 	<div>
 		<hr>
 		<div>
-			신라호텔
+			업체명
 			<button>
 				전화 : <input type="hidden">
 			</button>

@@ -22,8 +22,8 @@
 		<div class="modal-title">
 
 			<h5>로그인 또는 회원가입</h5>
-			<div class="modal-close-button">
-				<img src="img/close-20.png">
+			<div class="modal-close-button"><a href="main.do">
+				<img src="img/close-20.png"></a>
 			</div>
 		</div>
 		<div class="modal-content">
