@@ -51,7 +51,7 @@ public class CompDetailController implements Controller {
 
 		Utils.forward(req, resp, "eju/compDetail.tiles");
 		
-		
+	
 	}
 
 }

@@ -17,5 +17,4 @@ public class ExTourListController implements Controller {
 		rd.forward(req, resp);
 
 	}
-
 }

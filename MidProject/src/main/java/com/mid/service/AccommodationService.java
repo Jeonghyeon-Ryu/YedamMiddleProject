@@ -35,6 +35,7 @@ public class AccommodationService {
 		return new AccommodationDAO().selectOneAddress(city, region);
 	}
 
+	
 	// 업체정보 출력
 	public Accommodation getCompDetail(int accId) {
 		return adao.selectOne(accId);

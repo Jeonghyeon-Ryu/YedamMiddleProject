@@ -10,7 +10,7 @@ public class RoomService {
 
 	private RoomService() {
 	}
-
+ 
 	public static RoomService getInstance() {
 		if (instance == null) {
 			instance = new RoomService();

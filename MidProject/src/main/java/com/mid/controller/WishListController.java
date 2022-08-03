@@ -16,5 +16,4 @@ public class WishListController implements Controller {
 		RequestDispatcher rd = req.getRequestDispatcher("eju/wishList.tiles");
 		rd.forward(req, resp);
 	}
-
 }

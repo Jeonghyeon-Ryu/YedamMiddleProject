@@ -44,5 +44,4 @@ public class ReservationPageController implements Controller {
 
 		Utils.forward(req, resp, "eju/reservationPage.tiles");
 	}
-
 }
