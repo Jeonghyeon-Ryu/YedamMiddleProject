@@ -130,10 +130,25 @@ input {
     position:relative;
     margin:0 auto;
 }
-.filter-inner-box{
-    position:absolute;
-    transition-duration: 0.5s;
-    left:0;
+@media(max-width : 920px) {
+	.filter-inner-box{
+	    position:absolute;
+	    transition-duration: 0.5s;
+	    left:0;
+	}
+	.left-scroll-button, .right-scroll-button {
+		display:block;
+	}
+}
+@media(min-width : 921px) {
+	.filter-inner-box{
+	    position:absolute;
+	    transition-duration: 0.5s;
+	    left:calc(50% - 310px);
+	}
+	.left-scroll-button, .right-scroll-button {
+		display:none;
+	}
 }
 .filter-item {
     width:50px;

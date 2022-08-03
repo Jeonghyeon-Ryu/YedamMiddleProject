@@ -204,3 +204,66 @@
                 </div>
             </div>
         </div>
+        <div id="headcount-modal" class="modal modal-overlay" role="dialog" style="visibility:visible; top:0;">
+            <div class="mini-modal-box">
+                <!-- Modal Title -->
+                <div class="modal-title">
+                    <h5>인원수</h5>
+                    <div class="modal-close-button">
+                        <img src="img/close-20.png">
+                    </div>
+                </div>
+                <!-- Modal Content -->
+                <div class="modal-content">
+					<div class="filter-adult">
+						<div class="headcount-label">
+							<div>성인</div>
+							<div>만 13세 이상</div>
+						</div>
+						<div class="headcount-updown-button">
+							<button type="button"><img src="img/headcount-minus-32.png"></button>
+							<span>0</span>
+							<button type="button"><img src="img/headcount-plus-32.png"></button>
+						</div>
+					</div>
+					<div class="filter-kid">
+						<div class="headcount-label">
+							<div>성인</div>
+							<div>만 13세 이상</div>
+						</div>
+						<div class="headcount-updown-button">
+							<button type="button"><img src="img/headcount-minus-32.png"></button>
+							<span>0</span>
+							<button type="button"><img src="img/headcount-plus-32.png"></button>
+						</div>
+					</div>
+					<div class="filter-infant">
+						<div class="headcount-label">
+							<div>성인</div>
+							<div>만 13세 이상</div>
+						</div>
+						<div class="headcount-updown-button">
+							<button type="button"><img src="img/headcount-minus-32.png"></button>
+							<span>0</span>
+							<button type="button"><img src="img/headcount-plus-32.png"></button>
+						</div>
+					</div>
+					<div class="filter-animal">
+						<div class="headcount-label">
+							<div>성인</div>
+							<div>만 13세 이상</div>
+						</div>
+						<div class="headcount-updown-button">
+							<button type="button"><img src="img/headcount-minus-32.png"></button>
+							<span>0</span>
+							<button type="button"><img src="img/headcount-plus-32.png"></button>
+						</div>
+					</div>
+                </div>
+                <!-- Modal Footer(Optional) -->
+                <div class="modal-footer">
+                    <button type="reset">전체 해제</button>
+                    <button type="button"><span>555</span> 건 조회</button>
+                </div>
+            </div>
+        </div>

@@ -15,14 +15,7 @@
     display:flex;
     visibility:hidden;
 }
-@keyframes fadeIn {
-	from {
-		opacity:0;
-	}
-	to {
-		opacity:1;
-	}
-}
+
 .modal-active {
 	visibility : visible;
 	top:0;
@@ -72,7 +65,7 @@
     max-height: calc(50vh - 110px);
     margin-top:5px;
 }
-.mini-modal-box>.modal-content {
+#location-modal .modal-content {
 	display:flex !important;
 	flex-direction:row;
 }
