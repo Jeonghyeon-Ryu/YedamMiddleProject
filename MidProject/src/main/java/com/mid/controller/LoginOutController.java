@@ -33,7 +33,7 @@ public class LoginOutController implements Controller {
 		MemberService service = MemberService.getInstance();
 		Member vo = service.getMember(id);
 
-		// 로그인 실패 : id가 없거나 pw가 맞지 않는 경우 (memberLoginFail.jsp로 이동)
+		// 로그인 실패 : id가 없거나 pw가 맞지 않는 경우 
 		if (vo == null || !vo.getPw().equals(pw)) {
 			req.setAttribute("error", "아이디 또는 비밀번호를 잘못 입력했습니다.<br>"
 					+ "입력하신 내용을 다시 확인해주세요.");
@@ -41,8 +41,8 @@ public class LoginOutController implements Controller {
 		} else {
 			System.out.println("login.");
 			session.setAttribute("id", id);
-			req.setAttribute("member", vo);
-			Utils.forward(req, resp, "memberMypage.do");//마이페이지로 가던가.. 홈으로 가던가..
+			
+			resp.sendRedirect("memberMypage.do");//마이페이지로 가던가.. 홈으로 가던가..
 		}
 	}
 
