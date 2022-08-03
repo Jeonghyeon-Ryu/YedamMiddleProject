@@ -1,11 +1,14 @@
 package com.mid.service;
 
 import java.util.List;
-
 import com.mid.dao.MemberDAO;
 import com.mid.vo.Member;
+import com.mid.dao.AccommodationDAO;
+import com.mid.vo.Accommodation;
+
 
 public class MemberService {
+	AccommodationDAO adao = new AccommodationDAO();
 	private static MemberService instance;
 
 	private MemberService() {
@@ -48,5 +51,9 @@ public class MemberService {
 	// 로그인체크
 	public Member loginChk(String id, String pw) {
 		return mdao.loginChk(id, pw);
+	}
+	
+	public Accommodation getCompDetail(Accommodation accommodation) {
+		return adao.selectOne(accommodation);
 	}
 }

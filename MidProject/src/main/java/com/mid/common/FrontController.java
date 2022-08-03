@@ -16,6 +16,10 @@ import com.mid.controller.memberAgreementController;
 import com.mid.controller.memberJoinController;
 
 
+import com.mid.controller.CompDetailController;
+import com.mid.controller.MainController;
+import com.mid.controller.WishListController;
+
 public class FrontController extends HttpServlet {
 
 	String charset = null;
@@ -34,6 +38,9 @@ public class FrontController extends HttpServlet {
 		mappings.put("/memberAgreement.do", new memberAgreementController());	//회원가입약관동의
 		mappings.put("/memberMypage.do", new MypageController());	//마이페이지
 		mappings.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.	
+		mappings.put("/compDetail.do", new CompDetailController());
+		mappings.put("/wishList.do", new WishListController());
+
 	}
 
 	@Override

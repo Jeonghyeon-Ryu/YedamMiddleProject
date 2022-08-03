@@ -1,0 +1,26 @@
+#reservation-container {
+	width: 412px;
+	height: 915px;
+	margin: 0 auto;
+}
+
+#reservation-title {
+	text-align: center;
+}
+
+#reservation-img {
+	width: 100%;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+#reservation-img-div {
+	width: 0fr;
+}
+/* Set the size of the div element that contains the map */
+#reservation-map {
+	height: 300px;
+	/* The height is 400 pixels */
+	width: 50%;
+	/* The width is the width of the web page */
+}
