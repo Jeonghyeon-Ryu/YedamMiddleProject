@@ -8,11 +8,29 @@ import com.mid.vo.Accommodation;
 
 
 public class AccommodationDAO extends DAO {
-
+	public void insert(Accommodation acc) {
+		connect();
+		String sql = "INSERT INTO accommodation VALUES(acc_seq.NEXTVAL,?,?,0,?,1,?,?,sysdate,?)"; 
+		try {
+			connect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, acc.getName());
+			pstmt.setString(2, acc.getAddress());
+			pstmt.setString(3, acc.getPhone());
+			pstmt.setDouble(4, acc.getPointX());
+			pstmt.setDouble(5, acc.getPointY());
+			pstmt.setString(6, acc.getImgUrl());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
 	// 전체 조회
 	public List<Accommodation> selectAll() {
 		connect();
-		String sql = "select * from Chat order by 1";
+		String sql = "select * from accommodation order by 1";
 		List<Accommodation> list = new ArrayList<>();
 		try {
 			pstmt = conn.prepareStatement(sql);

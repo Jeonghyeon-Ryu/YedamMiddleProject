@@ -117,8 +117,7 @@ function clickSearchBox(e) {
 	
 	if(id == 'location'){
 		let locationModal = document.querySelector('#location-modal');
-		locationModal.style.display = "flex";
-        locationModal.style.top = 0;
+		locationModal.classList.toggle('modal-active');
 	}else if(id == 'checkin-date') {
 		
 	}else if(id == 'checkout-date') {

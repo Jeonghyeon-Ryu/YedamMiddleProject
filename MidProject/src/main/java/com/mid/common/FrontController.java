@@ -27,7 +27,7 @@ public class FrontController extends HttpServlet {
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-
+		
 		charset = config.getInitParameter("charset");
 		mappings = new HashMap<String, Controller>();
 		mappings.put("/main.do", new MainController());
@@ -40,6 +40,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.	
 		mappings.put("/compDetail.do", new CompDetailController());
 		mappings.put("/wishList.do", new WishListController());
+		mappings.put("/insert.do", new InsertController());
 
 	}
 

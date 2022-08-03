@@ -18,11 +18,13 @@
     <link rel="stylesheet" type="text/css" href="css/exTourList.css">
     <link rel="stylesheet" type="text/css" href="css/companyDetail.css">
     <link rel="stylesheet" type="text/css" href="css/reservationPage.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/selectlocation.css">
 </head>
 <body>
 	<div class="container">
 		<!------------------------ Headder 영역 시작 ------------------------->
-		<tiles:insertAttribute name="head"></tiles:insertAttribute>
+		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 		<!------------------------ Main 영역 시작 ------------------------->
 		<tiles:insertAttribute name="body"></tiles:insertAttribute>
 		<!-- 하단 네비 시작 -->
@@ -30,6 +32,7 @@
 	</div>
 
 	<script src="js/header.js"></script>
+	<script src="js/main.js"></script>
 	<script src="js/modal.js"></script>
 	<script src="js/selectlocation.js"></script>
 	<script

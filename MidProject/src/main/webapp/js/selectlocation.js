@@ -14,12 +14,21 @@ const jeonbuk = ["군산시", "김제시", "남원시", "익산시", "전주시"
 const jeju = ["서귀포시", "제주시", "남제주군", "북제주군"];
 const chungbuk = ["제천시", "청주시", "충주시", "괴산군", "단양군", "보은군", "영동군", "옥천군", "음성군", "증평군", "진천군", "청원군"];
 
+window.addEventListener('click', function() {
+	let selectedLocations = document.querySelectorAll('#city input[type="radio"]');
+	for (let selectedLocation of selectedLocations) {
+		selectedLocation.addEventListener('click', clickSelectedLocation);
+	}
+	let locationModalCloseButton = document.querySelector('#location-modal .modal-close-button');
+	locationModalCloseButton.addEventListener('click', locationModalCloseAction);
+	let locationModal = document.querySelector('#location-modal');
+	locationModal.addEventListener('click', locationModalClickEvent);
+	let locationModalReset = document.querySelector('#location-modal button[type="reset"]');
+	locationModalReset.addEventListener('click', clickLocationModalReset);
+});
 // Regions 할당
-let selectedLocations = document.querySelectorAll('.option input[type="radio"]');
-for (let selectedLocation of selectedLocations) {
-	selectedLocation.addEventListener('click', clickSelectedLocation);
-}
 function clickSelectedLocation(e) {
+	e.stopPropagation();
 	let add;
 	if (this.value == "gangwon") {
 		add = gangwon;
@@ -51,6 +60,8 @@ function clickSelectedLocation(e) {
 		add = jeju;
 	} else if (this.value == "chungbuk") {
 		add = chungbuk;
+	} else {
+		return;
 	}
 	let regions = document.querySelector('#regions');
 	removeRegions(regions)
@@ -69,30 +80,29 @@ function clickSelectedLocation(e) {
 		label.append(span);
 
 		// Select 노드 append
-
 		regions.append(label);
-
 	}
 }
+// 군구 Child Node 제거 ( for Refresh )
 function removeRegions() {
 	let regions = document.querySelector('#regions');
 	let labels = regions.querySelectorAll('label');
 	for (x of labels) {
 		regions.removeChild(x);
 	}
-	region="";
+	region = "";
 }
-// Close Button Event
-let locationModalCloseButton = document.querySelector('#location-modal .modal-close-button');
-locationModalCloseButton.addEventListener('click', locationModalCloseAction);
+// Location Search Box Close Button Event
 function locationModalCloseAction(e) {
 	searchBoxRemoveClass();
 	if (e.target.parentElement.getAttribute("class") == 'modal-close-button') {
 		let modal = e.target.parentElement.parentElement.parentElement.parentElement;
-		modal.style.display = "none";
-		modal.style.top = '-200%';
+		modal.classList.toggle('modal-active');
+		//modal.style.display = "none";
+		//modal.style.top = '-200%';
 	}
 }
+// Location Search Box 선택 해제
 function searchBoxRemoveClass() {
 	let searchBoxItems = document.querySelectorAll('.search-box-item');
 	for (searchBoxItem of searchBoxItems) {
@@ -101,24 +111,20 @@ function searchBoxRemoveClass() {
 	}
 }
 
-let locationModal = document.querySelector('#location-modal');
-locationModal.addEventListener('click', locationModalClickEvent);
+// Location Modal 외 영역 클릭 이벤트
 function locationModalClickEvent(e) {
 	searchBoxRemoveClass();
 	if (e.target.classList.contains("modal-overlay")) {
-		e.target.style.display = "none";
-		e.target.style.top = '-200%';
+		e.target.classList.toggle('modal-active');
 	}
 	// 그 외 영역 클릭 시 필터 초기화 필요. ( 리셋버튼 Func 재사용 )
 }
 
 // Reset Button Event 
-let locationModalReset = document.querySelector('#location-modal button[type="reset"]');
-locationModalReset.addEventListener('click', clickLocationModalReset);
 function clickLocationModalReset() {
 	removeRegions();
-	for(x of document.querySelectorAll('#location-modal input[type="radio"]')){
-		x.checked=false;
+	for (x of document.querySelectorAll('#location-modal input[type="radio"]')) {
+		x.checked = false;
 	}
 }
 
