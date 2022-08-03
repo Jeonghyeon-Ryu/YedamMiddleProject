@@ -8,12 +8,8 @@ import com.mid.vo.Accommodation;
 
 
 public class MemberService {
-	AccommodationDAO adao = new AccommodationDAO();
 	private static MemberService instance;
-
-	private MemberService() {
-	}
-
+	private MemberService() {}
 	public static MemberService getInstance() {
 		if (instance == null) {
 			instance = new MemberService();
@@ -21,39 +17,37 @@ public class MemberService {
 		return instance;
 	}
 
-	MemberDAO mdao = new MemberDAO();
-
 	// 회원가입
 	public void addMember(Member vo) {
-		mdao.insertMemeber(vo);
+		new MemberDAO().insertMemeber(vo);
 	}
 
 	// 회원목록
 	public List<Member> memberList() {
-		return mdao.getMemberList();
+		return new MemberDAO().getMemberList();
 	}
-
+ 
 	// 회원조회
 	public Member getMember(String id) {
-		return mdao.searchMember(id);
+		return new MemberDAO().searchMember(id);
 	}
 
 	// 회원정보수정
 	public void modifyMember(Member vo) {
-		mdao.updateMember(vo);
+		new MemberDAO().updateMember(vo);
 	}
 
 	// 회원정보 삭제
 	public boolean removeMember(String id) {
-		return mdao.deleteMember(id);
+		return new MemberDAO().deleteMember(id);
 	}
 
 	// 로그인체크
 	public Member loginChk(String id, String pw) {
-		return mdao.loginChk(id, pw);
+		return new MemberDAO().loginChk(id, pw);
 	}
 	
-	public Accommodation getCompDetail(Accommodation accommodation) {
-		return adao.selectOne(accommodation);
-	}
+//	public Accommodation getCompDetail(Accommodation accommodation) {
+//		return new AccommodationDAO.selectOne(accommodation);
+//	}
 }
