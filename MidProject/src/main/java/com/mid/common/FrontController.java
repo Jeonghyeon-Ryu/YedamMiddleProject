@@ -11,7 +11,9 @@ import com.mid.controller.AjaxMemberIdCheck;
 import com.mid.controller.LoginFormController;
 import com.mid.controller.LoginOutController;
 import com.mid.controller.MainController;
+import com.mid.controller.MessageController;
 import com.mid.controller.MypageController;
+import com.mid.controller.SendContentController;
 import com.mid.controller.memberAgreementController;
 import com.mid.controller.memberJoinController;
 
@@ -41,6 +43,8 @@ public class FrontController extends HttpServlet {
 		mappings.put("/compDetail.do", new CompDetailController());
 		mappings.put("/wishList.do", new WishListController());
 		mappings.put("/insert.do", new InsertController());
+		mappings.put("/sendContent.do", new SendContentController()); //메세지 전송
+		
 
 	}
 

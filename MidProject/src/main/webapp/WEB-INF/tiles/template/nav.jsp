@@ -14,7 +14,7 @@
             <div><img src="img/nav-login-25.png"></div>
             <div>로그인</div>
         </a>
-        <a href="">
+        <a href="message.do">
             <div><img src="img/nav-message-25.png"></div>
             <div>메세지</div>
         </a>
