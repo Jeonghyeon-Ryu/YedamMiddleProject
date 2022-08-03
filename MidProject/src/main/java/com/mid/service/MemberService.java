@@ -26,7 +26,7 @@ public class MemberService {
 	public List<Member> memberList() {
 		return new MemberDAO().getMemberList();
 	}
-
+ 
 	// 회원조회
 	public Member getMember(String id) {
 		return new MemberDAO().searchMember(id);

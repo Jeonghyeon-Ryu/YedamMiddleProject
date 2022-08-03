@@ -18,6 +18,7 @@ import com.mid.controller.memberJoinController;
 
 
 import com.mid.controller.CompDetailController;
+import com.mid.controller.ExTourListController;
 import com.mid.controller.MainController;
 import com.mid.controller.WishListController;
 
@@ -43,6 +44,9 @@ public class FrontController extends HttpServlet {
 		mappings.put("/wishList.do", new WishListController());		// 위시리스트
 		mappings.put("/insert.do", new InsertController());			// 공공데이터 DB Parsing 관련 1회용
 		mappings.put("/accList.do", new SelectAccListController());	// 숙소 리스트 출력
+		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
+		mappings.put("/reservationPage.do", new ReservationPageController());	// 숙소 리스트 출력
+
 	}
 
 	@Override

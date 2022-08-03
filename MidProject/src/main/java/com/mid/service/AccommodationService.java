@@ -17,10 +17,14 @@ public class AccommodationService {
 		}
 		return instance;
 	}
+
+	AccommodationDAO adao = new AccommodationDAO();
+
 	public List<Accommodation> select() {
 		System.out.println("All");
 		return new AccommodationDAO().selectAll();
 	}
+
 	public List<Accommodation> select(String city) {
 		System.out.println("One");
 		return new AccommodationDAO().selectOneAddress(city);
@@ -28,6 +32,12 @@ public class AccommodationService {
 
 	public List<Accommodation> select(String city, String region) {
 		System.out.println("Two");
-		return new AccommodationDAO().selectOneAddress(city,region);
+		return new AccommodationDAO().selectOneAddress(city, region);
+	}
+
+	
+	// 업체정보 출력
+	public Accommodation getCompDetail(int accId) {
+		return adao.selectOne(accId);
 	}
 }
