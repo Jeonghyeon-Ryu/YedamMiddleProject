@@ -1,20 +1,16 @@
-package com.mid.controller;
+package com.mid.common;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mid.common.Controller;
-
-public class MainController implements Controller {
+public class MessageController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd = req.getRequestDispatcher("main/main.tiles");
-		rd.forward(req, resp);
+		Utils.foward(req, resp, "/WEB-INF/jsp/message/message.jsp");
 
 	}
 
