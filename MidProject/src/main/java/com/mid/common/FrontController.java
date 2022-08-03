@@ -17,6 +17,7 @@ import com.mid.controller.memberAgreementController;
 import com.mid.controller.memberJoinController;
 
 
+
 import com.mid.controller.CompDetailController;
 import com.mid.controller.ExTourListController;
 import com.mid.controller.MainController;
@@ -32,12 +33,13 @@ public class FrontController extends HttpServlet {
 		
 		charset = config.getInitParameter("charset");
 		mappings = new HashMap<String, Controller>();
+    
 		mappings.put("/main.do", new MainController());				// 메인 진입
 		mappings.put("/message.do", new MessageController());		// 메세지
 		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼
 		mappings.put("/login.do", new LoginOutController());		// 로그인,로그아웃
-		mappings.put("/memberJoin.do", new memberJoinController());	// 회원가입
-		mappings.put("/memberAgreement.do", new memberAgreementController());	// 회원가입약관동의
+		mappings.put("/memberJoin.do", new MemberJoinController());	//회원가입
+		mappings.put("/memberAgreement.do", new MemberAgreementController());	//회원가입약관동의
 		mappings.put("/memberMypage.do", new MypageController());	// 마이페이지
 		mappings.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.	
 		mappings.put("/compDetail.do", new CompDetailController());	// 
@@ -46,6 +48,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/accList.do", new SelectAccListController());	// 숙소 리스트 출력
 		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
 		mappings.put("/reservationPage.do", new ReservationPageController());	// 숙소 리스트 출력
+
 
 	}
 
