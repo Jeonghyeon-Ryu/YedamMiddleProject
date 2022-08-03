@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>회원정보입력</title>
 </head>
+<style>
+	input{border: none;}
+	.input{border-bottom:1px solid lightgray ; padding : 10px; max-width :400px; text-align: left;}
+	label{width : 180px}
+	.phone{border:1px solid lightgray}
+</style>
 <body>
 	<div align="center">
 		<div>
@@ -14,101 +20,91 @@
 		<div>
 			<form id="frm" name="frm" action="memberJoin.do" method="post">
 				<div>
-					<ul>
-						<li>
-							<label for="memberId">아이디</label>
-							<input type="email" id="memberId" name="memberId"placeholder="이메일 형식으로 입력하세요"> &nbsp;
-							<button type="button" id="idCheck" name="idCheck"value="unChecked">중복체크</button>
-						</li>
-						<li>
-							<label for="memberPassword">패스워드</label>
-							<input type="password" id="memberPassword" name="memberPassword">
-						</li>
-						<li>
-						
-							<label for="memberName">이름</label>
-							<input type="text" id="memberName" name="memberName">
-						</li>
-					</ul>
-					<ul>
-						<li><label for="memberAddress">주소</label>
-						<input type="text" id="memberAddress"name="memberAddress"></li>
-					</ul>
+					<div class="input">
+						<label for="memberId">아이디</label> 
+						<input type="email"id="memberId" name="memberId" onchange="javascript:isEmail;" placeholder="이메일 형식으로 입력하세요"> 
+							&nbsp;<span id="chk-id"></span>
+						<button type="button" id="idCheck" name="idCheck" onclick="javascript:IdCheck();">중복체크</button></div>
+					<div class="input">
+						<label for="memberPw">비밀번호</label> 
+						<input type="password" id="memberPw" name="memberPw">
+					</div>
+					<div class="input">
+						<label for="memberPw2">비밀번호 확인</label> 
+						<input type="password" id="memberPw2" name="memberPw2" >
+					</div>
+					<div class="input">
+						<label for="memberNm">이름</label> 
+						<input type="text" id="memberNm" name="memberNm">
+					</div>
+					<div class="input">
+						<label for="phone1">연락처</label> 
+						<input type="text" class="phone" id="phone1" name="phone1" maxlength="4" size=4>
+							- <input type="text" class="phone" id="phone2" name="phone2" maxlength="4" size=4>
+							- <input type="text" class="phone" id="phone3" name="phone3" maxlength="4" size=4>
+					</div>
 				</div>
 				<br />
 				<div>
-					<button type="button" onclick="formCheck()">회원가입</button>
-					&nbsp;&nbsp;&nbsp;
-					<button type="reset">취 소</button>
-					&nbsp;&nbsp;&nbsp;
+					<button type="button" onclick="formCheck();">회원가입</button>&nbsp;&nbsp;&nbsp;
+					<button type="reset">취 소</button>&nbsp;&nbsp;&nbsp;
 					<button type="button" onclick="location.href='main.do'">홈</button>
 				</div>
 			</form>
 		</div>
 	</div>
-	<script>
-		$(function() {
-			$('#memberId').change(function() {
-				$('#idCheck').val('unChecked');
-			});
 
-			//idCheck 버튼을 클릭했을 때 
-			$("#idCheck").click(function() {
-				var userid = $("#memberId").val();
+<script type="text/javascript">
+	function IdCheck() {
+		 let id = document.getElementById("memberId").value;
+		 
+	     fetch('idcheckAjax.do?memberId=' + id)
+	     .then(result => result.text())
+	     .then(result => {
+	            console.log(result);
+	            if(result == 1) {
+	              document.getElementById("idmessage1").style.display ='flex';
+	              document.getElementById('idmessage1').innerText ='중복된 아이디입니다.'
+	              document.getElementById("idmessage1").style.color ='red';
+	            } else {
+	              document.getElementById("idmessage1").style.display ='flex';
+	              document.getElementById('idmessage1').innerText ='사용가능한 아이디입니다.'
+	              document.getElementById("idmessage1").style.color ='green';
+	            }
+			})
+	 }
+	let pw1 = document.getElementById("memberPw");
+	let pw2 = document.getElementById("memberPw2");
+	function pwdChk(){
+		if(pw1.value!=pw2.value){
+			p2.nextSibling.innerText ='✔';
+			p2.nextSibling.style.color ='green';
+		}else{
+			p2.nextSibling.innerText ='X';
+			p2.nextSibling.style.color ='green';
+		}
+	}
 
-				$.ajax({
-					type : 'POST',
-					data : {
-						id : userid
-					},
-					url : "ajaxMemberIdCheck.do", //별도 서블릿으로 만들었다. *.do에서 제외(컨트롤러 안탐)
-					success : function(data) {
-						if (data > 0) {
-							alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
-							$("#memberId").val("");
-							$("#memberId").focus();
-						} else {
-							alert("사용가능한 아이디입니다.");
-							$("#idCheck").val("checked");
-							$("#memberPassword").focus();
-						}
-					},
-					error : function(error) {
-						alert("error : " + error);
-					}
-				});
-			});
-		});
-	</script>
-
-	<script type="text/javascript">
-		function formCheck() {
-			if (frm.memberId.value == "") {
-				alert("아이디를 입력하세요.");
-				frm.memberId.focus();
-				return false;
-			}
-
-			if (frm.idCheck.value == "unChecked") {
-				alert("아이디 중복체크를 하세요.");
-				return false;
-			}
-
-			if (frm.memberPassword.value == "") {
-				alert("패스워드를 입력하세요.");
-				frm.memberPassword.focus();
-				return false;
-			}
-
-			frm.submit();
+	function isEmail(asValue) {
+		var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		regCheck(regExp,asValue);
+	}
+	
+	function regCheck(regExp, asValue){
+		   let checkIcon = asValue.nextSibling; 
+		   if(regExp.test(asValue.value) ){
+		      checkIcon.innerText='done';
+		      checkIcon.style.color='green';
+		   }else{
+		      checkIcon.innerText='warning';
+		      checkIcon.style.color='red';
+		   }
+		   checkIcon.style.visibility='visible';
 		}
 
-		function idCheckDo() {
-			var id = frm.memberId.value;
-			window.open("/DbTest/idCheck.do?id=" + id, "childForm",
-					"width=570, height=350, resizable = no, scrollbars = no");
-
-		}
-	</script>
+	function formCheck(){
+		
+	}
+</script>
 </body>
 </html>

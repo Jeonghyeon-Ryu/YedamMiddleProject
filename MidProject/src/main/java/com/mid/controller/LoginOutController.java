@@ -22,7 +22,8 @@ public class LoginOutController implements Controller {
 		if (session != null && session.getAttribute("id") != null) {// 로그인 한 상태
 			System.out.println("logout.");
 			session.invalidate(); // 세션삭제
-			Utils.forward(req, resp, "main.do");
+			resp.sendRedirect("main.do");
+			return;
 		}
 
 		// 로그인

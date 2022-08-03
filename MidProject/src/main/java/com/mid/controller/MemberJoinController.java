@@ -9,13 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.mid.common.Controller;
 import com.mid.common.Utils;
 
-public class memberAgreementController implements Controller {
+public class MemberJoinController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		Utils.forward(req, resp, "/WEB-INF/jsp/member/memberAgreements.jsp");
-
+		// TODO Auto-generated method stub
+		Utils.forward(req, resp, "/WEB-INF/jsp/member/memberJoinForm.jsp");
 	}
 
 }

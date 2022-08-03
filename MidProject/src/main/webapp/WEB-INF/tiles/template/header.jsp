@@ -204,3 +204,56 @@
                 </div>
             </div>
         </div>
+        <!-- -->
+        <div id="modal" class="modal modal-overlay" role="dialog">
+            <div class="modal-box">
+                <!-- Modal Title -->
+                <div class="modal-title">
+                    <h5>체크인/체크아웃</h5>
+                    <div class="modal-close-button">
+                        <img src="img/close-20.png">
+                    </div>
+                </div>
+                <!-- Modal Content -->
+                <div class="modal-content">
+					<div class="container">
+			        <div class="my-calendar clearfix">
+			          <div class="clicked-date1">
+			            <div class="cal-day1"></div>
+			          </div>
+			          <div class="clicked-date2">
+			            <div class="cal-day2"></div>
+			          </div>
+			          <div class="calendar-box">
+			            <div class="ctr-box clearfix">
+			              <button type="button" title="prev" class="btn-cal prev"></button>
+			              <span class="cal-year"></span>
+			              <span class="cal-month"></span>
+			              <button type="button" title="next" class="btn-cal next">
+			              </button>
+			            </div>
+			            <table class="cal-table">
+			              <thead>
+			                <tr>
+			                  <th>일</th>
+			                  <th>월</th>
+			                  <th>화</th>
+			                  <th>수</th>
+			                  <th>목</th>
+			                  <th>금</th>
+			                  <th>토</th>
+			                </tr>
+			              </thead>
+			              <tbody class="cal-body"></tbody>
+			            </table>
+			          </div>
+			        </div>
+			      </div>
+                </div>
+                <!-- Modal Footer(Optional) -->
+                <div class="modal-footer">
+                    <button type="reset">전체 해제</button>
+                    
+                </div>
+            </div>
+        </div>
