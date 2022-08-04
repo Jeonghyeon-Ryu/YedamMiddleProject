@@ -107,7 +107,7 @@ function filterItemAction(e) {
     // 체크된 필터 확인 후 ajax 호출
 }
 
-// Search 박스 클릭 이벤트함수
+// Modal 박스 클릭 이벤트함수
 function clickSearchBox(e) {
 	let searchBoxItems = document.querySelectorAll('.search-box-item');
 	for(searchBoxItem of searchBoxItems){

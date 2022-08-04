@@ -6,7 +6,9 @@ let resultRegion;
 let reservationDay = '';
 let reservationTime = '';
 let resultFilter;
-//getAccList();
+const Criteria = { page : 1 };
+let scrollIsStop = false;
+getAccList(Criteria);
 // (1) Location Select 확인
 function checkLocation() {
 	// Locations
@@ -67,7 +69,7 @@ function createCard(result) {
 		card.querySelector('.card-title').innerText = result[i].name;
 		card.querySelector('.card-address strong').innerText += result[i].address;
 		card.querySelector('.text-muted').innerText += ' ' + result[i].renewalTime;
-
+		card.querySelector('.card').setAttribute('accId',result[i].accId);
 		// 카드 붙이기
 		document.querySelector('main').append(card);
 	}
@@ -88,15 +90,14 @@ function getAccList(Criteria) {
 
 // 6. Scroll 이벤트 추가 + Scroll 위치 계산
 // Scroll Page 계산 위한 Criteria -> 인자 전달 필요.
-const Criteria = { page : 1 };
-let scrollIsStop = false;
+
 window.addEventListener('scroll',() => {
 	// scrollY:스크롤 상단 + innerHeight:현재화면 높이 = 현재까지 스크롤된 부분 하단
 	let currScrollY = window.innerHeight + window.scrollY
 	if( (currScrollY >= (document.body.offsetHeight-200)) && scrollIsStop!=true ){
 		// 200 남기고 ajax 호출 필요.
 		Criteria.page++;
-		//getAccList(Criteria);
+		getAccList(Criteria);
 		scrollIsStop=true;
 		// 만약 모든 Card 출력 후  위로올라가는 스크롤이면 ajax 호출안되게 해야됨. 
 		// 더 Append 할 데이터가 남은게 있는지 없는지 확인하여야함.

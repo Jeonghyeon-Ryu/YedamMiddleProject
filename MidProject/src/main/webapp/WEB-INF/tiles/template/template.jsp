@@ -26,7 +26,7 @@
 		<!------------------------ Headder 영역 시작 ------------------------->
 		<!------------------------ Main(include Header) 영역 시작 ------------------------->
 		<tiles:insertAttribute name="body"></tiles:insertAttribute>
-		<!-- 하단 네비 시작 -->
+		<!------------------------ 하단 Nav 영역 시작 ------------------------->
 		<tiles:insertAttribute name="nav"></tiles:insertAttribute>
 	</div>
 
