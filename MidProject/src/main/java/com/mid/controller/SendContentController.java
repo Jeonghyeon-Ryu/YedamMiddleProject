@@ -18,7 +18,7 @@ import com.mid.common.Controller;
 import com.mid.common.Utils;
 
 public class SendContentController implements Controller {
-
+	JsonArray result = new JsonArray();
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -38,7 +38,7 @@ public class SendContentController implements Controller {
 //			writer.flush();
 		}
 		br.close();
-		JsonArray result = new JsonArray();
+		
 		JsonObject message = new JsonObject();
 		message.addProperty("sender", send);
 		message.addProperty("receiver", recevi);
