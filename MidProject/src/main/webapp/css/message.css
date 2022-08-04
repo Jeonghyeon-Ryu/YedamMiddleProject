@@ -62,11 +62,21 @@ nav {
 	color: beige;
 }
 
-#content1 {
+#contentText {
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 }
-
+#contentRoom{
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin:0 auto;
+}
+#contentRoom > button{
+	height: 50px;
+	margin-top: 10px;
+}
 #content2 {
 	display: none;
 }
@@ -79,14 +89,11 @@ nav {
 	display: none;
 }
 
-.area {
-	overflow: auto;
-	margin: 10px;
-	height: 50px;
-	
-}
 
-.content {
-	
-	display: none;
+
+#my{
+	text-align: right;
+}
+#you{
+	text-align: left;
 }

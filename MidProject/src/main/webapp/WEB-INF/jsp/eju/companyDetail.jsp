@@ -7,6 +7,7 @@
 		<span><img id="company-img"
 			src="https://file.mk.co.kr/meet/neds/2022/03/image_readtop_2022_252256_16476552624979285.jpg"
 			alt="11" style="max-width: 50%; height: auto;"></span>
+	
 	</div>
 	<div>
 		<hr>

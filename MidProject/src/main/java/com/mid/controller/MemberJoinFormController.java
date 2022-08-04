@@ -1,23 +1,21 @@
-	package com.mid.controller;
+package com.mid.controller;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.mid.common.Controller;
 import com.mid.common.Utils;
 
-public class MypageController implements Controller {
+public class MemberJoinFormController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		String id = (String) session.getAttribute("id");
-		req.setAttribute("id", id);
-		Utils.forward(req, resp, "/WEB-INF/jsp/member/memberMypage.jsp");
+		// TODO Auto-generated method stub
+		Utils.forward(req, resp, "/WEB-INF/jsp/member/memberJoinForm.jsp");
+
 	}
 
 }
