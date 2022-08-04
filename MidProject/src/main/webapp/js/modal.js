@@ -12,6 +12,7 @@ function modalOpenAction(e) {
 	let modal = document.querySelector('#modal');
 	modal.classList.toggle('modal-active');
 }
+// 모달 X 버튼 이벤트
 function modalCloseAction(e) {
 	if (e.target.parentElement.getAttribute("class") == 'modal-close-button') {
 		let modal = e.target.parentElement.parentElement.parentElement.parentElement;
