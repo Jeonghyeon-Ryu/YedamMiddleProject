@@ -37,7 +37,7 @@ public class FrontController extends HttpServlet {
 		mappings = new HashMap<String, Controller>();
     
 		mappings.put("/main.do", new MainController());				// 메인 진입
-		mappings.put("/message.do", new MessageController());		// 메세지
+		mappings.put("/message.do", new MessageController());		// 메세지폼
 		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼
 		mappings.put("/login.do", new LoginOutController());		// 로그인,로그아웃
 		mappings.put("/memberJoinForm.do", new MemberJoinFormController());	//회원가입폼

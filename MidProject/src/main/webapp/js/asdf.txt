@@ -1,7 +1,7 @@
-[{"sender":"a","receiver":"b","ct":"abhwjek"},
-{"sender":"a","receiver":"b","ct":"anciuqw"},
-{"sender":"a","receiver":"b","ct":"qnkoaw"},
-{"sender":"a","receiver":"b","ct":"1wqag"},
-{"sender":"d","receiver":"a","ct":"12"},
-{"sender":"a","receiver":"b","ct":"qawh12"},
-{"sender":"c","receiver":"a","ct":"qawh12"}]
+[{"sender":"qwe123","receiver":"500","ct":"예약"},
+{"sender":"qwe123","receiver":"500","ct":"예약"},
+{"sender":"qw123","receiver":"507","ct":"ㅂㄱ"},
+{"sender":"qe123","receiver":"507","ct":"예약"},
+{"sender":"qwe123","receiver":"522","ct":"125"},
+{"sender":"qwe123","receiver":"522","ct":"q12"},
+{"sender":"qw123","receiver":"507","ct":"qㅁㅎㅈh12"}]
