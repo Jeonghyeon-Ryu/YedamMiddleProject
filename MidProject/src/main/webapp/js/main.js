@@ -69,7 +69,7 @@ function createCard(result) {
 		card.querySelector('.card-title').innerText = result[i].name;
 		card.querySelector('.card-address strong').innerText += result[i].address;
 		card.querySelector('.text-muted').innerText += ' ' + result[i].renewalTime;
-
+		card.querySelector('.card').setAttribute('accId',result[i].accId);
 		// 카드 붙이기
 		document.querySelector('main').append(card);
 	}
