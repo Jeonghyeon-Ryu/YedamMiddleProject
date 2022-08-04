@@ -25,6 +25,7 @@ public class AjaxMemberIdCheck implements Controller {
 		MemberService service = MemberService.getInstance();
 		Member findId = service.getMember(idCheck);
 
+		
 		if (findId==null) {
 			resp.getWriter().print(0);
 		} else {
