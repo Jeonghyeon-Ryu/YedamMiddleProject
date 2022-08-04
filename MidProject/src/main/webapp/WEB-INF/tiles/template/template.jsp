@@ -18,13 +18,13 @@
     <link rel="stylesheet" type="text/css" href="css/companyDetail.css">
     <link rel="stylesheet" type="text/css" href="css/reservationPage.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/selectlocation.css">
+    <link rel="stylesheet" type="text/css" href="css/locationModal.css">
+    <link rel="stylesheet" type="text/css" href="css/headcountModal.css">
 </head>
 <body>
 	<div class="container">
 		<!------------------------ Headder 영역 시작 ------------------------->
-		<tiles:insertAttribute name="header"></tiles:insertAttribute>
-		<!------------------------ Main 영역 시작 ------------------------->
+		<!------------------------ Main(include Header) 영역 시작 ------------------------->
 		<tiles:insertAttribute name="body"></tiles:insertAttribute>
 		<!-- 하단 네비 시작 -->
 		<tiles:insertAttribute name="nav"></tiles:insertAttribute>
@@ -33,7 +33,7 @@
 	<script src="js/header.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/modal.js"></script>
-	<script src="js/selectlocation.js"></script>
+	<script src="js/locationModal.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

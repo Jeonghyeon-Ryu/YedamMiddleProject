@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+#headcount-modal .modal-content{
+}
+#headcount-modal .modal-content>div{
+	display:flex;
+}
+#headcount-modal .modal-content .headcount-label{
+	display:inline-block;
+}
+
+#headcount-modal .modal-content .headcount-updown-button{
+	display:inline-block;
+}

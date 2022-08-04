@@ -1,4 +1,5 @@
-window.addEventListener('load',function(){
+// 헤더 이벤트 추가 부분
+window.addEventListener('load',() => {
 
     // ADD Header Scroll Event 
     let rightScrollButton = document.querySelector('.right-scroll-button');
@@ -53,6 +54,7 @@ function rightScrollFunction() {
     }
 }
 
+// 헤더 왼쪽 스크롤 버튼 이벤트함수
 function leftScrollFunction() {
     // Header Width
     let headerWidth = document.querySelector('header').getBoundingClientRect().width;
@@ -82,6 +84,7 @@ function leftScrollFunction() {
 }
 
 
+// 필터 아이템 클릭 이벤트.
 function filterItemAction(e) {
     let item;
     // filter item Click class 추가
@@ -104,6 +107,7 @@ function filterItemAction(e) {
     // 체크된 필터 확인 후 ajax 호출
 }
 
+// Search 박스 클릭 이벤트함수
 function clickSearchBox(e) {
 	let searchBoxItems = document.querySelectorAll('.search-box-item');
 	for(searchBoxItem of searchBoxItems){
