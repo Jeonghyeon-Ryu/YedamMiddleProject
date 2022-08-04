@@ -8,10 +8,21 @@
 	<!--<jsp:forward page="main.do"></jsp:forward>-->
 	<script>
 	let result;
-    let url = `https://apis.data.go.kr/6480000/gyeongnamlodgeinfo/gyeongnamlodgeinfolist?serviceKey=BRB5Kl7XJb3VCfApO8UoqWsFOQ9imylwMX0a99I6ewMwpxVIt8qX2Ua2Xy3uG4tYWyowsrI0H5KT2LeysDQ%2FVQ%3D%3D&pageNo=1&numOfRows=341&resultType=json`;
+	let cnt = 0;
+    let url = 'https://apis.data.go.kr/6480000/gyeongnamlodgeinfo/gyeongnamlodgeinfolist?serviceKey=BRB5Kl7XJb3VCfApO8UoqWsFOQ9imylwMX0a99I6ewMwpxVIt8qX2Ua2Xy3uG4tYWyowsrI0H5KT2LeysDQ%2FVQ%3D%3D&pageNo=1&numOfRows=341&resultType=json';
     fetch(url).then(result => result.json())
     .then(result => {
-      for(x of result.gyeongnamlodgeinfolist.item){
+    	
+      })
+	      let xhtp = new XMLHttpRequest();
+	      xhtp.open('get','insert.do?'+result);
+	      xhtp.setRequestHeader('Content-type','application/json');
+	      xhtp.send();
+    /*
+      for(x of result){
+   	    let ary = 
+        //ary.push(arr); // [{},{},{}]
+	      let result = `data_title=${x.data_title}&fileurl1=${x.fileurl1}&lattitude=${x.lattitude}&logitude=${x.logitude}&telno=${x.telno}&user_address=${x.user_address}`;
         let arr = {"data_title":"","fileurl1":"","lattitude":"","logitude":"","telno":"","user_address":""};
         arr.data_title = x.data_title;
         arr.fileurl1 = x.fileurl1;
@@ -19,14 +30,7 @@
         arr.logitude = x.logitude;
         arr.telno = x.telno;
         arr.user_address = x.user_address;
-        let result = `?data_title=${x.data_title}&fileurl1=${x.fileurl1}&lattitude=${x.lattitude}&logitude=${x.logitude}&telno=${x.telno}&user_address=${x.user_address}`;
-        let xhtp = new XMLHttpRequest();
-        xhtp.open('get','insert.do'+result);
-        xhtp.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-        xhtp.send();
-
-      }
-    })
+        */
     </script>
 </body>
 </html>

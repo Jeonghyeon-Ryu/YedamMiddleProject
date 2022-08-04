@@ -10,7 +10,7 @@
             <div><img src="img/nav-heart-25.png"></div>
             <div>위시리스트</div>
         </a>
-        <a href="login.do">
+        <a href="loginForm.do">
             <div><img src="img/nav-login-25.png"></div>
             <div>로그인</div>
         </a>
