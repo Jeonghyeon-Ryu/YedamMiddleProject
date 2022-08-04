@@ -205,8 +205,8 @@
             </div>
         </div>
         <!-- -->
-        <div id="modal" class="modal modal-overlay" role="dialog">
-            <div class="modal-box">
+        <div id="checkin-modal" class="modal modal-overlay" role="dialog">
+            <div class="mini-modal-box">
                 <!-- Modal Title -->
                 <div class="modal-title">
                     <h5>체크인/체크아웃</h5>
@@ -216,14 +216,12 @@
                 </div>
                 <!-- Modal Content -->
                 <div class="modal-content">
-					<div class="container">
+			          <ul class="clicked-date">
+			            <li class="cal-day1"></li>
+			            - <li class="cal-day2"></li>
+			          </ul>
+					<div class="calendar-box">
 			        <div class="my-calendar clearfix">
-			          <div class="clicked-date1">
-			            <div class="cal-day1"></div>
-			          </div>
-			          <div class="clicked-date2">
-			            <div class="cal-day2"></div>
-			          </div>
 			          <div class="calendar-box">
 			            <div class="ctr-box clearfix">
 			              <button type="button" title="prev" class="btn-cal prev"></button>
@@ -251,10 +249,7 @@
 			      </div>
                 </div>
                 <!-- Modal Footer(Optional) -->
-                <div class="modal-footer">
-                    <button type="reset">전체 해제</button>
-                    
-                </div>
+                
             </div>
         </div>
         <div id="headcount-modal" class="modal modal-overlay" role="dialog" style="visibility:hidden; top:0;">

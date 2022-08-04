@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+html, body {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0 auto;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+/* ======== Calendar ======== */
+.my-calendar {
+	width: 90%;
+	margin: 30px;
+	padding: 10px;
+	text-align: center;
+	font-weight: 800;
+	border: 1px solid #ddd;
+	cursor: default;
+}
+/* 클릭 */
+.clicked-date{
+	float:left;
+}
+.clicked-date li{
+	display : inline;
+	width : 40%
+}
+
+
+.my-calendar .calendar-box {
+	margin: 0 auto;
+	clear: both;
+	width: 370px;
+}
+
+.clicked-date1 .cal-day1, .clicked-date2 .cal-day2 {
+	font-size: 24px;
+}
+
+.ctr-box {
+	padding: 0 16px;
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+
+.ctr-box .btn-cal {
+	position: relative;
+	float: left;
+	width: 25px;
+	height: 25px;
+	margin-top: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	border: none;
+	background: none;
+}
+
+.ctr-box .btn-cal:after {
+	content: '<';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	line-height: 25px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.ctr-box .btn-cal.next {
+	float: right;
+}
+
+.ctr-box .btn-cal.next:after {
+	content: '>';
+}
+
+.cal-table {
+	width: 100%;
+}
+
+.cal-table th {
+	width: 14.2857%;
+	padding-bottom: 5px;
+	font-size: 16px;
+	font-weight: 900;
+}
+
+.cal-table td {
+	padding: 3px 0;
+	height: 50px;
+	font-size: 15px;
+	vertical-align: middle;
+}
+
+.cal-table td.day {
+	position: relative;
+	cursor: pointer;
+}
+.cal-table td.day-disable {
+	position: relative;
+
+	color : gray;
+}
+.cal-table td.today {
+	background: #ffd255;
+	border-radius: 50%;
+	color: #fff;
+}
+
+.cal-table td.day-active {
+	background: #ff8585;
+	border-radius: 50%;
+	color: #fff;
+}
+
+.cal-table td.has-event:after {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 4px;
+	background: #FFC107;
+}

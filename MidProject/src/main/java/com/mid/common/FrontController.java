@@ -24,6 +24,7 @@ import com.mid.controller.ExTourListController;
 import com.mid.controller.MessageController;
 import com.mid.controller.SendContentController;
 import com.mid.controller.WishListController;
+import com.mid.controller.chekinDateController;
 
 public class FrontController extends HttpServlet {
 
@@ -52,7 +53,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/accList.do", new SelectAccListController());	// 숙소 리스트 출력
 		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
 		mappings.put("/reservationPage.do", new ReservationPageController());	// 숙소 리스트 출력
-
+		mappings.put("/checkinDate.do", new chekinDateController());
 	}
 
 	@Override
