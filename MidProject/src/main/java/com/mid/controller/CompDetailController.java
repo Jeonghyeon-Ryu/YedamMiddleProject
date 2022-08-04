@@ -30,6 +30,7 @@ public class CompDetailController implements Controller {
 		Review review = (Review) rvService.getReviewAll();
 		Room room = (Room) rmService.getRoomAll();
 
+		
 		// accommodation
 		req.setAttribute("compId", search.getAccId());
 		req.setAttribute("compNm", search.getName());
@@ -41,6 +42,7 @@ public class CompDetailController implements Controller {
 		req.setAttribute("rvDate", review.getReviewDate());
 		req.setAttribute("rvContent", review.getReviewContent());
 
+		
 		// room
 		req.setAttribute("rmId", room.getRoomId());
 		req.setAttribute("rmName", room.getName());
