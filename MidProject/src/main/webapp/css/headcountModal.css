@@ -9,9 +9,11 @@
 #headcount-modal .modal-content>div{
 	display:block;
 	position:relative;
-	height: calc((100% - 100px)/4);
-	margin-left: 5px;
-	margin-right: 5px;
+	margin: 0 auto;
+	padding-top: 15px;
+	width:70%;
+	height: calc(100% / 4);
+	border-bottom: 0.5px solid #c5c5c5;
 }
 #headcount-modal .modal-content .headcount-label{
 	display:inline-block;
@@ -23,7 +25,10 @@
 	display:inline-block;
 	position:absolute;
 	right:0;
+	padding-top:10px;
 }
-#headcount-modal .modal-content .headcount-updown-button img {
-
+#headcount-modal .modal-content .headcount-updown-button button {
+	border:none;
+	background:none;
+	filter : opacity(0.5) drop-shadow(0 0 0 #c5c5c5);
 }

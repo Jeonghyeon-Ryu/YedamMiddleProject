@@ -127,6 +127,7 @@ function clickSearchBox(e) {
 	}else if(id == 'checkout-date') {
 		
 	}else if(id == 'headcount') {
-		
+		let headcountModal = document.querySelector('#headcount-modal');
+		headcountModal.classList.toggle('modal-active');
 	}
 }

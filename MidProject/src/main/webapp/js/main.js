@@ -8,7 +8,7 @@ let reservationTime = '';
 let resultFilter;
 const Criteria = { page : 0, endPageNo: 0 };
 let scrollIsStop = false;
-getAccList(); // 웹 오픈시 10개 출력
+//getAccList(); // 웹 오픈시 10개 출력
 // (1) Location Select 확인
 function checkLocation() {
 	// Locations
