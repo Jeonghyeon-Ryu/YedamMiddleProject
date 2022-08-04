@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="memberJoin.do">
+	<form action="memberJoinForm.do">
         <h3>약관 동의</h3>
         <input type="checkbox" id="checkAll" style="font-weight: bold;"><label for="checkAll">전체동의</label><br>
         <a href="#"><input type="checkbox" name="chk" required>이용약관 동의 <span>(필수)</span></a><br>

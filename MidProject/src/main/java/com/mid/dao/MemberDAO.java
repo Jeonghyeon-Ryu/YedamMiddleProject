@@ -9,7 +9,8 @@ public class MemberDAO extends DAO {
 
 	// 입력
 	public void insertMemeber(Member vo) {
-		String sql = "insert into member values(?,?,?,?,?,sysdate);";
+		String sql = "insert into member(id, pw, name, identification, phone, join_date) "
+				+ "values(?,?,?,?,?,sysdate)";
 		connect();
 		try {
 			pstmt = conn.prepareStatement(sql);

@@ -15,14 +15,14 @@ import com.mid.controller.ExTourListController;
 import com.mid.controller.LoginFormController;
 import com.mid.controller.LoginOutController;
 import com.mid.controller.MainController;
-import com.mid.controller.MessageController;
+import com.mid.controller.MemberAgreementController;
+import com.mid.controller.MemberJoinController;
+import com.mid.controller.MemberJoinFormController;
 import com.mid.controller.MypageController;
+import com.mid.controller.SelectAccListController;
+import com.mid.controller.ExTourListController;
+import com.mid.controller.MessageController;
 import com.mid.controller.SendContentController;
-import com.mid.controller.memberAgreementController;
-import com.mid.controller.memberJoinController;
-import com.mid.controller.CompDetailController;
-import com.mid.controller.MainController;
-
 import com.mid.controller.WishListController;
 
 public class FrontController extends HttpServlet {
@@ -40,10 +40,11 @@ public class FrontController extends HttpServlet {
 		mappings.put("/message.do", new MessageController());		// 메세지
 		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼
 		mappings.put("/login.do", new LoginOutController());		// 로그인,로그아웃
-		mappings.put("/memberJoin.do", new MemberJoinController());	//회원가입
+		mappings.put("/memberJoinForm.do", new MemberJoinFormController());	//회원가입폼
+		mappings.put("/memberJoin.do", new MemberJoinController());	//회원가입 처리
 		mappings.put("/memberAgreement.do", new MemberAgreementController());	//회원가입약관동의
 		mappings.put("/memberMypage.do", new MypageController());	// 마이페이지
-		mappings.put("/ajaxMemberIdCheck.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.	
+		mappings.put("/idcheckAjax.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.	
 		mappings.put("/sendContent.do", new SendContentController()); //메세지 전송
 		mappings.put("/compDetail.do", new CompDetailController());	// 
 		mappings.put("/wishList.do", new WishListController());		// 위시리스트
