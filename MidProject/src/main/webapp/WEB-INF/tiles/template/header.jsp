@@ -106,7 +106,7 @@
                 <!-- Modal Footer(Optional) -->
                 <div class="modal-footer">
                     <button type="reset">전체 해제</button>
-                    <button type="button"><span>555</span> 건 조회</button>
+                    <button type="button"><span>0</span> 건 조회</button>
                 </div>
             </div>
         </div>
@@ -129,63 +129,63 @@
 					    <i class="toggle icon icon-arrow-up"></i>
 					    <span class="placeholder">시도 선택</span>
 					    <label class="option">
-					        <input type="radio" name="option" value="seoul">
+					        <input type="radio" name="option" value="seoul" text="서울">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>서울</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="busan">
+					        <input type="radio" name="option" value="busan" text="부산">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>부산</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="daegu">
+					        <input type="radio" name="option" value="daegu" text="대구">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>대구</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="daejeon">
+					        <input type="radio" name="option" value="daejeon" text="대전">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>대전</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="gwangju">
+					        <input type="radio" name="option" value="gwangju" text="광주">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>광주</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="ulsan">
+					        <input type="radio" name="option" value="ulsan" text="울산">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>울산</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="gangwon">
+					        <input type="radio" name="option" value="gangwon" text="강원">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>강원</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="gyeonggi">
+					        <input type="radio" name="option" value="gyeonggi" text="경기">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>경기</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="incheon">
+					        <input type="radio" name="option" value="incheon" text="인천">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>인천</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="gyeongsangbuk">
+					        <input type="radio" name="option" value="gyeongsangbuk" text="경북">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>경북</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="gyeongsangnam">
+					        <input type="radio" name="option" value="gyeongsangnam" text="경남">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>경남</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="chungbuk">
+					        <input type="radio" name="option" value="chungbuk" text="충북">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>충북</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="jeonbuk">
+					        <input type="radio" name="option" value="jeonbuk" text="전북">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>전북</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="jeonnam">
+					        <input type="radio" name="option" value="jeonnam" text="전남">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>전남</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="jeju">
+					        <input type="radio" name="option" value="jeju" text="제주">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>제주</span>
 					    </label>
 					</div>
@@ -200,7 +200,7 @@
                 <!-- Modal Footer(Optional) -->
                 <div class="modal-footer">
                     <button type="reset">전체 해제</button>
-                    <button type="button"><span>555</span> 건 조회</button>
+                    <button type="button"><span>0</span> 건 조회</button>
                 </div>
             </div>
         </div>
@@ -316,7 +316,7 @@
                 <!-- Modal Footer(Optional) -->
                 <div class="modal-footer">
                     <button type="reset">전체 해제</button>
-                    <button type="button"><span>555</span> 건 조회</button>
+                    <button type="button"><span>0</span> 건 조회</button>
                 </div>
             </div>
         </div>

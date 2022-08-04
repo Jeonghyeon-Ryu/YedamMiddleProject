@@ -13,12 +13,14 @@ import com.google.gson.GsonBuilder;
 import com.mid.common.Controller;
 import com.mid.service.AccommodationService;
 import com.mid.vo.Accommodation;
+import com.mid.vo.PageCard;
 
 public class SelectAccListController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html; charset=UTF-8");
+		String pageNum = req.getParameter("pageNum");
 		String city = req.getParameter("city");
 		String region = req.getParameter("region");
 		String reservationDay = req.getParameter("reservationDay");
@@ -32,19 +34,23 @@ public class SelectAccListController implements Controller {
 		String f7 = req.getParameter("f7");
 		String f8 = req.getParameter("f8");
 		String f9 = req.getParameter("f9");
-		
 		AccommodationService service = AccommodationService.getInstance();
-		List<Accommodation> list = new ArrayList<>();
-		System.out.println(city + "AA" + region);
-		if(city=="" && region=="") {
-			list = service.select();
-		} else if(city!="" && region=="") {
-			list = service.select(city);
+		PageCard resultData = new PageCard();
+//		int endPageNo=0;
+//		List<Accommodation> list = new ArrayList<>();
+		
+		if(city.equals("") && region.equals("")) {
+			resultData.setEndPageNo(service.selectCount()/20);
+			resultData.setList(service.select(Integer.parseInt(pageNum)));
+		} else if(!city.equals("") && region.equals("")) {
+			resultData.setEndPageNo(service.selectCount(city)/20);
+			resultData.setList(service.select(Integer.parseInt(pageNum),city));
 		} else {
-			list = service.select(city,region);
+			resultData.setEndPageNo(service.selectCount(city,region)/20);
+			resultData.setList(service.select(Integer.parseInt(pageNum),city,region));
 		}
 		
 		Gson gson = new GsonBuilder().create();
-		resp.getWriter().print(gson.toJson(list));
+		resp.getWriter().print(gson.toJson(resultData));
 	}
 }

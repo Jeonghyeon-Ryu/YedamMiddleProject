@@ -32,7 +32,7 @@ public class SendContentController implements Controller {
 		BufferedReader br = new BufferedReader(reader);
 		String readLine = null;
 		while ((readLine = br.readLine()) != null) {
-			System.out.println(readLine);
+			System.out.println("SendContentController : " +readLine);
 //			readLine = readLine.replace("}", "},");
 //			writer.write(readLine);
 //			writer.flush();
@@ -47,7 +47,7 @@ public class SendContentController implements Controller {
 		//String json = gson.toJson(message);
 		result.add(message);
 		String json = gson.toJson(result);
-		System.out.println(result);
+		System.out.println("SendContentController : " +result);
 
 		writer.write(json);
 		writer.flush();

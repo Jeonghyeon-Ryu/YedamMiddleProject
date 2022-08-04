@@ -6,11 +6,10 @@ import java.util.List;
 
 import com.mid.vo.Accommodation;
 
-
 public class AccommodationDAO extends DAO {
 	public void insert(Accommodation acc) {
 		connect();
-		String sql = "INSERT INTO accommodation VALUES(acc_seq.NEXTVAL,?,?,0,?,1,?,?,sysdate,?)"; 
+		String sql = "INSERT INTO accommodation VALUES(acc_seq.NEXTVAL,?,?,0,?,1,?,?,sysdate,?)";
 		try {
 			connect();
 			pstmt = conn.prepareStatement(sql);
@@ -27,14 +26,20 @@ public class AccommodationDAO extends DAO {
 			disconnect();
 		}
 	}
+
 	// 전체 조회
-	public List<Accommodation> selectAll() {
+	public List<Accommodation> selectAll(int pageNum) {
 		List<Accommodation> list = new ArrayList<>();
 		try {
 			connect();
-			System.out.println("aaa");
 			String sql = "SELECT * FROM accommodation WHERE acc_id<600 ORDER BY 1";
-			pstmt = conn.prepareStatement(sql);
+			String pagingSql = "select acc_id, name, address, phone, status, renewal_time, img_url " + "from ( "
+					+ "    select seq, acc_id, name, address, phone, status, renewal_time, img_url "
+					+ "        from (select rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url "
+					+ "    from (select * from accommodation order by acc_id desc)) " + "    where seq>=?)"
+					+ "WHERE rownum <= 20";
+			pstmt = conn.prepareStatement(pagingSql);
+			pstmt.setInt(1, 1 + pageNum * 20);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Accommodation vo = new Accommodation();
@@ -42,11 +47,11 @@ public class AccommodationDAO extends DAO {
 				vo.setAddress(rs.getString("ADDRESS"));
 				vo.setName(rs.getString("NAME"));
 				vo.setPhone(rs.getString("PHONE"));
-				vo.setPointX(rs.getDouble("POINT_X"));
-				vo.setPointY(rs.getDouble("POINT_Y"));
+				// vo.setPointX(rs.getDouble("POINT_X"));
+				// vo.setPointY(rs.getDouble("POINT_Y"));
 				vo.setRenewalTime(rs.getDate("RENEWAL_TIME"));
 				vo.setStatus(rs.getInt("STATUS"));
-				vo.setZipcode(rs.getString("ZIPCODE"));
+				// vo.setZipcode(rs.getString("ZIPCODE"));
 				vo.setImgUrl(rs.getString("IMG_URL"));
 				list.add(vo);
 			}
@@ -57,25 +62,88 @@ public class AccommodationDAO extends DAO {
 		}
 		return list;
 	}
-	// 단건 조회 - ADDRESS 
-	public List<Accommodation> selectOneAddress(String city) {
+
+	// 필터 적용 갯수 조회
+	public int selectCount() {
+		int countResult = 0;
+		try {
+			connect();
+			String sql = "SELECT count(*) FROM accommodation";
+			pstmt = conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if (rs.next()) {
+				countResult = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return countResult;
+	}
+	public int selectCount(String city) {
+		int countResult = 0;
+		try {
+			connect();
+			String sql = "SELECT count(*) FROM accommodation WHERE address LIKE '%" + city + "%'";
+			pstmt = conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if (rs.next()) {
+				countResult = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return countResult;
+	}
+
+	public int selectCount(String city, String region) {
+		int countResult = 0;
+		try {
+			connect();
+			String sql = "SELECT count(*) FROM accommodation WHERE address LIKE '%" + city + "%' AND address LIKE '%" + region
+					+ "%'";
+			pstmt = conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if (rs.next()) {
+				countResult = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return countResult;
+	}
+
+	// 필터 적용 조회 - ADDRESS
+	public List<Accommodation> selectList(int pageNum, String city) {
 		List<Accommodation> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "SELECT * FROM accommodation WHERE address LIKE '%"+city+"%'";
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next()) {
+			String sql = "SELECT * FROM accommodation WHERE address LIKE '%" + city + "%'";
+			String pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
+					+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
+					+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
+					+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE a.address like '%"
+					+ city + "%' ORDER BY a.acc_id DESC) ) "
+					+ "    WHERE seq>=?) WHERE rownum <= 20";
+			pstmt = conn.prepareStatement(pagingSql);
+			pstmt.setInt(1, 1 + pageNum * 20);
+			rs=pstmt.executeQuery();
+			while (rs.next()) {
 				Accommodation vo = new Accommodation();
 				vo.setAccId(rs.getInt("ACC_ID"));
 				vo.setAddress(rs.getString("ADDRESS"));
 				vo.setName(rs.getString("NAME"));
 				vo.setPhone(rs.getString("PHONE"));
-				vo.setPointX(rs.getDouble("POINT_X"));
-				vo.setPointY(rs.getDouble("POINT_Y"));
+				// vo.setPointX(rs.getDouble("POINT_X"));
+				// vo.setPointY(rs.getDouble("POINT_Y"));
 				vo.setRenewalTime(rs.getDate("RENEWAL_TIME"));
 				vo.setStatus(rs.getInt("STATUS"));
-				vo.setZipcode(rs.getString("ZIPCODE"));
+				// vo.setZipcode(rs.getString("ZIPCODE"));
 				vo.setImgUrl(rs.getString("IMG_URL"));
 				list.add(vo);
 			}
@@ -84,26 +152,36 @@ public class AccommodationDAO extends DAO {
 		} finally {
 			disconnect();
 		}
+		System.out.println("listSize : " + list.size());
 		return list;
 	}
-	public List<Accommodation> selectOneAddress(String city, String region) {
+
+	public List<Accommodation> selectList(int pageNum, String city, String region) {
 		List<Accommodation> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "SELECT * FROM accommodation WHERE address LIKE '%"+city+"%' AND address LIKE '%"+region+"%'";
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql);
-			if (rs.next()) {
+			String sql = "SELECT * FROM accommodation WHERE address LIKE '%" + city + "%' AND address LIKE '%" + region
+					+ "%'";
+			String pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
+					+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
+					+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
+					+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE a.address like '%"
+					+ city + "%' AND a.address LIKE '%" + region + "%' ORDER BY a.acc_id DESC) " + "            ) "
+					+ "    WHERE seq>=?) " + "WHERE rownum <= 20";
+			pstmt = conn.prepareStatement(pagingSql);
+			pstmt.setInt(1, 1 + pageNum * 20);
+			rs=pstmt.executeQuery();
+			while (rs.next()) {
 				Accommodation vo = new Accommodation();
 				vo.setAccId(rs.getInt("ACC_ID"));
 				vo.setAddress(rs.getString("ADDRESS"));
 				vo.setName(rs.getString("NAME"));
 				vo.setPhone(rs.getString("PHONE"));
-				vo.setPointX(rs.getDouble("POINT_X"));
-				vo.setPointY(rs.getDouble("POINT_Y"));
+				// vo.setPointX(rs.getDouble("POINT_X"));
+				// vo.setPointY(rs.getDouble("POINT_Y"));
 				vo.setRenewalTime(rs.getDate("RENEWAL_TIME"));
 				vo.setStatus(rs.getInt("STATUS"));
-				vo.setZipcode(rs.getString("ZIPCODE"));
+				// vo.setZipcode(rs.getString("ZIPCODE"));
 				vo.setImgUrl(rs.getString("IMG_URL"));
 				list.add(vo);
 			}
@@ -112,8 +190,10 @@ public class AccommodationDAO extends DAO {
 		} finally {
 			disconnect();
 		}
+		System.out.println("listSize : " + list.size());
 		return list;
 	}
+
 	// 단건 조회 - ACC_ID
 	public Accommodation selectOne(int accId) {
 		String sql = "SELECT * FROM accommodation WHERE acc_id =?";

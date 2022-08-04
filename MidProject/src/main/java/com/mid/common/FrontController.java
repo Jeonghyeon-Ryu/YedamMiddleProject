@@ -19,6 +19,7 @@ import com.mid.controller.MemberAgreementController;
 import com.mid.controller.MemberJoinController;
 import com.mid.controller.MypageController;
 import com.mid.controller.SelectAccListController;
+import com.mid.controller.SelectAccListCountController;
 import com.mid.controller.MemberJoinFormController;
 import com.mid.controller.ExTourListController;
 import com.mid.controller.MessageController;
@@ -52,6 +53,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/accList.do", new SelectAccListController());	// 숙소 리스트 출력
 		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
 		mappings.put("/reservationPage.do", new ReservationPageController());	// 숙소 리스트 출력
+		mappings.put("/accListCount.do", new SelectAccListCountController());	// 필터 적용 리스트 갯수 확인 
 
 	}
 

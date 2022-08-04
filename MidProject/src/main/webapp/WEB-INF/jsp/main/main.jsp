@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/tiles/template/header.jsp"/>
 <main>
+</main>
 <template style="display:none">
-	<div class="card" style="max-width:540px">
+	<div class="card" style="max-width:540px" onclick="clickCard()">
         <div class="row">
             <div class="col-md-8">
                 <img src="" class="img-fluid rounded" alt="...">
@@ -19,11 +20,9 @@
                         <img src="img/star-empty-20.png" class="fifth-star">
                     </div>
                     <p class="card-address"><strong>주소 :</strong></p>
-                    <p class=""><strong>가격 :</strong></p>
                     <p class="card-text"><small class="text-muted">Last updated</small></p>
                 </div>
             </div>
         </div>
     </div>
 </template>
-</main>
