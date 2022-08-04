@@ -18,6 +18,7 @@ import com.mid.controller.MainController;
 import com.mid.controller.MemberAgreementController;
 import com.mid.controller.MemberJoinController;
 import com.mid.controller.MypageController;
+import com.mid.controller.ReservationPageController;
 import com.mid.controller.SelectAccListController;
 import com.mid.controller.MemberJoinFormController;
 import com.mid.controller.ExTourListController;

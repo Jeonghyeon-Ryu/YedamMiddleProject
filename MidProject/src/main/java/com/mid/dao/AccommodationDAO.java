@@ -32,7 +32,6 @@ public class AccommodationDAO extends DAO {
 		List<Accommodation> list = new ArrayList<>();
 		try {
 			connect();
-			System.out.println("aaa");
 			String sql = "SELECT * FROM accommodation ORDER BY 1";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
