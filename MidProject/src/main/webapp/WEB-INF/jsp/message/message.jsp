@@ -51,16 +51,15 @@
 						<form action="msSendContent.do">
 							<div id="msContentText">
 								모든 메시지
-								<div></div>
-								<input id="recevi" name="recevi" value=""> <input
-									id="send" name="send" value="${id }">
+								<div id="msText"></div>
+								<input id="recevi" name="recevi" value=""> 
+								<input id="send" name="send" value="${id }">
 							</div>
 						</form>
 					</div>
 					<div id="msContent2">저장된 메시지</div>
 					<div id="msContent3">읽지않은 메시지</div>
 					<div id="msContent4">알림</div>
-
 				</div>
 			</div>
 			<!-- Modal Footer(Optional) -->
@@ -68,7 +67,6 @@
 		</div>
 	</div>
 	<script src="js/message.js">
-		
 	</script>
 </body>
 

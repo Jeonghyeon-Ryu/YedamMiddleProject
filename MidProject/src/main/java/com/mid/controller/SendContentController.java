@@ -16,6 +16,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.mid.common.Controller;
 import com.mid.common.Utils;
+import com.mid.service.ChatService;
+import com.mid.vo.Chat;
 
 public class SendContentController implements Controller {
 	JsonArray result = new JsonArray();
@@ -25,6 +27,15 @@ public class SendContentController implements Controller {
 		String send = req.getParameter("send");
 		String recevi = req.getParameter("recevi");
 		String content = req.getParameter("inputContent");
+		
+		Chat chat= new Chat();
+		chat.setContent(content);
+		chat.setReceiver(recevi);
+		chat.setSender(send);
+		
+		ChatService chatService =ChatService.getInstance();
+		chatService.insert(chat);
+		
 		File file = new File("C:\\test.txt");
 		FileWriter writer = new FileWriter(file);
 		FileReader reader = new FileReader(file);
@@ -33,9 +44,6 @@ public class SendContentController implements Controller {
 		String readLine = null;
 		while ((readLine = br.readLine()) != null) {
 			System.out.println(readLine);
-//			readLine = readLine.replace("}", "},");
-//			writer.write(readLine);
-//			writer.flush();
 		}
 		br.close();
 		
@@ -54,6 +62,7 @@ public class SendContentController implements Controller {
 
 		writer.close();
 
+		
 		Utils.forward(req, resp, "main.do");
 
 	}

@@ -10,8 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import com.mid.common.Controller;
 import com.mid.common.Utils;
+import com.mid.service.ChatService;
 import com.mid.service.ReservationService;
 import com.mid.vo.Accommodation;
+import com.mid.vo.Chat;
 
 public class MessageController implements Controller {
 
@@ -21,12 +23,13 @@ public class MessageController implements Controller {
 	
 		HttpSession session= req.getSession();
 		String id = (String)session.getAttribute("id");
-		ReservationService service = ReservationService.getInstance();
-		List<Accommodation> list = service.selectAccommodationLoginId(id);
+		ReservationService reService = ReservationService.getInstance();
+		List<Accommodation> acclist = reService.selectAccommodationLoginId(id);
+		ChatService ctService = ChatService.getInstance();
+		List<Chat> ctlist=ctService.selectAll();
 		
-	
-	
-		req.setAttribute("list",list);    
+		req.setAttribute("ctlist", ctlist);
+		req.setAttribute("acclist",acclist);    
 		Utils.forward(req, resp, "WEB-INF/jsp/message/message.jsp");
 
 	}
