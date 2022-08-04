@@ -1,4 +1,4 @@
-package com.mid.common;
+package com.mid.controller;
 
 import java.io.IOException;
 
@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mid.common.Controller;
+import com.mid.common.Utils;
 import com.mid.service.AccommodationService;
 import com.mid.service.ReservationService;
 import com.mid.service.RoomService;
