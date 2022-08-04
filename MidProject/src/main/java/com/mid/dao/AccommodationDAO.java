@@ -33,7 +33,7 @@ public class AccommodationDAO extends DAO {
 		try {
 			connect();
 			System.out.println("aaa");
-			String sql = "SELECT * FROM accommodation WHERE acc_id>600 ORDER BY 1";
+			String sql = "SELECT * FROM accommodation WHERE acc_id<600 ORDER BY 1";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
