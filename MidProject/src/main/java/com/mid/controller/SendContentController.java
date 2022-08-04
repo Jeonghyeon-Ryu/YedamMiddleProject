@@ -1,9 +1,5 @@
 package com.mid.controller;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -13,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.mid.common.Controller;
 import com.mid.common.Utils;
 import com.mid.service.ChatService;
@@ -23,47 +18,31 @@ public class SendContentController implements Controller {
 	JsonArray result = new JsonArray();
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String send = req.getParameter("send");
-		String recevi = req.getParameter("recevi");
-		String content = req.getParameter("inputContent");
+		resp.setContentType("text/json;charset=utf-8");
+		String send = req.getParameter("msSend");
+		String recevi = req.getParameter("msReceiv");
+		String content = req.getParameter("msSendText");
 		
 		Chat chat= new Chat();
 		chat.setContent(content);
 		chat.setReceiver(recevi);
 		chat.setSender(send);
 		
+		System.out.println(recevi);
+		
 		ChatService chatService =ChatService.getInstance();
 		chatService.insert(chat);
+		req.setAttribute("recevi", recevi);
 		
-		File file = new File("C:\\test.txt");
-		FileWriter writer = new FileWriter(file);
-		FileReader reader = new FileReader(file);
-
-		BufferedReader br = new BufferedReader(reader);
-		String readLine = null;
-		while ((readLine = br.readLine()) != null) {
-			System.out.println(readLine);
+		
+		Utils.forward(req, resp, "message.do");
+		
+		Gson gson = new GsonBuilder().create();
+		try {
+			resp.getWriter().print(gson.toJson(chat));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		br.close();
-		
-		JsonObject message = new JsonObject();
-		message.addProperty("sender", send);
-		message.addProperty("receiver", recevi);
-		message.addProperty("content", content);
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		//String json = gson.toJson(message);
-		result.add(message);
-		String json = gson.toJson(result);
-		System.out.println(result);
-
-		writer.write(json);
-		writer.flush();
-
-		writer.close();
-
-		
-		Utils.forward(req, resp, "main.do");
 
 	}
 

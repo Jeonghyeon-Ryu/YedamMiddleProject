@@ -5,13 +5,13 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<link rel="stylesheet" href="css/message.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<link rel="stylesheet" href="css/message.css">
 </head>
 
 <body>
@@ -29,6 +29,7 @@
 				<div id="msContainer">
 					<header>
 						<h1>메시지함</h1>
+						<div id='test'>&{recevi }</div>
 						<div id="userId">${id }</div>
 					</header>
 					<nav>
@@ -41,19 +42,33 @@
 					</nav>
 					<div id="msContent1">
 						<div id="msContentRoom">
-							<c:forEach var="i" items="${list }">
-								<button class="msBtn" id="${i.accId }" onclick="openContent()">
+							<c:forEach var="i" items="${acclist }">
+								${i.accId }
+								<button class="msBtn" id="${i.accId }" onclick="openContent(this.id)">
 									<img src="${i.imgUrl}">
 									<p>${i.name}</p>
 								</button>
 							</c:forEach>
 						</div>
-						<form action="msSendContent.do">
+						<form action="sendContent.do" name=msSendContent onsubmit ="msClear()">
 							<div id="msContentText">
 								모든 메시지
-								<div id="msText"></div>
-								<input id="recevi" name="recevi" value=""> 
-								<input id="send" name="send" value="${id }">
+								<c:set var="id" value="${id }" />
+								<c:forEach var="i" items="${ctlist }">
+									<c:set var="sender" value="${i.sender }" />
+									<c:set var="recevier" value="${i.receiver }" />
+									<c:choose>
+										<c:when test="${sender eq id}">
+											<div class="${recevier}" id="msMy">${i.content }</div>
+										</c:when>
+										<c:when test="${recevier eq id}">
+											<div class="${sender}" id="msYou">${i.content }</div>
+										</c:when>
+									</c:choose>
+								</c:forEach>
+								<input id="msSend" name="msSend" value="${id }" type="hidden">
+								<input id="msReceiv" name="msReceiv" type="hidden">
+								<input id="msSendText" name="msSendText" type="text" onkeypress="JavaScript:press(this.form)">
 							</div>
 						</form>
 					</div>
@@ -67,6 +82,7 @@
 		</div>
 	</div>
 	<script src="js/message.js">
+
 	</script>
 </body>
 

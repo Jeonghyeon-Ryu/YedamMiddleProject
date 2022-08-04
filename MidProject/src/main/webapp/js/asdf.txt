@@ -1,7 +1,0 @@
-[{"sender":"qwe123","receiver":"500","ct":"예약"},
-{"sender":"qwe123","receiver":"500","ct":"예약"},
-{"sender":"qw123","receiver":"507","ct":"ㅂㄱ"},
-{"sender":"qe123","receiver":"507","ct":"예약"},
-{"sender":"qwe123","receiver":"522","ct":"125"},
-{"sender":"qwe123","receiver":"522","ct":"q12"},
-{"sender":"qw123","receiver":"507","ct":"qㅁㅎㅈh12"}]

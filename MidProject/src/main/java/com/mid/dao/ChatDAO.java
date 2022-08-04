@@ -76,8 +76,8 @@ public class ChatDAO extends DAO {
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, chat.getSender());
-				pstmt.setString(1, chat.getReceiver());
-				pstmt.setString(1, chat.getContent());
+				pstmt.setString(2, chat.getReceiver());
+				pstmt.setString(3, chat.getContent());
 				int r = pstmt.executeUpdate();
 				System.out.println(r + "건 업데이트.");
 			} catch (SQLException e) {

@@ -102,3 +102,15 @@
 nav{
     display: flex;
 }
+#msContentText{
+    display: none;
+}
+#msContentText>div{
+    display:none;
+}
+#msYou{
+    text-align: left;
+}
+#msMy{
+    text-align: right;
+}

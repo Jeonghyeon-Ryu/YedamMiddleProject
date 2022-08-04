@@ -1,53 +1,39 @@
-var loginId = document.getElementById("userId").innerText
+let i= 0;
+		
 
-let xhtp = new XMLHttpRequest();
-xhtp.open('get', 'js/asdf.txt');
-xhtp.send();
-xhtp.onreadystatechange = callBackContent();
-const set = new Set(); //중복제거용
-data = JSON.stringify(this.responseText);
+let thisId
+if (typeof variable !== 'undefined')
 
-for (let a of data) {
-	if (a.sender == loginId) {
-		set.add(a.receiver)
-	} else if (a.receiver == loginId) {
-		set.add(a.sender)
+
+function openContent(id) {
+	thisId = id
+	document.getElementById("msContentText").style.display ='block'
+	let a = document.getElementsByClassName(thisId)
+	for (i = 0; i < a.length; i++) {
+		a[i].style.display = 'block';
 	}
+	document.getElementById("msContentRoom").style.display='none'
+	document.getElementById("msReceiv").setAttribute("value",thisId);
+}
+function openAllMs(){
+	
+	document.getElementById("msContentText").style.display ='none'
+	let a = document.getElementsByClassName(thisId)
+	for (i = 0; i < a.length; i++) {
+		a[i].style.display = 'none';
+	}
+	document.getElementById("msContentRoom").style.display='block'
+}
+function press(f){
+    if(f.keyCode == 13){ 
+        msSendContent.submit(); 
+    }
 }
 
-function callBackContent() {
-	if (this.readyState == 4 && this.status == 200) {
-		data = JSON.parse(this.responseText);
-		//중복제거
-		console.log(data)
-		for (let a of data) {
-			if (a.sender == loginId) {
-				set.add(a.receiver)
-			} else if (a.receiver == loginId) {
-				set.add(a.sender)
-			}
-		}
-	}
-}
-
-function openContent() {
-	document.getElementById("msContentRoom").style.diplay='none';
-	for (let item of set.keys()) {
-		document.getElementById("msContentRoom").style.display = 'block'
-
-		for (let a of data) {
-			if ((a.sender == loginId && a.receiver == item) || (a.sender == item && a.receiver == 'a')) {
-				let content = document.createElement('div');
-				content.setAttribute("class", "text");
-				if (a.sender == 'a') {
-					content.setAttribute("id", 'my');
-					content.innerText = a.ct;
-				} else if (a.receiver == 'a') {
-					content.setAttribute("id", 'you');
-					content.innerText = a.ct;
-				}
-				document.getElementById("msContentText").append(content);
-			}
-		}
-	}
+function msClear(){
+	let msContentRoom =document.getElementById("msContentRoom")
+	while (msContentRoom.hasChildNodes()) {
+        msContentRoom.removeChild(msContentRoom.firstChild);
+        console.log(123676)
+    }
 }

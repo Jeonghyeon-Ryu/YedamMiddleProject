@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mid.controller.AddContentController;
 import com.mid.controller.AjaxMemberIdCheck;
 import com.mid.controller.CompDetailController;
 import com.mid.controller.ExTourListController;
@@ -52,6 +53,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/accList.do", new SelectAccListController());	// 숙소 리스트 출력
 		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
 		mappings.put("/reservationPage.do", new ReservationPageController());	// 숙소 리스트 출력
+		mappings.put("/addContent.do", new AddContentController());	// 숙소 리스트 출력
 
 	}
 

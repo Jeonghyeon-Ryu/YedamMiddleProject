@@ -24,10 +24,13 @@ public class MessageController implements Controller {
 		HttpSession session= req.getSession();
 		String id = (String)session.getAttribute("id");
 		ReservationService reService = ReservationService.getInstance();
+	System.out.println(id);
 		List<Accommodation> acclist = reService.selectAccommodationLoginId(id);
 		ChatService ctService = ChatService.getInstance();
 		List<Chat> ctlist=ctService.selectAll();
-		
+		if(req.getAttribute("recevi")!=null) {
+			req.setAttribute("recevi", (String)req.getAttribute("recevi"));
+		}
 		req.setAttribute("ctlist", ctlist);
 		req.setAttribute("acclist",acclist);    
 		Utils.forward(req, resp, "WEB-INF/jsp/message/message.jsp");
