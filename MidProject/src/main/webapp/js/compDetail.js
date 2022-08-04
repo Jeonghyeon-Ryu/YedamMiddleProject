@@ -1,9 +1,11 @@
-let pickCard = document.querySelector('.card [accid="500"]');
-pickCard.addEventListener('click', clickCard);
+
+
+let pickCard = document.querySelector('.card[accid="14255"]');
 
 function clickCard() {
-	location.href="compDetail.do?accid="+pickCard.value;
+
 }
 
+console.log('zzzz');
 
 
