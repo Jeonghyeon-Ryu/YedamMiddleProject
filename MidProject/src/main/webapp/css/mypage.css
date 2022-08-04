@@ -4,13 +4,16 @@
 	margin-bottom: 0;
 }
 
-img {
+#mypage-box div {
+	margin: 40px 20px;
+}
+#profile-photo img {
 	background: rgb(199, 199, 199);
 	border-radius: 50%;
 	float: left;
 }
 
-#logout {
+#profile-photo #mypage-logout {
 	float: fight;
 	margin: 10px 20px;
 	border: none;
@@ -23,32 +26,28 @@ img {
 	color: lightgray;
 }
 
-div {
-	margin: 40px 20px;
-}
-
-hr {
+#mypage-box hr {
 	clear: both;
 	color: lightgray;
 	margin: 20px;
 	border: 0.1px solid lightgray;
 }
 
-ul {
+#mypage-box ul {
 	padding: 0;
 }
 
-ul li {
+#mypage-box ul li {
 	list-style: none;
 	padding: 20px 15px 10px;
 }
 
-span {
+#mypage-box span {
 	font-weight: bold;
 	float: right;
 }
 
-a {
+#mypage-box a {
 	color: black;
 	text-decoration: none;
 }
