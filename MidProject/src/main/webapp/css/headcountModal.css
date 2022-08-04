@@ -1,14 +1,29 @@
 @charset "UTF-8";
-
+#headcount-modal {
+	
+}
 #headcount-modal .modal-content{
+	width:100%;
+	height: calc(100% - 100px);
 }
 #headcount-modal .modal-content>div{
-	display:flex;
+	display:block;
+	position:relative;
+	height: calc((100% - 100px)/4);
+	margin-left: 5px;
+	margin-right: 5px;
 }
 #headcount-modal .modal-content .headcount-label{
 	display:inline-block;
+	position:absolute;
+	left:0;
 }
 
 #headcount-modal .modal-content .headcount-updown-button{
 	display:inline-block;
+	position:absolute;
+	right:0;
+}
+#headcount-modal .modal-content .headcount-updown-button img {
+
 }

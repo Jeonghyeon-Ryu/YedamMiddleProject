@@ -64,6 +64,7 @@
     overflow-y:hidden;
     max-height: calc(50vh - 110px);
     margin-top:5px;
+    border:none;
 }
 #location-modal .modal-content {
 	display:flex !important;

@@ -257,7 +257,7 @@
                 </div>
             </div>
         </div>
-        <div id="headcount-modal" class="modal modal-overlay" role="dialog" style="visibility:hidden; top:0;">
+        <div id="headcount-modal" class="modal modal-overlay" role="dialog" style="visibility:visible; top:0;">
             <div class="mini-modal-box">
                 <!-- Modal Title -->
                 <div class="modal-title">
