@@ -11,12 +11,11 @@ window.addEventListener('load',() => {
 	}
 })
 // 닫기
-function headcountModalCloseAction() {
+function headcountModalCloseAction(e) {
 	searchBoxRemoveClass();
-	let modal = event.target.parentElement;
+	let modal = e.target.parentElement;
 	while(!modal.classList.contains('modal')){
 		modal= modal.parentElement
-		console.log(modal);
 	}
 	let main = document.querySelector('main');
 	modal.classList.toggle('modal-active');	// 메인 overflow:hidden (스크롤방지)
@@ -24,14 +23,15 @@ function headcountModalCloseAction() {
 }
 
 // + 이벤트
-function headcountModalPlusAction(event) {
-	let headcountButtonContainer = event.target.parentElement.parentElement;
+function headcountModalPlusAction(e) {
+	let headcountButtonContainer = e.target.parentElement.parentElement;
 	let headCountSpan = headcountButtonContainer.querySelector('button + span')
+	
 	console.log(headcountButtonContainer);
 	
 	console.log(headCountSpan)
 }
 // - 이벤트
-function headcountModalMinusAction(event) {
+function headcountModalMinusAction(e) {
 	
 }

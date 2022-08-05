@@ -1,5 +1,8 @@
-let searchButton = document.querySelector('.search-button');
-searchButton.addEventListener('click', clearAccList);
+window.addEventListener('load',() => {
+	let searchButton = document.querySelector('.search-button');
+	searchButton.addEventListener('click', clearAccList);
+	document.querySelector('main').addEventListener('click',clickCard);
+})
 // 1. Search Box 확인
 let resultCity;
 let resultRegion;
@@ -8,7 +11,7 @@ let reservationTime = '';
 let resultFilter;
 const Criteria = { page : 0, endPageNo: 0 };
 let scrollIsStop = false;
-//getAccList(); // 웹 오픈시 10개 출력
+getAccList(); // 웹 오픈시 10개 출력
 // (1) Location Select 확인
 function checkLocation() {
 	// Locations
@@ -65,6 +68,7 @@ function createCard(result) {
 		card.querySelector('.card').setAttribute('accId',result.list[i].accId);
 		// 카드 붙이기
 		document.querySelector('main').append(card);
+
 	}
 }
 // 4. Ajax - 페이징으로 호출 필요
@@ -107,7 +111,7 @@ window.addEventListener('scroll',() => {
 },{ passive:true })
 
 // ------------------- Card Click Event -----------------------
-function clickCard() {
+function clickCard(e) {
 	let clickedCard = event.target;
 	while(!clickedCard.classList.contains('card')){
 		clickedCard = clickedCard.parentElement;	

@@ -4,7 +4,7 @@
 <main>
 </main>
 <template style="display:none">
-	<div class="card" style="max-width:540px" onclick="clickCard()">
+	<div class="card" style="max-width:540px">
         <div class="row">
             <div class="col-md-8">
                 <img src="" class="img-fluid rounded" alt="...">
