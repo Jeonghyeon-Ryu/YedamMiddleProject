@@ -8,7 +8,7 @@ let reservationTime = '';
 let resultFilter;
 const Criteria = { page : 0, endPageNo: 0 };
 let scrollIsStop = false;
-getAccList(); // 웹 오픈시 10개 출력
+//getAccList(); // 웹 오픈시 10개 출력
 // (1) Location Select 확인
 function checkLocation() {
 	// Locations
@@ -56,7 +56,6 @@ function createCard(result) {
 	let template = document.querySelector('template');
 	// 카드 내용 채우기
 	Criteria.endPageNo = result.endPageNo;
-	console.log(result.list);
 	for (let i = 0; i < result.list.length; i++) {
 		let card = document.importNode(template.content, true);
 		card.querySelector('img').src = result.list[i].imgUrl;

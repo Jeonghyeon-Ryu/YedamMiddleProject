@@ -239,4 +239,6 @@ public class AccommodationDAO extends DAO {
 			disconnect();
 		}
 	}
+	
+
 }

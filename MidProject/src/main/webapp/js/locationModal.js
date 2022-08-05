@@ -108,6 +108,8 @@ function locationModalCloseAction(e) {
 			modal = modal.parentElement;
 		}
 		modal.classList.toggle('modal-active');
+		let main = document.querySelector('main');	// 메인 overflow:hidden (스크롤방지)
+		main.classList.toggle('modal-active-background');
 	}
 }
 // Location Search Box 선택 해제
@@ -124,6 +126,8 @@ function locationModalClickEvent(e) {
 	searchBoxRemoveClass();
 	if (e.target.classList.contains("modal-overlay")) {
 		e.target.classList.toggle('modal-active');
+		let main = document.querySelector('main');	// 메인 overflow:hidden (스크롤방지)
+		main.classList.toggle('modal-active-background');
 	}
 	// 그 외 영역 클릭 시 필터 초기화 필요. ( 리셋버튼 Func 재사용 )
 }
@@ -142,6 +146,8 @@ function clickLocationModalConfirm() {
 		modal = modal.parentElement;
 	}
 	modal.classList.toggle('modal-active');
+	let main = document.querySelector('main');	// 메인 overflow:hidden (스크롤방지)
+	main.classList.toggle('modal-active-background');
 	
 	
 	// 조회할 내용이 있으면 다시 조회 필요. | 없으면 그냥 닫힘.
