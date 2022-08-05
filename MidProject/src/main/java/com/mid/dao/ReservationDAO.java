@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mid.vo.Accommodation;
+import com.mid.vo.Member;
 import com.mid.vo.Reservation;
 
 public class ReservationDAO extends DAO {
@@ -83,10 +84,8 @@ public class ReservationDAO extends DAO {
 	// Accommodation정보 loginId로 조회
 	public List<Accommodation> selectOneAccommodationInfo(String id) {
 		List<Accommodation> list = new ArrayList<>();
-		String sql = "select * from accommodation where acc_id in("
-				+ "select acc_id from room where room_id in("
-				+ "select room_id from("
-				+ "select *from reservation where member_id= ?)))";
+		String sql = "select * from accommodation where acc_id in(" + "select acc_id from room where room_id in("
+				+ "select room_id from(" + "select *from reservation where member_id= ?)))";
 		connect();
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -104,6 +103,28 @@ public class ReservationDAO extends DAO {
 				vo.setStatus(rs.getInt("STATUS"));
 				vo.setZipcode(rs.getString("ZIPCODE"));
 				vo.setImgUrl(rs.getString("IMG_URL"));
+				list.add(vo);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return null;
+	}
+
+	public List<Member> selectMemberAccommodation(String id) {
+		List<Member> list = new ArrayList<>();
+		String sql = "select member_id from reservation where room_id in(select room_ID from room where acc_id=?)";
+		connect();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Member vo = new Member();
+				vo.setId(rs.getString("member_id"));
 				list.add(vo);
 			}
 			return list;
