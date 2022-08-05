@@ -22,3 +22,7 @@
 .nav-container>a:visited{
     color:black;
 }
+
+.nav-container #nav-wishlist{
+	cursor:pointer;
+}

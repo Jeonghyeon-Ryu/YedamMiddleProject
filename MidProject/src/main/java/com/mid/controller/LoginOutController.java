@@ -3,11 +3,13 @@ package com.mid.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mid.common.Controller;
+import com.mid.common.SHA256;
 import com.mid.common.Utils;
 import com.mid.service.MemberService;
 import com.mid.vo.Member;
@@ -26,10 +28,13 @@ public class LoginOutController implements Controller {
 			return;
 		}
 
-		// 로그인
+		// 로그인 Request 확인
 		String id = req.getParameter("memberId");
 		String pw = req.getParameter("memberPw");
+		// 비밀번호 암호화
+		pw = SHA256.encodeSha256(pw);
 
+		// Database 아이디 확인
 		MemberService service = MemberService.getInstance();
 		Member vo = service.getMember(id);
 
@@ -39,10 +44,11 @@ public class LoginOutController implements Controller {
 					+ "입력하신 내용을 다시 확인해주세요.");
 			Utils.forward(req, resp, "loginForm.do");
 		} else {
+			// 로그인 성공
 			System.out.println("login.");
 			session.setAttribute("id", id);
 			
-			resp.sendRedirect("memberMypage.do");//마이페이지로 가던가.. 홈으로 가던가..
+			resp.sendRedirect("main.do");//마이페이지로 가던가.. 홈으로 가던가..
 		}
 	}
 

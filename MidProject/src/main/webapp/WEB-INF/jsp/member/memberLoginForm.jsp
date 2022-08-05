@@ -41,7 +41,7 @@
 			</div>
 			<hr>
 			<button type="button" id="kakao-login-bnt" class="btn-kakao">
-				<span> <a href="#"> <i class="icon_login_kakao"></i>카카오로 로그인</a>
+				<span> <a href="https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8081/MidProject&response_type=code"> <i class="icon_login_kakao"></i>카카오로 로그인</a>
 				</span>
 			</button><br>
 			<button type="button" id="naver-login-bnt" class="btn-naver">
@@ -50,8 +50,10 @@
 			</button>
 		</div>
 	</div>
-<script type="text/javascript">
 	
+<script type="text/javascript">
+	const kakaoUrl = "https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8081/MidProject&response_type=code"
+
 </script>
 </body>
 </html>

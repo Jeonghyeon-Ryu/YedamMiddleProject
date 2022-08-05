@@ -1,10 +1,13 @@
 @charset "UTF-8";
-
+#mypage-modal .modal-content{
+	height:100%;
+}
 #profile-photo {
 	margin-bottom: 0;
 }
 
 #mypage-box div {
+	height:100%;
 	margin: 40px 20px;
 }
 #profile-photo img {

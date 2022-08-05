@@ -25,13 +25,14 @@ function headcountModalCloseAction(e) {
 // + 이벤트
 function headcountModalPlusAction(e) {
 	let headcountButtonContainer = e.target.parentElement.parentElement;
-	let headCountSpan = headcountButtonContainer.querySelector('button + span')
-	
-	console.log(headcountButtonContainer);
-	
-	console.log(headCountSpan)
+	let headcountSpan = headcountButtonContainer.querySelector('button + span')
+	headcountSpan.innerHTML = +headcountSpan.innerHTML + 1;
 }
 // - 이벤트
 function headcountModalMinusAction(e) {
-	
+	let headcountButtonContainer = e.target.parentElement.parentElement;
+	let headcountSpan = headcountButtonContainer.querySelector('button + span')
+	if(+headcountSpan.innerHTML > 0) {
+		headcountSpan.innerHTML = +headcountSpan.innerHTML - 1;
+	}
 }
