@@ -5,16 +5,14 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-	<link rel="stylesheet" href="css/message.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="css/message.css">
 </head>
 
-<body>
+<body onload="openReContent()">
 	<div id="modal" role="dialog">
 		<div class="modal-box">
 			<!-- Modal Title -->
@@ -29,7 +27,7 @@
 				<div id="msContainer">
 					<header>
 						<h1>메시지함</h1>
-						<div id='test'>&{recevi }</div>
+						<div id='exitRecevi'>${recevi }</div>
 						<div id="userId">${id }</div>
 					</header>
 					<nav>
@@ -40,17 +38,33 @@
 							<div id="num">1</div>
 						</div>
 					</nav>
+					<c:set var="userCheck" value="${checkUser }" />
+					<c:set var="trueUser" value="1" />
 					<div id="msContent1">
+						<c:out value="${userCheck} " />
+
 						<div id="msContentRoom">
-							<c:forEach var="i" items="${acclist }">
-								${i.accId }
-								<button class="msBtn" id="${i.accId }" onclick="openContent(this.id)">
-									<img src="${i.imgUrl}">
-									<p>${i.name}</p>
-								</button>
-							</c:forEach>
+							<c:choose>
+
+								<c:when test="${checkUser eq trueUser }">
+									<c:forEach var="i" items="${acclist }">
+										<button class="msBtn" id="${i.accId }"
+											onclick="openContent(this.id)">
+											<img class="msImg" src="${i.imgUrl}">
+											<p>${i.name}</p>
+										</button>
+									</c:forEach>
+								</c:when>
+								<c:when test="${checkUser ne trueUser }">
+									<c:forEach var="m" items="${mlist }">
+										<button class="msBtn" id="${m.id }"
+											onclick="openContent(this.id)"></button>
+									</c:forEach>
+								</c:when>
+							</c:choose>
 						</div>
-						<form action="sendContent.do" name=msSendContent onsubmit ="msClear()">
+						<form action="sendContent.do" name=msSendContent
+							onsubmit="msClear()">
 							<div id="msContentText">
 								모든 메시지
 								<c:set var="id" value="${id }" />
@@ -67,12 +81,11 @@
 									</c:choose>
 								</c:forEach>
 								<input id="msSend" name="msSend" value="${id }" type="hidden">
-								<input id="msReceiv" name="msReceiv" type="hidden">
-								<input id="msSendText" name="msSendText" type="text" onkeypress="JavaScript:press(this.form)">
+								<input id="msReceiv" name="msReceiv" type="hidden"> <input
+									id="msSendText" name="msSendText" type="text">
 							</div>
 						</form>
 					</div>
-					<div id="msContent2">저장된 메시지</div>
 					<div id="msContent3">읽지않은 메시지</div>
 					<div id="msContent4">알림</div>
 				</div>
@@ -82,7 +95,7 @@
 		</div>
 	</div>
 	<script src="js/message.js">
-
+		
 	</script>
 </body>
 
