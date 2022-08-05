@@ -25,9 +25,15 @@ window.addEventListener('click', function() {
 	locationModal.addEventListener('click', locationModalClickEvent);
 	let locationModalReset = document.querySelector('#location-modal button[type="reset"]');
 	locationModalReset.addEventListener('click', clickLocationModalReset);
+	let locationModalConfirm = document.querySelector('#location-modal button[type="button"]');
+	locationModalConfirm.addEventListener('click', clickLocationModalConfirm);
 });
 // Regions 할당
 function clickSelectedLocation(e) {
+	let regions = document.querySelector('#regions');
+	removeRegions(regions)
+	resultCity='';
+	resultRegion='';
 	e.stopPropagation();
 	let add;
 	if (this.value == "gangwon") {
@@ -63,12 +69,12 @@ function clickSelectedLocation(e) {
 	} else {
 		return;
 	}
-	let regions = document.querySelector('#regions');
-	removeRegions(regions)
+	
 	for (a of add) {
 		// Select 노드 생성
 		let label = document.createElement('label');
 		label.setAttribute('class', 'option');
+		label.setAttribute('onclick','countResult()')
 		let input = document.createElement('input');
 		input.setAttribute('type', 'radio');
 		input.setAttribute('name', 'option2');
@@ -82,6 +88,8 @@ function clickSelectedLocation(e) {
 		// Select 노드 append
 		regions.append(label);
 	}
+	// Ajax 호출 City 기준으로 갯수(Count) 확인
+	countResult();
 }
 // 군구 Child Node 제거 ( for Refresh )
 function removeRegions() {
@@ -90,16 +98,18 @@ function removeRegions() {
 	for (x of labels) {
 		regions.removeChild(x);
 	}
-	region = "";
 }
 // Location Search Box Close Button Event
 function locationModalCloseAction(e) {
 	searchBoxRemoveClass();
 	if (e.target.parentElement.getAttribute("class") == 'modal-close-button') {
-		let modal = e.target.parentElement.parentElement.parentElement.parentElement;
+		let modal = e.target.parentElement;
+		while (!modal.classList.contains('modal-active')) {
+			modal = modal.parentElement;
+		}
 		modal.classList.toggle('modal-active');
-		//modal.style.display = "none";
-		//modal.style.top = '-200%';
+		let main = document.querySelector('main');	// 메인 overflow:hidden (스크롤방지)
+		main.classList.toggle('modal-active-background');
 	}
 }
 // Location Search Box 선택 해제
@@ -116,6 +126,8 @@ function locationModalClickEvent(e) {
 	searchBoxRemoveClass();
 	if (e.target.classList.contains("modal-overlay")) {
 		e.target.classList.toggle('modal-active');
+		let main = document.querySelector('main');	// 메인 overflow:hidden (스크롤방지)
+		main.classList.toggle('modal-active-background');
 	}
 	// 그 외 영역 클릭 시 필터 초기화 필요. ( 리셋버튼 Func 재사용 )
 }
@@ -128,3 +140,33 @@ function clickLocationModalReset() {
 	}
 }
 
+function clickLocationModalConfirm() {
+	let modal = event.target.parentElement;
+	while (!modal.classList.contains('modal-active')) {
+		modal = modal.parentElement;
+	}
+	modal.classList.toggle('modal-active');
+	let main = document.querySelector('main');	// 메인 overflow:hidden (스크롤방지)
+	main.classList.toggle('modal-active-background');
+	
+	
+	// 조회할 내용이 있으면 다시 조회 필요. | 없으면 그냥 닫힘.
+	if(document.querySelector('#location-modal button[type="button"]>span').innerHTML>0){
+		clearAccList();
+	}
+}
+
+// 조회할 내용 갯수 확인
+function countResult() {
+	checkLocation();
+	checkFilterBox();
+	fetch('accListCount.do', {
+		method: 'POST',
+		headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+		body: 'city=' + resultCity + '&region=' + resultRegion + '&reservationDay=' + reservationDay + '&reservationTime=' + reservationTime + resultFilter
+	}).then(result => result.text())
+	.then(result => {
+		document.querySelector('#location-modal button[type="button"]>span').innerHTML=result;
+	})
+	.catch(err => console.log(err));
+}

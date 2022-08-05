@@ -1,7 +1,0 @@
-[{"sender":"a","receiver":"b","ct":"abhwjek"},
-{"sender":"a","receiver":"b","ct":"anciuqw"},
-{"sender":"a","receiver":"b","ct":"qnkoaw"},
-{"sender":"a","receiver":"b","ct":"1wqag"},
-{"sender":"d","receiver":"a","ct":"12"},
-{"sender":"a","receiver":"b","ct":"qawh12"},
-{"sender":"c","receiver":"a","ct":"qawh12"}]

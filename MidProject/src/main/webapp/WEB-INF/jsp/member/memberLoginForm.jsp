@@ -9,14 +9,10 @@
 <script src="https://kit.fontawesome.com/9f16a06d13.js" crossorigin="anonymous"></script>
 </head>
 <style>
-.loginError{color: red; font-sizw:small;}
+.loginError{color: red; font-size:0.9em;}
 .modal-box{padding : 10px; max-width :400px; margin:0 auto; text-align:center;}
-
 </style>
-
-
 <body>
-<div id="modal">
 	<div class="modal-box">
 		<!-- Modal Title -->
 		<div class="modal-title">
@@ -54,7 +50,6 @@
 			</button>
 		</div>
 	</div>
-</div>
 <script type="text/javascript">
 	
 </script>

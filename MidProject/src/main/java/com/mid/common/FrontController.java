@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mid.controller.AddContentController;
 import com.mid.controller.AjaxMemberIdCheck;
 import com.mid.controller.CompDetailController;
 import com.mid.controller.ExTourListController;
@@ -18,12 +19,15 @@ import com.mid.controller.MainController;
 import com.mid.controller.MemberAgreementController;
 import com.mid.controller.MemberJoinController;
 import com.mid.controller.MypageController;
+import com.mid.controller.ReservationPageController;
 import com.mid.controller.SelectAccListController;
+import com.mid.controller.SelectAccListCountController;
 import com.mid.controller.MemberJoinFormController;
 import com.mid.controller.ExTourListController;
 import com.mid.controller.MessageController;
 import com.mid.controller.SendContentController;
 import com.mid.controller.WishListController;
+import com.mid.controller.chekinDateController;
 
 public class FrontController extends HttpServlet {
 
@@ -37,7 +41,7 @@ public class FrontController extends HttpServlet {
 		mappings = new HashMap<String, Controller>();
     
 		mappings.put("/main.do", new MainController());				// 메인 진입
-		mappings.put("/message.do", new MessageController());		// 메세지
+		mappings.put("/message.do", new MessageController());		// 메세지폼
 		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼
 		mappings.put("/login.do", new LoginOutController());		// 로그인,로그아웃
 		mappings.put("/memberJoinForm.do", new MemberJoinFormController());	//회원가입폼
@@ -52,6 +56,9 @@ public class FrontController extends HttpServlet {
 		mappings.put("/accList.do", new SelectAccListController());	// 숙소 리스트 출력
 		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
 		mappings.put("/reservationPage.do", new ReservationPageController());	// 숙소 리스트 출력
+		mappings.put("/addContent.do", new AddContentController());	// 숙소 리스트 출력
+		mappings.put("/checkinDate.do", new chekinDateController());
+		mappings.put("/accListCount.do", new SelectAccListCountController());	// 필터 적용 리스트 갯수 확인 
 
 	}
 

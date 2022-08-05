@@ -106,7 +106,7 @@
                 <!-- Modal Footer(Optional) -->
                 <div class="modal-footer">
                     <button type="reset">전체 해제</button>
-                    <button type="button"><span>555</span> 건 조회</button>
+                    <button type="button"><span>0</span> 건 조회</button>
                 </div>
             </div>
         </div>
@@ -129,63 +129,63 @@
 					    <i class="toggle icon icon-arrow-up"></i>
 					    <span class="placeholder">시도 선택</span>
 					    <label class="option">
-					        <input type="radio" name="option" value="seoul">
+					        <input type="radio" name="option" value="seoul" text="서울">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>서울</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="busan">
+					        <input type="radio" name="option" value="busan" text="부산">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>부산</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="daegu">
+					        <input type="radio" name="option" value="daegu" text="대구">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>대구</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="daejeon">
+					        <input type="radio" name="option" value="daejeon" text="대전">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>대전</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="gwangju">
+					        <input type="radio" name="option" value="gwangju" text="광주">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>광주</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="ulsan">
+					        <input type="radio" name="option" value="ulsan" text="울산">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>울산</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="gangwon">
+					        <input type="radio" name="option" value="gangwon" text="강원">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>강원</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="gyeonggi">
+					        <input type="radio" name="option" value="gyeonggi" text="경기">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>경기</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="incheon">
+					        <input type="radio" name="option" value="incheon" text="인천">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>인천</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="gyeongsangbuk">
+					        <input type="radio" name="option" value="gyeongsangbuk" text="경북">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>경북</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="gyeongsangnam">
+					        <input type="radio" name="option" value="gyeongsangnam" text="경남">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>경남</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="chungbuk">
+					        <input type="radio" name="option" value="chungbuk" text="충북">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>충북</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="jeonbuk">
+					        <input type="radio" name="option" value="jeonbuk" text="전북">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>전북</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="jeonnam">
+					        <input type="radio" name="option" value="jeonnam" text="전남">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>전남</span>
 					    </label>
 					    <label class="option">
-					        <input type="radio" name="option" value="jeju">
+					        <input type="radio" name="option" value="jeju" text="제주">
 					        <span class="title animated fadeIn"><i class="icon icon-arrow-right"></i>제주</span>
 					    </label>
 					</div>
@@ -200,13 +200,13 @@
                 <!-- Modal Footer(Optional) -->
                 <div class="modal-footer">
                     <button type="reset">전체 해제</button>
-                    <button type="button"><span>555</span> 건 조회</button>
+                    <button type="button"><span>0</span> 건 조회</button>
                 </div>
             </div>
         </div>
         <!-- -->
-        <div id="modal" class="modal modal-overlay" role="dialog">
-            <div class="modal-box">
+        <div id="checkin-modal" class="modal modal-overlay" role="dialog">
+            <div class="mini-modal-box">
                 <!-- Modal Title -->
                 <div class="modal-title">
                     <h5>체크인/체크아웃</h5>
@@ -216,14 +216,12 @@
                 </div>
                 <!-- Modal Content -->
                 <div class="modal-content">
-					<div class="container">
+			          <ul class="clicked-date">
+			            <li class="cal-day1"></li>
+			            - <li class="cal-day2"></li>
+			          </ul>
+					<div class="calendar-box">
 			        <div class="my-calendar clearfix">
-			          <div class="clicked-date1">
-			            <div class="cal-day1"></div>
-			          </div>
-			          <div class="clicked-date2">
-			            <div class="cal-day2"></div>
-			          </div>
 			          <div class="calendar-box">
 			            <div class="ctr-box clearfix">
 			              <button type="button" title="prev" class="btn-cal prev"></button>
@@ -251,13 +249,10 @@
 			      </div>
                 </div>
                 <!-- Modal Footer(Optional) -->
-                <div class="modal-footer">
-                    <button type="reset">전체 해제</button>
-                    
-                </div>
+                
             </div>
         </div>
-        <div id="headcount-modal" class="modal modal-overlay" role="dialog" style="visibility:visible; top:0;">
+        <div id="headcount-modal" class="modal modal-overlay" role="dialog">
             <div class="mini-modal-box">
                 <!-- Modal Title -->
                 <div class="modal-title">
@@ -270,8 +265,8 @@
                 <div class="modal-content">
 					<div class="filter-adult">
 						<div class="headcount-label">
-							<div>성인</div>
-							<div>만 13세 이상</div>
+							<div><strong>성인</strong></div>
+							<div><small class="text-muted">만 13세 이상</small></div>
 						</div>
 						<div class="headcount-updown-button">
 							<button type="button"><img src="img/headcount-minus-32.png"></button>
@@ -281,8 +276,8 @@
 					</div>
 					<div class="filter-kid">
 						<div class="headcount-label">
-							<div>성인</div>
-							<div>만 13세 이상</div>
+							<div><strong>어린이</strong></div>
+							<div><small class="text-muted">만 2~12세</small></div>
 						</div>
 						<div class="headcount-updown-button">
 							<button type="button"><img src="img/headcount-minus-32.png"></button>
@@ -292,8 +287,8 @@
 					</div>
 					<div class="filter-infant">
 						<div class="headcount-label">
-							<div>성인</div>
-							<div>만 13세 이상</div>
+							<div><strong>유아</strong></div>
+							<div><small class="text-muted">만 2세 미만</small></div>
 						</div>
 						<div class="headcount-updown-button">
 							<button type="button"><img src="img/headcount-minus-32.png"></button>
@@ -303,8 +298,8 @@
 					</div>
 					<div class="filter-animal">
 						<div class="headcount-label">
-							<div>성인</div>
-							<div>만 13세 이상</div>
+							<div><strong>반려동물</strong></div>
+							<div><small class="text-muted">9kg 이상 입마개 필수</small></div>
 						</div>
 						<div class="headcount-updown-button">
 							<button type="button"><img src="img/headcount-minus-32.png"></button>
@@ -316,7 +311,7 @@
                 <!-- Modal Footer(Optional) -->
                 <div class="modal-footer">
                     <button type="reset">전체 해제</button>
-                    <button type="button"><span>555</span> 건 조회</button>
+                    <button type="button">적용</button>
                 </div>
             </div>
         </div>
