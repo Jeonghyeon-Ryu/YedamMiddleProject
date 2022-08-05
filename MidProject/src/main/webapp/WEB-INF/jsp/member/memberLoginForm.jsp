@@ -40,9 +40,8 @@
 				<a href="memberAgreement.do">회원가입</a>
 			</div>
 			<hr>
-			<button type="button" id="kakao-login-bnt" class="btn-kakao">
-				<span> <a href="https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8081/MidProject&response_type=code"> <i class="icon_login_kakao"></i>카카오로 로그인</a>
-				</span>
+			<button type="button" id="kakao-login-bnt" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8081/MidProject/kakaoLogin.do?cmd=callback&response_type=code'" class="btn-kakao">
+				<img src="img/kakao_login_medium_narrow.png">
 			</button><br>
 			<button type="button" id="naver-login-bnt" class="btn-naver">
 				<span> <a href="#"><i class="icon_login_naver"></i> 네이버로 로그인</a>

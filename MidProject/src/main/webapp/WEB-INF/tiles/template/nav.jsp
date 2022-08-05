@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <nav>
     <div class="nav-container">
-        <a href="">
+        <a href="main.do">
             <div><img src="img/nav-home-25.png"></div>
             <div>홈으로</div>
         </a>
@@ -18,7 +18,7 @@
         </a>
         </c:if>
         <c:if test="${!empty id }">
-        <a href="">
+        <a id="nav-reservation">
             <div><img src="img/hotel.png" width="25px"></div>
             <div>여행</div>
         </a>

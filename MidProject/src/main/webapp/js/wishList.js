@@ -5,8 +5,8 @@ window.addEventListener('load', () => {
 
 function wishlistModalOpenAction(e) {
 	let modal = document.querySelector('#wishlist-modal');
-	let main = document.querySelector('main');
+	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');
-	main.classList.toggle('modal-active-background');
+	body.classList.toggle('modal-active-background');
 }
 

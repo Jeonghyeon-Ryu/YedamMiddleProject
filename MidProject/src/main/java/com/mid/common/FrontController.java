@@ -13,6 +13,7 @@ import com.mid.controller.AddContentController;
 import com.mid.controller.AjaxMemberIdCheck;
 import com.mid.controller.CompDetailController;
 import com.mid.controller.ExTourListController;
+import com.mid.controller.KakaoLoginController;
 import com.mid.controller.LoginFormController;
 import com.mid.controller.LoginOutController;
 import com.mid.controller.MainController;
@@ -45,6 +46,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/insert.do", new InsertController());			// 공공데이터 DB Parsing 관련 1회용	
 		mappings.put("/accList.do", new SelectAccListController());	// 숙소 리스트 출력
 		mappings.put("/accListCount.do", new SelectAccListCountController());	// 필터 적용 리스트 갯수 확인 
+		mappings.put("/kakaoLogin.do", new KakaoLoginController());	// 필터 적용 리스트 갯수 확인 
 		
 		// 최유리
 		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼

@@ -364,6 +364,19 @@
 		<div class="modal-content"></div>
 	</div>
 </div>
+<div id="reservation-modal" class="modal modal-overlay" role="dialog">
+	<div class="large-modal-box">
+		<!-- Modal Title -->
+		<div class="modal-title">
+			<h5>예약내역</h5>
+			<div class="modal-close-button">
+				<img src="img/close-20.png">
+			</div>
+		</div>
+		<!-- Modal Content -->
+		<div class="modal-content"></div>
+	</div>
+</div>
 <div id="mypage-modal" class="modal modal-overlay" role="dialog">
 	<div class="large-modal-box">
 		<!-- Modal Title -->
@@ -374,39 +387,37 @@
 			</div>
 		</div>
 		<!-- Modal Content -->
-		<div class="modal-content">
-			<div id="mypage-box">
-				<div id="profile-photo">
-					<img src() height="48" width="48">
+		<div class="large-modal-content">
+			<div id="profile-photo">
+				<img src() height="48" width="48">
 
-					<form action="login.do">
-						<button type="submit" id="mypage-logout">로그아웃</button>
-					</form>
-				</div>
+				<form action="login.do">
+					<button type="submit" id="mypage-logout">로그아웃</button>
+				</form>
+			</div>
 
-				<div id="progile-comment">
-					<h3>${id }</h3>
-				</div>
+			<div id="progile-comment">
+				<h3>${id }</h3>
+			</div>
 
-				<div class="mypage-info" id="info">
-					<h2>나의 정보</h2>
-					<ul>
-						<li><a href="#"><i class="fa-solid fa-user"></i> 개인정보<span>></span></a></li>
-						<li><a href="#"><i class="fa-solid fa-clipboard-list"></i>
-								예약내역<span>></span></a></li>
-						<li><a href="#"><i class="fa-solid fa-file-pen"></i> 후기관리<span>></span></a></li>
-					</ul>
-				</div>
-				<hr>
-				<div class="mypage-center" id="customer-center">
-					<h2>고객센터</h2>
-					<ul>
-						<li><a href="#"><i class="fa-solid fa-circle-question"></i>
-								QnA<span>></span></a></li>
-						<li><a href="#"><i class="fa-solid fa-headset"></i> 1:1
-								문의<span>></span></a></li>
-					</ul>
-				</div>
+			<div class="mypage-info" id="info">
+				<h2>나의 정보</h2>
+				<ul>
+					<li><a href="#"><i class="fa-solid fa-user"></i> 개인정보<span>></span></a></li>
+					<li><a href="#"><i class="fa-solid fa-clipboard-list"></i>
+							예약내역<span>></span></a></li>
+					<li><a href="#"><i class="fa-solid fa-file-pen"></i> 후기관리<span>></span></a></li>
+				</ul>
+			</div>
+			<hr>
+			<div class="mypage-center" id="customer-center">
+				<h2>고객센터</h2>
+				<ul>
+					<li><a href="#"><i class="fa-solid fa-circle-question"></i>
+							QnA<span>></span></a></li>
+					<li><a href="#"><i class="fa-solid fa-headset"></i> 1:1
+							문의<span>></span></a></li>
+				</ul>
 			</div>
 		</div>
 	</div>

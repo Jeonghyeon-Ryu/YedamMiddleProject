@@ -17,9 +17,9 @@ function headcountModalCloseAction(e) {
 	while(!modal.classList.contains('modal')){
 		modal= modal.parentElement
 	}
-	let main = document.querySelector('main');
+	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');	// 메인 overflow:hidden (스크롤방지)
-	main.classList.toggle('modal-active-background');
+	body.classList.toggle('modal-active-background');
 }
 
 // + 이벤트
