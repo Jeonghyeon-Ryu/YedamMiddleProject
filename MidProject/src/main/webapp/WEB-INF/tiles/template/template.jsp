@@ -39,7 +39,6 @@
 	<script src="js/locationModal.js"></script>
 	<script src="js/compDetail.js"></script>
 	<script src="js/calender.js"></script>
-	<script src="js/memberJoinForm.js"></script>
 	<script src="js/headcountModal.js"></script>
 	<script src="js/wishList.js"></script>
 	<script src="js/mypage.js"></script>

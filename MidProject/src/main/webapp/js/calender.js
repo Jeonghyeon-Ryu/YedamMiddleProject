@@ -11,7 +11,8 @@ const init = {
 		let d = new Date();
 		d.setDate(1);
 		d.setMonth(++this.monForChange);
-		this.activeDate = d;
+		this.activeDate = d;	// 8월 1일
+		this.activeDate2=d;		// 8월 1일
 		return d;
 	},
 	prevMonth: function() {
@@ -19,6 +20,7 @@ const init = {
 		d.setDate(1);
 		d.setMonth(--this.monForChange);
 		this.activeDate = d;
+		this.activeDate2= d;
 		return d;
 	},
 	addZero: (num) => (num < 10) ? '0' + num : num,
@@ -36,13 +38,8 @@ const $calBody = document.querySelector('.cal-body');
 const $btnNext = document.querySelector('.btn-cal.next');
 const $btnPrev = document.querySelector('.btn-cal.prev');
 
-let Tag1 = null;
-let Tag2 = null;
-let eDate = new Date();
-let inDate = new Date();
-let outDate = new Date();
-let checkinDate = new Date();
-
+let dateTag1 = null;
+let dateTag2 = null;
 function getYYDDMM(date) {
 	return date.getFullYear() + '.' + init.addZero(date.getMonth() + 1) + '.' + init.addZero(date.getDate());
 }
@@ -59,7 +56,9 @@ function loadYYMM(fullDate) {
 
 	document.querySelector('.cal-month').textContent = init.monList[mm];
 	document.querySelector('.cal-year').textContent = yy;
+	
 
+	
 	let trtd = '';
 	let startCount;
 	let countDay = 0;
@@ -71,27 +70,20 @@ function loadYYMM(fullDate) {
 			}
 
 			let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
-			let fulleDate = getYYDDMM(eDate);
-			let fullChkinDate = getYYDDMM(checkinDate);
-
 			if (!startCount) {
 				trtd += '<td>'
-			} else if (init.monForChange<=eDate.getMonth()&&fullDate < fulleDate) {
+			} else if(fullDate<getYYDDMM(init.today)){
 				trtd += '<td class="day-disable';
 				trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
 			} else {
 				trtd += '<td class="day';
-				if (!Tag1 && fullDate == fullChkinDate) {
-					loadDate(checkinDate)
-					trtd += ' day-active';
-				}
 				trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
 			}
-			trtd += (startCount) ? ++countDay : '';
-			if (countDay === lastDay.getDate()) {
-				startCount = 0;
-			}
-			trtd += '</td>';
+		trtd += (startCount) ? ++countDay : '';
+		if (countDay === lastDay.getDate()) {
+			startCount = 0;
+		}
+		trtd += '</td>';
 		}
 		trtd += '</tr>';
 	}
@@ -104,7 +96,6 @@ function createNewList(val) {
 	let yy = init.activeDate.getFullYear();
 	let mm = init.activeDate.getMonth() + 1;
 	let dd = init.activeDate.getDate();
-	const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
 
 	let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
 
@@ -123,75 +114,54 @@ $btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
 $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
 
 function loadDate(day) {
-	document.querySelector('.cal-day1').textContent = day.getFullYear() + ". " + (day.getMonth() + 1) + ". " + day.getDate();
+	document.querySelector('.cal-day1').textContent = getYYDDMM(day);
 }
 
 function loadDate2(day) {
-	document.querySelector('.cal-day2').textContent = day.getFullYear() + ". " + (day.getMonth() + 1) + ". " + day.getDate();
+	document.querySelector('.cal-day2').textContent = getYYDDMM(day);
 }
-
 
 
 $calBody.addEventListener('click', (e) => {
 	if (e.target.classList.contains('day')) {
-		let day = Number(e.target.textContent);
-		console.log("click event > tag1: " + Tag1 + " 2: " + Tag2);
-		
-		if ((Tag1 && Tag2)||(!Tag1 && !Tag2)) {
-			inDate = init.activeDate.setDate(day);
-			console.log(init.activeDate)
-			console.log(inDate);
-			Tag1=e.target;
-			loadDate(inDate);
-		} else {
-			outDate = init.activeDate.setDate(day);
-			Tag2=e.target;
-			loadDate2(outDate);
-		}
-		
-		if(OutDate<=inDate){
-			inDate = OutDate;
-			loadDate(inDate);
-			document.querySelector('.cal-day2').textContent="";
-		}
-	}
-	
-		/*if (Tag1 && Tag2) {
-			Tag1.classList.remove('day-active');
-			Tag2.classList.remove('day-active');
-			Tag1 = null;
-			Tag2 = null;
+		if (dateTag2) {
+			dateTag1.classList.remove('day-active');
+			dateTag2.classList.remove('day-active');
+			dateTag1 = null;
+			dateTag2 = null;
 			document.querySelector('.cal-day2').textContent = "";
 		}
-		if (!Tag1 && !Tag2) {
-
+		if(!dateTag1) {
 			let day = Number(e.target.textContent);
 			e.target.classList.add('day-active');
-			Tag1 = e.target;
+			dateTag1 = e.target;
 			init.activeDate.setDate(day);
 			loadDate(init.activeDate);
-		}
-		else if (Tag1 && !Tag2) {
-			let day2 = Number(e.target.textContent);
-			init.activeDate2.setDate(day2);
-			if (init.activeDate2 <= init.activeDate) {
-				Tag1.classList.remove('day-active');
-				Tag1 = null;
+		}else {
+			let day = Number(e.target.textContent);
+			init.activeDate2.setDate(day);
+			let day2 = document.querySelector('.cal-day1').textContent;
+			
+			if (getYYDDMM(init.activeDate2)<= day2) {
+				dateTag1.classList.remove('day-active');
 				e.target.classList.add('day-active');
-				Tag1 = e.target;
-				init.activeDate.setDate(day2);
+				dateTag1 = e.target;
+				init.activeDate.setDate(day);
 				loadDate(init.activeDate);
-
 			} else {
 				loadDate2(init.activeDate2);
 				e.target.classList.add('day-active');
-				Tag2 = e.target;
-				init.activeDate2.setDate(day2);
+				dateTag2 = e.target;
+				init.activeDate2.setDate(day);
+				selectDate();
 			}
 		}
-		checkinDate = init.activeDate;
-*/
-
-	
 	}
-);
+});
+function selectDate(){
+	let inDate = document.querySelector('.cal-day1').textContent;
+	let outDate = document.querySelector('.cal-day2').textContent;
+	console.log(inDate+'~'+outDate);
+	
+}
+

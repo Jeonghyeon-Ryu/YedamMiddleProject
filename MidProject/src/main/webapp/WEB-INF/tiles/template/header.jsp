@@ -228,11 +228,6 @@
 			<div class="calendar-box">
 				<div class="my-calendar clearfix">
 					<div class="calendar-box">
-						<div class="ctr-box clearfix">
-							<button type="button" title="prev" class="btn-cal prev"></button>
-							<span class="cal-year"></span> <span class="cal-month"></span>
-							<button type="button" title="next" class="btn-cal next">
-							</button>
 						</div>
 						<table class="cal-table">
 							<thead>
@@ -253,7 +248,9 @@
 			</div>
 		</div>
 		<!-- Modal Footer(Optional) -->
-
+  <div class="modal-footer">
+                    <button type="button" onclick="javascript:selectDate()">선택</button>
+                </div>
 	</div>
 </div>
 <div id="headcount-modal" class="modal modal-overlay" role="dialog">

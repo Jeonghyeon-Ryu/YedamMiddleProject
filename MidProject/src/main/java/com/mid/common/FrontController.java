@@ -13,11 +13,14 @@ import com.mid.controller.AddContentController;
 import com.mid.controller.AjaxMemberIdCheck;
 import com.mid.controller.CompDetailController;
 import com.mid.controller.ExTourListController;
+import com.mid.controller.FindInfoController;
 import com.mid.controller.KakaoLoginController;
 import com.mid.controller.LoginFormController;
 import com.mid.controller.LoginOutController;
 import com.mid.controller.MainController;
 import com.mid.controller.MemberAgreementController;
+import com.mid.controller.MemberInfoController;
+import com.mid.controller.FindInfoFormController;
 import com.mid.controller.MemberJoinController;
 import com.mid.controller.MypageController;
 import com.mid.controller.ReservationPageController;
@@ -28,7 +31,7 @@ import com.mid.controller.ExTourListController;
 import com.mid.controller.MessageController;
 import com.mid.controller.SendContentController;
 import com.mid.controller.WishListController;
-import com.mid.controller.chekinDateController;
+import com.mid.controller.CheckinDateController;
 
 public class FrontController extends HttpServlet {
 
@@ -55,6 +58,9 @@ public class FrontController extends HttpServlet {
 		mappings.put("/memberJoin.do", new MemberJoinController());	//회원가입 처리
 		mappings.put("/memberAgreement.do", new MemberAgreementController());	//회원가입약관동의
 		mappings.put("/memberMypage.do", new MypageController());	// 마이페이지
+		mappings.put("/findInfoForm.do", new FindInfoFormController());	//회원정보검색페이지
+		mappings.put("/findInfo.do", new FindInfoController());	//회원정보검색
+		mappings.put("/memberInfo.do", new MemberInfoController());	// 상세 정보(수정)
 		mappings.put("/idcheckAjax.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.	
 		mappings.put("/checkinDate.do", new chekinDateController());
 		
@@ -67,7 +73,10 @@ public class FrontController extends HttpServlet {
 		mappings.put("/compDetail.do", new CompDetailController());	// 
 		mappings.put("/wishList.do", new WishListController());		// 위시리스트
 		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
-		mappings.put("/reservationPage.do", new ReservationPageController());	// 숙소 예약 페이지
+		mappings.put("/reservationPage.do", new ReservationPageController());	// 숙소 리스트 출력
+		mappings.put("/addContent.do", new AddContentController());	// 숙소 리스트 출력
+		mappings.put("/checkinDate.do", new CheckinDateController());
+		mappings.put("/accListCount.do", new SelectAccListCountController());	// 필터 적용 리스트 갯수 확인 
 
 	}
 
