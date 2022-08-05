@@ -47,8 +47,6 @@ function getYYDDMM(date) {
 function loadYYMM(fullDate) {
 	let yy = fullDate.getFullYear();
 	let mm = fullDate.getMonth();
-	console.log(mm)
-	console.log(init.monList[mm])
 	let firstDay = init.getFirstDay(yy, mm);
 	let lastDay = init.getLastDay(yy, mm);
 
@@ -72,7 +70,6 @@ function loadYYMM(fullDate) {
 			}
 
 			let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
-			
 			if (!startCount) {
 				trtd += '<td>'
 			} else if(fullDate<getYYDDMM(init.today)){

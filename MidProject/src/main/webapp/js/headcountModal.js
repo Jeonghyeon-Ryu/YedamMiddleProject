@@ -11,27 +11,28 @@ window.addEventListener('load',() => {
 	}
 })
 // 닫기
-function headcountModalCloseAction() {
+function headcountModalCloseAction(e) {
 	searchBoxRemoveClass();
-	let modal = event.target.parentElement;
+	let modal = e.target.parentElement;
 	while(!modal.classList.contains('modal')){
 		modal= modal.parentElement
-		console.log(modal);
 	}
-	let main = document.querySelector('main');
+	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');	// 메인 overflow:hidden (스크롤방지)
-	main.classList.toggle('modal-active-background');
+	body.classList.toggle('modal-active-background');
 }
 
 // + 이벤트
-function headcountModalPlusAction(event) {
-	let headcountButtonContainer = event.target.parentElement.parentElement;
-	let headCountSpan = headcountButtonContainer.querySelector('button + span')
-	console.log(headcountButtonContainer);
-	
-	console.log(headCountSpan)
+function headcountModalPlusAction(e) {
+	let headcountButtonContainer = e.target.parentElement.parentElement;
+	let headcountSpan = headcountButtonContainer.querySelector('button + span')
+	headcountSpan.innerHTML = +headcountSpan.innerHTML + 1;
 }
 // - 이벤트
-function headcountModalMinusAction(event) {
-	
+function headcountModalMinusAction(e) {
+	let headcountButtonContainer = e.target.parentElement.parentElement;
+	let headcountSpan = headcountButtonContainer.querySelector('button + span')
+	if(+headcountSpan.innerHTML > 0) {
+		headcountSpan.innerHTML = +headcountSpan.innerHTML - 1;
+	}
 }

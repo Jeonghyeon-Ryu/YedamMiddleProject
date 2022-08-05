@@ -14,6 +14,7 @@ import com.mid.controller.AjaxMemberIdCheck;
 import com.mid.controller.CompDetailController;
 import com.mid.controller.ExTourListController;
 import com.mid.controller.FindInfoController;
+import com.mid.controller.KakaoLoginController;
 import com.mid.controller.LoginFormController;
 import com.mid.controller.LoginOutController;
 import com.mid.controller.MainController;
@@ -43,8 +44,14 @@ public class FrontController extends HttpServlet {
 		charset = config.getInitParameter("charset");
 		mappings = new HashMap<String, Controller>();
     
+		// 류정현
 		mappings.put("/main.do", new MainController());				// 메인 진입
-		mappings.put("/message.do", new MessageController());		// 메세지폼
+		mappings.put("/insert.do", new InsertController());			// 공공데이터 DB Parsing 관련 1회용	
+		mappings.put("/accList.do", new SelectAccListController());	// 숙소 리스트 출력
+		mappings.put("/accListCount.do", new SelectAccListCountController());	// 필터 적용 리스트 갯수 확인 
+		mappings.put("/kakaoLogin.do", new KakaoLoginController());	// 필터 적용 리스트 갯수 확인 
+		
+		// 최유리
 		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼
 		mappings.put("/login.do", new LoginOutController());		// 로그인,로그아웃
 		mappings.put("/memberJoinForm.do", new MemberJoinFormController());	//회원가입폼
@@ -55,11 +62,16 @@ public class FrontController extends HttpServlet {
 		mappings.put("/findInfo.do", new FindInfoController());	//회원정보검색
 		mappings.put("/memberInfo.do", new MemberInfoController());	// 상세 정보(수정)
 		mappings.put("/idcheckAjax.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.	
+		mappings.put("/checkinDate.do", new chekinDateController());
+		
+		// 배희열
+		mappings.put("/message.do", new MessageController());		// 메세지폼
 		mappings.put("/sendContent.do", new SendContentController()); //메세지 전송
+		mappings.put("/addContent.do", new AddContentController());	// 숙소 리스트 출력
+		
+		// 엄정웅
 		mappings.put("/compDetail.do", new CompDetailController());	// 
 		mappings.put("/wishList.do", new WishListController());		// 위시리스트
-		mappings.put("/insert.do", new InsertController());			// 공공데이터 DB Parsing 관련 1회용
-		mappings.put("/accList.do", new SelectAccListController());	// 숙소 리스트 출력
 		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
 		mappings.put("/reservationPage.do", new ReservationPageController());	// 숙소 리스트 출력
 		mappings.put("/addContent.do", new AddContentController());	// 숙소 리스트 출력

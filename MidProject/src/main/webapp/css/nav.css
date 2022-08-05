@@ -22,3 +22,7 @@
 .nav-container>a:visited{
     color:black;
 }
+
+.nav-container #nav-wishlist, #nav-mypage, #nav-reservation{
+	cursor:pointer;
+}

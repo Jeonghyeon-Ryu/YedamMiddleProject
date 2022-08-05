@@ -10,9 +10,9 @@ window.addEventListener('load', () => {
 
 function modalOpenAction(e) {
 	let modal = document.querySelector('#modal');
-	let main = document.querySelector('main');
+	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');
-	main.classList.toggle('modal-active-background');
+	body.classList.toggle('modal-active-background');
 }
 // 필터 모달 X 버튼 이벤트
 function modalCloseAction(e) {
@@ -21,17 +21,17 @@ function modalCloseAction(e) {
 		modal= modal.parentElement
 		console.log(modal);
 	}
-	let main = document.querySelector('main');
+	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');
-	main.classList.toggle('modal-active-background');
+	body.classList.toggle('modal-active-background');
 	
 }
 // 그 외 영역 클릭 처리
 function modalClickEvent(e) {
 	if (e.target.classList.contains("modal-overlay")) {
-		let main = document.querySelector('main');
+		let body = document.querySelector('body');
 		e.target.classList.toggle('modal-active');
-		main.classList.toggle('modal-active-background');
+		body.classList.toggle('modal-active-background');
 	}
 	// 그 외 영역 클릭 시 필터 초기화 필요. ( 리셋버튼 Func 재사용 )
 }

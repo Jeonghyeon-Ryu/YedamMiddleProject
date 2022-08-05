@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mid.common.Controller;
+import com.mid.common.SHA256;
 import com.mid.common.Utils;
 import com.mid.service.MemberService;
 import com.mid.vo.Member;
@@ -27,6 +28,8 @@ public class MemberJoinController implements Controller {
 		String pn1 = req.getParameter("phone1");
 		String pn2 = req.getParameter("phone2");
 		String pn3 = req.getParameter("phone3");
+		
+		pw = SHA256.encodeSha256(pw);
 		
 		vo.setId(memId);
 		vo.setName(nm);

@@ -1,10 +1,15 @@
 @charset "UTF-8";
+#mypage-modal .large-modal-content{
+	height:100%;
+	padding:40px 20px;
+}
 
 #profile-photo {
 	margin-bottom: 0;
 }
 
 #mypage-box div {
+	height:100%;
 	margin: 40px 20px;
 }
 #profile-photo img {
@@ -26,28 +31,28 @@
 	color: lightgray;
 }
 
-#mypage-box hr {
+#mypage-modal hr {
 	clear: both;
 	color: lightgray;
 	margin: 20px;
 	border: 0.1px solid lightgray;
 }
 
-#mypage-box ul {
+#mypage-modal ul {
 	padding: 0;
 }
 
-#mypage-box ul li {
+#mypage-modal ul li {
 	list-style: none;
 	padding: 20px 15px 10px;
 }
 
-#mypage-box span {
+#mypage-modal span {
 	font-weight: bold;
 	float: right;
 }
 
-#mypage-box a {
+#mypage-modal a {
 	color: black;
 	text-decoration: none;
 }

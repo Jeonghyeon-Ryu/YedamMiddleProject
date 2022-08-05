@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mid.dao.ReservationDAO;
 import com.mid.vo.Accommodation;
+import com.mid.vo.Member;
 import com.mid.vo.Reservation;
 
 public class ReservationService {
@@ -20,6 +21,7 @@ public class ReservationService {
 	}
 
 	ReservationDAO rsdao = new ReservationDAO();
+	
 
 	// 예약 단건 조회
 	public Reservation SelectOne(int roomId) {
@@ -30,7 +32,13 @@ public class ReservationService {
 		return rsdao.selectAll();
 	}
 	
+	// 유저가 예약한곳 조회
 	public List<Accommodation> selectAccommodationLoginId(String id){
 		return rsdao.selectOneAccommodationInfo(id);
+	}
+	
+	// 업체가 예약한 유저 조회
+	public List<Member> selectMemberAccommodation(String id){
+		return rsdao.selectMemberAccommodation(id);
 	}
 }
