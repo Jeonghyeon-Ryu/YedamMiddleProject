@@ -36,6 +36,7 @@
 	<script src="js/main.js"></script>
 	<script src="js/modal.js"></script>
 	<script src="js/locationModal.js"></script>
+	<script src="js/compDetail.js"></script>
 	<script src="js/calender.js"></script>
 	<script src="js/memberJoinForm.js"></script>
 	<script src="js/headcountModal.js"></script>

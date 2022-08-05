@@ -22,7 +22,7 @@ public class CompDetailController implements Controller {
 		CompDetailService service = CompDetailService.getInstance();
 		CompDetail compInfo = service.compInfo(Integer.parseInt(accId));
 		
-		System.out.println(compInfo);
+		System.out.println("compInfo"+compInfo);
 		
 		Gson gson = new GsonBuilder().create();
 		resp.getWriter().print(gson.toJson(compInfo));

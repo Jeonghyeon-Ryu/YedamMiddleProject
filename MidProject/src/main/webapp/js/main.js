@@ -115,4 +115,6 @@ function clickCard() {
 	clickedCard = clickedCard.getAttribute('accid');
 	console.log(clickedCard);
 	
+	
+	
 }
