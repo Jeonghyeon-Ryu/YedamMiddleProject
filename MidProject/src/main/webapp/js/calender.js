@@ -11,8 +11,8 @@ const init = {
 		let d = new Date();
 		d.setDate(1);
 		d.setMonth(++this.monForChange);
-		this.activeDate = d;
-		this.activeDate2=d;
+		this.activeDate = d;	// 8월 1일
+		this.activeDate2=d;		// 8월 1일
 		return d;
 	},
 	prevMonth: function() {
@@ -40,7 +40,6 @@ const $btnPrev = document.querySelector('.btn-cal.prev');
 
 let dateTag1 = null;
 let dateTag2 = null;
-let checkinDate=new Date();
 function getYYDDMM(date) {
 	return date.getFullYear() + '.' + init.addZero(date.getMonth() + 1) + '.' + init.addZero(date.getDate());
 }
@@ -59,7 +58,9 @@ function loadYYMM(fullDate) {
 
 	document.querySelector('.cal-month').textContent = init.monList[mm];
 	document.querySelector('.cal-year').textContent = yy;
+	
 
+	
 	let trtd = '';
 	let startCount;
 	let countDay = 0;
@@ -71,23 +72,21 @@ function loadYYMM(fullDate) {
 			}
 
 			let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
-			let fullChkinDate = getYYDDMM(checkinDate);
-
+			
 			if (!startCount) {
 				trtd += '<td>'
-			}  else {
+			} else if(fullDate<getYYDDMM(init.today)){
+				trtd += '<td class="day-disable';
+				trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
+			} else {
 				trtd += '<td class="day';
-				if (!dateTag1 && fullDate == fullChkinDate) {
-					loadDate(checkinDate)
-					trtd += ' day-active';
-				}
 				trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
 			}
-			trtd += (startCount) ? ++countDay : '';
-			if (countDay === lastDay.getDate()) {
-				startCount = 0;
-			}
-			trtd += '</td>';
+		trtd += (startCount) ? ++countDay : '';
+		if (countDay === lastDay.getDate()) {
+			startCount = 0;
+		}
+		trtd += '</td>';
 		}
 		trtd += '</tr>';
 	}
@@ -100,7 +99,6 @@ function createNewList(val) {
 	let yy = init.activeDate.getFullYear();
 	let mm = init.activeDate.getMonth() + 1;
 	let dd = init.activeDate.getDate();
-	const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
 
 	let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
 
@@ -119,58 +117,54 @@ $btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
 $btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
 
 function loadDate(day) {
-	document.querySelector('.cal-day1').textContent = day.getFullYear() + ". " + (day.getMonth() + 1) + ". " + day.getDate();
+	document.querySelector('.cal-day1').textContent = getYYDDMM(day);
 }
 
 function loadDate2(day) {
-	document.querySelector('.cal-day2').textContent = day.getFullYear() + ". " + (day.getMonth() + 1) + ". " + day.getDate();
+	document.querySelector('.cal-day2').textContent = getYYDDMM(day);
 }
 
 
-let inDate1=new Date;
 $calBody.addEventListener('click', (e) => {
-	console.log('1 :'+dateTag1+','+dateTag2)
 	if (e.target.classList.contains('day')) {
-		if (dateTag1 && dateTag2) {
+		if (dateTag2) {
 			dateTag1.classList.remove('day-active');
 			dateTag2.classList.remove('day-active');
 			dateTag1 = null;
 			dateTag2 = null;
 			document.querySelector('.cal-day2').textContent = "";
-			inDate1=null;
 		}
-		if (!dateTag1 && !dateTag2) {
-
+		if(!dateTag1) {
 			let day = Number(e.target.textContent);
 			e.target.classList.add('day-active');
 			dateTag1 = e.target;
 			init.activeDate.setDate(day);
 			loadDate(init.activeDate);
-			inDate1=init.activeDate;
-			console.log("tag:"+dateTag1.textContent)
-		}
-		else if (dateTag1 && !dateTag2) {
-			let day2 = Number(e.target.textContent);
-			init.activeDate2.setDate(day2);
+		}else {
+			let day = Number(e.target.textContent);
+			init.activeDate2.setDate(day);
+			let day2 = document.querySelector('.cal-day1').textContent;
 			
-			console.log(init.activeDate2+', '+inDate1)
-			if (init.activeDate2 <= inDate1) {
+			if (getYYDDMM(init.activeDate2)<= day2) {
 				dateTag1.classList.remove('day-active');
 				e.target.classList.add('day-active');
 				dateTag1 = e.target;
-				init.activeDate.setDate(day2);
+				init.activeDate.setDate(day);
 				loadDate(init.activeDate);
-				
-
 			} else {
 				loadDate2(init.activeDate2);
 				e.target.classList.add('day-active');
 				dateTag2 = e.target;
-				init.activeDate2.setDate(day2);
+				init.activeDate2.setDate(day);
+				selectDate();
 			}
 		}
-		checkinDate = init.activeDate;
-		
-		console.log(dateTag1,dateTag2,inDate1)
 	}
 });
+function selectDate(){
+	let inDate = document.querySelector('.cal-day1').textContent;
+	let outDate = document.querySelector('.cal-day2').textContent;
+	console.log(inDate+'~'+outDate);
+	
+}
+

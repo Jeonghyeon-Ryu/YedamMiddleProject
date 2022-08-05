@@ -67,6 +67,7 @@
 		</form>
 	</div>
 </div>
+</div>
 <script src="${pageContext.request.contextPath}/js/memberJoinForm.js"></script>
 </body>
 </html>

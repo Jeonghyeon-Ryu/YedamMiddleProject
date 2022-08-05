@@ -23,17 +23,20 @@ public class FindInfoController implements Controller {
 		
 		String job = req.getParameter("job");
 		
-		String ph= req.getParameter("memberPhone");
 		String nm = req.getParameter("memberNm");
+		String ph= req.getParameter("memberPhone");
 		if(job.equals("searchId")) {
 			List<Member> getList=service.getMemberByNm(nm);
 			for(Member member:getList) {
-				if(member.getPhone()==ph) {
+				if(ph.equals(member.getPhone())) {
 					list.add(member);
 				}
 			}
-			req.setAttribute("list",list);
-			req.setAttribute("error", "정보가 없습니다.");
+			if(getList==null) {
+				req.setAttribute("error", "정보가 없습니다.");
+			}else{
+				req.setAttribute("list",list);
+			}
 			Utils.forward(req, resp, "/WEB-INF/jsp/member/findInfo.jsp");
 		}else {
 		String id = req.getParameter("memberId");

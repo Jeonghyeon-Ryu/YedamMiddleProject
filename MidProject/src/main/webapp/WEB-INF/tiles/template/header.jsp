@@ -249,7 +249,9 @@
 			      </div>
                 </div>
                 <!-- Modal Footer(Optional) -->
-                
+                <div class="modal-footer">
+                    <button type="button" onclick="javascript:selectDate()">선택</button>
+                </div>
             </div>
         </div>
         <div id="headcount-modal" class="modal modal-overlay" role="dialog">

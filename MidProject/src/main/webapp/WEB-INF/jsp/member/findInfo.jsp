@@ -8,7 +8,21 @@
 <title>findInfo.jsp</title>
 <link href="${pageContext.request.contextPath}/css/modal.css" rel="stylesheet">
 <style>
-#findInfo-box{max-width :400px; margin:0 auto; }
+#findInfo-box{max-width :400px; margin:0 auto;}
+
+#findInfo-box label{float:left;width : 100px}
+#findInfo-box input{
+float:left:
+  width: 150px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 5px 10px;
+}
+.search-error-msg{color :red}
+#findInfo-box .modal-content{
+max-height:none; padding :10px}
+#findInfo-box input[type='submit']{float:right;}
 </style>
 </head>
 <body>
@@ -16,15 +30,14 @@
 	<div class="modal-box">
 		<!-- Modal Title -->
 		<div class="modal-title">
-
 			<h5>아이디/비밀번호 찾기</h5>
 			<div class="modal-close-button"><a href="main.do">
 				<img src="img/close-20.png"></a>
 			</div>
 		</div>
 		<div class="modal-content">
-			<form id="frm" name="frm" action="findInfo.do">
-				<p>아이디 찾기</p>
+			<form id="idSearch-frm" name="frm" action="findInfo.do">
+				<h3>아이디 찾기</h3>
 				<input type="hidden" name="job" value="searchId">
 				<div class="searchId">
 					<label id="memberNm">이름</label>
@@ -37,18 +50,14 @@
 				<p id="findId-error" style="display:none"></p>
 				<input type="submit" value="아이디 찾기">
 			</form>
-		</div>
-		<c:if test='${!empty list}'>
+			<div class="searchedId-box" id="searchedId-box1">
+			<p class="search-error-msg">${error}</p>
 			<c:forEach var="vo" items="${list}">
 				<p>${vo.id}</p>
 			</c:forEach>
-		</c:if>
-		<c:otherwise>
-			<p>${error }</p>
-		</c:otherwise>
-		<div class="modal-content">
+			</div>
 			<form id="frm" name="frm" action="findInfo.do">
-				<p>비밀번호 찾기</p>
+				<h3>비밀번호 찾기</h3>
 				<input type="hidden" name="job" value="searchPw">
 				<div class="searchPw">
 					<label id="memberNm">이름</label>
@@ -65,8 +74,22 @@
 				<p id="findPw-error" style="display:none"></p>
 				<input type="submit" value="비밀번호 찾기">
 			</form>
+			
 		</div>
+		<div class="searchedId-box" id="searchedId-box2"></div>
 	</div>
 </div>
+<script>
+funtion findById(){
+	fetch('../findInfo.do',{	//서블릿호출
+		method : 'post',
+		headers : {'Content-type':'application/x-www-form-urlencoded'},
+		body : 'nm='+name+'&ph='+phone
+	})	
+	.then(result => result.text())
+	.then(result => console.log(result))
+	.catch(err => console.log(err))	
+}
+</script>
 </body>
 </html>

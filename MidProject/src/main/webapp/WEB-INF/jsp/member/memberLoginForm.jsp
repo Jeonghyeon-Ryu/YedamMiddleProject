@@ -9,8 +9,12 @@
 <script src="https://kit.fontawesome.com/9f16a06d13.js" crossorigin="anonymous"></script>
 </head>
 <style>
-.loginError{color: red; font-size:0.9em;}
+.loginError{color: red; font-size:0.8em;}
 #login-box{padding : 10px; max-width :400px; margin:0 auto; text-align:center;}
+#login-box input, button{margin: 5px;}
+#login-btn{width: 50%; color:white; background:black;}
+#login-sns a{text-decoration: none; color:black;}
+#login-other-btn{font-size:0.8em;}
 </style>
 <body>
 <div id="login-box">
@@ -24,31 +28,34 @@
 			</div>
 		</div>
 		<div class="modal-content">
-			<form id="frm" name="frm" action="login.do">
+			<form id="login-frm" name="login-frm" action="login.do">
 				<div class="loginId">
-					<i for="memberId" class="fa-solid fa-user"></i> <input type="text" id="memberId"
-						name="memberId" placeholder="아이디" autofocus required>
+					<label for="memberId"><i class="fa-solid fa-user"></i></label> 
+					<input type="text" id="memberId" name="memberId" placeholder="아이디" autofocus>
 				</div>
 				<div class="loginPw">
-					<i class="fa-solid fa-lock"></i> <input type="password" id="memberPw"
-						name="memberPw" placeholder="비밀번호" required>
+					<label for="memberPw"><i class="fa-solid fa-lock"></i></label> 
+					<input type="password" id="memberPw"
+						name="memberPw" placeholder="비밀번호">
 				</div>
 				<span class="loginError">${error}</span><br>
-				<input type="submit" value="로그인">
+				<input id="login-btn" type="submit" value="로그인">
 			</form>
-			<div>
-				<a href="findInfoForm.do">아이디/비밀번호 찾기</a>
+			<div id="login-other-btn">
+				<a href="findInfoForm.do">아이디/비밀번호 찾기</a> 
 				<a href="memberAgreement.do">회원가입</a>
 			</div>
 			<hr>
-			<button type="button" id="kakao-login-bnt" class="btn-kakao">
-				<span> <a href="#"> <i class="icon_login_kakao"></i>카카오로 로그인</a>
-				</span>
-			</button><br>
-			<button type="button" id="naver-login-bnt" class="btn-naver">
-				<span> <a href="#"><i class="icon_login_naver"></i> 네이버로 로그인</a>
-				</span>
-			</button>
+			<div id="login-sns">
+				<button type="button" id="kakao-login-bnt" class="btn-kakao">
+					<span> <a href="#"> <i class="icon_login_kakao"></i>카카오로 로그인</a>
+					</span>
+				</button><br>
+				<button type="button" id="naver-login-bnt" class="btn-naver">
+					<span> <a href="#"><i class="icon_login_naver"></i> 네이버로 로그인</a>
+					</span>
+				</button>
+			</div>
 		</div>
 	</div>
 </div>
