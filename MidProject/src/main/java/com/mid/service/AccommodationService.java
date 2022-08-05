@@ -20,21 +20,26 @@ public class AccommodationService {
 
 	AccommodationDAO adao = new AccommodationDAO();
 
-	public List<Accommodation> select() {
-		System.out.println("All");
-		return new AccommodationDAO().selectAll();
+	public List<Accommodation> select(int pageNum) {
+		return new AccommodationDAO().selectAll(pageNum);
 	}
 
-	public List<Accommodation> select(String city) {
-		System.out.println("One");
-		return new AccommodationDAO().selectOneAddress(city);
+	public List<Accommodation> select(int pageNum, String city) {
+		return new AccommodationDAO().selectList(pageNum, city);
 	}
 
-	public List<Accommodation> select(String city, String region) {
-		System.out.println("Two");
-		return new AccommodationDAO().selectOneAddress(city, region);
+	public List<Accommodation> select(int pageNum, String city, String region) {
+		return new AccommodationDAO().selectList(pageNum, city, region);
 	}
-
+	public int selectCount() {
+		return new AccommodationDAO().selectCount();
+	}
+	public int selectCount(String city) {
+		return new AccommodationDAO().selectCount(city);
+	}
+	public int selectCount(String city, String region) {
+		return new AccommodationDAO().selectCount(city,region);
+	}
 	
 	// 업체정보 출력
 	public Accommodation getCompDetail(int accId) {

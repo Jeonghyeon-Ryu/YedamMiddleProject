@@ -30,8 +30,11 @@ main {
 .card-body {
     padding-left:10px;
 }
+.card-title {
+	font-weight: bold;
+}
 .star-rated {
-    padding-bottom: 5px;
+    padding-bottom: 8px;
 }
 .card-body p {
     font-size: 14px;
