@@ -123,7 +123,8 @@ function clickSearchBox(e) {
 		let locationModal = document.querySelector('#location-modal');
 		locationModal.classList.toggle('modal-active');
 	}else if(id == 'checkin-date') {
-		
+		let checkinModal = document.querySelector('#checkin-modal');
+		checkinModal.classList.toggle('modal-active');
 	}else if(id == 'checkout-date') {
 		
 	}else if(id == 'headcount') {
