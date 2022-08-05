@@ -1,6 +1,6 @@
 package com.mid.service;
 
-import com.mid.dao.compDetailDAO;
+import com.mid.dao.CompDetailDAO;
 import com.mid.vo.CompDetail;
 
 public class CompDetailService {
@@ -15,14 +15,14 @@ public class CompDetailService {
 		}
 		return instance;
 	}
-	
-	compDetailDAO dao = new compDetailDAO();
-	
+
+	CompDetailDAO dao = new CompDetailDAO();
+
 	// CompDetail 단건
 	public CompDetail compInfo(int accId) {
-		return dao.compInfo(accId);
+		return dao.getcompDetail(accId);
 	}
-	
+
 //	// Review 단건
 //	public compDetail reviewInfo(int accId) {
 //		return dao.getReview(accId);
