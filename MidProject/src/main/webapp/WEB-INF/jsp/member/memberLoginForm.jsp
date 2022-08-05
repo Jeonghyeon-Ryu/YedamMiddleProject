@@ -10,9 +10,10 @@
 </head>
 <style>
 .loginError{color: red; font-size:0.9em;}
-.modal-box{padding : 10px; max-width :400px; margin:0 auto; text-align:center;}
+#login-box{padding : 10px; max-width :400px; margin:0 auto; text-align:center;}
 </style>
 <body>
+<div id="login-box">
 	<div class="modal-box">
 		<!-- Modal Title -->
 		<div class="modal-title">
@@ -36,7 +37,7 @@
 				<input type="submit" value="로그인">
 			</form>
 			<div>
-				<a href="findInfo.html">아이디/비밀번호 찾기</a>
+				<a href="findInfoForm.do">아이디/비밀번호 찾기</a>
 				<a href="memberAgreement.do">회원가입</a>
 			</div>
 			<hr>
@@ -50,6 +51,7 @@
 			</button>
 		</div>
 	</div>
+</div>
 <script type="text/javascript">
 	
 </script>

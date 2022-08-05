@@ -82,6 +82,32 @@ public class MemberDAO extends DAO {
 		}
 		return null;
 	}
+	// 단건조회 (name)
+		public List<Member> searchMemberByName(String name) {
+			String sql = "select * from member where name=?";
+			connect();
+			try {
+				List<Member> list = new ArrayList<>();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, name);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					Member vo = new Member();
+					vo.setId(rs.getString("id"));
+					vo.setPw(rs.getString("pw"));
+					vo.setIdentification(rs.getString("identification"));
+					vo.setPhone(rs.getString("phone"));
+					vo.setJoinDate(rs.getDate("join_date"));
+					list.add(vo);
+				}
+				return list;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+			return null;
+		}
 
 	// 수정 : 비밀번호, 연락처
 	public void updateMember(Member vo) {

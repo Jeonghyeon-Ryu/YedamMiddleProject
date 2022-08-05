@@ -38,7 +38,6 @@
 	<script src="js/locationModal.js"></script>
 	<script src="js/compDetail.js"></script>
 	<script src="js/calender.js"></script>
-	<script src="js/memberJoinForm.js"></script>
 	<script src="js/headcountModal.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

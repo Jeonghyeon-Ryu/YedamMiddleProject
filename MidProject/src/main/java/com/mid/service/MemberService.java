@@ -32,6 +32,10 @@ public class MemberService {
 		return new MemberDAO().searchMember(id);
 	}
 
+	// 회원정보찾기
+	public List<Member> getMemberByNm(String name){
+		return new MemberDAO().searchMemberByName(name);
+	}
 	// 회원정보수정
 	public void modifyMember(Member vo) {
 		new MemberDAO().updateMember(vo);

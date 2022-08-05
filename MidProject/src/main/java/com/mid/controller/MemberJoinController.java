@@ -30,11 +30,10 @@ public class MemberJoinController implements Controller {
 		
 		vo.setId(memId);
 		vo.setName(nm);
-		vo.setIdentification(id1+"-"+id2);
+		vo.setIdentification(id1+"-"+id2.substring(0,1));
 		vo.setPw(pw);
-		vo.setPhone(pn1+pn2+pn3);
+		vo.setPhone(pn1+'-'+pn2+'-'+pn3);
 		
-		System.out.println(memId+nm+id1+id2+pw+pn1+pn2+pn3);
 		service.addMember(vo);
 		
 		Utils.forward(req, resp, "member/memberJoinSuccess.tiles");

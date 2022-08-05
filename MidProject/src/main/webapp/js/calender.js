@@ -12,6 +12,7 @@ const init = {
 		d.setDate(1);
 		d.setMonth(++this.monForChange);
 		this.activeDate = d;
+		this.activeDate2=d;
 		return d;
 	},
 	prevMonth: function() {
@@ -19,6 +20,7 @@ const init = {
 		d.setDate(1);
 		d.setMonth(--this.monForChange);
 		this.activeDate = d;
+		this.activeDate2= d;
 		return d;
 	},
 	addZero: (num) => (num < 10) ? '0' + num : num,
@@ -36,13 +38,9 @@ const $calBody = document.querySelector('.cal-body');
 const $btnNext = document.querySelector('.btn-cal.next');
 const $btnPrev = document.querySelector('.btn-cal.prev');
 
-let Tag1 = null;
-let Tag2 = null;
-let eDate = new Date();
-let inDate = new Date();
-let outDate = new Date();
-let checkinDate = new Date();
-
+let dateTag1 = null;
+let dateTag2 = null;
+let checkinDate=new Date();
 function getYYDDMM(date) {
 	return date.getFullYear() + '.' + init.addZero(date.getMonth() + 1) + '.' + init.addZero(date.getDate());
 }
@@ -73,18 +71,13 @@ function loadYYMM(fullDate) {
 			}
 
 			let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
-			let fulleDate = getYYDDMM(eDate);
 			let fullChkinDate = getYYDDMM(checkinDate);
 
-			console.log(fullDate + ", " + fulleDate + ", " + fullChkinDate);
 			if (!startCount) {
 				trtd += '<td>'
-			} else if (init.monForChange<=eDate.getMonth()&&fullDate < fulleDate) {
-				trtd += '<td class="day-disable';
-				trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
-			} else {
+			}  else {
 				trtd += '<td class="day';
-				if (!Tag1 && fullDate == fullChkinDate) {
+				if (!dateTag1 && fullDate == fullChkinDate) {
 					loadDate(checkinDate)
 					trtd += ' day-active';
 				}
@@ -134,67 +127,50 @@ function loadDate2(day) {
 }
 
 
-
+let inDate1=new Date;
 $calBody.addEventListener('click', (e) => {
+	console.log('1 :'+dateTag1+','+dateTag2)
 	if (e.target.classList.contains('day')) {
-		let day = Number(e.target.textContent);
-		console.log("click event > tag1: " + Tag1 + " 2: " + Tag2);
-		
-		if ((Tag1 && Tag2)||(!Tag1 && !Tag2)) {
-			inDate = init.activeDate.setDate(day);
-			console.log(init.activeDate)
-			console.log(inDate);
-			Tag1=e.target;
-			loadDate(inDate);
-		} else {
-			outDate = init.activeDate.setDate(day);
-			Tag2=e.target;
-			loadDate2(outDate);
-		}
-		
-		if(OutDate<=inDate){
-			inDate = OutDate;
-			loadDate(inDate);
-			document.querySelector('.cal-day2').textContent="";
-		}
-	}
-	
-		/*if (Tag1 && Tag2) {
-			Tag1.classList.remove('day-active');
-			Tag2.classList.remove('day-active');
-			Tag1 = null;
-			Tag2 = null;
+		if (dateTag1 && dateTag2) {
+			dateTag1.classList.remove('day-active');
+			dateTag2.classList.remove('day-active');
+			dateTag1 = null;
+			dateTag2 = null;
 			document.querySelector('.cal-day2').textContent = "";
+			inDate1=null;
 		}
-		if (!Tag1 && !Tag2) {
+		if (!dateTag1 && !dateTag2) {
 
 			let day = Number(e.target.textContent);
 			e.target.classList.add('day-active');
-			Tag1 = e.target;
+			dateTag1 = e.target;
 			init.activeDate.setDate(day);
 			loadDate(init.activeDate);
+			inDate1=init.activeDate;
+			console.log("tag:"+dateTag1.textContent)
 		}
-		else if (Tag1 && !Tag2) {
+		else if (dateTag1 && !dateTag2) {
 			let day2 = Number(e.target.textContent);
 			init.activeDate2.setDate(day2);
-			if (init.activeDate2 <= init.activeDate) {
-				Tag1.classList.remove('day-active');
-				Tag1 = null;
+			
+			console.log(init.activeDate2+', '+inDate1)
+			if (init.activeDate2 <= inDate1) {
+				dateTag1.classList.remove('day-active');
 				e.target.classList.add('day-active');
-				Tag1 = e.target;
+				dateTag1 = e.target;
 				init.activeDate.setDate(day2);
 				loadDate(init.activeDate);
+				
 
 			} else {
 				loadDate2(init.activeDate2);
 				e.target.classList.add('day-active');
-				Tag2 = e.target;
+				dateTag2 = e.target;
 				init.activeDate2.setDate(day2);
 			}
 		}
 		checkinDate = init.activeDate;
-*/
-
-	
+		
+		console.log(dateTag1,dateTag2,inDate1)
 	}
-);
+});
