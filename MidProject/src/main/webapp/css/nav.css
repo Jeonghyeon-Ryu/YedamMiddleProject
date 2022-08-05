@@ -8,6 +8,7 @@
     display:flex;
     justify-content: center;
     background: #eeeeee;
+    z-index:10000;
 }
 .nav-container>a{
     width:100px;

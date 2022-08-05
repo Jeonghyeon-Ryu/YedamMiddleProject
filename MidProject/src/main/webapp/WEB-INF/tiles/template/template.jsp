@@ -20,6 +20,8 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/locationModal.css">
     <link rel="stylesheet" type="text/css" href="css/headcountModal.css">
+    <link rel="stylesheet" type="text/css" href="css/calender.css">
+    
 </head>
 <body>
 	<div class="container">
@@ -34,6 +36,9 @@
 	<script src="js/main.js"></script>
 	<script src="js/modal.js"></script>
 	<script src="js/locationModal.js"></script>
+	<script src="js/calender.js"></script>
+	<script src="js/memberJoinForm.js"></script>
+	<script src="js/headcountModal.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

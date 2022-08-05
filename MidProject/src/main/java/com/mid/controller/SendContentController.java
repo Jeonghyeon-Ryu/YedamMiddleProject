@@ -44,6 +44,7 @@ public class SendContentController implements Controller {
 			e.printStackTrace();
 		}
 
+
 	}
 
 }
