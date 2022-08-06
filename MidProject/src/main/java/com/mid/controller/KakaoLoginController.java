@@ -23,11 +23,6 @@ import com.mid.vo.Member;
 public class KakaoLoginController extends HttpServlet implements Controller {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		String cmd = req.getParameter("cmd");
-//		System.out.println(TAG + "router : " + cmd);
-//		Controller controller = router(cmd);
-//		controller.execute(req, resp);
-
 		// Code 를 통해 Access Token 발급 받음.
 		String code = req.getParameter("code");
 
@@ -50,7 +45,6 @@ public class KakaoLoginController extends HttpServlet implements Controller {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), "UTF-8"));
 		bw.write(bodyData);
 		bw.flush();
-		System.out.println(bodyData);
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 		String input = "";
@@ -59,13 +53,10 @@ public class KakaoLoginController extends HttpServlet implements Controller {
 			sb.append(input);
 		}
 
-		System.out.println(sb.toString());
-
 		// Gson으로 파싱
 		Gson gson = new Gson();
 
 		KakaoToken oAuthToken = gson.fromJson(sb.toString(), KakaoToken.class);
-		System.out.println(oAuthToken.getAccess_token());
 		// Access Token 이용하여 User 정보 받아옴. - endpoint2
 		url = new URL(endpoint2);
 		conn = (HttpsURLConnection) url.openConnection();
@@ -82,8 +73,6 @@ public class KakaoLoginController extends HttpServlet implements Controller {
 		while ((input = br.readLine()) != null) {
 			sb.append(input);
 		}
-		System.out.println(sb.toString());
-
 		String kakaoId = sb.toString().substring(sb.indexOf("\"email\":") + 9, sb.length() - 3);
 		String profileImageUrl = sb.toString().substring(sb.indexOf("\"profile_image_url\":") + 21,
 				sb.toString().indexOf("\"is_default_image\":") - 2); 
