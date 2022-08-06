@@ -47,7 +47,7 @@
 			</div>
 			<hr>
 			<div id="login-sns">
-				<button type="button" id="kakao-login-bnt" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8081/MidProject/kakaoLogin.do?cmd=callback&response_type=code'" class="btn-kakao">
+				<button type="button" id="kakao-login-bnt" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8088/MidProject/kakaoLogin.do?cmd=callback&response_type=code'" class="btn-kakao">
 				<img src="img/kakao_login_medium_narrow.png">
 			</button><br>
 				<button type="button" id="naver-login-bnt" class="btn-naver">
@@ -62,7 +62,7 @@
 
 	
 <script type="text/javascript">
-	const kakaoUrl = "https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8081/MidProject&response_type=code"
+	const kakaoUrl = "https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8088/MidProject/kakaoLogin.do&response_type=code"
 
 </script>
 </body>

@@ -16,6 +16,8 @@ import com.mid.controller.ExTourListController;
 import com.mid.controller.FindInfoController;
 import com.mid.controller.FindInfoFormController;
 import com.mid.controller.KakaoLoginController;
+import com.mid.controller.KakaoSignupController;
+import com.mid.controller.KakaoLinkController;
 import com.mid.controller.LoginFormController;
 import com.mid.controller.LoginOutController;
 import com.mid.controller.MainController;
@@ -47,8 +49,11 @@ public class FrontController extends HttpServlet {
 		mappings.put("/insert.do", new InsertController());			// 공공데이터 DB Parsing 관련 1회용	
 		mappings.put("/accList.do", new SelectAccListController());	// 숙소 리스트 출력
 		mappings.put("/accListCount.do", new SelectAccListCountController());	// 필터 적용 리스트 갯수 확인 
-		mappings.put("/kakaoLogin.do", new KakaoLoginController());	// 필터 적용 리스트 갯수 확인 
-		
+		mappings.put("/kakaoLogin.do", new KakaoLoginController());	// 카카오 로그인( 토큰 발급까지 )
+		mappings.put("/kakaoLinkLogin.do", new KakaoLinkController());	// 카카오 로그인 연동하기
+		mappings.put("/kakaoSignupForm.do", new KakaoSignupController());	// 카카오 간편 회원가입
+		// 카카오 연동 간편회원가입
+
 		// 최유리
 		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼
 		mappings.put("/login.do", new LoginOutController());		// 로그인,로그아웃

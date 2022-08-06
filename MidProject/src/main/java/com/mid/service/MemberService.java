@@ -16,10 +16,22 @@ public class MemberService {
 		}
 		return instance;
 	}
-
+	//******************************************************
+	// 카카오 가입/로그인 관련 서비스
+	//******************************************************
+	public Member selectKakao(String kakaoId) {
+		return new MemberDAO().selectKakao(kakaoId);
+	}
+	public boolean updateKakao(Member vo) {
+		return new MemberDAO().updateKakao(vo);
+	}
+	
+	//******************************************************
+	// 일반 가입/로그인 관련 서비스
+	//******************************************************
 	// 회원가입
 	public void addMember(Member vo) {
-		new MemberDAO().insertMemeber(vo);
+		new MemberDAO().insertMember(vo);
 	}
 
 	// 회원목록

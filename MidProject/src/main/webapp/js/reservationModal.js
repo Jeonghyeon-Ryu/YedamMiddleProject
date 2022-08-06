@@ -4,6 +4,7 @@ window.addEventListener('load', () => {
 })
 
 function reservationModalOpenAction(e) {
+	closeAllModal();
 	let modal = document.querySelector('#reservation-modal');
 	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');

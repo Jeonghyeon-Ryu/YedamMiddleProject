@@ -25,7 +25,7 @@
     
 </head>
 <body>
-	<div class="container">
+	<div class="body-container">
 		<!------------------------ Headder 영역 시작 ------------------------->
 		<!------------------------ Main(include Header) 영역 시작 ------------------------->
 		<tiles:insertAttribute name="body"></tiles:insertAttribute>
@@ -35,6 +35,7 @@
 
 	<script src="js/header.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/nav.js"></script>
 	<script src="js/modal.js"></script>
 	<script src="js/locationModal.js"></script>
 	<script src="js/compDetail.js"></script>

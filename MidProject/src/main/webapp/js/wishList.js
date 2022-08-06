@@ -4,6 +4,7 @@ window.addEventListener('load', () => {
 })
 
 function wishlistModalOpenAction(e) {
+	closeAllModal();
 	let modal = document.querySelector('#wishlist-modal');
 	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');

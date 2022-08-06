@@ -6,9 +6,77 @@ import java.util.List;
 import com.mid.vo.Member;
 
 public class MemberDAO extends DAO {
-
-	// 입력
-	public void insertMemeber(Member vo) {
+	//*******************************************************
+	// 카카오 회원가입 관련 메소드
+	// signupKakao : 카카오 회원가입
+	// selectKakao : 카카오 아이디 유무 확인
+	// updateKakao : 카카오 최초 연동
+	//*******************************************************
+	public boolean signupKakao(Member vo) {
+		boolean result = false;
+		try {
+			connect();
+			String sql = "INSERT INTO member(id, pw, name, identification, phone, join_date, kakao_id) VALUES (?,?,?,?,?,SYSDATE,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getPw());
+			pstmt.setString(3, vo.getName());
+			pstmt.setString(4, vo.getIdentification());
+			pstmt.setString(5, vo.getPhone());
+			pstmt.setString(6, vo.getKakaoId());
+			result = ((pstmt.executeUpdate()>0) ? true : false ); 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return result;
+	}
+	public Member selectKakao(String kakaoId) {
+		Member vo = null;
+		try {
+			connect();
+			String sql = "SELECT * FROM member WHERE kakao_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, kakaoId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo = new Member();
+				vo.setId(rs.getString("id"));
+				vo.setName(rs.getString("name"));
+				vo.setPw(rs.getString("pw"));
+				vo.setIdentification(rs.getString("identification"));
+				vo.setPhone(rs.getString("phone"));
+				vo.setJoinDate(rs.getDate("join_date"));
+				vo.setKakaoId(rs.getString("kakao_id"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return vo;
+	}
+	public boolean updateKakao(Member vo) {
+		boolean result =false;
+		try {
+			connect();
+			String sql = "UPDATE member SET kakao_id=? WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getKakaoId());
+			pstmt.setString(2, vo.getId());
+			result = ((pstmt.executeUpdate()>0)? true:false);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return result;
+	}
+	//*******************************************************
+	// 입력 ( 일반 회원 가입 )
+	//*******************************************************
+	public void insertMember(Member vo) {
 		String sql = "insert into member(id, pw, name, identification, phone, join_date) "
 				+ "values(?,?,?,?,?,sysdate)";
 		connect();

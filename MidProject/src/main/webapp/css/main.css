@@ -1,8 +1,11 @@
+body {
+	overflow-x:hidden; 
+}
 main {
     padding-top:200px;
     padding-bottom: 70px;
 }
-@media(max-width : 1079px) {
+@media screen and (max-width : 1079px) {
     main {
         display:block;
     }
@@ -10,7 +13,7 @@ main {
         margin:10px auto;
     }
 }
-@media(min-width : 1080px){
+@media screen and (min-width : 1080px){
     main{
         display:flex;
         flex-wrap: wrap;
@@ -24,8 +27,8 @@ main {
     border-radius: 20px;
     cursor: pointer;
 }
-.card img {
-    height:100% !important;
+.card .col-md-8 img {
+	width:100%;
 }
 .card-body {
     padding-left:10px;

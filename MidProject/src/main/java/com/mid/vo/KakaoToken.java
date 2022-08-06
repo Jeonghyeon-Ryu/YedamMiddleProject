@@ -1,8 +1,8 @@
-package com.mid.common;
+package com.mid.vo;
 
 import java.util.Objects;
 
-public class OAuthToken {
+public class KakaoToken {
 	private String access_token;
 	private String token_type;
 	private String refresh_token;
@@ -17,10 +17,10 @@ public class OAuthToken {
 				+ refresh_token + ", expires_in=" + expires_in + ", scope=" + scope + ", refresh_token_expires_in="
 				+ refresh_token_expires_in + "]";
 	}
-	public OAuthToken() {
+	public KakaoToken() {
 		super();
 	}
-	public OAuthToken(String access_token, String token_type, String refresh_token, int expires_in, String scope,
+	public KakaoToken(String access_token, String token_type, String refresh_token, int expires_in, String scope,
 			int refresh_token_expires_in) {
 		super();
 		this.access_token = access_token;
@@ -44,7 +44,7 @@ public class OAuthToken {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OAuthToken other = (OAuthToken) obj;
+		KakaoToken other = (KakaoToken) obj;
 		return Objects.equals(access_token, other.access_token) && expires_in == other.expires_in
 				&& Objects.equals(refresh_token, other.refresh_token)
 				&& refresh_token_expires_in == other.refresh_token_expires_in && Objects.equals(scope, other.scope)

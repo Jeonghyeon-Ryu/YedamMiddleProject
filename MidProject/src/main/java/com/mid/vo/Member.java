@@ -9,6 +9,14 @@ public class Member {
 	private String identification;
 	private String phone;
 	private Date joinDate;
+	private String kakaoId;
+	
+	public String getKakaoId() {
+		return kakaoId;
+	}
+	public void setKakaoId(String kakaoId) {
+		this.kakaoId = kakaoId;
+	}
 	public String getId() {
 		return id;
 	}

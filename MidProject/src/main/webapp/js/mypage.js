@@ -4,6 +4,7 @@ window.addEventListener('load', () => {
 })
 
 function mypageModalOpenAction(e) {
+	closeAllModal();
 	let modal = document.querySelector('#mypage-modal');
 	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');
