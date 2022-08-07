@@ -65,6 +65,7 @@
     overflow-y:auto;
     max-height: calc(50vh - 110px);
     margin-top:5px;
+    
 }
 #location-modal .modal-content {
 	display:flex !important;
@@ -104,6 +105,7 @@ nav{
 }
 #msContentText{
     display: none;
+    position: relative;
 }
 #msContentText>div{
     display:none;
@@ -111,11 +113,30 @@ nav{
 #msYou{
     text-align: left;
 }
+#msYouEmoji{
+    margin-right: auto;
+    display: block;
+}
 #msMy{
     text-align: right;
+}
+#msMyEmoji{
+    margin-left: auto;
+    display: block;
 }
 .msImg{
 	height :50px;
 	width : 50px;
 }
-#ms
+#msEmojiAll{
+    position: absolute;
+    display: none;
+    z-index: 999;
+}
+#msThisDay{
+    text-align: center;
+}
+
+#msMyTime{
+    text-align: right;
+}

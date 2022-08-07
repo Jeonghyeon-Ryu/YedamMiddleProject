@@ -16,34 +16,41 @@ import com.mid.vo.Chat;
 
 public class SendContentController implements Controller {
 	JsonArray result = new JsonArray();
+
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
 		String send = req.getParameter("msSend");
 		String recevi = req.getParameter("msReceiv");
 		String content = req.getParameter("msSendText");
-		
-		Chat chat= new Chat();
+		Chat chat = new Chat();
 		chat.setContent(content);
 		chat.setReceiver(recevi);
 		chat.setSender(send);
-		
-		System.out.println(recevi);
-		
-		ChatService chatService =ChatService.getInstance();
-		chatService.insert(chat);
+		ChatService chatService = ChatService.getInstance();
 		req.setAttribute("recevi", recevi);
-		
-		
+		System.out.println(recevi);
+		if (content.length() > 11) {
+			if (content.substring(0, 10).equals("img/emoji_")) {
+				chat.setCheckEmoji(1);
+				chatService.insert(chat);
+			}else {
+				chat.setCheckEmoji(0);
+				chatService.insert(chat);
+			}
+		} else {
+			chat.setCheckEmoji(0);
+			System.out.println(0);
+			chatService.insert(chat);
+		}
 		Utils.forward(req, resp, "message.do");
-		
+
 		Gson gson = new GsonBuilder().create();
 		try {
 			resp.getWriter().print(gson.toJson(chat));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 
 	}
 

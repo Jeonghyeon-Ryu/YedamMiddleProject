@@ -10,7 +10,7 @@ public class ChatDAO extends DAO {
 	// 전체 조회
 		public List<Chat> selectAll() {
 			connect();
-			String sql = "select * from Chat order by 1";
+			String sql = "select content,receiver,sender,checkemoji,currenttime,to_char(currenttime,'HH24:MI')ct from chat order by chat_seq";
 			List<Chat> list = new ArrayList<>();
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -20,6 +20,9 @@ public class ChatDAO extends DAO {
 					vo.setContent(rs.getString("CONTENT"));
 					vo.setReceiver(rs.getString("RECEIVER"));
 					vo.setSender(rs.getString("SENDER"));
+					vo.setCheckEmoji(rs.getInt("checkemoji"));
+					vo.setCurrentTime(rs.getString("ct"));
+					vo.setCurrentDay(rs.getString("currenttime"));
 					list.add(vo);
 				}
 				return list;
@@ -70,14 +73,16 @@ public class ChatDAO extends DAO {
 			}
 		}
 		
+		// 대화 저장
 		public void insert(Chat chat) {
-			String sql = "insert into chat values(?,?,?)";
+			String sql = "insert into chat values(?,?,?,chat_seq.nextval,?,sysdate)";
 			connect();
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, chat.getSender());
 				pstmt.setString(2, chat.getReceiver());
 				pstmt.setString(3, chat.getContent());
+				pstmt.setInt(4,chat.getCheckEmoji());
 				int r = pstmt.executeUpdate();
 				System.out.println(r + "건 업데이트.");
 			} catch (SQLException e) {
