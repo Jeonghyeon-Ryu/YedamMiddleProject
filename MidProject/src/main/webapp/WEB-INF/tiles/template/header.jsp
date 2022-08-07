@@ -209,7 +209,7 @@
 		</div>
 	</div>
 </div>
-<!-- -->
+<!-- 필터 모달창 시작 -->
 <div id="checkin-modal" class="modal modal-overlay" role="dialog">
 	<div class="mini-modal-box">
 		<!-- Modal Title -->
@@ -221,38 +221,44 @@
 		</div>
 		<!-- Modal Content -->
 		<div class="modal-content">
-			<ul class="clicked-date">
-				<li class="cal-day1"></li> -
-				<li class="cal-day2"></li>
-			</ul>
-			<div class="calendar-box">
-				<div class="my-calendar clearfix">
-					<div class="calendar-box">
-						</div>
-						<table class="cal-table">
-							<thead>
-								<tr>
-									<th>일</th>
-									<th>월</th>
-									<th>화</th>
-									<th>수</th>
-									<th>목</th>
-									<th>금</th>
-									<th>토</th>
-								</tr>
-							</thead>
-							<tbody class="cal-body"></tbody>
-						</table>
-					</div>
-				</div>
-			</div>
+			<div class="my-calendar clearfix">
+	          <ul class="clicked-date">
+	            <li class="cal-day1"></li> -
+	            <li class="cal-day2"></li>
+	          </ul>
+          <div class="calendar-box">
+            <div class="ctr-box clearfix">
+              <button type="button" title="prev" class="btn-cal prev"></button>
+              <span class="cal-month"></span>
+              <span class="cal-year"></span>
+              <button type="button" title="next" class="btn-cal next">
+              </button>
+            </div>
+            <table class="cal-table">
+              <thead>
+                <tr>
+                  <th>일</th>
+                  <th>월</th>
+                  <th>화</th>
+                  <th>수</th>
+                  <th>목</th>
+                  <th>금</th>
+                  <th>토</th>
+                </tr>
+              </thead>
+              <tbody class="cal-body"></tbody>
+            </table>
+          </div>
+        </div>
 		</div>
 		<!-- Modal Footer(Optional) -->
-  <div class="modal-footer">
-                    <button type="button" onclick="javascript:selectDate()">선택</button>
-                </div>
+		<div class="modal-footer">
+			<button type="button" onclick="javascript:selectDate()">선택</button>
+		</div>
 	</div>
 </div>
+
+<!--  -->
 <div id="headcount-modal" class="modal modal-overlay" role="dialog">
 	<div class="mini-modal-box">
 		<!-- Modal Title -->
