@@ -17,8 +17,7 @@ public class WishListController implements Controller {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		WishListService service = WishListService.getInstance();
-		String id = req.getParameter("accId");
-		
+		String id = req.getParameter("id");
 		
 		WishList wishList = service.getWishList(Integer.parseInt(id));
 		
