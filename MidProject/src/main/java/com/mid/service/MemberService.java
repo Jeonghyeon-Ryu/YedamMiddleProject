@@ -17,6 +17,18 @@ public class MemberService {
 		return instance;
 	}
 	//******************************************************
+	// 네이버 가입/로그인 관련 서비스
+	//******************************************************
+	public Member selectNaver(String naverId) {
+		return new MemberDAO().selectNaver(naverId);
+	}
+	public boolean updateNaver(Member vo) {
+		return new MemberDAO().updateNaver(vo);
+	}
+	public boolean signupNaver(Member vo) {
+		return new MemberDAO().signupNaver(vo);
+	}
+	//******************************************************
 	// 카카오 가입/로그인 관련 서비스
 	//******************************************************
 	public Member selectKakao(String kakaoId) {
@@ -24,6 +36,9 @@ public class MemberService {
 	}
 	public boolean updateKakao(Member vo) {
 		return new MemberDAO().updateKakao(vo);
+	}
+	public boolean signupKakao(Member vo) {
+		return new MemberDAO().signupKakao(vo);
 	}
 	
 	//******************************************************

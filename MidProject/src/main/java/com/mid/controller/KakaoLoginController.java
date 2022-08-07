@@ -30,27 +30,27 @@ public class KakaoLoginController extends HttpServlet implements Controller {
 		String endpoint2 = "https://kapi.kakao.com/v2/user/me";
 		URL url = new URL(endpoint);
 
-		String bodyData = "grant_type=authorization_code&";
-		bodyData += "client_id=858c8fa25fe1eb7607a39eb252e16d9a&";
-		bodyData += "redirect_uri=http://localhost:8088/MidProject/kakaoLogin.do?cmd=callback&";
-		bodyData += "code=" + code;
+		String apiURL = "grant_type=authorization_code&";
+		apiURL += "client_id=858c8fa25fe1eb7607a39eb252e16d9a&";
+		apiURL += "redirect_uri=http://localhost:8088/MidProject/kakaoLogin.do?cmd=callback&";
+		apiURL += "code=" + code;
 
 		// Stream 연결
-		HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+		HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
 		// http header 값 넣기
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-		conn.setDoOutput(true);
+		con.setRequestMethod("POST");
+		con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+		con.setDoOutput(true);
 		// request 하기
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), "UTF-8"));
-		bw.write(bodyData);
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(con.getOutputStream(), "UTF-8"));
+		bw.write(apiURL);
 		bw.flush();
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-		String input = "";
+		BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+		String inputLine = "";
 		StringBuilder sb = new StringBuilder();
-		while ((input = br.readLine()) != null) {
-			sb.append(input);
+		while ((inputLine = br.readLine()) != null) {
+			sb.append(inputLine);
 		}
 
 		// Gson으로 파싱
@@ -59,22 +59,24 @@ public class KakaoLoginController extends HttpServlet implements Controller {
 		KakaoToken oAuthToken = gson.fromJson(sb.toString(), KakaoToken.class);
 		// Access Token 이용하여 User 정보 받아옴. - endpoint2
 		url = new URL(endpoint2);
-		conn = (HttpsURLConnection) url.openConnection();
-		conn.setRequestMethod("POST");
-		conn.setRequestProperty("Authorization", "Bearer " + oAuthToken.getAccess_token());
-		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-		conn.setDoOutput(true);
-		bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), "UTF-8"));
+		con = (HttpsURLConnection) url.openConnection();
+		con.setRequestMethod("POST");
+		con.setRequestProperty("Authorization", "Bearer " + oAuthToken.getAccess_token());
+		con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+		con.setDoOutput(true);
+		bw = new BufferedWriter(new OutputStreamWriter(con.getOutputStream(), "UTF-8"));
 		bw.flush();
 
-		br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-		input = "";
+		br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+		inputLine = "";
 		sb = new StringBuilder();
-		while ((input = br.readLine()) != null) {
-			sb.append(input);
+		while ((inputLine = br.readLine()) != null) {
+			sb.append(inputLine);
 		}
+		
+		// 무식하게 가져오는 방법 | JSONParsor 이용하면 쉬움 
 		String kakaoId = sb.toString().substring(sb.indexOf("\"email\":") + 9, sb.length() - 3);
-		String profileImageUrl = sb.toString().substring(sb.indexOf("\"profile_image_url\":") + 21,
+		String profileImgUrl = sb.toString().substring(sb.indexOf("\"profile_image_url\":") + 21,
 				sb.toString().indexOf("\"is_default_image\":") - 2); 
 		// Kakao유저 정보 vs DB유저 정보 비교 
 		// DB 이전 kakao 로그인 기록 있으면 : 로그인 성공 -> Session저장 -> 메인화면
@@ -86,7 +88,7 @@ public class KakaoLoginController extends HttpServlet implements Controller {
 			resp.sendRedirect("main.do");
 		} else {
 			req.setAttribute("kakaoId", kakaoId);
-			Utils.forward(req, resp,"member/kakaoLinkLoginForm.tiles");
+			Utils.forward(req, resp,"member/socialLinkLoginForm.tiles");
 		}
 	}
 }

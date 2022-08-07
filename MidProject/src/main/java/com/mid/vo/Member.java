@@ -10,7 +10,14 @@ public class Member {
 	private String phone;
 	private Date joinDate;
 	private String kakaoId;
+	private String naverId;
 	
+	public String getNaverId() {
+		return naverId;
+	}
+	public void setNaverId(String naverId) {
+		this.naverId = naverId;
+	}
 	public String getKakaoId() {
 		return kakaoId;
 	}

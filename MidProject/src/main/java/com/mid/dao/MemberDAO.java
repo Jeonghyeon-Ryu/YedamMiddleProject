@@ -7,6 +7,73 @@ import com.mid.vo.Member;
 
 public class MemberDAO extends DAO {
 	//*******************************************************
+	// 네이버 회원가입 관련 메소드
+	// signupNaver : 네이버 회원가입
+	// selectNaver : 네이버 아이디 유무 확인
+	// updateNaver : 네이버 최초 연동
+	//*******************************************************
+	public boolean signupNaver(Member vo) {
+		boolean result = false;
+		try {
+			connect();
+			String sql = "INSERT INTO member(id, pw, name, identification, phone, join_date, naver_id) VALUES (?,?,?,?,?,SYSDATE,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getPw());
+			pstmt.setString(3, vo.getName());
+			pstmt.setString(4, vo.getIdentification());
+			pstmt.setString(5, vo.getPhone());
+			pstmt.setString(6, vo.getNaverId());
+			result = ((pstmt.executeUpdate()>0) ? true : false ); 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return result;
+	}
+	public Member selectNaver(String naverId) {
+		Member vo = null;
+		try {
+			connect();
+			String sql = "SELECT * FROM member WHERE naver_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, naverId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo = new Member();
+				vo.setId(rs.getString("id"));
+				vo.setName(rs.getString("name"));
+				vo.setPw(rs.getString("pw"));
+				vo.setIdentification(rs.getString("identification"));
+				vo.setPhone(rs.getString("phone"));
+				vo.setJoinDate(rs.getDate("join_date"));
+				vo.setNaverId(rs.getString("naver_id"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return vo;
+	}
+	public boolean updateNaver(Member vo) {
+		boolean result =false;
+		try {
+			connect();
+			String sql = "UPDATE member SET naver_id=? WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getNaverId());
+			pstmt.setString(2, vo.getId());
+			result = ((pstmt.executeUpdate()>0)? true:false);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return result;
+	}
+	//*******************************************************
 	// 카카오 회원가입 관련 메소드
 	// signupKakao : 카카오 회원가입
 	// selectKakao : 카카오 아이디 유무 확인

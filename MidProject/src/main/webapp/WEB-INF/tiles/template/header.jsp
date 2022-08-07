@@ -358,7 +358,8 @@
 			</div>
 		</div>
 		<!-- Modal Content -->
-		<div class="modal-content"></div>
+		<div class="modal-content">
+		</div>
 	</div>
 </div>
 <div id="reservation-modal" class="modal modal-overlay" role="dialog">
@@ -419,3 +420,14 @@
 		</div>
 	</div>
 </div>
+<template id="wish-template" style="display:none">
+	<div class="wish-container">
+		<div class="wish-img">
+			<img src="">
+		</div>	
+		<div class="wish-content">
+			<div class="wish-title">이름 : <strong></strong></div>
+			<div class="wish-address">주소 : <span></span></div>
+		</div>
+	</div>
+</template>

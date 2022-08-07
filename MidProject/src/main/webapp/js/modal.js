@@ -32,7 +32,6 @@ function modalCloseAction(e) {
 	let modal = e.target.parentElement;
 	while(!modal.classList.contains('modal')){
 		modal= modal.parentElement
-		console.log(modal);
 	}
 	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');

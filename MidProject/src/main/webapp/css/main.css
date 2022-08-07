@@ -27,8 +27,13 @@ main {
     border-radius: 20px;
     cursor: pointer;
 }
-.card .col-md-8 img {
+.card .col-md-8 .img-fluid {
 	width:100%;
+}
+.card .col-md-8 .like{
+	position:absolute;
+	left:10px;
+	top:10px;	
 }
 .card-body {
     padding-left:10px;
