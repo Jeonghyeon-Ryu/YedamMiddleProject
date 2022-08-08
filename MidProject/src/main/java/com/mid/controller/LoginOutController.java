@@ -32,7 +32,7 @@ public class LoginOutController implements Controller {
 		String id = req.getParameter("memberId");
 		String pw = req.getParameter("memberPw");
 		// 비밀번호 암호화
-		//pw = SHA256.encodeSha256(pw);
+		pw = SHA256.encodeSha256(pw);
 
 		// Database 아이디 확인
 		MemberService service = MemberService.getInstance();

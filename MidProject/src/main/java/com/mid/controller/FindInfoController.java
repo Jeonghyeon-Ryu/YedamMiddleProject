@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mid.common.Controller;
+import com.mid.common.SHA256;
 import com.mid.common.Utils;
 import com.mid.service.MemberService;
 import com.mid.vo.Member;
@@ -23,8 +24,13 @@ public class FindInfoController implements Controller {
 		
 		String job = req.getParameter("job");
 		
-		String nm = req.getParameter("memberNm");
-		String ph= req.getParameter("memberPhone");
+		String nm = req.getParameter("s-memberNm");
+		String ph= req.getParameter("s-phone1");
+		String ph2= req.getParameter("s-phone2");
+		String ph3= req.getParameter("s-phone3");
+		ph=ph+"-"+ph2+"-"+ph3;
+		
+		//아이디찾기
 		if(job.equals("searchId")) {
 			List<Member> getList=service.getMemberByNm(nm);
 			for(Member member:getList) {
@@ -38,9 +44,22 @@ public class FindInfoController implements Controller {
 				req.setAttribute("list",list);
 			}
 			Utils.forward(req, resp, "/WEB-INF/jsp/member/findInfo.jsp");
-		}else {
-		String id = req.getParameter("memberId");
-			
+		}
+		//비밀번호 찾기
+		else {
+			String id = req.getParameter("s-memberId");
+			Member member = service.getMember(id);
+			if(member!=null) {
+				if(ph.equals(member.getPhone())&& id.equals(member.getId())) {
+					req.setAttribute("msg","success");
+					req.setAttribute("id", member.getId());
+				} else {
+					req.setAttribute("msg","fail");
+				}
+			} else{
+				req.setAttribute("msg","fail");
+			}
+			Utils.forward(req, resp, "/WEB-INF/jsp/member/findInfo.jsp");
 		}
 	}
 

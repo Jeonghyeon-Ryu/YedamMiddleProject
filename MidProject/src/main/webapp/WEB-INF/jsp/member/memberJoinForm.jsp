@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보입력</title>
-<link href="${pageContext.request.contextPath}/css/modal.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/modal.css" rel="stylesheet">
 </head>
 <style>
 #minfo-box {

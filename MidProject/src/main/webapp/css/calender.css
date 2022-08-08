@@ -1,15 +1,23 @@
 @charset "UTF-8";
-#checkin-modal{height : 60vh;}
-html, body {
+
+#checkin-modal html, #checkin-modal body {
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0 auto;
 }
 
-*, *:before, *:after {
+#checkin-modal *,#checkin-modal *:before,#checkin-modal *:after {
 	box-sizing: inherit;
 }
-
+.checkin-modal-box{
+	width: 80%;
+    max-width: 540px;
+    height: 70vh;
+    background: white;
+    border: 1px solid #c5c5c5;
+    border-radius: 20px;
+    position: relative;
+}
 /* ======== Calendar ======== */
 .my-calendar {
 	width: 90%;
@@ -20,6 +28,18 @@ html, body {
 	border: 1px solid #ddd;
 	cursor: default;
 }
+.chekin-modal-content{
+	display: block;
+    overflow: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    max-height: calc(70vh - 130px);
+    margin-top: 5px;
+    border: none;
+	height : 70vh;
+	overflow-x:hidden;
+}
+
 /* 클릭 */
 .clicked-date{
 	float:left;
