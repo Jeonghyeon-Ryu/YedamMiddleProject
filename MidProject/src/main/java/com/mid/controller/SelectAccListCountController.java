@@ -26,7 +26,34 @@ public class SelectAccListCountController implements Controller {
 		String f7 = req.getParameter("f7");
 		String f8 = req.getParameter("f8");
 		String f9 = req.getParameter("f9");
+		String minPrice = req.getParameter("minPrice");
+		String maxPrice = req.getParameter("maxPrice");
 		
+		String filterQuery = "";
+		if(f1!=null) 
+			filterQuery += "r.info like '%"+ f1 +"%'";
+		if(f2!=null) 
+			filterQuery += " AND r.info like '%"+ f2 +"%'";
+		if(f3!=null) 
+			filterQuery += " AND r.info like '%"+ f3 +"%'";
+		if(f4!=null) 
+			filterQuery += " AND r.info like '%"+ f4 +"%'";
+		if(f5!=null) 
+			filterQuery += " AND r.info like '%"+ f5 +"%'";
+		if(f6!=null) 
+			filterQuery += " AND r.info like '%"+ f6 +"%'";
+		if(f7!=null)
+			filterQuery += " AND r.info like '%"+ f7 +"%'";
+		if(f8!=null)
+			filterQuery += " AND r.info like '%"+ f8 +"%'";
+		if(f9!=null)
+			filterQuery += " AND r.info like '%"+ f9 +"%'";
+		
+		String priceQuery = "";
+		if(minPrice!=null && maxPrice!=null) {
+			priceQuery += "r.price >= "+minPrice+" AND r.price<="+maxPrice;
+		} else if(minPrice!=null && maxPrice==null) {
+		}
 		AccommodationService service = AccommodationService.getInstance();
 		int countResult =0;
 		if(!city.equals("") && region.equals("")) {

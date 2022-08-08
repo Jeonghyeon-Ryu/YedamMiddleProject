@@ -1,23 +1,40 @@
 #company-container {
-	width: 412px;
-	height: 915px;
+	width:100%;
+	max-width:500px;
 	margin: 0 auto;
 }
-
-#compan-title {
-	text-align: center;
+#company-container h2 {
+	text-align:center;
+	line-height:50px;
 }
-
-#company-img {
-	width: 100%;
-	padding-top: 10px;
-	padding-left: 10px;
+#company-container #company-img-div {
+	width:100%;
 }
-
-
-#company-img-div {
-	width: 0fr;
+#company-container #company-img-div #company-img {
+	width:100%;
+	height:auto;
 }
-#review-div {
-	padding-bottom: 15%;
+#company-container .company-top {
+	display:flex;
+}
+#company-container .company-top>:first-child {
+	width:80%;
+}
+#company-container .company-top>:last-child {
+	width:20%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	cursor:pointer;
+}
+#company-container .comp-title {
+	font-size:2rem;
+	font-weight:bold;
+	padding:10px 10px 0 20px;
+}
+#company-container #Appstar-rated{
+	padding-left:20px;
+}
+#company-container .comp-review {
+	padding:0 0 10px 20px;
 }

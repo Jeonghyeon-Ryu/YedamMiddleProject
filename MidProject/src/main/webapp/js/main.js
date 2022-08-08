@@ -49,10 +49,18 @@ function checkFilterBox() {
 			resultFilter += '&f' + i + '=' + filterItem.lastElementChild.innerText;
 			i++;
 		}
-
+	}
+	let minPrice = document.querySelector('#min-price');
+	let maxPrice = document.querySelector('#max-price');
+	if(minPrice.value != ""){
+		resultFilter += '&minPrice=' + minPrice.value;
+	}
+	if(maxPrice.value != ""){
+		resultFilter += '&maxPrice=' + maxPrice.value;
 	}
 }
-// 3. Filter Box String 만들기
+
+// Filter Box String 만들기 ( Servlet에서 - 완료 )
 
 // 5. Content Append
 function createCard(result) {
@@ -66,7 +74,6 @@ function createCard(result) {
 		card.querySelector('.card-address strong').innerText += result.list[i].address;
 		card.querySelector('.text-muted').innerText += ' ' + result.list[i].renewalTime;
 		card.querySelector('.card').setAttribute('id',result.list[i].accId);
-		let islike = false;
 		// 카드 위시리스트 가져오기
 		fetch('getWishOne.do', {
 			method: 'POST',

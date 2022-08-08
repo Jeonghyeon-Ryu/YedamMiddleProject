@@ -119,7 +119,22 @@
 			</div>
 		</div>
 		<!-- Modal Content -->
-		<div class="modal-content"></div>
+		<div class="modal-content">
+			<div class="filter-price-range">
+				<div class="filter-title">가격 범위</div>
+				<div class="filter-price-content">
+					<label for="min-price" class="min-price">
+						<div>최저 요금</div>
+						<input id="min-price" type="text" placeholder="1,000">
+					</label>
+					<div>~</div>
+					<label for="max-price" class="max-price">
+						<div>최저 요금</div>
+						<input id="max-price" type="text" placeholder="50,000">
+					</label>
+				</div>
+			</div>
+		</div>
 		<!-- Modal Footer(Optional) -->
 		<div class="modal-footer">
 			<button type="reset">전체 해제</button>

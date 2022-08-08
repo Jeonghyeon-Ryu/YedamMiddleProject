@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+#modal .modal-content {
+	padding:0 20px 0 20px;
+}
+
+#modal > div > div.modal-content{
+	padding:0 20px 0 20px;
+}
+
+#modal .filter-title{
+	font-weight:bold;
+	font-size : 1.2rem;
+}
+
+#modal .filter-price-content {
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	padding:10px;
+}
+
+#modal .min-price, #modal .max-price {
+	border:1px solid black;
+	border-radius:10px;
+	padding:10px;
+	box-shadow: 0 0 5px gray;
+}
+
+#modal input {
+	border:none;
+	padding:5px;
+	font-weight:bold;
+}
+#modal input::placeholder{
+	font-weight:200;
+}

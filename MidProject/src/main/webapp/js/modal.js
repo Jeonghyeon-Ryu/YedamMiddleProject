@@ -5,7 +5,10 @@ window.addEventListener('load', () => {
 	modalCloseButton.addEventListener('click', modalCloseAction);
 	let modal = document.querySelector('#modal');
 	modal.addEventListener('click', modalClickEvent);
-
+	let min = document.querySelector('#min-price');
+	let max = document.querySelector('#max-price');
+	min.addEventListener('change', changeMinPrice);
+	max.addEventListener('change', changeMaxPrice);
 })
 // 모든 모달 닫기
 function closeAllModal() {
@@ -48,6 +51,37 @@ function modalClickEvent(e) {
 	// 그 외 영역 클릭 시 필터 초기화 필요. ( 리셋버튼 Func 재사용 )
 }
 
-            // 모달 확인버튼 이벤트 처리
-            // 모달 리셋버튼 이벤트 처리
-           
+function changeMinPrice() {
+	let minPrice = document.querySelector('#min-price');
+	let maxPrice = document.querySelector('#max-price');
+	if(maxPrice.value != ""){
+		if(minPrice.value>maxPrice.value){
+			maxPrice.value="";
+		}
+	}
+}
+
+function changeMaxPrice() {
+	let minPrice = document.querySelector('#min-price');
+	let maxPrice = document.querySelector('#max-price');
+	if(maxPrice.value != ""){
+		if(minPrice.value>maxPrice.value){
+			console.log(minPrice.value);
+			minPrice.value="";
+		}
+	}
+}
+
+function changePriceCountResult() {
+	checkLocation();
+	checkFilterBox();
+	fetch('accListCount.do', {
+		method: 'POST',
+		headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+		body: 'city=' + resultCity + '&region=' + resultRegion + '&reservationDay=' + reservationDay + '&reservationTime=' + reservationTime + resultFilter
+	}).then(result => result.text())
+	.then(result => {
+		document.querySelector('#location-modal button[type="button"]>span').innerHTML=result;
+	})
+	.catch(err => console.log(err));
+}
