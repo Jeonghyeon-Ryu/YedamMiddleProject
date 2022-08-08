@@ -1,11 +1,11 @@
 document.querySelector('.card[accid="14255"]').addEventListener('click', function(event) {
 	var card = new XMLHttpRequest();
 	card.open('GET', '../main.do');
-	card.onreadystatechange = funtion(){
+	card.addEventListener('readystatechange', function() {
 		if (card.readyState == 4 && card.status == 200) {
 			document.querySelector('.comp-title').innerHTML = card.responseText;
 		}
-	}
+	})
 	card.send();
 });
 
@@ -30,5 +30,3 @@ $(function() {
 		})
 	})
 })
-
-funtion 
