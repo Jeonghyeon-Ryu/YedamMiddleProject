@@ -59,14 +59,27 @@
 .exTourList-content-list {
 	padding-top: 1%;
 	padding-left: 1%;
-	display: flex;
-}
 
-.exTourList-placeimg {
-	border-radius: 6%;
 }
 
 .exTourList-textarea {
 	padding-left: 10px;
 	padding-top: 10px;
 }
+
+#exTourList-content {
+	width: 100%;
+	height: 100%;
+}
+
+#ex-main {
+	width: 30%;
+	height: 30%;
+}
+
+.exTourList-placeimg {
+	width: 100%;
+	height: 100%;
+}
+
+

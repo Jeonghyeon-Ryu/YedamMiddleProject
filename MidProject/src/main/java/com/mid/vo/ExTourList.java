@@ -11,6 +11,15 @@ public class ExTourList {
 	private String memberName;
 	private String phone;
 	private int paymentCost;
+	private String imgUrl;
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
 
 	public String getMemberName() {
 		return memberName;
@@ -27,8 +36,6 @@ public class ExTourList {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	
 
 	public int getPaymentCost() {
 		return paymentCost;
