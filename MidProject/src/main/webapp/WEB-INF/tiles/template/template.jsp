@@ -37,8 +37,7 @@
 	<script src="js/nav.js"></script>
 	<script src="js/modal.js"></script>
 	<script src="js/locationModal.js"></script>
-	<script src="js/compDetail.js"></script>
-	<!-- <script src="js/calender.js"></script> -->
+	<script src="js/calender.js"></script>
 	<script src="js/headcountModal.js"></script>
 	<script src="js/wishList.js"></script>
 	<script src="https://kit.fontawesome.com/9f16a06d13.js" crossorigin="anonymous"></script>

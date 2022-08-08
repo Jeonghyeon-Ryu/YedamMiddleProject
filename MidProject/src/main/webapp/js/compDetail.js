@@ -1,5 +1,6 @@
 document.querySelector('.card[accid="14255"]').addEventListener('click', function(event) {
 	var card = new XMLHttpRequest();
+	console.log(event.target)
 	card.open('GET', '../main.do');
 	card.addEventListener('readystatechange', function() {
 		if (card.readyState == 4 && card.status == 200) {

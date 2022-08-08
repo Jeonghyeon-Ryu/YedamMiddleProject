@@ -22,7 +22,7 @@ public class RoomDAO extends DAO {
 				vo.setInfo(rs.getString("INFO"));
 				vo.setIsReservation(rs.getInt("IS_RESERVATION"));
 				vo.setName(rs.getString("NAME"));
-				vo.setPrice(rs.getInt("PRICE"));
+				vo.setPrice(rs.getString("PRICE"));
 				vo.setReservationTime(rs.getDate("RESERVATION_TIME"));
 				vo.setRoomId(rs.getInt("ROOM_ID"));
 				list.add(vo);
@@ -50,7 +50,33 @@ public class RoomDAO extends DAO {
 				vo.setInfo(rs.getString("INFO"));
 				vo.setIsReservation(rs.getInt("IS_RESERVATION"));
 				vo.setName(rs.getString("NAME"));
-				vo.setPrice(rs.getInt("PRICE"));
+				vo.setPrice(rs.getString("PRICE"));
+				vo.setReservationTime(rs.getDate("RESERVATION_TIME"));
+				vo.setRoomId(rs.getInt("ROOM_ID"));
+				return vo;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return null;
+	}
+	
+	public Room selectOneAcc(int accId) {
+		String sql = "select * from room where acc_id =?";
+		connect();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, accId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				Room vo = new Room();
+				vo.setAccId(rs.getInt("ACC_ID"));
+				vo.setInfo(rs.getString("INFO"));
+				vo.setIsReservation(rs.getInt("IS_RESERVATION"));
+				vo.setName(rs.getString("NAME"));
+				vo.setPrice(rs.getString("PRICE"));
 				vo.setReservationTime(rs.getDate("RESERVATION_TIME"));
 				vo.setRoomId(rs.getInt("ROOM_ID"));
 				return vo;

@@ -77,7 +77,7 @@ function createCard(result) {
 			clickedCard = clickedCard.getAttribute('id');
 				// Card 콘텐츠 눌렀을때. -> 상세페이지 Modal + Ajax 호출
 			if(!e.target.classList.contains('like')){
-				
+				location.href="compDetail.do?accId="+clickedCard;
 			} else if (e.target.classList.contains('like')) {
 				// Card 하트 눌렀을때. -> 위시리스트 테이블 Ajax 호출
 				$.ajax({
