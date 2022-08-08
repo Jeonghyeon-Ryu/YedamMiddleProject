@@ -1,11 +1,34 @@
+document.querySelector('.card[accid="14255"]').addEventListener('click', function(event) {
+	var card = new XMLHttpRequest();
+	card.open('GET', '../main.do');
+	card.onreadystatechange = funtion(){
+		if (card.readyState == 4 && card.status == 200) {
+			document.querySelector('.comp-title').innerHTML = card.responseText;
+		}
+	}
+	card.send();
+});
 
 
-let pickCard = document.querySelector('.card[accid="14255"]');
+$(function() {
+	$(document).on("click", "card[accid="+[i]+"]", function(event) {
+		$.ajax({
+			url: "/compDetail.do",
+			type: "GET",
+			dataType: "json",
+			success: function(res) {
+                  req[i].name
+                  req[i].reviewId
+                  req[i].Address
+                  req[i].Phone
+                  req[i].name
+                  req[i].name
+			},
+			error: function(er) {
+				console.log("실패원인 : " + er);
+			}
+		})
+	})
+})
 
-function clickCard() {
-
-}
-
-console.log('zzzz');
-
-
+funtion 
