@@ -1,142 +1,148 @@
 @charset "UTF-8";
-.modal{
-    width:100%;
-    height:100%;
-    margin: 0 auto;
-    position:fixed;
-    left:0;
-    right:0;
-    top:100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 5;
-    backdrop-filter: blur(1.5px);
-    transition: all 0.2s ease-in;
-    display:flex;
-    visibility:hidden;
-}
 
-.modal-active {
-	visibility : visible;
-	top:0;
-}
-.mini-modal-box{
-    width:80%;
-    max-width: 540px;
-    height:50vh;
-    background: white;
+.msBtn {
+    display: flex;
+    width: 95%;
+    padding: 5px;
+    margin: 10px;
+    background: #ddd;
     border: 1px solid #c5c5c5;
-    border-radius: 20px;
-    position:relative;
-}
-
-.modal-box{
-    width:100%;
-    max-width: 780px;
-    height:80vh;
-    background: white;
-    border: 1px solid #c5c5c5;
-    border-radius: 20px;
-    position:relative;
-}
-.modal-title{
-    width:100%;
-    height: 50px;
-    border-bottom: 1px solid #c5c5c5;
-    position:relative;
-    text-align: center;
-}
-.modal h5, .mini-modal h5{
-    font-size: 1rem;
-    font-weight: bold;
-    line-height: 50px;
-}
-.modal-close-button{
-    position:absolute;
-    top:0;
-    right:20px;
-    line-height: 50px;
+    border-radius: 5px;
     cursor: pointer;
 }
-.modal-content {
-	display:block;
-    overflow: auto;
-    overflow-y:auto;
-    max-height: calc(50vh - 110px);
-    margin-top:5px;
-    
+
+.msBtn>img {
+    width: 30%;
+    margin-right: 10px;
 }
-#location-modal .modal-content {
-	display:flex !important;
-	flex-direction:row;
-}
-.modal-footer{
-    width:100%;
-    height: 50px;
-    position: absolute;
-    bottom: 0;
-    border-top : 1px solid #c5c5c5;
-}
-.modal-footer button[type="reset"]{
-    position: absolute;
-    left:20px;
-    border: none;
-    background: #fff;
-    line-height: 49px;
-    padding:0;
-    font-weight: bold;
-}
-.modal-footer button[type="button"]{
-    position: absolute;
-    right:20px;
-    border:1px solid black;
-    border-radius: 10px;
-    background: black;
-    color:#fff;
-    padding:5px;
-    font-weight: bold;
-}
-.msBtn{
-    display: flex;
-}
-nav{
-    display: flex;
-}
-#msContentText{
-    display: none;
-    position: relative;
-}
-#msContentText>div{
-    display:none;
-}
-#msYou{
-    text-align: left;
-}
-#msYouEmoji{
-    margin-right: auto;
-    display: block;
-}
-#msMy{
-    text-align: right;
-}
-#msMyEmoji{
-    margin-left: auto;
-    display: block;
-}
-.msImg{
-	height :50px;
-	width : 50px;
-}
-#msEmojiAll{
-    position: absolute;
-    display: none;
-    z-index: 999;
-}
-#msThisDay{
-    text-align: center;
+.msBtn>p{
+    margin-left: 10px;
 }
 
-#msMyTime{
-    text-align: right;
+nav {
+    display: flex;
+}
+
+.modal-content {
+    height: 100%;
+}
+
+#msHeader {
+    display: flex;
+    margin: 0 10px;
+}
+
+#receviId {
+    margin-left: auto;
+}
+
+#msContainer {
+    overflow: auto
+}
+
+#msCondition {
+    position: absolute;
+    left: 20px;
+    top: 0;
+}
+
+#msContent {
+    position: absolute;
+    z-index: 998;
+    width: 100%;
+    height: 50vh;
+    overflow: auto
+}
+
+#msContentText {
+    position: relative;
+}
+
+#msContentText>div {
+    display: none;
+}
+
+#msSendAll {
+    display: none;
+}
+
+.msImg {
+    height: 50px;
+    width: 50px;
+}
+
+#msEmojiAll {
+    position: absolute;
+    display: none;
+}
+
+#msThisDay {
+    margin-left: 30%;
+}
+
+#msMyLine {
+    display: none;
+}
+
+#msMyTime {
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: 5px;
+}
+
+#msMyText {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+#msYouLine {
+    display: none;
+}
+
+#msYouTime {
+    margin-top: auto;
+    margin-right: auto;
+    margin-left: 5px;
+}
+
+#msYouText {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+#msThisDay {
+    display: none;
+}
+
+#msSendText {
+    padding: 5px;
+    width: 100%;
+    padding-left: 10px;
+    margin-left: 5px;
+    border: 2px solid #c5c5c5;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: 0px;
+    outline: none;
+}
+
+#msSendEmoji {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 2px solid #c5c5c5;
+    border-left: 0px;
+    margin-right: 5px;
+}
+
+.msEmoji {
+    width: 50px;
+    height: 50px;
+}
+
+#msSend {
+    border: 0px;
+}
+
+#msReceiv {
+    border: 0px;
 }
