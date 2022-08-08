@@ -37,7 +37,6 @@ public class CompDetailController implements Controller {
 //		req.setAttribute("memberId", review.getMemberId());
 //		req.setAttribute("rvDate", review.getReviewDate());
 //		req.setAttribute("rvContent", review.getReviewContent());
-//
 //		
 //		// room
 //		req.setAttribute("rmId", room.getRoomId());
@@ -51,7 +50,7 @@ public class CompDetailController implements Controller {
 
 //		Utils.forward(req, resp, "eju/compDetail.tiles");
 		
-	
+		
 	}
 
 }
