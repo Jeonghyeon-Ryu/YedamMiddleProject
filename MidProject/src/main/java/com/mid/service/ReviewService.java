@@ -10,7 +10,7 @@ public class ReviewService {
 
 	private ReviewService() {
 	}
- 
+
 	public static ReviewService getInstance() {
 		if (instance == null) {
 			instance = new ReviewService();
@@ -23,5 +23,13 @@ public class ReviewService {
 	// 리뷰 전체 가져오기
 	public List<Review> getReviewAll() {
 		return rvdao.selectAll();
+	}
+
+	public Review getReviewOne(int accId) {
+		return rvdao.selectOne(accId);
+	}
+
+	public List<Review> getReviewAllAcc(int accId) {
+		return rvdao.selectAllAcc(accId);
 	}
 }

@@ -36,14 +36,42 @@ public class ReviewDAO extends DAO {
 		}
 		return null;
 	}
+	
+	public List<Review> selectAllAcc(int accId) {
+		connect();
+		String sql = "select * from review where acc_id = ? order by 1";
+		List<Review> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, accId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Review vo = new Review();
+				vo.setAccId(rs.getInt("ACC_ID"));
+				vo.setMemberId(rs.getString("MEMBER_ID"));
+				vo.setReviewContent(rs.getString("REVIEW_CONTENT"));
+				vo.setReviewDate(rs.getDate("REVIEW_DATE"));
+				vo.setReviewId(rs.getInt("REVIEW_ID"));
+				vo.setReviewScore(rs.getInt("REVIEW_SCORE"));
+				vo.setRoomId(rs.getInt("ROOM_ID"));
+				list.add(vo);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return null;
+	}
 
 	// 단건 조회 - reviewId
-	public Review selectOne(Review review) {
-		String sql = "select * from review where review_id =?";
+	public Review selectOne(int accId) {
+		String sql = "select * from review where acc_id =?";
 		connect();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, review.getReviewId());
+			pstmt.setInt(1, accId);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				Review vo = new Review();

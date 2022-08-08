@@ -13,13 +13,13 @@ public class CompDetail {
 	private Date reviewDate;
 	private int roomId;
 	private String roomName;
-	private int price;
+	private String price;
 	private int isReservation;
 	private Date reservationTime;
 	private String info;
-	
-	
-	
+	private int reviewId;
+	private String imgUrl;
+
 	@Override
 	public String toString() {
 		return "CompDetail [accId=" + accId + ", name=" + name + ", address=" + address + ", phone=" + phone
@@ -27,93 +27,133 @@ public class CompDetail {
 				+ ", reviewDate=" + reviewDate + ", roomId=" + roomId + ", roomName=" + roomName + ", price=" + price
 				+ ", isReservation=" + isReservation + ", reservationTime=" + reservationTime + ", info=" + info + "]";
 	}
-	
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public int getReviewId() {
+		return reviewId;
+	}
+
+	public void setReviewId(int reviewId) {
+		this.reviewId = reviewId;
+	}
+
 	public int getAccId() {
 		return accId;
 	}
+
 	public void setAccId(int accId) {
 		this.accId = accId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getMemberId() {
 		return memberId;
 	}
+
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
+
 	public int getReviewScore() {
 		return reviewScore;
 	}
+
 	public void setReviewScore(int reviewScore) {
 		this.reviewScore = reviewScore;
 	}
+
 	public String getReviewContent() {
 		return reviewContent;
 	}
+
 	public void setReviewContent(String reviewContent) {
 		this.reviewContent = reviewContent;
 	}
+
 	public Date getReviewDate() {
 		return reviewDate;
 	}
+
 	public void setReviewDate(Date reviewDate) {
 		this.reviewDate = reviewDate;
 	}
+
 	public int getRoomId() {
 		return roomId;
 	}
+
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
+
 	public String getRoomName() {
 		return roomName;
 	}
+
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
-	public int getPrice() {
+
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+
+	public void setPrice(String price) {
 		this.price = price;
 	}
+
 	public int getIsReservation() {
 		return isReservation;
 	}
+
 	public void setIsReservation(int isReservation) {
 		this.isReservation = isReservation;
 	}
+
 	public Date getReservationTime() {
 		return reservationTime;
 	}
+
 	public void setReservationTime(Date reservationTime) {
 		this.reservationTime = reservationTime;
 	}
+
 	public String getInfo() {
 		return info;
 	}
+
 	public void setInfo(String info) {
 		this.info = info;
 	}
-	
-	
-	
-	
+
 }
