@@ -29,6 +29,17 @@ public class SelectAccListCountController implements Controller {
 		String minPrice = req.getParameter("minPrice");
 		String maxPrice = req.getParameter("maxPrice");
 		
+		if(city!=null) {
+			city = "a.address LIKE '%"+ city + "%'";
+		} else {
+			city = "";
+		}
+		if(region!=null) {
+			region = "a.address LIKE '%" + region + "%'";
+		} else {
+			region ="";
+		}
+		
 		String filterQuery = "";
 		if(f1!=null) 
 			filterQuery += "r.info like '%"+ f1 +"%'";
@@ -51,16 +62,24 @@ public class SelectAccListCountController implements Controller {
 		
 		String priceQuery = "";
 		if(minPrice!=null && maxPrice!=null) {
-			priceQuery += "r.price >= "+minPrice+" AND r.price<="+maxPrice;
+			priceQuery += "to_number(replace(substr(r.price,1,instr(r.price,'원')-1),',','')) >= "+minPrice+" AND to_number(replace(substr(r.price,1,instr(r.price,'원')-1),',',''))<="+maxPrice;
 		} else if(minPrice!=null && maxPrice==null) {
+			priceQuery += "to_number(replace(substr(r.price,1,instr(r.price,'원')-1),',','')) >= "+minPrice;
+		} else if(minPrice==null && maxPrice!=null) {
+			priceQuery += "to_number(replace(substr(r.price,1,instr(r.price,'원')-1),',','')) <= "+maxPrice;
+		}
+		
+		String resultQuery = "";		
+		if(!filterQuery.equals("") && !priceQuery.equals("")) {
+			resultQuery = filterQuery + " AND " + priceQuery;
+		} else if (!filterQuery.equals("") && priceQuery.equals("")) {
+			resultQuery = filterQuery;
+		} else if (filterQuery.equals("") && !priceQuery.equals("")) {
+			resultQuery = priceQuery;
 		}
 		AccommodationService service = AccommodationService.getInstance();
 		int countResult =0;
-		if(!city.equals("") && region.equals("")) {
-			countResult = service.selectCount(city);
-		} else {
-			countResult = service.selectCount(city,region);
-		}
+		countResult = service.selectCount(city, region, resultQuery);
 		
 		resp.getWriter().print(countResult);
 	}

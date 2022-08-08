@@ -34,11 +34,14 @@ public class AccommodationService {
 	public int selectCount() {
 		return new AccommodationDAO().selectCount();
 	}
-	public int selectCount(String city) {
-		return new AccommodationDAO().selectCount(city);
+	public int selectCount(String resultQuery) {
+		return new AccommodationDAO().selectCount(resultQuery);
 	}
-	public int selectCount(String city, String region) {
-		return new AccommodationDAO().selectCount(city,region);
+	public int selectCount(String city, String resultQuery) {
+		return new AccommodationDAO().selectCount(city, resultQuery);
+	}
+	public int selectCount(String city, String region, String resultQuery) {
+		return new AccommodationDAO().selectCount(city,region, resultQuery);
 	}
 	
 	// 업체정보 출력

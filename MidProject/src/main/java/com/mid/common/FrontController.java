@@ -65,7 +65,6 @@ public class FrontController extends HttpServlet {
 		mappings.put("/setWish.do", new setWishController());	// 위시리스트 추가
 		mappings.put("/getWish.do", new getWishController());	// 위시리스트 보기
 		mappings.put("/getWishOne.do", new getWishOneController());	// 위시리스트 보기
-		mappings.put("/accListCount.do", new SelectAccListCountController());	// 필터 적용 리스트 갯수 확인 
 		
 		// 최유리
 		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼

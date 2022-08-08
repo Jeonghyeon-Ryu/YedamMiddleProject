@@ -59,29 +59,32 @@ function changeMinPrice() {
 			maxPrice.value="";
 		}
 	}
+	changePriceCountResult();
 }
 
 function changeMaxPrice() {
 	let minPrice = document.querySelector('#min-price');
 	let maxPrice = document.querySelector('#max-price');
-	if(maxPrice.value != ""){
+	if(minPrice.value != ""){
 		if(minPrice.value>maxPrice.value){
 			console.log(minPrice.value);
 			minPrice.value="";
 		}
 	}
+	changePriceCountResult();
 }
 
 function changePriceCountResult() {
 	checkLocation();
 	checkFilterBox();
+	console.log('city=' + resultCity + '&region=' + resultRegion + '&reservationDay=' + reservationDay + '&reservationTime=' + reservationTime + resultFilter)
 	fetch('accListCount.do', {
 		method: 'POST',
 		headers: { 'Content-type': 'application/x-www-form-urlencoded' },
 		body: 'city=' + resultCity + '&region=' + resultRegion + '&reservationDay=' + reservationDay + '&reservationTime=' + reservationTime + resultFilter
 	}).then(result => result.text())
 	.then(result => {
-		document.querySelector('#location-modal button[type="button"]>span').innerHTML=result;
+		document.querySelector('#modal button[type="button"]>span').innerHTML=result;
 	})
 	.catch(err => console.log(err));
 }

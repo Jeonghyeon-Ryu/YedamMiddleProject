@@ -2,6 +2,7 @@
 	width:100%;
 	max-width:500px;
 	margin: 0 auto;
+	padding-bottom:70px;
 }
 #company-container h2 {
 	text-align:center;
@@ -16,6 +17,7 @@
 }
 #company-container .company-top {
 	display:flex;
+	border-bottom:2px solid #c5c5c5;
 }
 #company-container .company-top>:first-child {
 	width:80%;
@@ -32,9 +34,21 @@
 	font-weight:bold;
 	padding:10px 10px 0 20px;
 }
-#company-container #Appstar-rated{
+#company-container .star-rated{
 	padding-left:20px;
+}
+#company-container a {
+	text-decoration:none;
+}
+#company-container a:visited {
+	color:black;
 }
 #company-container .comp-review {
 	padding:0 0 10px 20px;
+	cursor:pointer;
+}
+#company-container .comp-room{
+	font-size:1.4rem;
+	font-weight:bold;
+	padding:10px 20px;
 }

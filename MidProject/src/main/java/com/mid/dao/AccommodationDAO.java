@@ -35,10 +35,10 @@ public class AccommodationDAO extends DAO {
 			String sql = "SELECT * FROM accommodation ORDER BY 1";
 			String pagingSql="";
 			if(filterQuery.equals("")) {
-				pagingSql = "select acc_id, name, address, phone, status, renewal_time, img_url " + "from ( "
-						+ "    select seq, acc_id, name, address, phone, status, renewal_time, img_url "
-						+ "        from (select rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url "
-						+ "    from (select * from accommodation order by acc_id desc)) " + "    where seq>=?)"
+				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
+						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url "
+						+ "        FROM (select rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url "
+						+ "    FROM (select * from accommodation order by acc_id desc)) WHERE seq>=?)"
 						+ "WHERE rownum <= 20";
 			} else {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
@@ -91,11 +91,42 @@ public class AccommodationDAO extends DAO {
 		}
 		return countResult;
 	}
-	public int selectCount(String city) {
+	public int selectCount(String resultQuery) {
 		int countResult = 0;
 		try {
 			connect();
-			String sql = "SELECT count(*) FROM accommodation WHERE address LIKE '%" + city + "%'";
+			String sql ="";
+			if(resultQuery.equals("")) {
+				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id";
+			} else {
+				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + resultQuery;
+			}
+			System.out.println("resultQuery : " + resultQuery);
+			System.out.println("sql : " + sql);
+			pstmt = conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if (rs.next()) {
+				countResult = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return countResult;
+	}
+	public int selectCount(String city, String resultQuery) {
+		int countResult = 0;
+		try {
+			connect();
+			String sql = "";
+			if(resultQuery.equals("")) {
+				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE a.address LIKE '%" + city + "%'";
+			} else {
+				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE a.address LIKE '%" + city + "%' AND "+ resultQuery;
+			}
+			System.out.println("resultQuery : " + resultQuery);
+			System.out.println("sql : " + sql);
 			pstmt = conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if (rs.next()) {
@@ -109,12 +140,32 @@ public class AccommodationDAO extends DAO {
 		return countResult;
 	}
 
-	public int selectCount(String city, String region) {
+	public int selectCount(String city, String region, String resultQuery) {
 		int countResult = 0;
 		try {
 			connect();
-			String sql = "SELECT count(*) FROM accommodation WHERE address LIKE '%" + city + "%' AND address LIKE '%" + region
-					+ "%'";
+			String sql = "";
+			if(city.equals("")) {
+				if(resultQuery.equals("")) {
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id";
+				} else {
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + resultQuery;
+				}
+			} else if (!city.equals("") && region.equals("")) {
+				if(resultQuery.equals("")) {
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city;
+				} else {
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND "+ resultQuery;
+				}
+			} else if (!city.equals("") && !region.equals("")) {
+				if(resultQuery.equals("")) {
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND " + region;
+				} else {
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND " + region + " AND "+ resultQuery;
+				}
+			}
+			System.out.println("resultQuery : " + resultQuery);
+			System.out.println("sql : " + sql);
 			pstmt = conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if (rs.next()) {
