@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+#checkin-modal{height : 60vh;}
 html, body {
 	box-sizing: border-box;
 	padding: 0;
