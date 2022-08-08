@@ -15,7 +15,7 @@
 			<div>위시리스트</div>
 		</a>
 		<c:if test="${empty id }">
-			<a href="loginForm.do">
+			<a id="nav-login">
 				<div>
 					<img src="img/nav-enter-25.png">
 				</div>
