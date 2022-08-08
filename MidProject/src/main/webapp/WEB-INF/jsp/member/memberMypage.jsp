@@ -26,7 +26,7 @@
 	<div class="mypage-info" id="info">
 	    <h2>나의 정보</h2>
 	    <ul>
-	        <li><a href="memberInfo.do"><i class="fa-solid fa-user"></i>  개인정보<span>></span></a></li>
+	        <li><a href="memberInfo.do"><i class="fa-solid fa-user"></i>  인정보<span>></span></a></li>
 	        <li><a href="#"><i class="fa-solid fa-clipboard-list"></i>  예약내역<span>></span></a></li>
 	        <li><a href="#"><i class="fa-solid fa-file-pen"></i>  후기관리<span>></span></a></li>
 	    </ul>        

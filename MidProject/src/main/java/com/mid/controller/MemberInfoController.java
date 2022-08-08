@@ -20,12 +20,21 @@ public class MemberInfoController implements Controller {
 		String id = (String) session.getAttribute("id");
 		MemberService service = MemberService.getInstance();
 		
+		System.out.println("memberinfocontroller...");
+		
 		Member vo = new Member();
 		vo = service.getMember(id);
-		req.setAttribute("error", "정보가 없습니다.");
-		req.setAttribute("member",vo);
-		Utils.forward(req, resp, "/WEB-INF/jsp/member/findInfo.jsp");
-
+		String[] ph = vo.getPhone().split("-");
+		try{
+			req.setAttribute("phone1", ph[0]);
+			req.setAttribute("phone2", ph[1]);
+			req.setAttribute("phone3", ph[2]);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {		
+			req.setAttribute("member",vo);
+			Utils.forward(req, resp, "/WEB-INF/jsp/member/memberInfo.jsp");
+		}
 	}
 
 }

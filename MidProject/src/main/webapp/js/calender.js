@@ -11,8 +11,8 @@ const init = {
 		let d = new Date();
 		d.setDate(1);
 		d.setMonth(++this.monForChange);
-		this.activeDate = d;	// 8월 1일
-		this.activeDate2=d;		// 8월 1일
+		this.activeDate = d;	
+		this.activeDate2 = d;		
 		return d;
 	},
 	prevMonth: function() {
@@ -20,7 +20,7 @@ const init = {
 		d.setDate(1);
 		d.setMonth(--this.monForChange);
 		this.activeDate = d;
-		this.activeDate2= d;
+		this.activeDate2 = d;
 		return d;
 	},
 	addZero: (num) => (num < 10) ? '0' + num : num,
@@ -56,9 +56,9 @@ function loadYYMM(fullDate) {
 
 	document.querySelector('.cal-month').textContent = init.monList[mm];
 	document.querySelector('.cal-year').textContent = yy;
-	
 
-	
+
+
 	let trtd = '';
 	let startCount;
 	let countDay = 0;
@@ -72,18 +72,18 @@ function loadYYMM(fullDate) {
 			let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
 			if (!startCount) {
 				trtd += '<td>'
-			} else if(fullDate<getYYDDMM(init.today)){
+			} else if (fullDate < getYYDDMM(init.today)) {
 				trtd += '<td class="day-disable';
 				trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
 			} else {
 				trtd += '<td class="day';
 				trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
 			}
-		trtd += (startCount) ? ++countDay : '';
-		if (countDay === lastDay.getDate()) {
-			startCount = 0;
-		}
-		trtd += '</td>';
+			trtd += (startCount) ? ++countDay : '';
+			if (countDay === lastDay.getDate()) {
+				startCount = 0;
+			}
+			trtd += '</td>';
 		}
 		trtd += '</tr>';
 	}
@@ -131,18 +131,18 @@ $calBody.addEventListener('click', (e) => {
 			dateTag2 = null;
 			document.querySelector('.cal-day2').textContent = "";
 		}
-		if(!dateTag1) {
+		if (!dateTag1) {
 			let day = Number(e.target.textContent);
 			e.target.classList.add('day-active');
 			dateTag1 = e.target;
 			init.activeDate.setDate(day);
 			loadDate(init.activeDate);
-		}else {
+		} else {
 			let day = Number(e.target.textContent);
 			init.activeDate2.setDate(day);
 			let day2 = document.querySelector('.cal-day1').textContent;
-			
-			if (getYYDDMM(init.activeDate2)<= day2) {
+
+			if (getYYDDMM(init.activeDate2) <= day2) {
 				dateTag1.classList.remove('day-active');
 				e.target.classList.add('day-active');
 				dateTag1 = e.target;
@@ -158,10 +158,23 @@ $calBody.addEventListener('click', (e) => {
 		}
 	}
 });
-function selectDate(){
+function selectDate() {
 	let inDate = document.querySelector('.cal-day1').textContent;
 	let outDate = document.querySelector('.cal-day2').textContent;
-	console.log(inDate+'~'+outDate);
-	
+	console.log(inDate + '~' + outDate);
+
 }
 
+let calenderCloseButton = document.querySelector("#checkin-modal .modal-close-button")
+calenderCloseButton.addEventListener('click',calenderCloseAction);
+
+function calenderCloseAction(e) {
+		let modal = e.target.parentElement;
+		while (!modal.classList.contains('modal-active')) {
+			modal = modal.parentElement;
+		} 
+		let body = document.querySelector('body');
+		modal.classList.toggle('modal-active');
+		body.classList.toggle('modal-active-background');
+	
+}

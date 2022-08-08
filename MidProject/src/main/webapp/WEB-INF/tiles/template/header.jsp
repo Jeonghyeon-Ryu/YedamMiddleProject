@@ -241,7 +241,7 @@
 </div>
 <!-- 필터 모달창 시작 -->
 <div id="checkin-modal" class="modal modal-overlay" role="dialog">
-	<div class="mini-modal-box">
+	<div class="checkin-modal-box">
 		<!-- Modal Title -->
 		<div class="modal-title">
 			<h5>체크인/체크아웃</h5>
@@ -250,7 +250,7 @@
 			</div>
 		</div>
 		<!-- Modal Content -->
-		<div class="modal-content">
+		<div class="chekin-modal-content">
 			<div class="my-calendar clearfix">
 	          <ul class="clicked-date">
 	            <li class="cal-day1"></li> -
@@ -482,11 +482,11 @@
 			<div class="mypage-info" id="info">
 				<h2>나의 정보</h2>
 				<ul>
-					<li><a href="#"><i class="fa-solid fa-user"></i> 개인정보<span>></span></a></li>
+					<li><a href="memberInfo.do"><i class="fa-solid fa-user"></i> 개인정보<span>></span></a></li>
 					<li><a href="#"><i class="fa-solid fa-clipboard-list"></i>
 							예약내역<span>></span></a></li>
 					<li><a href="#"><i class="fa-solid fa-file-pen"></i> 후기관리<span>></span></a></li>
-				</ul>
+					</ul>
 			</div>
 			<hr>
 			<div class="mypage-center" id="customer-center">
