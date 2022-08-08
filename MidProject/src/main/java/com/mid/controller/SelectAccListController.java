@@ -31,20 +31,47 @@ public class SelectAccListController implements Controller {
 		String f7 = req.getParameter("f7");
 		String f8 = req.getParameter("f8");
 		String f9 = req.getParameter("f9");
+		String filterQuery = "";
+		if(f1!=null) {
+			filterQuery += "r.info like '%"+ f1 +"%'";
+		}
+		if(f2!=null) {
+			filterQuery += " AND r.info like '%"+ f2 +"%'";
+		}
+		if(f3!=null) {
+			filterQuery += " AND r.info like '%"+ f3 +"%'";
+		}
+		if(f4!=null) {
+			filterQuery += " AND r.info like '%"+ f4 +"%'";
+		}
+		if(f5!=null) {
+			filterQuery += " AND r.info like '%"+ f5 +"%'";
+		}
+		if(f6!=null) {
+			filterQuery += " AND r.info like '%"+ f6 +"%'";
+		}
+		if(f7!=null) {
+			filterQuery += " AND r.info like '%"+ f7 +"%'";
+		}
+		if(f8!=null) {
+			filterQuery += " AND r.info like '%"+ f8 +"%'";
+		}
+		if(f9!=null) {
+			filterQuery += " AND r.info like '%"+ f9 +"%'";
+		}
+		
 		AccommodationService service = AccommodationService.getInstance();
 		PageCard resultData = new PageCard();
-//		int endPageNo=0;
-//		List<Accommodation> list = new ArrayList<>();
 		
 		if(city.equals("") && region.equals("")) {
 			resultData.setEndPageNo(service.selectCount()/20);
-			resultData.setList(service.select(Integer.parseInt(pageNum)));
+			resultData.setList(service.select(Integer.parseInt(pageNum), filterQuery));
 		} else if(!city.equals("") && region.equals("")) {
 			resultData.setEndPageNo(service.selectCount(city)/20);
-			resultData.setList(service.select(Integer.parseInt(pageNum),city));
+			resultData.setList(service.select(Integer.parseInt(pageNum),city, filterQuery));
 		} else {
 			resultData.setEndPageNo(service.selectCount(city,region)/20);
-			resultData.setList(service.select(Integer.parseInt(pageNum),city,region));
+			resultData.setList(service.select(Integer.parseInt(pageNum),city,region, filterQuery));
 		}
 		
 		Gson gson = new GsonBuilder().create();

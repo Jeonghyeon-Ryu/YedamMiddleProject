@@ -102,9 +102,9 @@ function filterItemAction(e) {
         item.className += ' filter-item-clicked';
     }
 	
-	
     // 위치, 날짜, 인원 확인 ( 없으면 추천 랜덤 리스트로 )
     // 체크된 필터 확인 후 ajax 호출
+   	clearAccList();
 }
 
 // Modal 박스 클릭 이벤트함수
@@ -128,7 +128,7 @@ function clickSearchBox(e) {
 		let checkinModal = document.querySelector('#checkin-modal');
 		checkinModal.classList.toggle('modal-active');
 		let body = document.querySelector('body');
-	body.classList.toggle('modal-active-background');
+		body.classList.toggle('modal-active-background');
 	}else if(id == 'checkout-date') {
 		
 	}else if(id == 'headcount') {

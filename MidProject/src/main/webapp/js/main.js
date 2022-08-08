@@ -61,13 +61,26 @@ function createCard(result) {
 	Criteria.endPageNo = result.endPageNo;
 	for (let i = 0; i < result.list.length; i++) {
 		let card = document.importNode(template.content, true);
-		card.querySelector('img').src = result.list[i].imgUrl;
+		card.querySelector('.img-fluid').src = result.list[i].imgUrl;
 		card.querySelector('.card-title').innerText = result.list[i].name;
 		card.querySelector('.card-address strong').innerText += result.list[i].address;
 		card.querySelector('.text-muted').innerText += ' ' + result.list[i].renewalTime;
 		card.querySelector('.card').setAttribute('id',result.list[i].accId);
-		// 카드 붙이기
-		document.querySelector('main').append(card);
+		let islike = false;
+		// 카드 위시리스트 가져오기
+		fetch('getWishOne.do', {
+			method: 'POST',
+			headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+			body: 'accId=' + result.list[i].accId
+		}).then(wishResult => wishResult.json())
+		.then(wishResult => {
+			if(wishResult.retCode=="exist"){
+				card.querySelector('.like').src="img/like-redheart-35.png";
+			}
+			// 카드 붙이기
+			document.querySelector('main').append(card);
+		}).catch(err => console.log(err));
+		
 		// 동적 생성된 Card Click 이벤트 생성
 		$('main').on("click","#"+result.list[i].accId,function(e){
 			let clickedCard = e.target;
@@ -125,7 +138,7 @@ function clearAccList() {
 // Scroll Page 계산 위한 Criteria -> 인자 전달 필요.
 window.addEventListener('scroll',() => {
 	// scrollY:스크롤 상단 + innerHeight:현재화면 높이 = 현재까지 스크롤된 부분 하단
-	let currScrollY = window.innerHeight + window.scrollY
+	let currScrollY = window.innerHeight + window.scrollY;
 	if( (currScrollY >= (document.body.offsetHeight-200)) && scrollIsStop!=true && Criteria.page<=Criteria.endPageNo){
 		// 200 남기고 ajax 호출 필요.
 		getAccList();

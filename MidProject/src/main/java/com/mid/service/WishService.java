@@ -24,6 +24,7 @@ public class WishService {
 	public boolean delete(Wish vo) {
 		return new WishDAO().delete(vo);
 	}
+
 	// 위시리스트 존재 확인
 	public boolean select(Wish vo) {
 		return new WishDAO().select(vo);

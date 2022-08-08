@@ -20,16 +20,16 @@ public class AccommodationService {
 
 	AccommodationDAO adao = new AccommodationDAO();
 
-	public List<Accommodation> select(int pageNum) {
-		return new AccommodationDAO().selectAll(pageNum);
+	public List<Accommodation> select(int pageNum, String filterQuery) {
+		return new AccommodationDAO().selectAll(pageNum, filterQuery);
 	}
 
-	public List<Accommodation> select(int pageNum, String city) {
-		return new AccommodationDAO().selectList(pageNum, city);
+	public List<Accommodation> select(int pageNum, String city, String filterQuery) {
+		return new AccommodationDAO().selectList(pageNum, city, filterQuery);
 	}
 
-	public List<Accommodation> select(int pageNum, String city, String region) {
-		return new AccommodationDAO().selectList(pageNum, city, region);
+	public List<Accommodation> select(int pageNum, String city, String region, String filterQuery) {
+		return new AccommodationDAO().selectList(pageNum, city, region, filterQuery);
 	}
 	public int selectCount() {
 		return new AccommodationDAO().selectCount();

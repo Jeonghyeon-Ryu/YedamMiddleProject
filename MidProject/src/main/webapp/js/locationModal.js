@@ -14,7 +14,7 @@ const jeonbuk = ["군산시", "김제시", "남원시", "익산시", "전주시"
 const jeju = ["서귀포시", "제주시", "남제주군", "북제주군"];
 const chungbuk = ["제천시", "청주시", "충주시", "괴산군", "단양군", "보은군", "영동군", "옥천군", "음성군", "증평군", "진천군", "청원군"];
 
-window.addEventListener('click', function() {
+window.addEventListener('load', function() {
 	let selectedLocations = document.querySelectorAll('#city input[type="radio"]');
 	for (let selectedLocation of selectedLocations) {
 		selectedLocation.addEventListener('click', clickSelectedLocation);

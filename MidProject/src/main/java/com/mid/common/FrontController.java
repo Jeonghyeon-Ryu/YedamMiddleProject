@@ -36,6 +36,7 @@ import com.mid.controller.SelectAccListCountController;
 import com.mid.controller.SendContentController;
 import com.mid.controller.WishListController;
 import com.mid.controller.getWishController;
+import com.mid.controller.getWishOneController;
 import com.mid.controller.NaverLoginController;
 
 public class FrontController extends HttpServlet {
@@ -62,6 +63,8 @@ public class FrontController extends HttpServlet {
 		mappings.put("/naverSignupForm.do", new NaverSignupFormController());	// 네이버 연동 간편 회원가입 폼
 		mappings.put("/setWish.do", new setWishController());	// 위시리스트 추가
 		mappings.put("/getWish.do", new getWishController());	// 위시리스트 보기
+		mappings.put("/getWishOne.do", new getWishOneController());	// 위시리스트 보기
+		mappings.put("/accListCount.do", new SelectAccListCountController());	// 필터 적용 리스트 갯수 확인 
 		
 		// 최유리
 		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼
@@ -81,12 +84,10 @@ public class FrontController extends HttpServlet {
 		mappings.put("/addContent.do", new AddContentController());	// 숙소 리스트 출력
 		
 		// 엄정웅
-		mappings.put("/compDetail.do", new CompDetailController());	// 
+		mappings.put("/compDetail.do", new CompDetailController());	// 상세페이지 출력 
 		mappings.put("/wishList.do", new WishListController());		// 위시리스트
 		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
 		mappings.put("/reservationPage.do", new ReservationPageController());	// 숙소 리스트 출력
-		mappings.put("/addContent.do", new AddContentController());	// 숙소 리스트 출력
-		mappings.put("/accListCount.do", new SelectAccListCountController());	// 필터 적용 리스트 갯수 확인 
 
 	}
 

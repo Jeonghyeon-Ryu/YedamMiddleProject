@@ -2,7 +2,14 @@ window.addEventListener('load', () => {
 	document.querySelector('#nav-wishlist').addEventListener('click',wishlistModalOpenAction);
 	document.querySelector('#wishlist-modal .modal-close-button').addEventListener('click',modalCloseAction);
 })
-
+function clearWishList() {
+	window.scrollTo(0,0);
+	document.querySelector('#wishlist-modal .modal-content').remove();
+	let div = document.createElement('div');
+	div.setAttribute('class','modal-content');
+	document.querySelector('#wishlist-modal .modal-title').after(div);
+	getWishList();
+}
 function wishlistModalOpenAction(e) {
 	closeAllModal();
 	let modal = document.querySelector('#wishlist-modal');
@@ -16,6 +23,10 @@ function wishlistModalOpenAction(e) {
 	modal.classList.toggle('modal-active');
 	body.classList.toggle('modal-active-background');
 	
+	clearWishList();
+}
+
+function getWishList(){
 	fetch('getWish.do', {
 		method: 'POST',
 	}).then(result => result.json())

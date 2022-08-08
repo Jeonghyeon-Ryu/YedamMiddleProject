@@ -62,6 +62,7 @@ public class WishDAO extends DAO{
 		}
 		return result;
 	}
+	
 	// 위시리스트 읽어오기
 	public List<Accommodation> selectAll(String memberId) {
 		List<Accommodation> list = new ArrayList<>();
