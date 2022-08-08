@@ -5,10 +5,7 @@ import com.mid.vo.WishList;
 
 public class WishListService {
 	private static WishListService instance;
-
-	private WishListService() {
-	}
-
+	private WishListService() {}
 	public static WishListService getInstance() {
 		if (instance == null) {
 			instance = new WishListService();

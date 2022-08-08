@@ -27,28 +27,28 @@ public class MessageController implements Controller {
 		ReservationService reService = ReservationService.getInstance();
 		ChatService ctService = ChatService.getInstance();
 		List<Chat> ctlist = ctService.selectAll();
-		System.out.println(id);
+
+		if (!ctlist.isEmpty()) {
+			for (int i = 1; i < ctlist.size(); i++) {
+				if (ctlist.get(i).getCurrentDay().substring(0,10).equals(ctlist.get(i - 1).getCurrentDay().substring(0,10))) {
+					ctlist.get(i).setNextDay(0);
+					ctlist.get(i-1).setCurrentDay(ctlist.get(i).getCurrentDay().substring(0,10));
+				}
+			}
+		}
 		if (req.getAttribute("recevi") != null) {
-			System.out.println(1);
 			req.setAttribute("recevi", (String) req.getAttribute("recevi"));
 		}
-
-		
-		int temp = (int)id.charAt(0);
-		
-		System.out.println(temp);
+		int temp = (int) id.charAt(0);
 		if ((temp >= 47 && temp <= 58)) {
-			System.out.println(id);
 			List<Member> mlist = reService.selectMemberAccommodation(id);
 			req.setAttribute("mlist", mlist);
 			req.setAttribute("checkUser", 0);
-			System.out.println(2);
 		} else {
-			System.out.println(id);
+
 			List<Accommodation> acclist = reService.selectAccommodationLoginId(id);
 			req.setAttribute("acclist", acclist);
 			req.setAttribute("checkUser", 1);
-			System.out.println(3);
 		}
 		req.setAttribute("ctlist", ctlist);
 		Utils.forward(req, resp, "/WEB-INF/jsp/message/message.jsp");

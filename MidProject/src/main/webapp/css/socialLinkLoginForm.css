@@ -1,0 +1,180 @@
+@charset "UTF-8";
+
+.kakaologin-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+@media screen and (max-width : 499px) {
+	.kakaologin-container .login-box {
+		background: #FFF;
+		/*box-shadow: 0px 0px 2px black, 6px 6px 6px gray, 10px 10px 10px #c5c5c5;*/
+		padding: 70px 40px 50px 40px;
+		margin-top: 70px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		width: 95%;
+		max-width: 600px;
+		font-size: 14px;
+		border: 3px solid BLACK;
+		border-radius: 15px;
+	}
+}
+@media screen and (min-width : 500px) {
+	.kakaologin-container .login-box {
+		background: #FFF;
+		/*box-shadow: 0px 0px 2px black, 6px 6px 6px gray, 10px 10px 10px #c5c5c5;*/
+		padding: 70px 100px 50px 100px;
+		margin-top: 100px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		width: 95%;
+		max-width: 600px;
+		font-size: 14px;
+		border: 3px solid BLACK;
+		border-radius: 15px;
+	}
+}
+
+.kakaologin-container .user-icon {
+	background: #fff;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: -50px;
+}
+
+.kakaologin-container .user-icon img {
+	width: 100%;
+}
+
+.kakaologin-container .login {
+	width: 100%;
+}
+
+.kakaologin-container .form-group {
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.kakaologin-container input[type="text"].form-control,
+	.kakaologin-container input[type="password"].form-control,
+	.kakaologin-container input[type="tel"].form-control {
+	font-size: 16px;
+	outline: none;
+	width: 100%;
+	border: 2px solid #CCC;
+	padding: 16px;
+	border-radius: 10px;
+	transition: all 0.3s ease;
+}
+
+.kakaologin-container input[type="text"].form-control:hover,
+	.kakaologin-container input[type="password"].form-control:hover,
+	.kakaologin-container input[type="tel"].form-control:hover {
+	border: 2px solid gray;
+}
+
+.kakaologin-container input[type="text"].form-control:focus,
+	.kakaologin-container input[type="password"].form-control:focus,
+	.kakaologin-container input[type="tel"].form-control:focus {
+	border: 2px solid black;
+}
+
+.kakaologin-container input[type="text"].form-control:active,
+	.kakaologin-container input[type="password"].form-control:active,
+	.kakaologin-container input[type="tel"].form-control:active {
+	border: 2px solid black;
+}
+
+.kakaologin-container label {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.kakaologin-container label input[type="checkbox"] {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.kakaologin-container button {
+	outline: none;
+	background: #c5c5c5;
+	color: #FFF;
+	padding: 16px;
+	display: block;
+	width: 100%;
+	border: none;
+	border-radius: 10px;
+	text-transform: uppercase;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.kakaologin-container button:hover {
+	background: black;
+	box-shadow: 5px 5px 5px #ccc, 10px 10px 10px #c5c5c5;
+}
+
+.kakaologin-container a {
+	color: #42A5F5;
+}
+
+.kakaologin-container .serparater {
+	width: 100%;
+	border-top: 1px solid #f1f1f1;
+	border-bottom: 1px solid #f1f1f1;
+	padding: 10px 0;
+	text-align: center;
+	margin: 20px 0;
+	font-size: 12px;
+}
+
+.kakaologin-container .social-login {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.kakaologin-container .social-login a {
+	display: inline-block;
+	background: #c5c5c5;
+	color: #FFF;
+	padding: 16px;
+	margin: 0 10px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	border-radius: 10px;
+}
+
+.kakaologin-container .social-login a:hover {
+	background: black;
+	box-shadow: 5px 5px 5px #ccc, 10px 10px 10px #c5c5c5;
+}
+
+.kakaologin-container .social-login a i {
+	color: #FFF;
+	margin-right: 10px;
+}

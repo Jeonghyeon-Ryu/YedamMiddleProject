@@ -22,10 +22,10 @@
     <link rel="stylesheet" type="text/css" href="css/headcountModal.css">
     <link rel="stylesheet" type="text/css" href="css/calender.css">
     <link rel="stylesheet" type="text/css" href="css/mypage.css">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-	<div class="container">
+	<div class="body-container">
 		<!------------------------ Headder 영역 시작 ------------------------->
 		<!------------------------ Main(include Header) 영역 시작 ------------------------->
 		<tiles:insertAttribute name="body"></tiles:insertAttribute>
@@ -34,15 +34,13 @@
 	</div>
 
 	<script src="js/header.js"></script>
-	<script src="js/main.js"></script>
+	<script src="js/nav.js"></script>
 	<script src="js/modal.js"></script>
 	<script src="js/locationModal.js"></script>
 	<script src="js/compDetail.js"></script>
-	<script src="js/calender.js"></script>
+	<!-- <script src="js/calender.js"></script> -->
 	<script src="js/headcountModal.js"></script>
 	<script src="js/wishList.js"></script>
-	<script src="js/mypage.js"></script>
-	<script src="js/reservationModal.js"></script>
 	<script src="https://kit.fontawesome.com/9f16a06d13.js" crossorigin="anonymous"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

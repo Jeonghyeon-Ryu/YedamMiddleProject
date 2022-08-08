@@ -3,7 +3,7 @@ package com.mid.dao;
 import com.mid.vo.WishList;
 
 public class WishListDAO extends DAO {
-
+	
 	// 단건조회
 	public WishList getWishList(int accId) {
 		connect();

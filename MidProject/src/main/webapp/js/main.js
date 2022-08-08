@@ -1,7 +1,7 @@
 window.addEventListener('load',() => {
 	let searchButton = document.querySelector('.search-button');
 	searchButton.addEventListener('click', clearAccList);
-	document.querySelector('main').addEventListener('click',clickCard);
+	//document.querySelector('main').addEventListener('click',clickCard);
 })
 // 1. Search Box 확인
 let resultCity;
@@ -56,7 +56,7 @@ function checkFilterBox() {
 
 // 5. Content Append
 function createCard(result) {
-	let template = document.querySelector('template');
+	let template = document.querySelector('#main-template');
 	// 카드 내용 채우기
 	Criteria.endPageNo = result.endPageNo;
 	for (let i = 0; i < result.list.length; i++) {
@@ -65,10 +65,37 @@ function createCard(result) {
 		card.querySelector('.card-title').innerText = result.list[i].name;
 		card.querySelector('.card-address strong').innerText += result.list[i].address;
 		card.querySelector('.text-muted').innerText += ' ' + result.list[i].renewalTime;
-		card.querySelector('.card').setAttribute('accId',result.list[i].accId);
+		card.querySelector('.card').setAttribute('id',result.list[i].accId);
 		// 카드 붙이기
 		document.querySelector('main').append(card);
-
+		// 동적 생성된 Card Click 이벤트 생성
+		$('main').on("click","#"+result.list[i].accId,function(e){
+			let clickedCard = e.target;
+			while(!clickedCard.classList.contains('card')){
+				clickedCard = clickedCard.parentElement;	
+			}
+			clickedCard = clickedCard.getAttribute('id');
+				// Card 콘텐츠 눌렀을때. -> 상세페이지 Modal + Ajax 호출
+			if(!e.target.classList.contains('like')){
+				
+			} else if (e.target.classList.contains('like')) {
+				// Card 하트 눌렀을때. -> 위시리스트 테이블 Ajax 호출
+				$.ajax({
+					url: "setWish.do",
+					data: { "accId" : clickedCard },
+					method: "GET",
+					success: function(result){
+						if(result=="success"){
+							e.target.src = "img/like-redheart-35.png";
+						} else if(result=="delete"){
+							e.target.src = "img/like-heart-35.png";
+						}
+					}, error : function(err){
+						console.log(err);
+					}
+				})
+			}
+		});
 	}
 }
 // 4. Ajax - 페이징으로 호출 필요
@@ -103,22 +130,10 @@ window.addEventListener('scroll',() => {
 		// 200 남기고 ajax 호출 필요.
 		getAccList();
 		scrollIsStop=true;
-		// 만약 모든 Card 출력 후  위로올라가는 스크롤이면 ajax 호출안되게 해야됨. 
-		// 더 Append 할 데이터가 남은게 있는지 없는지 확인하여야함.
+		// 만약 모든 Card 출력 후  위로올라가는 스크롤이면 ajax 호출안되게 해야됨. ( 완료 ) 
+		// 더 Append 할 데이터가 남은게 있는지 없는지 확인하여야함. ( 완료 )
 	} else {
 		scrollIsStop=false;
 	}
 },{ passive:true })
 
-// ------------------- Card Click Event -----------------------
-function clickCard(e) {
-	let clickedCard = event.target;
-	while(!clickedCard.classList.contains('card')){
-		clickedCard = clickedCard.parentElement;	
-	}
-	clickedCard = clickedCard.getAttribute('accid');
-	console.log(clickedCard);
-	
-	
-	
-}

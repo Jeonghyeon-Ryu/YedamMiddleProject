@@ -16,10 +16,11 @@ public class WishListController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		WishListService service = WishListService.getInstance();
-		String id = req.getParameter("id");
+		String accId = req.getParameter("accId");
+		String memberId = req.getParameter("memberId");
 		
-		WishList wishList = service.getWishList(Integer.parseInt(id));
+		WishListService service = WishListService.getInstance();
+		WishList wishList = service.getWishList(Integer.parseInt(accId));
 		
 		Gson gson = new GsonBuilder().create();
 		resp.getWriter().print(gson.toJson(wishList));

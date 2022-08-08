@@ -7,8 +7,21 @@ window.addEventListener('load', () => {
 	modal.addEventListener('click', modalClickEvent);
 
 })
-
+// 모든 모달 닫기
+function closeAllModal() {
+	let modals = document.querySelectorAll('.modal');
+	for(modal of modals){
+		if(modal.classList.contains('modal-active')){
+			modal.classList.toggle('modal-active');
+		}
+	}
+	let body = document.querySelector('body');
+	if(body.classList.contains('modal-active-background')){
+		body.classList.toggle('modal-active-background');		
+	}
+}
 function modalOpenAction(e) {
+	closeAllModal();
 	let modal = document.querySelector('#modal');
 	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');
@@ -19,7 +32,6 @@ function modalCloseAction(e) {
 	let modal = e.target.parentElement;
 	while(!modal.classList.contains('modal')){
 		modal= modal.parentElement
-		console.log(modal);
 	}
 	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');

@@ -9,6 +9,21 @@ public class Member {
 	private String identification;
 	private String phone;
 	private Date joinDate;
+	private String kakaoId;
+	private String naverId;
+	
+	public String getNaverId() {
+		return naverId;
+	}
+	public void setNaverId(String naverId) {
+		this.naverId = naverId;
+	}
+	public String getKakaoId() {
+		return kakaoId;
+	}
+	public void setKakaoId(String kakaoId) {
+		this.kakaoId = kakaoId;
+	}
 	public String getId() {
 		return id;
 	}

@@ -1,3 +1,6 @@
+<%@page import="java.math.BigInteger"%>
+<%@page import="java.security.SecureRandom"%>
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,6 +19,17 @@
 #login-sns a{text-decoration: none; color:black;}
 #login-other-btn{font-size:0.8em;}
 </style>
+<%
+    String clientId = "KBVX39Y4TiVNOKxAvsL2";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("http://localhost:8088/MidProject/naverLogin.do", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&client_id=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    session.setAttribute("state", state);
+ %>
 <body>
 <div id="login-box">
 	<div class="modal-box">
@@ -47,23 +61,16 @@
 			</div>
 			<hr>
 			<div id="login-sns">
-				<button type="button" id="kakao-login-bnt" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8081/MidProject/kakaoLogin.do?cmd=callback&response_type=code'" class="btn-kakao">
-				<img src="img/kakao_login_medium_narrow.png">
-			</button><br>
-				<button type="button" id="naver-login-bnt" class="btn-naver">
-					<span> <a href="#"><i class="icon_login_naver"></i> 네이버로 로그인</a>
-					</span>
+				<button type="button" id="kakao-login-bnt" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8088/MidProject/kakaoLogin.do?cmd=callback&response_type=code'" class="btn-kakao">
+					<img src="img/kakao_login_medium_narrow.png">
+				</button>
+				<br>
+				<button type="button" id="naver-login-bnt" onclick="location.href='<%=apiURL %>'" class="btn-naver">
+					<img src="img/naverlogin.png" width="180px">
 				</button>
 			</div>
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-
-	
-<script type="text/javascript">
-	const kakaoUrl = "https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8081/MidProject&response_type=code"
-
-</script>
 </body>
 </html>

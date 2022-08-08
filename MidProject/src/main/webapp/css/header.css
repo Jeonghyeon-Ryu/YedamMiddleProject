@@ -93,7 +93,7 @@ header {
 .search-box-unclicked {
 	background: #dfdfdf;
 }
-input {
+.search-box input {
     cursor: pointer;
     width:100%;
     border: none;
