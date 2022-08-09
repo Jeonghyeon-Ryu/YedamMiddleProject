@@ -519,6 +519,13 @@
 							문의<span>></span></a></li>
 				</ul>
 			</div>
+			<div class="mypage-center" id="customer-center">
+				<h2>사업자등록</h2>
+				<ul>
+					<li><a href="businessJoin.do"><i class="fa-solid fa-user"></i>
+							등록하기<span></span></a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>
