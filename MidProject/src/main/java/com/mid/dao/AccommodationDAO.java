@@ -190,15 +190,15 @@ public class AccommodationDAO extends DAO {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
-						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE a.address like '%"
-						+ city + "%' ORDER BY a.acc_id DESC) ) "
+						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
+						+ city + " ORDER BY a.acc_id DESC) ) "
 						+ "    WHERE seq>=?) WHERE rownum <= 20";
 			} else {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
-						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE a.address like '%"
-						+ city + "%' AND "+ filterQuery +" ORDER BY a.acc_id DESC) ) "
+						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
+						+ city + " AND "+ filterQuery +" ORDER BY a.acc_id DESC) ) "
 						+ "    WHERE seq>=?) WHERE rownum <= 20";
 			}
 			pstmt = conn.prepareStatement(pagingSql);
@@ -238,15 +238,15 @@ public class AccommodationDAO extends DAO {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
-						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE a.address like '%"
-						+ city + "%' AND a.address LIKE '%" + region + "%' ORDER BY a.acc_id DESC) " + "            ) "
+						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
+						+ city + " AND " + region + " ORDER BY a.acc_id DESC) " + "            ) "
 						+ "    WHERE seq>=?) " + "WHERE rownum <= 20";
 			} else {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
-						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE a.address like '%"
-						+ city + "%' AND a.address LIKE '%" + region + "%' AND "+ filterQuery +" ORDER BY a.acc_id DESC) " + "            ) "
+						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
+						+ city + " AND " + region + " AND "+ filterQuery +" ORDER BY a.acc_id DESC) " + "            ) "
 						+ "    WHERE seq>=?) " + "WHERE rownum <= 20";
 			}
 			pstmt = conn.prepareStatement(pagingSql);
