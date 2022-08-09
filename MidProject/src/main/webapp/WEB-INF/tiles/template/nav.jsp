@@ -206,6 +206,13 @@
 							문의<span>></span></a></li>
 				</ul>
 			</div>
+			<div class="mypage-center" id="customer-center">
+				<h2>사업자</h2>
+				<ul>
+					<li><a href="businessJoin.do"><i class="fa-solid fa-circle-question"></i>
+							사업자등록<span>></span></a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>

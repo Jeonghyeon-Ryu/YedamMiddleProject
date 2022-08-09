@@ -13,6 +13,6 @@ public class BusinessJoincontroller implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Utils.forward(req, resp, "/WEB-INF/jsp/business/businessJoin.jsp");
+		Utils.forward(req, resp, "business/businessJoin.tiles");
 	}
 }
