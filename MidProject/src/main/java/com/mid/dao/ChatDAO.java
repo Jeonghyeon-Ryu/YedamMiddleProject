@@ -75,7 +75,7 @@ public class ChatDAO extends DAO {
 		
 		// 대화 저장
 		public void insert(Chat chat) {
-			String sql = "insert into chat values(?,?,?,chat_seq.nextval,?,sysdate)";
+			String sql = "insert into chat(sender,receiver,content,chat_seq,checkemoji,currenttime) values(?,?,?,chat_seq.nextval,?,sysdate)";
 			connect();
 			try {
 				pstmt = conn.prepareStatement(sql);
