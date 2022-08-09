@@ -40,6 +40,7 @@
 	<script src="js/modal.js"></script>
 	<script src="js/locationModal.js"></script>
 	<script src="js/calender.js"></script>
+	<script src="js/memberLogin.js"></script>
 	<script src="js/headcountModal.js"></script>
 	<script src="js/wishList.js"></script>
 	<script src="js/loginModal.js"></script>
