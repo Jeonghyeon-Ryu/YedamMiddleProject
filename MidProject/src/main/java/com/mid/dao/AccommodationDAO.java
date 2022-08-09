@@ -26,7 +26,54 @@ public class AccommodationDAO extends DAO {
 			disconnect();
 		}
 	}
-
+	public boolean update(Accommodation acc) {
+		boolean result = false;
+		try {
+			connect();
+			String sql="UPDATE accommodation SET name=?, address=?, phone=?, img_url=? WHERE acc_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, acc.getName());
+			pstmt.setString(2, acc.getAddress());
+			pstmt.setString(3, acc.getPhone());
+			pstmt.setString(4, acc.getImgUrl());
+			pstmt.setInt(5, acc.getAccId());
+			result = (pstmt.executeUpdate()>0)?true:false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return result;
+	}
+	public List<Accommodation> selectAllForBusiness(int businessId){
+		List<Accommodation> list = new ArrayList<>();
+		try {
+			connect();
+			String sql = "SELECT * FROM accommodation WHERE business_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, businessId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Accommodation vo = new Accommodation();
+				vo.setAccId(rs.getInt("ACC_ID"));
+				vo.setAddress(rs.getString("ADDRESS"));
+				vo.setName(rs.getString("NAME"));
+				vo.setPhone(rs.getString("PHONE"));
+				// vo.setPointX(rs.getDouble("POINT_X"));
+				// vo.setPointY(rs.getDouble("POINT_Y"));
+				vo.setRenewalTime(rs.getDate("RENEWAL_TIME"));
+				vo.setStatus(rs.getInt("STATUS"));
+				// vo.setZipcode(rs.getString("ZIPCODE"));
+				vo.setImgUrl(rs.getString("IMG_URL"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}
 	// 전체 조회
 	public List<Accommodation> selectAll(int pageNum,String filterQuery) {
 		List<Accommodation> list = new ArrayList<>();

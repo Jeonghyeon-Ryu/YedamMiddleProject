@@ -34,7 +34,9 @@ import com.mid.controller.SelectAccListController;
 import com.mid.controller.SelectAccListCountController;
 import com.mid.controller.SendContentController;
 import com.mid.controller.SocialLinkController;
+import com.mid.controller.UpdateAccController;
 import com.mid.controller.UpdateMemberInfoController;
+import com.mid.controller.businessManageFormController;
 import com.mid.controller.getWishController;
 import com.mid.controller.getWishOneController;
 import com.mid.controller.setWishController;
@@ -64,6 +66,8 @@ public class FrontController extends HttpServlet {
 		mappings.put("/setWish.do", new setWishController());	// 위시리스트 추가
 		mappings.put("/getWish.do", new getWishController());	// 위시리스트 보기
 		mappings.put("/getWishOne.do", new getWishOneController());	// 위시리스트 보기
+		mappings.put("/businessManage.do", new businessManageFormController());	// 위시리스트 보기
+		mappings.put("/accUpdate.do", new UpdateAccController());	// 위시리스트 보기
 		
 		// 최유리
 		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼
