@@ -13,7 +13,7 @@ function openContent(id) {
 	document.getElementById("msContentRoom").style.display = 'none'
 	document.getElementById("msReceiv").setAttribute("value", thisId);
 	document.getElementById("msContent").scrollTo(0, document.getElementById("msSendContent").offsetHeight)
-	document.getElementById("receviId").innerText = "수신 : " + id;
+	document.getElementById("receviId").innerText = "수신 s: " + id;
 }
 
 function openReContent() {
