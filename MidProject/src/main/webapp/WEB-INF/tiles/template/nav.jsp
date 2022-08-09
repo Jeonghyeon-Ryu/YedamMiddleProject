@@ -200,7 +200,7 @@
 			<div class="mypage-center" id="customer-center">
 				<h2>고객센터</h2>
 				<ul>
-					<li><a href="#"><i class="fa-solid fa-circle-question"></i>
+					<li><a href="qnaList.do"><i class="fa-solid fa-circle-question"></i>
 							QnA<span>></span></a></li>
 					<li><a href="#"><i class="fa-solid fa-headset"></i> 1:1
 							문의<span>></span></a></li>

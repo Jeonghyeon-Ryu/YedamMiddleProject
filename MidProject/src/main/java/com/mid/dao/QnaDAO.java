@@ -34,14 +34,16 @@ public class QnaDAO extends DAO {
 		return null;
 	}
 
-	// 카테고리별 조회
-	public List<Qna> selectCategory(int categoryId) {
+	// 카테고리 이름별 조회
+	public List<Qna> selectCategory(String categoryNm) {
 		connect();
-		String sql = "select * from Qna where category_id=?";
+		String sql = "select * "
+					+ "from qna join qna_category using (category_id) "
+					+ "where category_name=?";
 		List<Qna> list = new ArrayList<>();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, categoryId);
+			pstmt.setString(1, categoryNm);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Qna vo = new Qna();

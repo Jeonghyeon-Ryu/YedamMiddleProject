@@ -23,7 +23,7 @@ public class QnaService {
 	public List<Qna> selectAll(){
 		return qDAO.selectAll();
 	}
-	public List<Qna> selectCategory(int categoryId){
-		return qDAO.selectCategory(categoryId);
+	public List<Qna> selectCategory(String category){
+		return qDAO.selectCategory(category);
 	}
 }

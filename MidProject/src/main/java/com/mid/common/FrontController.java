@@ -16,7 +16,7 @@ import com.mid.controller.CompDetailController;
 import com.mid.controller.ExTourListController;
 import com.mid.controller.FindInfoController;
 import com.mid.controller.FindInfoFormController;
-import com.mid.controller.GetQnAListController;
+import com.mid.controller.GetQnaListController;
 import com.mid.controller.KakaoLoginController;
 import com.mid.controller.KakaoSignupController;
 import com.mid.controller.KakaoSignupFormController;
@@ -29,6 +29,8 @@ import com.mid.controller.MemberJoinFormController;
 import com.mid.controller.MessageController;
 import com.mid.controller.NaverLoginController;
 import com.mid.controller.NaverSignupFormController;
+import com.mid.controller.QnaInsertController;
+import com.mid.controller.QnaListController;
 import com.mid.controller.SelectAccListController;
 import com.mid.controller.SelectAccListCountController;
 import com.mid.controller.SendContentController;
@@ -74,7 +76,9 @@ public class FrontController extends HttpServlet {
 		mappings.put("/memberInfo.do", new MemberInfoController());	// 상세 정보
 		mappings.put("/updateMemberInfo.do", new UpdateMemberInfoController());	//정보수정
 		mappings.put("/idcheckAjax.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.	
-		mappings.put("/getQnAList.do", new GetQnAListController());	
+		mappings.put("/qnaList.do", new QnaListController());
+		mappings.put("/qnaInsert.do", new QnaInsertController());
+		mappings.put("/getQnaList.do", new GetQnaListController());	
 		
 		// 배희열
 		mappings.put("/message.do", new MessageController());		// 메세지폼

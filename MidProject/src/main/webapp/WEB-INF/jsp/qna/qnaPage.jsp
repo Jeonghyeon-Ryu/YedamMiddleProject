@@ -8,17 +8,11 @@
 <title>자주 묻는 질문 qna</title>
 <style>
 .qna-box .qna-content{
-	height:100%;
-	position:relative;
-	max-width:768px;
-	margin:auto;
-	padding-top:48px;
-	background-color:lightgray;
-}
+	position:relative;height:100%;max-width:768px;
+	margin:auto;padding-top:48px;background-color:lightgray;}
 .qna-box .qna-category{
-	display:inline;
-	background-color: white;
-}
+	display:inline;width:30%;background-color: white;}
+.qna-box #qna-list-items p{width:100%;border-bottom:1px solid lightgray; }
 </style>
 </head>
 <body>
@@ -41,40 +35,40 @@
 			<div class="qna-category" onclick="showQnAList()">회원/개인정보</div>
 			<div class="qna-category" onclick="showQnAList()">믿고쓰는 여기서자바</div>
 		</div>
-		<div class="qna-list"></div>
+		<div class="qna-list">
+		</div>
 	</div>
-	<div class="qna-list-items">
-		<c:forEach var="vo" items="${list}">
-				<tr>
-					<td><a href="boardDetail.do?id=${vo.seq}">${vo.seq}</a></td>
-					<td>${vo.title}</td>
-					<td>${vo.writer}</td>
-					<td>${vo.date}</td>
-					<td>${vo.visitCnt}</td>
-				</tr>
-		</c:forEach>
-	</div>
+	<div id="qna-list-items"></div>
 </div>
 <script>
-
+function qnaList(result){
+	let listBody = document.getElementById('qna-list-items');
+	
+	for (let i=0; i<result.length ; i++){
+		let p = document.createElement('p');
+		p.innerText = result[i].title;
+		listBody.append(p);
+	}
+}
 function showQnAList(e){
 	let click = event.target;
   	let clickNm = click.innerText;
-	console.log(clickNm);
 	
-	let qnaAjx = new XMLHttpRequest(); //send
-	qnaAjx.open('post', 'GetQnAListController.do');
-	qnaAjx.setRequestHeader('Content-type','application/x-www-form-urlencoded');
-	qnaAjx.send('dategoryNm=' + clickNm);
-	qnaAjx.onload = function() {
-
-        delBtn.parentElement.parentElement.remove();
-        alert("삭제되었습니다");
-
-     }
+	fetch('getQnaList.do',{
+		method:'post',
+		headers:{'Content-type':'application/x-www-form-urlencoded'},
+		body:'dategoryNm=' + clickNm
+	})
+	.then(result => result.json())	//json형태로 받아옴
+	.then(qnaList)					//결과를 매개변수로 함수호출
+	.catch(err=>console.log(err))
+}
+function qnaDetail(e){
+	console.log(this);
+	let title = this.innerText;
+	
 
 }
-showQnAList();
 </script>
 </body>
 </html>
