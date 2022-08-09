@@ -7,12 +7,18 @@
 <meta charset="UTF-8">
 <title>자주 묻는 질문 qna</title>
 <style>
+.qna-box{
+padding: 20px;
+width:90%; margin:0 auto;}
 .qna-box .qna-content{
-	position:relative;height:100%;max-width:768px;
-	margin:auto;padding-top:48px;background-color:lightgray;}
+	position:relative;height:100%;max-width:768px;text-align:center;
+	margin:auto;}
 .qna-box .qna-category{
-	display:inline;width:30%;background-color: white;}
-.qna-box #qna-list-items p{width:100%;border-bottom:1px solid lightgray; }
+	display:inline-block;width:30%;background-color: white; text-align:left;
+	padding:5px; border-radius:5px; margin:3px; background: rgb(236, 236, 236);}
+.qna-box .qna-category:hover{
+	font-weight: bold; background: lightgray;}
+.qna-box #qna-list-items p{width:90%;border-bottom:1px solid lightgray;}
 </style>
 </head>
 <body>
@@ -43,7 +49,7 @@
 <script>
 function qnaList(result){
 	let listBody = document.getElementById('qna-list-items');
-	
+	listBody.childNodes.remove;//?왜계속 추가되는거야ㅠ
 	for (let i=0; i<result.length ; i++){
 		let p = document.createElement('p');
 		p.innerText = result[i].title;
@@ -63,11 +69,10 @@ function showQnAList(e){
 	.then(qnaList)					//결과를 매개변수로 함수호출
 	.catch(err=>console.log(err))
 }
+showQnAList;
 function qnaDetail(e){
 	console.log(this);
 	let title = this.innerText;
-	
-
 }
 </script>
 </body>
