@@ -121,9 +121,9 @@ public class AccommodationDAO extends DAO {
 			connect();
 			String sql = "";
 			if(resultQuery.equals("")) {
-				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE a.address LIKE '%" + city + "%'";
+				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city;
 			} else {
-				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE a.address LIKE '%" + city + "%' AND "+ resultQuery;
+				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND "+ resultQuery;
 			}
 			System.out.println("resultQuery : " + resultQuery);
 			System.out.println("sql : " + sql);

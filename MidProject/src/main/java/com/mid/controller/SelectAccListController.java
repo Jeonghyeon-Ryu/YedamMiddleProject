@@ -88,13 +88,13 @@ public class SelectAccListController implements Controller {
 		
 		if(city.equals("") && region.equals("")) {
 			resultData.setEndPageNo(service.selectCount()/20);
-			resultData.setList(service.select(Integer.parseInt(pageNum), filterQuery));
+			resultData.setList(service.select(Integer.parseInt(pageNum), resultQuery));
 		} else if(!city.equals("") && region.equals("")) {
 			resultData.setEndPageNo(service.selectCount(city)/20);
-			resultData.setList(service.select(Integer.parseInt(pageNum),city, filterQuery));
+			resultData.setList(service.select(Integer.parseInt(pageNum),city, resultQuery));
 		} else {
 			resultData.setEndPageNo(service.selectCount(city,region)/20);
-			resultData.setList(service.select(Integer.parseInt(pageNum),city,region, filterQuery));
+			resultData.setList(service.select(Integer.parseInt(pageNum),city,region, resultQuery));
 		}
 		
 		Gson gson = new GsonBuilder().create();
