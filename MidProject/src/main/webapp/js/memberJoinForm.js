@@ -144,6 +144,6 @@ function frmChk() {
 		document.getElementById("idMsg").style.color = 'red';
 	}
 	if (pwChk() && pw2Chk() && phoneChk() && identiChk() && idchekbnt.clicked) {
-		document.getElementById('mInfo-frm').submit();
+		document.getElementById('agree-frm').submit();
 	}
 }

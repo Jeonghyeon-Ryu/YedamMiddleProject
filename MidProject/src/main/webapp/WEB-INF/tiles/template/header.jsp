@@ -411,7 +411,7 @@
 						<img src="img/close-20.png">
 					</div>
 					<div class="serparater"><p>로그인페이지 입니다.</p>
-					<c:if test="${!empty error }"><p style="color:red; font-weight:bold;">${error }</p></c:if></div>
+						<p style="color:red; font-weight:bold; display:none;" id="login-error"></p></div>
 					<form action="login.do" class="login">
 						<div class="form-group">
 							<input type="text" placeholder="아이디" name="memberId" class="form-control" autofocus>
@@ -420,7 +420,7 @@
 							<input type="password" placeholder="비밀번호" name="memberPw" class="form-control">
 						</div>
 						<div class="form-group">
-							<button type="submit" class="full-btn">로그인</button>
+							<button type="submit" id="btn_login" class="full-btn">로그인</button>
 						</div>
 					</form>
 					<div class="serparater">아이디/비밀번호가 없거나 잊어버리셨나요?</div>
