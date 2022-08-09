@@ -14,7 +14,9 @@ public class RoomService {
 		}
 		return instance;
 	}
-
+	public boolean update(Room room) {
+		return new RoomDAO().update(room);
+	}
 	// 객실 전체 가져오기
 	public List<Room> getRoomAll() {
 		return new RoomDAO().selectAll();
@@ -25,5 +27,8 @@ public class RoomService {
 	}
 	public List<Room> selectAllForBusiness(int accId) {
 		return new RoomDAO().selectAllForBusiness(accId);
+	}
+	public boolean deleteForBusiness(int roomId) {
+		return new RoomDAO().deleteForBusiness(roomId);
 	}
 }

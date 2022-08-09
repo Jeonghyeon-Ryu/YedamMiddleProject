@@ -10,6 +10,16 @@ public class Room {
 	private int isReservation;
 	private Date reservationTime;
 	private String info;
+	private int status;
+
+	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	public int getRoomId() {
 		return roomId;

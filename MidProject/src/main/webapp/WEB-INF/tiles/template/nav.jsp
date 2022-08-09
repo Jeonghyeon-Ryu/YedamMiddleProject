@@ -218,3 +218,5 @@
 		</div>
 	</div>
 </div>
+
+<c:if test="${empty id }"><script src="js/loginModal.js"></script></c:if>

@@ -13,6 +13,8 @@ import com.mid.controller.AddContentController;
 import com.mid.controller.AjaxMemberIdCheck;
 import com.mid.controller.BusinessJoincontroller;
 import com.mid.controller.CompDetailController;
+import com.mid.controller.DeleteAccController;
+import com.mid.controller.DeleteRoomController;
 import com.mid.controller.ExTourListController;
 import com.mid.controller.FindInfoController;
 import com.mid.controller.FindInfoFormController;
@@ -36,6 +38,7 @@ import com.mid.controller.SendContentController;
 import com.mid.controller.SocialLinkController;
 import com.mid.controller.UpdateAccController;
 import com.mid.controller.UpdateMemberInfoController;
+import com.mid.controller.UpdateRoomController;
 import com.mid.controller.businessManageFormController;
 import com.mid.controller.getWishController;
 import com.mid.controller.getWishOneController;
@@ -67,7 +70,11 @@ public class FrontController extends HttpServlet {
 		mappings.put("/getWish.do", new getWishController());	// 위시리스트 보기
 		mappings.put("/getWishOne.do", new getWishOneController());	// 위시리스트 보기
 		mappings.put("/businessManage.do", new businessManageFormController());	// 위시리스트 보기
-		mappings.put("/accUpdate.do", new UpdateAccController());	// 위시리스트 보기
+		mappings.put("/accUpdate.do", new UpdateAccController());	// Business 페이지 Acc update
+		mappings.put("/roomUpdate.do", new UpdateRoomController());	// Business 페이지 Room update
+		mappings.put("/accDelete.do", new DeleteAccController());	// Business 페이지 Acc delete
+		mappings.put("/roomDelete.do", new DeleteRoomController());	// Business 페이지 Room delete
+		
 		
 		// 최유리
 		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼
