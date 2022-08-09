@@ -453,7 +453,28 @@
 			</div>
 		</div>
 		<!-- Modal Content -->
-		<div class="modal-content"></div>
+		<div class="modal-content">
+			<div id="exTourList-content">
+				예약일자
+				<hr>
+				<div class="exTourList-content-list" style="cursor: pointer">
+	
+					<div id="ex-main">
+						<a href="https://file.mk.co.kr/meet/neds/2022/03/image_readtop_2022_252256_16476552624979285.jpg"><img class="exTourList-placeimg"
+							src="https://contents.hiltonhotels.jp/ko/h/selhi/hotel_stay_20191209104854_main_sp.jpg"></a>
+					</div>
+						<div id="ex-list">		<div id="ex-comp-title">업체</div>
+							<div id="ex-room-name">방이름</div>
+							<div id="ex-checkin">체크인</div>
+							<div id="ex-checkout">체크아웃</div>
+							<div id="ex-name">이용자 이름</div>
+							<div id="ex-phone">전화번호</div>
+							<div id="ex-price">결제금액</div>
+						</div>
+				</div>
+			</div>
+				<hr>
+		</div>
 	</div>
 </div>
 <div id="mypage-modal" class="modal modal-overlay" role="dialog">

@@ -9,5 +9,38 @@ function reservationModalOpenAction(e) {
 	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');
 	body.classList.toggle('modal-active-background');
+	
+	// ajax.
+	fetch('exTourList.do?id=qwe@123')
+   .then(result => result.json())
+   .then(result => {
+      console.log(result)
+     
+      let company = document.getElementById('ex-comp-title');
+      let roomName = document.getElementById('ex-room-name')
+      let checkin = document.getElementById('ex-checkin')
+      let ckeckout = document.getElementById('ex-checkout')
+      let memberName = document.getElementById('ex-name')
+      let phone = document.getElementById('ex-phone')
+      let price = document.getElementById('ex-price')
+      let div = document.createElement('div');
+      for(let itm of result) {
+      company.innerText= itm.name;
+      roomName.innerText=itm.roomName;
+      checkin.innerText = itm.reservationTime;
+      ckeckout.innerText = itm.reservationDay;
+      memberName.innerText = itm.memberName;
+      phone.innerText = itm.phone;
+      price.innerText = itm.paymentCost;
+      }
+   })
+   .catch(err => console.log(err))
+
+	
+	
+}
+
+function reservList(result) {
+	
 }
 

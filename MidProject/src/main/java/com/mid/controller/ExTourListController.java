@@ -17,6 +17,8 @@ public class ExTourListController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		resp.setContentType("text/json;charset=utf-8");
 		ExTourListService service = ExTourListService.getInstance();
 		String id = req.getParameter("id");
 		
