@@ -31,33 +31,56 @@ public class SelectAccListController implements Controller {
 		String f7 = req.getParameter("f7");
 		String f8 = req.getParameter("f8");
 		String f9 = req.getParameter("f9");
+		String minPrice = req.getParameter("minPrice");
+		String maxPrice = req.getParameter("maxPrice");
+		
+		if(city!=null) {
+			city = "a.address LIKE '%"+ city + "%'";
+		} else {
+			city = "";
+		}
+		if(region!=null) {
+			region = "a.address LIKE '%" + region + "%'";
+		} else {
+			region ="";
+		}
+		
 		String filterQuery = "";
-		if(f1!=null) {
+		if(f1!=null) 
 			filterQuery += "r.info like '%"+ f1 +"%'";
-		}
-		if(f2!=null) {
+		if(f2!=null) 
 			filterQuery += " AND r.info like '%"+ f2 +"%'";
-		}
-		if(f3!=null) {
+		if(f3!=null) 
 			filterQuery += " AND r.info like '%"+ f3 +"%'";
-		}
-		if(f4!=null) {
+		if(f4!=null) 
 			filterQuery += " AND r.info like '%"+ f4 +"%'";
-		}
-		if(f5!=null) {
+		if(f5!=null) 
 			filterQuery += " AND r.info like '%"+ f5 +"%'";
-		}
-		if(f6!=null) {
+		if(f6!=null) 
 			filterQuery += " AND r.info like '%"+ f6 +"%'";
-		}
-		if(f7!=null) {
+		if(f7!=null)
 			filterQuery += " AND r.info like '%"+ f7 +"%'";
-		}
-		if(f8!=null) {
+		if(f8!=null)
 			filterQuery += " AND r.info like '%"+ f8 +"%'";
-		}
-		if(f9!=null) {
+		if(f9!=null)
 			filterQuery += " AND r.info like '%"+ f9 +"%'";
+		
+		String priceQuery = "";
+		if(minPrice!=null && maxPrice!=null) {
+			priceQuery += "to_number(replace(substr(r.price,1,instr(r.price,'원')-1),',','')) >= "+minPrice+" AND to_number(replace(substr(r.price,1,instr(r.price,'원')-1),',',''))<="+maxPrice;
+		} else if(minPrice!=null && maxPrice==null) {
+			priceQuery += "to_number(replace(substr(r.price,1,instr(r.price,'원')-1),',','')) >= "+minPrice;
+		} else if(minPrice==null && maxPrice!=null) {
+			priceQuery += "to_number(replace(substr(r.price,1,instr(r.price,'원')-1),',','')) <= "+maxPrice;
+		}
+		
+		String resultQuery = "";		
+		if(!filterQuery.equals("") && !priceQuery.equals("")) {
+			resultQuery = filterQuery + " AND " + priceQuery;
+		} else if (!filterQuery.equals("") && priceQuery.equals("")) {
+			resultQuery = filterQuery;
+		} else if (filterQuery.equals("") && !priceQuery.equals("")) {
+			resultQuery = priceQuery;
 		}
 		
 		AccommodationService service = AccommodationService.getInstance();

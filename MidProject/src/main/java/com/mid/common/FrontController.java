@@ -15,12 +15,9 @@ import com.mid.controller.CompDetailController;
 import com.mid.controller.ExTourListController;
 import com.mid.controller.FindInfoController;
 import com.mid.controller.FindInfoFormController;
-import com.mid.controller.setWishController;
 import com.mid.controller.KakaoLoginController;
 import com.mid.controller.KakaoSignupController;
 import com.mid.controller.KakaoSignupFormController;
-import com.mid.controller.SocialLinkController;
-import com.mid.controller.UpdateMemberInfoController;
 import com.mid.controller.LoginFormController;
 import com.mid.controller.LoginOutController;
 import com.mid.controller.MainController;
@@ -30,15 +27,17 @@ import com.mid.controller.MemberJoinController;
 import com.mid.controller.MemberJoinFormController;
 import com.mid.controller.MessageController;
 import com.mid.controller.MypageController;
+import com.mid.controller.NaverLoginController;
 import com.mid.controller.NaverSignupFormController;
 import com.mid.controller.ReservationPageController;
 import com.mid.controller.SelectAccListController;
 import com.mid.controller.SelectAccListCountController;
 import com.mid.controller.SendContentController;
-import com.mid.controller.WishListController;
+import com.mid.controller.SocialLinkController;
+import com.mid.controller.UpdateMemberInfoController;
 import com.mid.controller.getWishController;
 import com.mid.controller.getWishOneController;
-import com.mid.controller.NaverLoginController;
+import com.mid.controller.setWishController;
 
 public class FrontController extends HttpServlet {
 
@@ -86,7 +85,6 @@ public class FrontController extends HttpServlet {
 		
 		// 엄정웅
 		mappings.put("/compDetail.do", new CompDetailController());	// 상세페이지 출력 
-		mappings.put("/wishList.do", new WishListController());		// 위시리스트
 		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
 		mappings.put("/reservationPage.do", new ReservationPageController());	// 숙소 리스트 출력
 
