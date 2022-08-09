@@ -5,14 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보입력</title>
-<link href="${pageContext.request.contextPath}/css/modal.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/memberAgreement.css" rel="stylesheet">
 </head>
 <style>
-#minfo-box {
-	max-width: 400px;
-	margin: 0 auto;
-}
-
 .mInfo-input {
 	border-bottom: 1px solid lightgray;
 	padding: 10px;
@@ -43,19 +38,17 @@
 }
 </style>
 <body>
-	<div id="minfo-box">
-		<div class="modal-box">
-			<div class="modal-title">
+	<div class="agreement-box">
+		<div class="mInfo-title">
 				<h4>회원가입</h4>
 			</div>
 			<div>
-				<form id="mInfo-frm" name="mInfo-frm" action="memberJoin.do"
+				<form id="agree-frm" name="mInfo-frm" action="memberJoin.do"
 					method="post">
 					<div class="mInfo-input">
 						<label for="memberId">아이디</label> <input type="text" id="memberId"
 							name="memberId">&nbsp;
-						<button type="button" id="idCheck" name="idCheck"
-							onclick="javascript:IdCheck();">중복체크</button>
+						<button type="button" id="idCheck" name="idCheck" onclick="javascript:IdCheck();">중복체크</button>
 						<p style="display: none;" id="idMsg" class="info-error"></p>
 					</div>
 					<div class="mInfo-input">
@@ -101,7 +94,6 @@
 				</form>
 			</div>
 		</div>
-	</div>
 	<script src="${pageContext.request.contextPath}/js/memberJoinForm.js"></script>
 </body>
 </html>
