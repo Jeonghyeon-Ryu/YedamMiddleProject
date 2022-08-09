@@ -10,7 +10,7 @@ public class ExTourListDAO extends DAO {
 		System.out.println(id);
 		List<ExTourList> list = new ArrayList<>();
 		connect();
-		String sql = "SELECT a.name, rm.name, rs.reservation_time, rs.reservation_day, rs.payment_date, m.name, m.phone, rs.payment_cost, a.img_url FROM accommodation a, room rm, reservation rs, member m WHERE a.acc_id = rm.acc_id AND rm.room_id = rs.room_id AND rs.member_id = m.id AND m.id= ? ORDER BY 3 DESC";
+		String sql = "SELECT a.name, rm.name, rs.reservation_time, rs.reservation_day, rs.payment_date, m.name, m.phone, rm.price, a.img_url,m.id, a.address FROM accommodation a, room rm, reservation rs, member m WHERE a.acc_id = rm.acc_id AND rm.room_id = rs.room_id AND rs.member_id = m.id AND m.id= ? ORDER BY 3 DESC";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -24,9 +24,10 @@ public class ExTourListDAO extends DAO {
 				vo.setPaymentDate(rs.getDate(5));
 				vo.setMemberName(rs.getString(6));
 				vo.setPhone(rs.getString(7));
-				vo.setPaymentCost(rs.getInt(8));
+				vo.setPrice(rs.getString(8));
 				vo.setImgUrl(rs.getString(9));
-				
+				vo.setId(rs.getString(10));
+				vo.setAddress(rs.getString(11));
 				list.add(vo);
 			}
 		} catch (Exception e) {

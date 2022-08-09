@@ -1,6 +1,7 @@
 package com.mid.common;
 
 import java.io.IOException;
+
 import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mid.controller.AddContentController;
 import com.mid.controller.AjaxMemberIdCheck;
-import com.mid.controller.BusinessJoincontroller;
 import com.mid.controller.CompDetailController;
 import com.mid.controller.ExTourListController;
 import com.mid.controller.FindInfoController;
@@ -34,9 +34,7 @@ import com.mid.controller.SelectAccListController;
 import com.mid.controller.SelectAccListCountController;
 import com.mid.controller.SendContentController;
 import com.mid.controller.SocialLinkController;
-import com.mid.controller.UpdateAccController;
 import com.mid.controller.UpdateMemberInfoController;
-import com.mid.controller.businessManageFormController;
 import com.mid.controller.getWishController;
 import com.mid.controller.getWishOneController;
 import com.mid.controller.setWishController;
@@ -66,8 +64,6 @@ public class FrontController extends HttpServlet {
 		mappings.put("/setWish.do", new setWishController());	// 위시리스트 추가
 		mappings.put("/getWish.do", new getWishController());	// 위시리스트 보기
 		mappings.put("/getWishOne.do", new getWishOneController());	// 위시리스트 보기
-		mappings.put("/businessManage.do", new businessManageFormController());	// 위시리스트 보기
-		mappings.put("/accUpdate.do", new UpdateAccController());	// 위시리스트 보기
 		
 		// 최유리
 		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼
@@ -86,11 +82,12 @@ public class FrontController extends HttpServlet {
 		mappings.put("/message.do", new MessageController());		// 메세지폼
 		mappings.put("/sendContent.do", new SendContentController()); //메세지 전송
 		mappings.put("/addContent.do", new AddContentController());	// 숙소 리스트 출력
-		mappings.put("/businessJoin.do", new BusinessJoincontroller()); //사업자 가입
-
+		
 		// 엄정웅
 		mappings.put("/compDetail.do", new CompDetailController());	// 상세페이지 출력 
-		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
+		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 예약 리스트 출력
+		mappings.put("/reservationPage.do", new ReservationPageController());	// 예약페이지 출력
+		
 	}
 
 	@Override
@@ -105,6 +102,5 @@ public class FrontController extends HttpServlet {
 
 		Controller subControl = mappings.get(path);
 		subControl.execute(req, resp);
-
 	}
 }

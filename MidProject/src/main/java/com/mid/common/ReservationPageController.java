@@ -1,4 +1,4 @@
-package com.mid.controller;
+package com.mid.common;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +18,7 @@ import com.mid.vo.Member;
 import com.mid.vo.Review;
 import com.mid.vo.Room;
 
-public class CompDetailController implements Controller {
+public class ReservationPageController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,13 +28,12 @@ public class CompDetailController implements Controller {
 
 		AccommodationService acService = AccommodationService.getInstance();
 		RoomService rmService = RoomService.getInstance();
-		ReviewService rvService = ReviewService.getInstance();
 		MemberService mbService = MemberService.getInstance();
-		
-		
+
 		Accommodation acInfo = acService.getCompDetail(Integer.parseInt(accId));
+		System.out.println(acInfo);
+		System.out.println(Integer.parseInt(accId));
 		Room rmInfo = rmService.getRoomOne(Integer.parseInt(accId));
-		List<Review> rvInfo =  rvService.getReviewAllAcc(Integer.parseInt(accId));
 		Member mbInfo = mbService.getMember(id);
 
 		req.setAttribute("accId", acInfo.getAccId());
@@ -42,20 +41,19 @@ public class CompDetailController implements Controller {
 		req.setAttribute("accAddress", acInfo.getAddress());
 		req.setAttribute("accPhone", acInfo.getPhone().substring(4, acInfo.getPhone().length()));
 		req.setAttribute("imgUrl", acInfo.getImgUrl());
-		if (rvInfo != null) {
-			req.setAttribute("rvInfo", rvInfo);
-			
-		}
 		if (rmInfo != null) {
 			req.setAttribute("roomId", rmInfo.getRoomId());
 			req.setAttribute("roomName", rmInfo.getName());
 			req.setAttribute("info", rmInfo.getInfo());
 			req.setAttribute("isReservation", rmInfo.getIsReservation());
 			req.setAttribute("price", rmInfo.getPrice());
-			req.setAttribute("reservationTime", rmInfo.getReservationTime());
-			req.setAttribute("price", rmInfo.getPrice());
+			req.setAttribute("checkIn", rmInfo.getReservationTime());
+			req.setAttribute("checkOut", rmInfo.getReservationDay());
 		}
-		Utils.forward(req, resp, "eju/companyDetail.tiles");
-	}
+		req.setAttribute("memberName", mbInfo.getName());
+		req.setAttribute("phone", mbInfo.getPhone());
 
+		Utils.forward(req, resp, "eju/reservationPage.tiles");
+
+	}
 }

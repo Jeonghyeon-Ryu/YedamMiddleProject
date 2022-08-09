@@ -10,8 +10,36 @@ public class ExTourList {
 	private Date paymentDate;
 	private String memberName;
 	private String phone;
-	private int paymentCost;
 	private String imgUrl;
+	private String id;
+	private String address;
+	private String price;
+	
+	
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getImgUrl() {
 		return imgUrl;
@@ -37,13 +65,6 @@ public class ExTourList {
 		this.phone = phone;
 	}
 
-	public int getPaymentCost() {
-		return paymentCost;
-	}
-
-	public void setPaymentCost(int paymentCost) {
-		this.paymentCost = paymentCost;
-	}
 
 	public Date getPaymentDate() {
 		return paymentDate;

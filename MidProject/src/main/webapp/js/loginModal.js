@@ -3,9 +3,6 @@ window.addEventListener('load', () => {
 	document.querySelector('#login-modal .modal-close-button').addEventListener('click',modalCloseAction);
 })
 
-
-
-
 function loginModalOpenAction(e) {
 	closeAllModal();
 	let modal = document.querySelector('#login-modal');
@@ -13,5 +10,4 @@ function loginModalOpenAction(e) {
 	modal.classList.toggle('modal-active');
 	body.classList.toggle('modal-active-background');
 }
-
 

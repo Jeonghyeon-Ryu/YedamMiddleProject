@@ -11,15 +11,7 @@ public class Member {
 	private Date joinDate;
 	private String kakaoId;
 	private String naverId;
-	private int businessMan;
 	
-	
-	public int getBusinessMan() {
-		return businessMan;
-	}
-	public void setBusinessMan(int businessMan) {
-		this.businessMan = businessMan;
-	}
 	public String getNaverId() {
 		return naverId;
 	}

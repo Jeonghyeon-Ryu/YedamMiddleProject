@@ -9,10 +9,6 @@ window.addEventListener('load', () => {
 	let max = document.querySelector('#max-price');
 	min.addEventListener('change', changeMinPrice);
 	max.addEventListener('change', changeMaxPrice);
-	let priceFilterConfirmButton = document.querySelector('#modal button[type="button"]');
-	priceFilterConfirmButton.addEventListener('click', clickPriceFilterConfirmButton)
-	let priceFilterResetButton = document.querySelector('#modal button[type="reset"]');
-	priceFilterResetButton.addEventListener('click',clickPriceFilterModalReset);
 })
 // 모든 모달 닫기
 function closeAllModal() {
@@ -91,28 +87,4 @@ function changePriceCountResult() {
 		document.querySelector('#modal button[type="button"]>span').innerHTML=result;
 	})
 	.catch(err => console.log(err));
-}
-
-function clickPriceFilterConfirmButton() {
-	let modal = event.target.parentElement;
-	while (!modal.classList.contains('modal-active')) {
-		modal = modal.parentElement;
-	}
-	modal.classList.toggle('modal-active');
-	let body = document.querySelector('body');	// 메인 overflow:hidden (스크롤방지)
-	body.classList.toggle('modal-active-background');
-	
-	
-	// 조회할 내용이 있으면 다시 조회 필요. | 없으면 그냥 닫힘.
-	if(document.querySelector('#modal button[type="button"]>span').innerHTML>0){
-		clearAccList();
-	}
-}
-
-// Reset Button Event 
-function clickPriceFilterModalReset() {
-	for (x of document.querySelectorAll('#modal input[type="number"]')) {
-		x.value = "";
-	}
-	changePriceCountResult();
 }
