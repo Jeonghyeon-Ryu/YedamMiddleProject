@@ -27,14 +27,64 @@ public class AccommodationDAO extends DAO {
 		}
 	}
 
+	public boolean update(Accommodation acc) {
+		boolean result = false;
+		try {
+			connect();
+			String sql = "UPDATE accommodation SET name=?, address=?, phone=?, img_url=? WHERE acc_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, acc.getName());
+			pstmt.setString(2, acc.getAddress());
+			pstmt.setString(3, acc.getPhone());
+			pstmt.setString(4, acc.getImgUrl());
+			pstmt.setInt(5, acc.getAccId());
+			result = (pstmt.executeUpdate() > 0) ? true : false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return result;
+	}
+	
+	public List<Accommodation> selectAllForBusiness(int businessId){
+		List<Accommodation> list = new ArrayList<>();
+		try {
+			connect();
+			String sql = "SELECT * FROM accommodation WHERE business_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, businessId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Accommodation vo = new Accommodation();
+				vo.setAccId(rs.getInt("ACC_ID"));
+				vo.setAddress(rs.getString("ADDRESS"));
+				vo.setName(rs.getString("NAME"));
+				vo.setPhone(rs.getString("PHONE"));
+				// vo.setPointX(rs.getDouble("POINT_X"));
+				// vo.setPointY(rs.getDouble("POINT_Y"));
+				vo.setRenewalTime(rs.getDate("RENEWAL_TIME"));
+				vo.setStatus(rs.getInt("STATUS"));
+				// vo.setZipcode(rs.getString("ZIPCODE"));
+				vo.setImgUrl(rs.getString("IMG_URL"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}
+
 	// 전체 조회
-	public List<Accommodation> selectAll(int pageNum,String filterQuery) {
+	public List<Accommodation> selectAll(int pageNum, String filterQuery) {
 		List<Accommodation> list = new ArrayList<>();
 		try {
 			connect();
 			String sql = "SELECT * FROM accommodation ORDER BY 1";
-			String pagingSql="";
-			if(filterQuery.equals("")) {
+			String pagingSql = "";
+			if (filterQuery.equals("")) {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url "
 						+ "        FROM (select rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url "
@@ -45,8 +95,7 @@ public class AccommodationDAO extends DAO {
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
-						+ filterQuery +" ORDER BY a.acc_id DESC) ) "
-						+ "    WHERE seq>=?) WHERE rownum <= 20";
+						+ filterQuery + " ORDER BY a.acc_id DESC) ) " + "    WHERE seq>=?) WHERE rownum <= 20";
 			}
 			pstmt = conn.prepareStatement(pagingSql);
 			pstmt.setInt(1, 1 + pageNum * 20);
@@ -80,7 +129,7 @@ public class AccommodationDAO extends DAO {
 			connect();
 			String sql = "SELECT count(*) FROM accommodation";
 			pstmt = conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				countResult = rs.getInt(1);
 			}
@@ -91,12 +140,13 @@ public class AccommodationDAO extends DAO {
 		}
 		return countResult;
 	}
+
 	public int selectCount(String resultQuery) {
 		int countResult = 0;
 		try {
 			connect();
-			String sql ="";
-			if(resultQuery.equals("")) {
+			String sql = "";
+			if (resultQuery.equals("")) {
 				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id";
 			} else {
 				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + resultQuery;
@@ -104,7 +154,7 @@ public class AccommodationDAO extends DAO {
 			System.out.println("resultQuery : " + resultQuery);
 			System.out.println("sql : " + sql);
 			pstmt = conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				countResult = rs.getInt(1);
 			}
@@ -115,20 +165,22 @@ public class AccommodationDAO extends DAO {
 		}
 		return countResult;
 	}
+
 	public int selectCount(String city, String resultQuery) {
 		int countResult = 0;
 		try {
 			connect();
 			String sql = "";
-			if(resultQuery.equals("")) {
+			if (resultQuery.equals("")) {
 				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city;
 			} else {
-				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND "+ resultQuery;
+				sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND "
+						+ resultQuery;
 			}
 			System.out.println("resultQuery : " + resultQuery);
 			System.out.println("sql : " + sql);
 			pstmt = conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				countResult = rs.getInt(1);
 			}
@@ -145,29 +197,32 @@ public class AccommodationDAO extends DAO {
 		try {
 			connect();
 			String sql = "";
-			if(city.equals("")) {
-				if(resultQuery.equals("")) {
+			if (city.equals("")) {
+				if (resultQuery.equals("")) {
 					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id";
 				} else {
 					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + resultQuery;
 				}
 			} else if (!city.equals("") && region.equals("")) {
-				if(resultQuery.equals("")) {
+				if (resultQuery.equals("")) {
 					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city;
 				} else {
-					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND "+ resultQuery;
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city
+							+ " AND " + resultQuery;
 				}
 			} else if (!city.equals("") && !region.equals("")) {
-				if(resultQuery.equals("")) {
-					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND " + region;
+				if (resultQuery.equals("")) {
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city
+							+ " AND " + region;
 				} else {
-					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND " + region + " AND "+ resultQuery;
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city
+							+ " AND " + region + " AND " + resultQuery;
 				}
 			}
 			System.out.println("resultQuery : " + resultQuery);
 			System.out.println("sql : " + sql);
 			pstmt = conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				countResult = rs.getInt(1);
 			}
@@ -185,25 +240,24 @@ public class AccommodationDAO extends DAO {
 		try {
 			connect();
 			String sql = "SELECT * FROM accommodation WHERE address LIKE '%" + city + "%'";
-			String pagingSql="";
-			if(filterQuery.equals("")) {
+			String pagingSql = "";
+			if (filterQuery.equals("")) {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
-						+ city + " ORDER BY a.acc_id DESC) ) "
-						+ "    WHERE seq>=?) WHERE rownum <= 20";
+						+ city + " ORDER BY a.acc_id DESC) ) " + "    WHERE seq>=?) WHERE rownum <= 20";
 			} else {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
-						+ city + " AND "+ filterQuery +" ORDER BY a.acc_id DESC) ) "
+						+ city + " AND " + filterQuery + " ORDER BY a.acc_id DESC) ) "
 						+ "    WHERE seq>=?) WHERE rownum <= 20";
 			}
 			pstmt = conn.prepareStatement(pagingSql);
 			pstmt.setInt(1, 1 + pageNum * 20);
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Accommodation vo = new Accommodation();
 				vo.setAccId(rs.getInt("ACC_ID"));
@@ -234,7 +288,7 @@ public class AccommodationDAO extends DAO {
 			String sql = "SELECT * FROM accommodation WHERE address LIKE '%" + city + "%' AND address LIKE '%" + region
 					+ "%'";
 			String pagingSql = "";
-			if(filterQuery.equals("")) {
+			if (filterQuery.equals("")) {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
@@ -246,12 +300,12 @@ public class AccommodationDAO extends DAO {
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
-						+ city + " AND " + region + " AND "+ filterQuery +" ORDER BY a.acc_id DESC) " + "            ) "
-						+ "    WHERE seq>=?) " + "WHERE rownum <= 20";
+						+ city + " AND " + region + " AND " + filterQuery + " ORDER BY a.acc_id DESC) "
+						+ "            ) " + "    WHERE seq>=?) " + "WHERE rownum <= 20";
 			}
 			pstmt = conn.prepareStatement(pagingSql);
 			pstmt.setInt(1, 1 + pageNum * 20);
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Accommodation vo = new Accommodation();
 				vo.setAccId(rs.getInt("ACC_ID"));
@@ -320,6 +374,5 @@ public class AccommodationDAO extends DAO {
 			disconnect();
 		}
 	}
-	
 
 }

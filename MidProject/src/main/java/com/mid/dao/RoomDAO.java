@@ -36,6 +36,34 @@ public class RoomDAO extends DAO {
 		return null;
 	}
 	
+	public List<Room> selectAllForBusiness(int accId) {
+		connect();
+		String sql = "select * from room WHERE acc_id = ? order by 1";
+		List<Room> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, accId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Room vo = new Room();
+				vo.setAccId(rs.getInt("ACC_ID"));
+				vo.setInfo(rs.getString("INFO"));
+				vo.setIsReservation(rs.getInt("IS_RESERVATION"));
+				vo.setName(rs.getString("NAME"));
+				vo.setPrice(rs.getString("PRICE"));
+				vo.setReservationTime(rs.getDate("RESERVATION_TIME"));
+				vo.setRoomId(rs.getInt("ROOM_ID"));
+				list.add(vo);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return null;
+	}
+	
 	// 단건 조회 - roomId
 	public Room selectOne(int roomId) {
 		String sql = "select * from room where room_id =?";
