@@ -1,0 +1,198 @@
+@charset "UTF-8";
+
+.businessManage-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+@media screen and (max-width : 499px) {
+	.businessManage-container .businessManage-box {
+		background: #FFF;
+		/*box-shadow: 0px 0px 2px black, 6px 6px 6px gray, 10px 10px 10px #c5c5c5;*/
+		padding: 70px 40px 50px 40px;
+		margin-top: 70px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		width: 95%;
+		max-width: 600px;
+		font-size: 14px;
+		border: 3px solid BLACK;
+		border-radius: 15px;
+	}
+}
+@media screen and (min-width : 500px) {
+	.businessManage-container .businessManage-box {
+		background: #FFF;
+		/*box-shadow: 0px 0px 2px black, 6px 6px 6px gray, 10px 10px 10px #c5c5c5;*/
+		padding: 70px 100px 50px 100px;
+		margin-top: 100px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		width: 95%;
+		max-width: 600px;
+		font-size: 14px;
+		border: 3px solid BLACK;
+		border-radius: 15px;
+	}
+}
+
+.businessManage-container .business-icon {
+	background: #fff;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: -50px;
+}
+
+.businessManage-container .business-icon img {
+	width: 100%;
+}
+
+.businessManage-container .form-group {
+	margin:0 auto;
+	margin-bottom: 20px;
+	display: flex;
+	flex-wrap : wrap;
+	align-items: center;
+	width: 100%;
+	border: 2px solid #CCC;
+	padding: 16px;
+	border-radius: 10px;
+	transition: all 0.3s ease;
+}
+.businessManage-container .form-group>img {
+	width:20%;
+	height:auto;
+}
+.businessManage-container .form-group>div {
+	width:80%;
+	display:flex;
+	flex-direction:column;
+	align-items: center;
+	justify-content:center;
+}
+.businessManage-container .form-group>div>div {
+	width:100%;
+	display:flex;
+	align-items: center;
+	justify-content:center;
+	padding:10px;
+}
+.businessManage-container input[type="text"].form-control,
+	.businessManage-container input[type="password"].form-control,
+	.businessManage-container input[type="tel"].form-control {
+	font-size: 16px;
+	outline: none;
+	width: 70%;
+	border: 2px solid #CCC;
+	padding: 16px;
+	border-radius: 10px;
+	transition: all 0.3s ease;
+}
+
+.businessManage-container input[type="text"].form-control:hover,
+	.businessManage-container input[type="password"].form-control:hover,
+	.businessManage-container input[type="tel"].form-control:hover {
+	border: 2px solid gray;
+}
+
+.businessManage-container input[type="text"].form-control:focus,
+	.businessManage-container input[type="password"].form-control:focus,
+	.businessManage-container input[type="tel"].form-control:focus {
+	border: 2px solid black;
+}
+
+.businessManage-container input[type="text"].form-control:active,
+	.businessManage-container input[type="password"].form-control:active,
+	.businessManage-container input[type="tel"].form-control:active {
+	border: 2px solid black;
+}
+
+.businessManage-container label {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.businessManage-container label input[type="checkbox"] {
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.businessManage-container button {
+	outline: none;
+	background: #c5c5c5;
+	color: #FFF;
+	padding: 16px;
+	display: block;
+	width: 20%;
+	border: none;
+	border-radius: 10px;
+	text-transform: uppercase;
+	font-size: 16px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.businessManage-container button:hover {
+	background: black;
+	box-shadow: 5px 5px 5px #ccc, 10px 10px 10px #c5c5c5;
+}
+
+.businessManage-container a {
+	color: #42A5F5;
+}
+
+.businessManage-container .serparater {
+	width: 100%;
+	border-top: 1px solid #f1f1f1;
+	border-bottom: 1px solid #f1f1f1;
+	padding: 10px 0;
+	text-align: center;
+	margin: 20px 0;
+	font-size: 12px;
+}
+
+.businessManage-container .social-login {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.businessManage-container .social-login a {
+	display: inline-block;
+	background: #c5c5c5;
+	color: #FFF;
+	padding: 16px;
+	margin: 0 10px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	border-radius: 10px;
+}
+
+.businessManage-container .social-login a:hover {
+	background: black;
+	box-shadow: 5px 5px 5px #ccc, 10px 10px 10px #c5c5c5;
+}
+
+.businessManage-container .social-login a i {
+	color: #FFF;
+	margin-right: 10px;
+}

@@ -13,7 +13,15 @@ public class Accommodation {
 	private double pointY;
 	private Date renewalTime;
 	private String imgUrl;
+	private int business_id;
 	
+	
+	public int getBusiness_id() {
+		return business_id;
+	}
+	public void setBusiness_id(int business_id) {
+		this.business_id = business_id;
+	}
 	public String getImgUrl() {
 		return imgUrl;
 	}
