@@ -3,6 +3,7 @@ package com.mid.service;
 import java.util.List;
 
 import com.mid.dao.BusinessDAO;
+import com.mid.dao.MemberDAO;
 import com.mid.vo.Business;
 
 public class BusinessService {
@@ -27,4 +28,13 @@ public class BusinessService {
 	public List<Business> selectAll(String memberId){
 		return new BusinessDAO().selectAll(memberId);
 	}
+	public Business selectOne(int businessId) {
+		return new BusinessDAO().selectOne(businessId);
+	}
+
+	public void signUpBuisness(String memberId) {
+		new MemberDAO().updateBusiness(memberId);
+	}
 }
+
+
