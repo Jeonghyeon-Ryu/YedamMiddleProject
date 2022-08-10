@@ -55,7 +55,7 @@ public class UpdateMemberInfoController implements Controller {
 			pw = SHA256.encodeSha256(pw);
 			member.setPw(pw);
 			service.modifyMember(member);
-			Utils.forward(req, resp, "/WEB-INF/jsp/member/memberLoginForm.jsp");
+			Utils.forward(req, resp, "main.do");
 		}
 	}
 

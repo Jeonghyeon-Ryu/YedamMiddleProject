@@ -13,5 +13,3 @@ function loginModalOpenAction(e) {
 	modal.classList.toggle('modal-active');
 	body.classList.toggle('modal-active-background');
 }
-
-

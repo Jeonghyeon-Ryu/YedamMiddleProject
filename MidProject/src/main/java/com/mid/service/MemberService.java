@@ -6,44 +6,52 @@ import com.mid.vo.Member;
 import com.mid.dao.AccommodationDAO;
 import com.mid.vo.Accommodation;
 
-
 public class MemberService {
 	private static MemberService instance;
-	private MemberService() {}
+
+	private MemberService() {
+	}
+
 	public static MemberService getInstance() {
 		if (instance == null) {
 			instance = new MemberService();
 		}
 		return instance;
 	}
-	//******************************************************
+
+	// ******************************************************
 	// 네이버 가입/로그인 관련 서비스
-	//******************************************************
+	// ******************************************************
 	public Member selectNaver(String naverId) {
 		return new MemberDAO().selectNaver(naverId);
 	}
+
 	public boolean updateNaver(Member vo) {
 		return new MemberDAO().updateNaver(vo);
 	}
+
 	public boolean signupNaver(Member vo) {
 		return new MemberDAO().signupNaver(vo);
 	}
-	//******************************************************
+
+	// ******************************************************
 	// 카카오 가입/로그인 관련 서비스
-	//******************************************************
+	// ******************************************************
 	public Member selectKakao(String kakaoId) {
 		return new MemberDAO().selectKakao(kakaoId);
 	}
+
 	public boolean updateKakao(Member vo) {
 		return new MemberDAO().updateKakao(vo);
 	}
+
 	public boolean signupKakao(Member vo) {
 		return new MemberDAO().signupKakao(vo);
 	}
-	
-	//******************************************************
+
+	// ******************************************************
 	// 일반 가입/로그인 관련 서비스
-	//******************************************************
+	// ******************************************************
 	// 회원가입
 	public void addMember(Member vo) {
 		new MemberDAO().insertMember(vo);
@@ -53,16 +61,17 @@ public class MemberService {
 	public List<Member> memberList() {
 		return new MemberDAO().getMemberList();
 	}
- 
+
 	// 회원조회
 	public Member getMember(String id) {
 		return new MemberDAO().searchMember(id);
 	}
 
 	// 회원정보찾기
-	public List<Member> getMemberByNm(String name){
+	public List<Member> getMemberByNm(String name) {
 		return new MemberDAO().searchMemberByName(name);
 	}
+
 	// 회원정보수정
 	public void modifyMember(Member vo) {
 		new MemberDAO().updateMember(vo);
@@ -77,7 +86,16 @@ public class MemberService {
 	public Member loginChk(String id, String pw) {
 		return new MemberDAO().loginChk(id, pw);
 	}
-	
+
+	// 사업자 로그인체크
+	public int checkBusiness(String id) {
+		return new MemberDAO().checkBusiness(id);
+	}
+
+	// 사업자 id
+	public int getBusinessId(String id) {
+		return new MemberDAO().getBusinessId(id);
+	}
 //	public Accommodation getCompDetail(Accommodation accommodation) {
 //		return new AccommodationDAO.selectOne(accommodation);
 //	}

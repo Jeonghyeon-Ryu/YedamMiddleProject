@@ -39,7 +39,7 @@ public class MemberJoinController implements Controller {
 		
 		service.addMember(vo);
 		
-		Utils.forward(req, resp, "/WEB-INF/jsp/member/memberLoginForm.jsp");
+		Utils.forward(req, resp, "main.do");
 		
 	}
 
