@@ -24,6 +24,9 @@ public class AccommodationService {
 		return new AccommodationDAO().update(acc);
 	}
 
+	public boolean deleteForBusiness(int accId) {
+		return new AccommodationDAO().deleteForBusiness(accId);
+	}
 	public List<Accommodation> select(int pageNum, String filterQuery) {
 		return new AccommodationDAO().selectAll(pageNum, filterQuery);
 	}

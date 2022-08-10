@@ -17,11 +17,41 @@ public class QnaDAO extends DAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Qna vo = new Qna();
-				vo.setCategoryId(rs.getInt("CATEGORY_ID"));
-				vo.setContent(rs.getString("CONTENT"));
-				vo.setMemberId(rs.getString("MEMBER_ID"));
 				vo.setQnaId(rs.getInt("QNA_ID"));
+				vo.setCategoryId(rs.getInt("CATEGORY_ID"));
+				vo.setMemberId(rs.getString("MEMBER_ID"));
 				vo.setTitle(rs.getString("TITLE"));
+				vo.setContent(rs.getString("CONTENT"));
+				vo.setWriteDate(rs.getDate("WRITE_DATE"));
+				list.add(vo);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return null;
+	}
+
+	// 카테고리 이름별 조회
+	public List<Qna> selectCategory(String categoryNm) {
+		connect();
+		String sql = "select * "
+					+ "from qna join qna_category using (category_id) "
+					+ "where category_name=?";
+		List<Qna> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, categoryNm);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Qna vo = new Qna();
+				vo.setQnaId(rs.getInt("QNA_ID"));
+				vo.setCategoryId(rs.getInt("CATEGORY_ID"));
+				vo.setMemberId(rs.getString("MEMBER_ID"));
+				vo.setTitle(rs.getString("TITLE"));
+				vo.setContent(rs.getString("CONTENT"));
 				vo.setWriteDate(rs.getDate("WRITE_DATE"));
 				list.add(vo);
 			}

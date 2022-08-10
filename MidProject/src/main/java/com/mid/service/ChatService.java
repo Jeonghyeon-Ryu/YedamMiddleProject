@@ -18,13 +18,20 @@ public class ChatService {
 		return instance;
 	}
 
-	ChatDAO cDAO = new ChatDAO();
 
 	public void insert(Chat chat) {
-		cDAO.insert(chat);
+		new ChatDAO().insert(chat);
 	}
 	
 	public List<Chat> selectAll(){
-		return cDAO.selectAll();
+		return new ChatDAO().selectAll();
+	}
+	
+	public List<Chat> selectContent(String myId, String youId) {
+		return new ChatDAO().selectContent(myId, youId);
+	}
+	
+	public Chat selectLastContent(String myId, String youId) {
+		return new ChatDAO().selectLastContent(myId, youId);
 	}
 }

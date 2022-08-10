@@ -10,14 +10,15 @@ public class Room {
 	private int isReservation;
 	private Date reservationTime;
 	private String info;
-	private int reservationDay;
+	private int status;
 
-	public int getReservationDay() {
-		return reservationDay;
+	
+	public int getStatus() {
+		return status;
 	}
 
-	public void setReservationDay(int reservationDay) {
-		this.reservationDay = reservationDay;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public int getRoomId() {

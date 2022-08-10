@@ -132,11 +132,13 @@
 		
 		<div class="searchedInfo-box" id="searchedId-box">
 			<c:if test="${!empty error}">
-				<p class="search-error-msg">${error}</p>
-			</c:if>				
-			<c:forEach var="vo" items="${list}">
-				<p>${vo.id}</p>
-			</c:forEach>
+				<p style="color:red;">${error}</p>
+			</c:if>		
+			<c:if test="${!empty list}">
+				<c:forEach var="vo" items="${list}">
+					<p style="color:green;">${vo.name}님의 아이디는 ${vo.id} 입니다.</p>
+				</c:forEach>
+			</c:if>	
 		</div>
 		
 		<form class="form-control" id="searchPw-frm" name="searchPw-frm" action="findInfo.do">
@@ -162,7 +164,7 @@
 		
 		<div class="searchedInfo-box" id="searchedPw-box">
 			<c:if test="${msg eq 'fail'}">
-				<p id="no-info-msg">일치하는 정보가 없습니다.</p>				
+				<p style="color:red;">일치하는 정보가 없습니다.</p>				
 			</c:if>
 			<c:if test="${msg eq 'success'}">
 				<form id="newInfo-input" action="updateMemberInfo.do" method="post">

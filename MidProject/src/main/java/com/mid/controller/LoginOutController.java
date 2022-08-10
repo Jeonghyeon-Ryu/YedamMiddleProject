@@ -18,6 +18,8 @@ public class LoginOutController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	     resp.setContentType("text/html;charset=utf-8");
+	     resp.setCharacterEncoding("UTF-8");
 
 		// 로그아웃
 		HttpSession session = req.getSession(false); // 없으면 null리턴
@@ -34,21 +36,18 @@ public class LoginOutController implements Controller {
 		// 비밀번호 암호화
 		pw = SHA256.encodeSha256(pw);
 
+		System.out.println(id+", "+pw);
 		// Database 아이디 확인
 		MemberService service = MemberService.getInstance();
 		Member vo = service.getMember(id);
 
 		// 로그인 실패 : id가 없거나 pw가 맞지 않는 경우 
 		if (vo == null || !vo.getPw().equals(pw)) {
-			req.setAttribute("error", "아이디 또는 비밀번호를 잘못 입력했습니다.<br>"
-					+ "입력하신 내용을 다시 확인해주세요.");
-			Utils.forward(req, resp, "loginForm.do");
+			resp.getWriter().print(0);
 		} else {
 			// 로그인 성공
-			System.out.println("login.");
 			session.setAttribute("id", id);
-			
-			resp.sendRedirect("main.do");//마이페이지로 가던가.. 홈으로 가던가..
+			resp.getWriter().print(1);
 		}
 	}
 
