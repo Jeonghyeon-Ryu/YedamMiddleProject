@@ -1,6 +1,7 @@
 package com.mid.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import com.mid.common.Controller;
 import com.mid.common.SHA256;
-import com.mid.common.Utils;
 import com.mid.service.MemberService;
 import com.mid.vo.Member;
 
@@ -20,7 +20,7 @@ public class LoginOutController implements Controller {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	     resp.setContentType("text/html;charset=utf-8");
 	     resp.setCharacterEncoding("UTF-8");
-
+	      
 		// 로그아웃
 		HttpSession session = req.getSession(false); // 없으면 null리턴
 		if (session != null && session.getAttribute("id") != null) {// 로그인 한 상태

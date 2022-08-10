@@ -18,12 +18,9 @@ public class AccommodationService {
 		return instance;
 	}
 
-	AccommodationDAO adao = new AccommodationDAO();
-	
 	public boolean update(Accommodation acc) {
 		return new AccommodationDAO().update(acc);
 	}
-
 	public boolean deleteForBusiness(int accId) {
 		return new AccommodationDAO().deleteForBusiness(accId);
 	}
@@ -53,9 +50,7 @@ public class AccommodationService {
 	public List<Accommodation> selectAllForBusiness(int businessId){
 		return new AccommodationDAO().selectAllForBusiness(businessId);
 	}
-	
 	public Accommodation getCompDetail(int accId) {
 		return new AccommodationDAO().selectOne(accId);
 	}
-
 }

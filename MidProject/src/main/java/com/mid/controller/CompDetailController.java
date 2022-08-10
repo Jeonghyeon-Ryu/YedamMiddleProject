@@ -30,8 +30,7 @@ public class CompDetailController implements Controller {
 		RoomService rmService = RoomService.getInstance();
 		ReviewService rvService = ReviewService.getInstance();
 		MemberService mbService = MemberService.getInstance();
-		
-		
+
 		Accommodation acInfo = acService.getCompDetail(Integer.parseInt(accId));
 		Room rmInfo = rmService.getRoomOne(Integer.parseInt(accId));
 		List<Review> rvInfo =  rvService.getReviewAllAcc(Integer.parseInt(accId));
@@ -41,10 +40,13 @@ public class CompDetailController implements Controller {
 		req.setAttribute("accName", acInfo.getName());
 		req.setAttribute("accAddress", acInfo.getAddress());
 		req.setAttribute("accPhone", acInfo.getPhone().substring(4, acInfo.getPhone().length()));
-		req.setAttribute("imgUrl", acInfo.getImgUrl());
 		if (rvInfo != null) {
 			req.setAttribute("rvInfo", rvInfo);
-			
+//			req.setAttribute("memberId", rvInfo.getMemberId());
+//			req.setAttribute("reviewScore", rvInfo.getReviewScore());
+//			req.setAttribute("reviewId", rvInfo.getReviewId());
+//			req.setAttribute("reviewContent", rvInfo.getReviewContent());
+//			req.setAttribute("reviewDate", rvInfo.getReviewDate());
 		}
 		if (rmInfo != null) {
 			req.setAttribute("roomId", rmInfo.getRoomId());
@@ -53,9 +55,11 @@ public class CompDetailController implements Controller {
 			req.setAttribute("isReservation", rmInfo.getIsReservation());
 			req.setAttribute("price", rmInfo.getPrice());
 			req.setAttribute("reservationTime", rmInfo.getReservationTime());
-			req.setAttribute("price", rmInfo.getPrice());
 		}
+		req.setAttribute("imgUrl", acInfo.getImgUrl());
+
 		Utils.forward(req, resp, "eju/companyDetail.tiles");
+
 	}
 
 }

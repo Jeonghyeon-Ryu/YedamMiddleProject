@@ -7,10 +7,7 @@ import com.mid.vo.Room;
 
 public class RoomService {
 	private static RoomService instance;
-
-	private RoomService() {
-	}
- 
+	private RoomService() {}
 	public static RoomService getInstance() {
 		if (instance == null) {
 			instance = new RoomService();
@@ -22,14 +19,12 @@ public class RoomService {
 	}
 	// 객실 전체 가져오기
 	public List<Room> getRoomAll() {
-		return rmdao.selectAll();
+		return new RoomDAO().selectAll();
 	}
-
 	// 객실 단건 출력
 	public Room getRoomOne(int roomId) {
-		return rmdao.selectOne(roomId);
+		return new RoomDAO().selectOne(roomId);
 	}
-	
 	public List<Room> selectAllForBusiness(int accId) {
 		return new RoomDAO().selectAllForBusiness(accId);
 	}

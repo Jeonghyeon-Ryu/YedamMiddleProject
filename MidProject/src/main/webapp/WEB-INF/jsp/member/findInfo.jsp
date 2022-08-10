@@ -6,112 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>findInfo.jsp</title>
-<style>
-.findInfo-container{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	width: 100%;
-}
-.findInfo-content{
-	background: #FFF;
-	/*box-shadow: 0px 0px 2px black, 6px 6px 6px gray, 10px 10px 10px #c5c5c5;*/
-	padding: 70px 100px 50px 100px;
-	margin-top: 100px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	width: 95%;
-	max-width: 600px;
-	font-size: 14px;
-	border: 3px solid BLACK;
-	border-radius: 15px;
-}
-.findInfo-container .form-group {
-	margin-bottom: 20px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 100%;
-}
+<link href="${pageContext.request.contextPath}/css/memberAgreement.css" rel="stylesheet">
 
-.findInfo-container input[type="text"].form-control,
-	.findInfo-container input[type="password"].form-control,
-	.findInfo-container input[type="tel"].form-control {
-	font-size: 16px;
-	outline: none;
-	width: 100%;
-	border: 2px solid #CCC;
-	padding: 16px;
-	border-radius: 10px;
-	transition: all 0.3s ease;
-}
-
-.findInfo-container input[type="text"].form-control:hover,
-	.kakaologin-container input[type="password"].form-control:hover,
-	.kakaologin-container input[type="tel"].form-control:hover {
-	border: 2px solid gray;
-}
-
-.findInfo-container input[type="text"].form-control:focus,
-	.kakaologin-container input[type="password"].form-control:focus,
-	.kakaologin-container input[type="tel"].form-control:focus {
-	border: 2px solid black;
-}
-
-.findInfo-container input[type="text"].form-control:active,
-	.kakaologin-container input[type="password"].form-control:active,
-	.kakaologin-container input[type="tel"].form-control:active {
-	border: 2px solid black;
-}
-
-.findInfo-container label {
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-}
-
-.findInfo-container label input[type="checkbox"] {
-	width: 20px;
-	height: 20px;
-	margin-right: 10px;
-	cursor: pointer;
-}
-
-.findInfo-container button {
-	outline: none;
-	background: #c5c5c5;
-	color: #FFF;
-	padding: 16px;
-	display: block;
-	width: 100%;
-	border: none;
-	border-radius: 10px;
-	text-transform: uppercase;
-	font-size: 16px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-}
-.findInfo-container button:hover {
-	background: black;
-	box-shadow: 5px 5px 5px #ccc, 10px 10px 10px #c5c5c5;
-} 
-</style>
 </head>
 <body>
-<div class="findInfo-container">
+<div class="agreement-box">
 	<div class="findInfo-title">
-		<h5>아이디/비밀번호 찾기</h5>
+		<h3>아이디/비밀번호 찾기</h3>
 		<div class="modal-close-button"><a href="main.do">
 			<img src="img/close-20.png"></a>
 		</div>
 	</div>
 	<div class="findInfo-content">
-		<form class="form-control" id="SearchId-frm" name="frm" action="findInfo.do">
+		<form class="findInfo-frm" id="SearchId-frm" name="frm" action="findInfo.do">
 			<h3>아이디 찾기</h3>
 			<input type="hidden" name="job" value="searchId">
 			<div class="searchId">
@@ -141,7 +48,7 @@
 			</c:if>	
 		</div>
 		
-		<form class="form-control" id="searchPw-frm" name="searchPw-frm" action="findInfo.do">
+		<form class="findInfo-frm" id="searchPw-frm" name="searchPw-frm" action="findInfo.do">
 			<h3>비밀번호 찾기</h3>
 			<input type="hidden" name="job" value="searchPw">
 			<div class="searchPw">
@@ -180,6 +87,7 @@
 					<input type="hidden" name="job" value="pwUpdate">
 					<input type="button" id="updatePw-btn" onclick="upDatePwChk()" value="수정">
 				</form>
+				<input type="submit" class="agreePage-btn" value="이전" >
 			</c:if>
 		</div>
 		
