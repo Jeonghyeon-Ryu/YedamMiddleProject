@@ -7,24 +7,24 @@ import java.util.List;
 import com.mid.vo.Accommodation;
 
 public class AccommodationDAO extends DAO {
-	public void insert(Accommodation acc) {
-		connect();
-		String sql = "INSERT INTO accommodation VALUES(acc_seq.NEXTVAL,?,?,0,?,1,?,?,sysdate,?)";
+	public boolean insert(Accommodation acc) {
+		boolean result = false;
 		try {
 			connect();
+			String sql = "INSERT INTO accommodation VALUES(acc_seq.NEXTVAL,?,?,0,?,1,0,0,sysdate,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, acc.getName());
 			pstmt.setString(2, acc.getAddress());
 			pstmt.setString(3, acc.getPhone());
-			pstmt.setDouble(4, acc.getPointX());
-			pstmt.setDouble(5, acc.getPointY());
-			pstmt.setString(6, acc.getImgUrl());
-			pstmt.executeUpdate();
+			pstmt.setString(4, acc.getImgUrl());
+			pstmt.setInt(5, acc.getBusiness_id());
+			result = (pstmt.executeUpdate()>0)?true:false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			disconnect();
 		}
+		return result;
 	}
 	public boolean update(Accommodation acc) {
 		boolean result = false;

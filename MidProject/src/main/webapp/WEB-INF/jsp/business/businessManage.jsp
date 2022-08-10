@@ -13,6 +13,10 @@
 				<p>업체 명 : <span>${business.businessName }</span></p>
 				<p>업제 주소 : <span>${business.businessAddress }</span></p>
 			</div>
+			<div class="business-acc-btns">
+				<button class="business-acc-insert full-btn">추가</button>
+				<button class="business-acc-delete full-btn">삭제</button>
+			</div>
 			<c:forEach var="list" items="${resultList }">
 				<div class="form-group">
 					<img class="business-delete-acc" src="img/cancel-40.png">
@@ -20,18 +24,20 @@
 					<div>
 						<div class="business-acc">
 							<input class="business-accId" type="text" value="${list.acc.accId }" style="display:none">
-							<input type="text" value="${list.acc.name }" name="accName" class="form-control" readonly>
-							<input type="text" value="${list.acc.phone }" name="accPhone" class="form-control" readonly>
-							<input type="text" value="${list.acc.address }" name="accAddress" class="form-control" readonly>
-							<input type="text" value="${list.acc.imgUrl }" name="accImgUrl" class="form-control" readonly>
+							<div>
+								<input type="text" value="${list.acc.name }" name="accName" class="form-control" readonly>
+								<input type="text" value="${list.acc.phone }" name="accPhone" class="form-control" readonly>
+								<input type="text" value="${list.acc.address }" name="accAddress" class="form-control" readonly>
+								<input type="text" value="${list.acc.imgUrl }" name="accImgUrl" class="form-control" readonly>
+							</div>
 						</div>
-						<div>
-							<button class="business-show-room full-btn">조회</button>
-							<button class="business-insert-room full-btn">추가</button>
-							<button class="business-update full-btn">수정</button>
-							<button class="business-update-reset full-btn" style="display:none; background:#42A5F5;">취소</button>
-							<button class="business-delete full-btn">삭제</button>
-						</div>
+					</div>
+					<div class="business-room-btns">
+						<button class="business-show-room full-btn">조회</button>
+						<button class="business-insert-room full-btn">추가</button>
+						<button class="business-update full-btn">수정</button>
+						<button class="business-update-reset full-btn" style="display:none; background:#42A5F5;">취소</button>
+						<button class="business-delete full-btn">삭제</button>
 					</div>
 					<c:forEach var="room" items="${list.roomList }">
 						<div class="business-room">
@@ -47,6 +53,30 @@
 			</c:forEach>
 		</div>
 	</div>
+	<template id="business-acc-template">
+		<div class="form-group">
+			<img class="business-delete-acc" src="img/cancel-40.png">
+			<img class="businessManage-img" src="">
+			<div>
+				<div class="business-acc">
+					<input class="business-accId" type="text" value="" style="display:none">
+					<div>
+						<input type="text" value="" placeholder="숙소 이름" name="accName" class="form-control">
+						<input type="text" value="" placeholder="숙소 전화번호" name="accPhone" class="form-control">
+						<input type="text" value="" placeholder="숙소 주소" name="accAddress" class="form-control">
+						<input type="text" value="" placeholder="숙소 이미지 URL" name="accImgUrl" class="form-control">
+					</div>
+				</div>
+			</div>
+			<div class="business-room-btns">
+				<button class="business-show-room full-btn">조회</button>
+				<button class="business-insert-room full-btn">추가</button>
+				<button class="business-update full-btn">수정</button>
+				<button class="business-update-reset full-btn" style="display:none; background:#42A5F5;">취소</button>
+				<button class="business-delete full-btn">삭제</button>
+			</div>
+		</div>
+	</template>
 	<script>
 		let showRoombtns = document.querySelectorAll('.business-show-room');
 		for(showBtn of showRoombtns){
@@ -126,26 +156,36 @@
 				if(!accForm.classList.contains('active-form-group')){
 					accForm.classList.toggle('active-form-group');
 				}
-				let acc = accForm.querySelector('.business-delete-acc');
-				acc.classList.toggle('active-delete');
-				console.log(acc);
 				let rooms = accForm.querySelectorAll('.business-delete-room')
 				for(room of rooms){
 					room.classList.toggle('active-delete');
-					console.log(room);
 				}
 			})
 		}
+		let deleteAcc = document.querySelector('.business-acc-delete');
+		deleteAcc.addEventListener('click',function(e){
+			let accForms = document.querySelectorAll('.businessManage-container .form-group');
+			for(accForm of accForms) {
+				if(!accForm.classList.contains('active-form-group')){
+					accForm.classList.toggle('active-form-group');
+				}
+				let btn = accForm.querySelector('.business-delete-acc');
+				btn.classList.toggle('active-delete');
+			}
+		})
 		
 		let deleteAccBtns = document.querySelectorAll('.business-delete-acc');
 		for(deleteAccBtn of deleteAccBtns){
-			deleteAccBtn.addEventListener('click', function(e){
-				let accForm = e.target.parentElement;
-				while(!accForm.classList.contains('form-group')){
-					accForm=accForm.parentElement;
-				}
-				if(confirm('정말로 해당 숙소를 삭제 하시겠습니까 ?')){
-					let accId = accForm.querySelector('.business-accId').value;
+			deleteAccBtn.addEventListener('click', deleteAccActionFunc);
+		}
+		function deleteAccActionFunc(e){
+			let accForm = e.target.parentElement;
+			while(!accForm.classList.contains('form-group')){
+				accForm=accForm.parentElement;
+			}
+			if(confirm('정말로 해당 숙소를 삭제 하시겠습니까 ?')){
+				let accId = accForm.querySelector('.business-accId').value;
+				if(accId!=""){
 					fetch('roomDelete.do', {
 						method: 'POST',
 						headers: { 'Content-type': 'application/x-www-form-urlencoded' },
@@ -156,9 +196,11 @@
 							location.reload();})
 						.catch(err => console.log(err));
 				} else {
-					
+					accForm.remove();
 				}
-			})
+			} else {
+				
+			}
 		}
 		let deleteRoomBtns = document.querySelectorAll('.business-delete-room');
 		for(deleteRoomBtn of deleteRoomBtns){
@@ -205,8 +247,73 @@
 				cloneRoom.querySelector('.business-save-room').classList.toggle('active-delete');
 				room.after(cloneRoom);
 				$('.business-room').on("click",".business-save-room",function(e){
-					console.log("click save");
+					let accForm = e.target.parentElement;
+					while(!accForm.classList.contains('form-group')){
+						accForm=accForm.parentElement;
+					}
+					let accId = accForm.querySelector('.business-accId').value;
+					
+					$.ajax({
+						url: "setWish.do",
+						data: { "accId" : clickedCard },
+						method: "GET",
+						success: function(result){
+							if(result=="success"){
+								e.target.src = "img/like-redheart-35.png";
+							} else if(result=="delete"){
+								e.target.src = "img/like-heart-35.png";
+							}
+						}, error : function(err){
+							console.log(err);
+						}
+					})
 				})
 			})
 		}
+		let insertAccBtn = document.querySelector('.business-acc-insert');
+		insertAccBtn.addEventListener('click',function(){
+			let acc = document.querySelectorAll('.form-group')[0];
+			if(acc.querySelector('.business-accId').value!=""){
+				let template = document.querySelector('#business-acc-template');
+				let acc = document.importNode(template.content, true);
+				document.querySelectorAll('.form-group')[0].before(acc);
+				$('.businessManage-box').on("click",".business-delete-acc",deleteAccActionFunc);
+				let addBtn = document.querySelector('.business-acc-insert');
+				addBtn.innerText="저장";
+				addBtn.style.background="#42A5F5";
+			} else {
+				let addBtn = document.querySelector('.business-acc-insert');
+				addBtn.innerText="추가";
+				addBtn.style.background="#C5C5C5";
+				let addItem = document.querySelectorAll('.form-group')[0];
+				let accName = addItem.querySelector('input[name="accName"]')
+				let accPhone = addItem.querySelector('input[name="accPhone"]')
+				let accAddress = addItem.querySelector('input[name="accAddress"]')
+				let accImgUrl = addItem.querySelector('input[name="accImgUrl"]')
+				if(accName.value==""){
+					alert('숙소 이름을 입력하세요.');
+					accName.focus();
+				} else if(accPhone.value==""){
+					alert('숙소 전화번호를 입력하세요.');
+					accPhone.focus();
+				} else if(accAddress.value==""){
+					alert('숙소 주소를 입력하세요.');
+					accAddress.focus();
+				} else if(accImgUrl.value==""){
+					alert('숙소 이미지 URL을 입력하세요.');
+					accImgUrl.focus();
+				}
+				fetch('accInsert.do', {
+					method: 'POST',
+					headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+					body: 'accName=' + accName.value + '&accPhone=' + accPhone.value + '&accAddress=' + accAddress.value + '&accImgUrl=' + accImgUrl.value
+				}).then(result => result.json())
+					.then(result => {
+						if(result.retCode=="success"){
+							
+						}
+					})
+					.catch(err => console.log(err));
+			}
+		})
 	</script>

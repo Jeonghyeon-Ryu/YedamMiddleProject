@@ -17,7 +17,9 @@ public class AccommodationService {
 		}
 		return instance;
 	}
-
+	public boolean insert(Accommodation acc) {
+		return new AccommodationDAO().insert(acc);
+	}
 	public boolean update(Accommodation acc) {
 		return new AccommodationDAO().update(acc);
 	}
