@@ -15,12 +15,12 @@
 .update-info .update-info{
 	padding:40px 20px;
 }
-.update-info label,.update-info input{margin-left:20px; padding :5px; border-radius:3px; }
+.update-info label,.update-info input{margin-left:20px;}
+.update-info ul{list-style:none;}
 .update-info hr{
 	color: lightgray;
 	margin: 20px;
 	border: 0.1px solid lightgray;}
-.update-info-frm p{margin-left:20px;}
 </style>
 </head>
 <body>
@@ -55,16 +55,16 @@
 			       		<p style="display: none;" id="pw2-error" class="info-error"></p>
 			            
 			    <input type="hidden" name="job" value="infoUpdate">
-			    <hr>
-				  <c:if test="${!empty msg}">
-				  	<p style="color:red">${msg}</p>
-				  </c:if>
 			    <input type="submit" onclick="upDatePwChk()" value="수정">
-			    <input type="button" onclick="location.href='main.do'" value="홈으로">
+			    <input type="button" onclick="location.href='mypage.do'" value="뒤로가기">
 			  </form>
 			  <p style="display: none;" id="no-pw-error" class="info-error">
+			  <c:if test="${!empty msg}">
+			  	<p>${msg}</p>
+			  </c:if>
 		  </div>
 	</div>
+	<hr>
 </body>
 <script>
 let pw1 = document.getElementById("new-memberPw");
