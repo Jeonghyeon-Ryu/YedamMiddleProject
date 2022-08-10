@@ -10,7 +10,7 @@
 			</div>
 			<div class="serparater"><p>사업자등록 페이지</p>
 			<c:if test="${!empty error }"><p style="color:red; font-weight:bold;">${error }</p></c:if></div>
-			<form action="socialLinkLogin.do" class="login">
+			<form action="businessSignup.do" class="login">
 				<div class="form-group">
 					<input type="text" placeholder="사업자번호" name="bmId" class="form-control">
 				</div>

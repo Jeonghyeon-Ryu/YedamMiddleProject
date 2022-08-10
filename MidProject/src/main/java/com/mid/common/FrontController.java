@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mid.controller.AddContentController;
+import com.mid.controller.AjaxBusinessIdCheckController;
 import com.mid.controller.AjaxMemberIdCheck;
-import com.mid.controller.BusinessJoincontroller;
+import com.mid.controller.BusinessJoinController;
+import com.mid.controller.BusinessSignupController;
 import com.mid.controller.CompDetailController;
 import com.mid.controller.DeleteAccController;
 import com.mid.controller.DeleteRoomController;
@@ -36,6 +38,7 @@ import com.mid.controller.NaverLoginController;
 import com.mid.controller.NaverSignupFormController;
 import com.mid.controller.QnaDetailController;
 import com.mid.controller.QnaListController;
+import com.mid.controller.ReservationPageController;
 import com.mid.controller.SelectAccListController;
 import com.mid.controller.SelectAccListCountController;
 import com.mid.controller.SendContentController;
@@ -101,11 +104,14 @@ public class FrontController extends HttpServlet {
 		mappings.put("/message.do", new MessageController());		// 메세지폼
 		mappings.put("/sendContent.do", new SendContentController()); //메세지 전송
 		mappings.put("/addContent.do", new AddContentController());	// 숙소 리스트 출력
-		mappings.put("/businessJoin.do", new BusinessJoincontroller()); //사업자 가입
-
+		mappings.put("/businessJoin.do", new BusinessJoinController()); //사업자 가입
+		mappings.put("/ajaxBusinessIdCheck.do", new AjaxBusinessIdCheckController()); //사업자 아이디 중복
+		mappings.put("/businessSignup.do", new BusinessSignupController()); //사업자 가입 처리
+		
 		// 엄정웅
 		mappings.put("/compDetail.do", new CompDetailController());	// 상세페이지 출력 
 		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
+		mappings.put("/reservationPage.do", new ReservationPageController());
 	}
 
 	@Override

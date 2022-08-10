@@ -95,14 +95,16 @@ function createCard(result) {
 				clickedCard = clickedCard.parentElement;	
 			}
 			clickedCard = clickedCard.getAttribute('id');
+			let checkIn = document.querySelector('.cal-day1').textContent;
+			let checkOut = document.querySelector('.cal-day2').textContent;
 				// Card 콘텐츠 눌렀을때. -> 상세페이지 Modal + Ajax 호출
 			if(!e.target.classList.contains('like')){
-				location.href="compDetail.do?accId="+clickedCard;
+				location.href="compDetail.do?accId=" + clickedCard+ '&checkIn=' + checkIn + '&checkOut=' + checkOut;
 			} else if (e.target.classList.contains('like')) {
 				// Card 하트 눌렀을때. -> 위시리스트 테이블 Ajax 호출
 				$.ajax({
 					url: "setWish.do",
-					data: { "accId" : clickedCard },
+					data: { "accId" : clickedCard, "checkIn": checkIn, "checkOut": checkOut  },
 					method: "GET",
 					success: function(result){
 						if(result=="success"){

@@ -209,8 +209,10 @@
 			<div class="mypage-center" id="customer-center">
 				<h2>사업자</h2>
 				<ul>
+				<c:if test="${empty businessId}">
 					<li><a href="businessJoin.do"><i class="fa-solid fa-circle-question"></i>
 							사업자등록<span>></span></a></li>
+							</c:if>
 					<li><a href="businessManage.do"><i class="fa-solid fa-circle-question"></i>
 							사업관리<span>></span></a></li>
 				</ul>

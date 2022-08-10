@@ -29,7 +29,7 @@ public class InsertAccController implements Controller {
 		
 		AccommodationService service = AccommodationService.getInstance();
 		boolean result = service.insert(acc);
-		
+		System.out.println(result);
 		String retCode = "{\"retCode\":\"";
 		if(result) {
 			resp.getWriter().print(retCode + "success" + "\"}");
