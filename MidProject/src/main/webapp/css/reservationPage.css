@@ -1,13 +1,55 @@
 #rv-container{
 	height: 200vh;
-	background-color: grey;
+	background-color: rgb(192, 192, 192);
+	margin: 0 auto;
+}
+#rv-center-page{
+	max-width: 50%;
+	margin: 0 auto;
+	height: 100%;
+}
+.rv-product-name{
+	margin-bottom: 20px;
 }
 
 .rv-header-fixed{
-	background-color: red;
+	background-color: white;
 	color: black;
 	position: fixed;
+	text-align: center;
+	margin: 10px;
+	font-weight: bold;
 }
 .rv-content-box{
 	background-color: white;
+	margin: 5px;
+	padding: 10px;
+}
+.rv-checkInOut{
+	font-size: small;
+}
+.rv-price{
+	text-align: right;
+	font-weight: bold;
+}
+.rv-user-name-phone{
+	font-size: small;
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+#rv-user-info{
+	margin-bottom: 15px;
+	margin-top: 15px;
+	font-weight: bold;
+}
+.rv-payment-price{
+	font-weight: bold;
+}
+.rv-total-price{
+	justify-content: space-between;
+	display: flex;
+	margin-top: 10px
+}
+#rv-payment{
+	font-weight: bold;
 }
