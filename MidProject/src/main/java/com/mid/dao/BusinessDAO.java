@@ -81,4 +81,27 @@ public class BusinessDAO extends DAO{
 		}
 		return list;
 	}
+	//단건조회
+		public Business selectOne(int bmId){
+			try {
+				connect();
+				String sql = "SELECT * FROM business WHERE BUSINESS_ID = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, bmId);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					Business vo = new Business();
+					vo.setBusinessId(rs.getInt("business_id"));
+					vo.setBusinessName(rs.getString("business_name"));
+					vo.setBusinessAddress(rs.getString("business_address"));
+					vo.setMemberId(rs.getString("MEMBER_ID"));
+					return vo;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+			return null;
+		}
 }

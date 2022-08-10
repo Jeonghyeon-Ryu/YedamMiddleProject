@@ -307,4 +307,55 @@ public class MemberDAO extends DAO {
 		}
 		return null;
 	}
+	//사업자 등록
+		public void updateBusiness(String Id) {
+			boolean result =false;
+			try {
+				connect();
+				String sql = "UPDATE member SET BUSINESS_MAN=1 WHERE id=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, Id);
+				result = ((pstmt.executeUpdate()>0)? true:false);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+		}
+		//사업자 확인
+		public int checkBusiness(String memberId) {
+			try {
+				connect();
+				String sql = "select BUSINESS_MAN from member where id =?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, memberId);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					return rs.getInt("BUSINESS_MAN");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+			return 0;
+		}
+		// 사업자 id 가져오기
+		public int getBusinessId(String MEMBER_ID) {
+			try {
+				connect();
+				String sql = "select BUSINESS_ID from member where MEMBER_ID =?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, MEMBER_ID);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					return rs.getInt("BUSINESS_MAN");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+			return 0;
+		}
 }
