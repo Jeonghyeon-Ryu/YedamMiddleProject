@@ -1,68 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" type="text/css" href="css/businessManage.css">
-   <div class="businessManage-container">
-      <div class="businessManage-box">
-         <div class="business-icon">
-            <img src="img/business-100.png" class="far fa-user" />
-         </div>
-          <div class="serparater">
-            <p><span>${accName }</span></p>
-            <p><span>${accAddress }</span></p>
-            <p><span>${accPhone }</span></p>
-         </div>
-            <div class="form-group">
-               <img class="businessManage-img" src="${imgUrl }">
-               <div>
-                  <div class="business-acc">
-                     <input type="text" value="${roomName }" name="accName" class="form-control" readonly>
-                     <input type="text" value="${price }" name="accPhone" class="form-control" readonly>
-                     <input type="text" value="${checkIn }" name="accAddress" class="form-control" readonly>
-                     <input type="text" value="${checkOut }" name="accImgUrl" class="form-control" readonly>
-                  </div>
-               </div>
-                  <div class="business-room">
-                     <input type="text" value="${memberName }" name="roomName" class="form-control" readonly>
-                     <input type="text" value="${phone }" name="roomPrice" class="form-control" readonly>
-                  </div>
-                  <div>
-                     <button id="business-delete" class="full-btn">결제</button>
-                  </div>
-            </div>
-      </div>
-   </div>
-   
-   <!-- <div id="rv-container"> -->
-<!-- 	<div class="rv-first"> -->
-<!-- 		<div>상품정보</div> -->
-<!-- 		<div class="rv-comp-title"></div> -->
-<!-- 		<div class="rv-room-name"></div> -->
-<!-- 		<div class="rv-ckin-ckout"></div> -->
-<!-- 		<div class="rv-price"></div> -->
-<!-- 	</div> -->
-<!-- 	<div class="rv-second"> -->
-<!-- 		<div>예약자정보</div> -->
-<!-- 		<div class="rv-member-name">성명</div> -->
-<!-- 		<input type="text"> -->
-<!-- 		<div class="rv-member-phone">휴대폰 번호</div> -->
-<!-- 		<input type="tel"> -->
-<!-- 	</div> -->
-<!-- 	<div class="rv-third"> -->
-<!-- 		<div>이용자정보</div> -->
-<!-- 		<input type="checkbox" checked>예약자 정보와 동일합니다 -->
-<!-- 		<div class="rv-real-user"></div> -->
-<!-- 		<div class="rv-real-user-phone"></div> -->
-<!-- 	</div> -->
-<!-- 	<div class="rv-fourth"> -->
-<!-- 		<div>총 결제 금액</div> -->
-<!-- 		<div class="rv-total-price">총 예약 금액</div> -->
-<!-- 		<div class=""></div> -->
-<!-- 	</div> -->
-<!-- 	<div class="rv-fifth"> -->
-<!-- 		<div>결제정보</div> -->
-<!-- 		<div class=""></div> -->
-<!-- 	</div> -->
-<!-- </div> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<div id="reservation-container">
+	<h2 id="reservation-title">예약 내역</h2>
+	<div id="reservation-img-div">
+		<span><img id="reservation-img"
+			src="https://file.mk.co.kr/meet/neds/2022/03/image_readtop_2022_252256_16476552624979285.jpg"
+			alt="11" style="max-width: 50%; height: auto;"></span>
+	</div>
+	<div>
+		<hr>
+		<div>
+			업체명
+			<button>
+				전화 : <input type="hidden">
+			</button>
+			<div>
+				<span>도로명 주소 : <input type="hidden"></span>
+			</div>
+		</div>
+		<p></p>
+		<hr>
+		<div>
+			<span>체크인 : <input type="hidden"></span> <span>체크아웃<input
+				type="hidden"></span>
+		</div>
+		<hr>
+		<div>
+			<span>예약번호 : <input type="hidden"></span>
+		</div>
+		<div>
+			<span>객실정보 : <input type="hidden"></span>
+		</div>
+		<div>
+			<span>예약일자 : <input type="hidden"></span>
+		</div>
+		<hr>
+		<div>
+			<h3>지도</h3>
+			<!--The div element for the map -->
+			<div id="reservation-map"></div>

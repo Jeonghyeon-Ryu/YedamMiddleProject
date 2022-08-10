@@ -10,7 +10,6 @@ public class Review {
 	private int reviewScore;
 	private String reviewContent;
 	private Date reviewDate;
-	
 	public int getReviewId() {
 		return reviewId;
 	}
