@@ -35,6 +35,7 @@ import com.mid.controller.MessageController;
 import com.mid.controller.MypageController;
 import com.mid.controller.NaverLoginController;
 import com.mid.controller.NaverSignupFormController;
+import com.mid.controller.ReservationPageController;
 import com.mid.controller.SelectAccListController;
 import com.mid.controller.SelectAccListCountController;
 import com.mid.controller.SendContentController;
@@ -104,6 +105,7 @@ public class FrontController extends HttpServlet {
 		// 엄정웅
 		mappings.put("/compDetail.do", new CompDetailController());	// 상세페이지 출력 
 		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
+		mappings.put("/reservationPage.do", new ReservationPageController());
 	}
 
 	@Override
