@@ -18,8 +18,12 @@ public class AccommodationService {
 		return instance;
 	}
 
-	AccommodationDAO adao = new AccommodationDAO();
-
+	public boolean update(Accommodation acc) {
+		return new AccommodationDAO().update(acc);
+	}
+	public boolean deleteForBusiness(int accId) {
+		return new AccommodationDAO().deleteForBusiness(accId);
+	}
 	public List<Accommodation> select(int pageNum, String filterQuery) {
 		return new AccommodationDAO().selectAll(pageNum, filterQuery);
 	}
@@ -43,9 +47,10 @@ public class AccommodationService {
 	public int selectCount(String city, String region, String resultQuery) {
 		return new AccommodationDAO().selectCount(city,region, resultQuery);
 	}
-	
-	// 업체정보 출력
+	public List<Accommodation> selectAllForBusiness(int businessId){
+		return new AccommodationDAO().selectAllForBusiness(businessId);
+	}
 	public Accommodation getCompDetail(int accId) {
-		return adao.selectOne(accId);
+		return new AccommodationDAO().selectOne(accId);
 	}
 }

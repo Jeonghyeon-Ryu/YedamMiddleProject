@@ -170,3 +170,4 @@ function countResult() {
 	})
 	.catch(err => console.log(err));
 }
+

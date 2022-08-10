@@ -35,15 +35,9 @@
 		<!------------------------ 하단 Nav 영역 시작 ------------------------->
 		<tiles:insertAttribute name="nav"></tiles:insertAttribute>
 	</div>
-
-	<script src="js/header.js"></script>
+	
 	<script src="js/modal.js"></script>
-	<script src="js/locationModal.js"></script>
-	<script src="js/calender.js"></script>
-	<script src="js/memberLogin.js"></script>
-	<script src="js/headcountModal.js"></script>
 	<script src="js/wishList.js"></script>
-	<script src="js/loginModal.js"></script>
 	<script src="https://kit.fontawesome.com/9f16a06d13.js" crossorigin="anonymous"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

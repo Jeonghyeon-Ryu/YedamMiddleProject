@@ -371,3 +371,7 @@
 		</div>
 	</div>
 </div>
+<script src="js/header.js"></script>
+<script src="js/calender.js"></script>
+<script src="js/locationModal.js"></script>
+<script src="js/headcountModal.js"></script>

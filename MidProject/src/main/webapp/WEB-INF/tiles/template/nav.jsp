@@ -211,8 +211,12 @@
 				<ul>
 					<li><a href="businessJoin.do"><i class="fa-solid fa-circle-question"></i>
 							사업자등록<span>></span></a></li>
+					<li><a href="businessManage.do"><i class="fa-solid fa-circle-question"></i>
+							사업관리<span>></span></a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </div>
+
+<c:if test="${empty id }"><script src="js/loginModal.js"></script></c:if>
