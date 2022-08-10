@@ -21,7 +21,6 @@ public class FindInfoController implements Controller {
 		
 		MemberService service = MemberService.getInstance();
 		List<Member> list = new ArrayList<>();
-		
 		String job = req.getParameter("job");
 		
 		String nm = req.getParameter("s-memberNm");
@@ -32,13 +31,15 @@ public class FindInfoController implements Controller {
 		
 		//아이디찾기
 		if(job.equals("searchId")) {
+			//검색 이름의 회원정보 검색
 			List<Member> getList=service.getMemberByNm(nm);
+			//getList의 전화번호가 입력번호와 일치할시 list에 추가
 			for(Member member:getList) {
 				if(ph.equals(member.getPhone())) {
 					list.add(member);
 				}
 			}
-			if(getList==null) {
+			if(list.isEmpty()) {
 				req.setAttribute("error", "정보가 없습니다.");
 			}else{
 				req.setAttribute("list",list);

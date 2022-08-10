@@ -49,7 +49,7 @@ public class AccommodationDAO extends DAO {
 		List<Accommodation> list = new ArrayList<>();
 		try {
 			connect();
-			String sql = "SELECT * FROM accommodation WHERE business_id = ?";
+			String sql = "SELECT * FROM accommodation WHERE business_id = ? AND status != 0";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, businessId);
 			rs = pstmt.executeQuery();
@@ -85,14 +85,14 @@ public class AccommodationDAO extends DAO {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url "
 						+ "        FROM (select rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url "
-						+ "    FROM (select * from accommodation order by acc_id desc)) WHERE seq>=?)"
+						+ "    FROM (select * from accommodation WHERE status!=0 order by acc_id desc)) WHERE seq>=?)"
 						+ "WHERE rownum <= 20";
 			} else {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
-						+ filterQuery +" ORDER BY a.acc_id DESC) ) "
+						+ filterQuery +" AND status!=0 ORDER BY a.acc_id DESC) ) "
 						+ "    WHERE seq>=?) WHERE rownum <= 20";
 			}
 			pstmt = conn.prepareStatement(pagingSql);
@@ -125,7 +125,7 @@ public class AccommodationDAO extends DAO {
 		int countResult = 0;
 		try {
 			connect();
-			String sql = "SELECT count(*) FROM accommodation";
+			String sql = "SELECT count(*) FROM accommodation WHERE status!=0";
 			pstmt = conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			if (rs.next()) {
@@ -194,21 +194,21 @@ public class AccommodationDAO extends DAO {
 			String sql = "";
 			if(city.equals("")) {
 				if(resultQuery.equals("")) {
-					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id";
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE a.status != 0";
 				} else {
-					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + resultQuery;
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + resultQuery +" AND a.status != 0";
 				}
 			} else if (!city.equals("") && region.equals("")) {
 				if(resultQuery.equals("")) {
-					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city;
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city +" AND a.status != 0";
 				} else {
-					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND "+ resultQuery;
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND "+ resultQuery +" AND a.status != 0";
 				}
 			} else if (!city.equals("") && !region.equals("")) {
 				if(resultQuery.equals("")) {
-					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND " + region;
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND " + region +" AND a.status != 0";
 				} else {
-					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND " + region + " AND "+ resultQuery;
+					sql = "SELECT count(*) FROM accommodation a JOIN room r ON a.acc_id=r.acc_id WHERE " + city + " AND " + region + " AND "+ resultQuery +" AND a.status != 0";
 				}
 			}
 			System.out.println("resultQuery : " + resultQuery);
@@ -238,14 +238,14 @@ public class AccommodationDAO extends DAO {
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
-						+ city + " ORDER BY a.acc_id DESC) ) "
+						+ city + " AND a.status != 0 ORDER BY a.acc_id DESC) ) "
 						+ "    WHERE seq>=?) WHERE rownum <= 20";
 			} else {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
-						+ city + " AND "+ filterQuery +" ORDER BY a.acc_id DESC) ) "
+						+ city + " AND "+ filterQuery +" AND a.status != 0 ORDER BY a.acc_id DESC) ) "
 						+ "    WHERE seq>=?) WHERE rownum <= 20";
 			}
 			pstmt = conn.prepareStatement(pagingSql);
@@ -286,14 +286,14 @@ public class AccommodationDAO extends DAO {
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
-						+ city + " AND " + region + " ORDER BY a.acc_id DESC) " + "            ) "
+						+ city + " AND " + region + " AND a.status != 0 ORDER BY a.acc_id DESC) " + "            ) "
 						+ "    WHERE seq>=?) " + "WHERE rownum <= 20";
 			} else {
 				pagingSql = "SELECT acc_id, name, address, phone, status, renewal_time, img_url FROM ( "
 						+ "    SELECT seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "        FROM (SELECT rownum as seq, acc_id, name, address, phone, status, renewal_time, img_url, info "
 						+ "            FROM (SELECT a.acc_id, a.name, a.address, a.phone, a.status, a.renewal_time, a.img_url, r.info FROM accommodation a INNER JOIN room r ON a.acc_id=r.acc_id WHERE "
-						+ city + " AND " + region + " AND "+ filterQuery +" ORDER BY a.acc_id DESC) " + "            ) "
+						+ city + " AND " + region + " AND "+ filterQuery +" AND a.status != 0 ORDER BY a.acc_id DESC) " + "            ) "
 						+ "    WHERE seq>=?) " + "WHERE rownum <= 20";
 			}
 			pstmt = conn.prepareStatement(pagingSql);
@@ -368,5 +368,19 @@ public class AccommodationDAO extends DAO {
 		}
 	}
 	
-
+	public boolean deleteForBusiness(int accId) {
+		boolean result = false;
+		try {
+			connect();
+			String sql = "UPDATE accommodation SET status=0 WHERE ACC_ID=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, accId);
+			result = (pstmt.executeUpdate()>0)?true:false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return result;
+	}
 }
