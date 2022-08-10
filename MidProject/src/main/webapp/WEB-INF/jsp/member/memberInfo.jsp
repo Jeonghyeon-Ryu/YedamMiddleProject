@@ -80,7 +80,7 @@
 						<p style="color:red" style="cleat:both">${msg}</p>
 					</c:if>
 				    <input type="button" onclick="location.href='main.do'" value="홈으로">
-				    <input type="button" onclick="openPw" style="float:right" value="회원정보 탈퇴">
+				    <input type="button" onclick="#" style="float:right" value="회원정보 탈퇴">
 			        <hr>
 			  </form>
 			  <p style="color:red" id="no-pw-error" class="info-error" style="cleat:both"></p>
