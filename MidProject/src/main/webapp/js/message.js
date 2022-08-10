@@ -76,7 +76,7 @@ function sendText() {
 	}
 	function msClear() {
 		content = "";
-		console.log('tlqk')
+		console.log('msClear')
 	}
 }
 
