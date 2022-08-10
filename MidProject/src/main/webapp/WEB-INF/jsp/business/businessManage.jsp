@@ -12,6 +12,7 @@
 				<p>사업자 번호 : <span>${business.businessId }</span></p>
 				<p>업체 명 : <span>${business.businessName }</span></p>
 				<p>업제 주소 : <span>${business.businessAddress }</span></p>
+				<p style="display:block;"></p>
 			</div>
 			<div class="business-acc-btns">
 				<button class="business-acc-insert full-btn">추가</button>
@@ -310,7 +311,9 @@
 				}).then(result => result.json())
 					.then(result => {
 						if(result.retCode=="success"){
-							
+							location.reload();
+						}else{
+							console.log(document.querySelector('.serparater:last-child'))
 						}
 					})
 					.catch(err => console.log(err));
