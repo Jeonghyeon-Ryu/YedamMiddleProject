@@ -18,6 +18,7 @@ import com.mid.controller.DeleteRoomController;
 import com.mid.controller.ExTourListController;
 import com.mid.controller.FindInfoController;
 import com.mid.controller.FindInfoFormController;
+import com.mid.controller.GetQnaListController;
 import com.mid.controller.InsertAccController;
 import com.mid.controller.KakaoLoginController;
 import com.mid.controller.KakaoSignupController;
@@ -33,6 +34,8 @@ import com.mid.controller.MessageController;
 import com.mid.controller.MypageController;
 import com.mid.controller.NaverLoginController;
 import com.mid.controller.NaverSignupFormController;
+import com.mid.controller.QnaDetailController;
+import com.mid.controller.QnaListController;
 import com.mid.controller.SelectAccListController;
 import com.mid.controller.SelectAccListCountController;
 import com.mid.controller.SendContentController;
@@ -90,8 +93,11 @@ public class FrontController extends HttpServlet {
 		mappings.put("/memberInfo.do", new MemberInfoController());	// 상세 정보
 		mappings.put("/updateMemberInfo.do", new UpdateMemberInfoController());	//정보수정
 		mappings.put("/idcheckAjax.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.	
+		mappings.put("/qnaList.do", new QnaListController());      //qna페이지로
+	    mappings.put("/getQnaList.do", new GetQnaListController());   //선택한 카테고리의 qna 리스트반환
+	    mappings.put("/qnaDetail.do", new QnaDetailController());   //상세페이지로
 		
-		// 배희열
+	    // 배희열
 		mappings.put("/message.do", new MessageController());		// 메세지폼
 		mappings.put("/sendContent.do", new SendContentController()); //메세지 전송
 		mappings.put("/addContent.do", new AddContentController());	// 숙소 리스트 출력
