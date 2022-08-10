@@ -69,6 +69,7 @@
 			        <hr>
 			        <label for="memberPw" style="float:left">현재 비밀번호</label>
 			        	<input type="password" id="memberPw" name="memberPw">
+			        	<input type="hidden" id="presentPw" value="${member.pw}">
 			        <hr >
 			        <label for="new-memberPw" style="float:left">새 비밀번호</label>
 			        	<input type="password" id="new-memberPw" name="new-memberPw">
@@ -81,7 +82,7 @@
 			    	<input type="hidden" name="job" value="infoUpdate">
 				    <input type="button" onclick="location.href='main.do'" value="홈으로">
 			        <button onclick="upDatePwChk()" style="float:left" name="role" value="memberPw">수정</button>
-				    <input type="button" onclick="#" style="float:right" value="회원정보 탈퇴">
+				    <input type="button" onclick="location.href='deleteMemberInfo.do'" style="float:right" value="회원정보 탈퇴">
 			  </form>
 		  </div>
 	</div>

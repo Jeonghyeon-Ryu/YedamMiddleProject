@@ -16,6 +16,8 @@ import com.mid.controller.BusinessJoinController;
 import com.mid.controller.BusinessSignupController;
 import com.mid.controller.CompDetailController;
 import com.mid.controller.DeleteAccController;
+import com.mid.controller.DeleteMemberController;
+import com.mid.controller.DeleteMemberInfoController;
 import com.mid.controller.DeleteRoomController;
 import com.mid.controller.ExTourListController;
 import com.mid.controller.FindInfoController;
@@ -99,6 +101,8 @@ public class FrontController extends HttpServlet {
 		mappings.put("/findInfo.do", new FindInfoController());	//회원정보검색
 		mappings.put("/memberInfo.do", new MemberInfoController());	// 상세 정보
 		mappings.put("/updateMemberInfo.do", new UpdateMemberInfoController());	//정보수정
+		mappings.put("/deleteMemberInfo.do", new DeleteMemberInfoController());	//정보수정
+		mappings.put("/deleteMember.do", new DeleteMemberController());
 		mappings.put("/idcheckAjax.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.	
 		mappings.put("/qnaList.do", new QnaListController());      //qna페이지로
 	    mappings.put("/getQnaList.do", new GetQnaListController());   //선택한 카테고리의 qna 리스트반환
