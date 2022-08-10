@@ -85,6 +85,21 @@
 		</div>
 	</div>
 </template>
+<template id="reservation-template" style="display:none">
+	<div class="reservation-container">
+		<div class="reservation-img">
+			<img src="">
+		</div>	
+		<div class="reservation-content">
+			<div class="reservation-acc">숙소명 : <strong></strong></div>
+			<div class="reservation-room">방 종류 : <span></span></div>
+			<div class="reservation-address">주소 : <span></span></div>
+			<div class="reservation-date">이용일자 : <span></span><span></span></div>
+			<div class="reservation-phone">업체전화 : <span></span></div>
+			<div class="reservation-price">결제금액 : <span></span></div>
+		</div>
+	</div>
+</template>
 <div id="reservation-modal" class="modal modal-overlay" role="dialog">
 	<div class="large-modal-box">
 		<!-- Modal Title -->

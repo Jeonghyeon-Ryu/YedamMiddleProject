@@ -21,6 +21,7 @@ import com.mid.controller.ExTourListController;
 import com.mid.controller.FindInfoController;
 import com.mid.controller.FindInfoFormController;
 import com.mid.controller.GetQnaListController;
+import com.mid.controller.GetReservationListController;
 import com.mid.controller.InsertAccController;
 import com.mid.controller.InsertRoomController;
 import com.mid.controller.KakaoLoginController;
@@ -82,8 +83,9 @@ public class FrontController extends HttpServlet {
 		mappings.put("/roomUpdate.do", new UpdateRoomController());	// Business 페이지 Room update
 		mappings.put("/accDelete.do", new DeleteAccController());	// Business 페이지 Acc delete
 		mappings.put("/roomDelete.do", new DeleteRoomController());	// Business 페이지 Room delete
-		mappings.put("/accInsert.do", new InsertAccController());	// Business 페이지 Room delete
-		mappings.put("/roomInsert.do", new InsertRoomController());	// Business 페이지 Room delete
+		mappings.put("/accInsert.do", new InsertAccController());	// Business 페이지 Acc insert
+		mappings.put("/roomInsert.do", new InsertRoomController());	// Business 페이지 Room insert
+		mappings.put("/getReservationList.do", new GetReservationListController());	// 예약 리스트 가져오기
 	
 		
 		// 최유리

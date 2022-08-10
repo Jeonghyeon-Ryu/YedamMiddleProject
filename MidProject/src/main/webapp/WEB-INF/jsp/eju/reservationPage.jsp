@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js">
+</script><script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" type="text/css" href="css/businessManage.css">
@@ -81,4 +82,12 @@
 		<div>결제정보</div>
 		<div class=""></div>
 	</div>
+	<button id="check-module" type="button">결제</button>
 </div>
+<script>
+let memberName = document.querySelector('.rv-member-name').value;
+let memberPhone = document.querySelector('.rv-content-box').value;
+let merchantName = document.querySelector('.rv-comp-title').value + document.querySelector('.rv-room-name').value;
+console.log(merchantName);
+
+</script>

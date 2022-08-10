@@ -10,6 +10,23 @@ function reservationModalOpenAction(e) {
 	modal.classList.toggle('modal-active');
 	body.classList.toggle('modal-active-background');
 	
+	fetch('getReservationList.do')
+		.then(result => result.json())
+		.then(result => {
+			if(wishResult.retCode=="exist"){
+				card.querySelector('.like').src="img/like-redheart-35.png";
+			}
+			// 카드 붙이기
+			document.querySelector('main').append(card);
+		}).catch(err => console.log(err));
+	
+	
+	
+	
+	
+	
+	
+	
 	// ajax.
 	fetch('exTourList.do?id=qwe@123')
    .then(result => result.json())
