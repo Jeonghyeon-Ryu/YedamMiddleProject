@@ -53,6 +53,7 @@ public class RoomDAO extends DAO {
 		}
 		return null;
 	}
+	
 	public List<Room> selectAllForBusiness(int accId) {
 		connect();
 		String sql = "select * from room WHERE acc_id=? AND status!=0 order by 1";

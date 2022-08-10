@@ -1,6 +1,7 @@
 package com.mid.common;
 
 import java.io.IOException;
+
 import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mid.controller.AddContentController;
 import com.mid.controller.AjaxMemberIdCheck;
-import com.mid.controller.BusinessJoincontroller;
 import com.mid.controller.CompDetailController;
 import com.mid.controller.DeleteAccController;
 import com.mid.controller.DeleteRoomController;
@@ -38,7 +38,6 @@ import com.mid.controller.SelectAccListController;
 import com.mid.controller.SelectAccListCountController;
 import com.mid.controller.SendContentController;
 import com.mid.controller.SocialLinkController;
-import com.mid.controller.UpdateAccController;
 import com.mid.controller.UpdateMemberInfoController;
 import com.mid.controller.UpdateRoomController;
 import com.mid.controller.businessManageFormController;
@@ -76,7 +75,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/roomUpdate.do", new UpdateRoomController());	// Business 페이지 Room update
 		mappings.put("/accDelete.do", new DeleteAccController());	// Business 페이지 Acc delete
 		mappings.put("/roomDelete.do", new DeleteRoomController());	// Business 페이지 Room delete
-		
+
 		
 		// 최유리
 		mappings.put("/login.do", new LoginOutController());		// 로그인,로그아웃
@@ -101,7 +100,9 @@ public class FrontController extends HttpServlet {
 
 		// 엄정웅
 		mappings.put("/compDetail.do", new CompDetailController());	// 상세페이지 출력 
-		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
+		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 예약 리스트 출력
+		mappings.put("/reservationPage.do", new ReservationPageController());	// 예약페이지 출력
+		
 	}
 
 	@Override
@@ -116,6 +117,5 @@ public class FrontController extends HttpServlet {
 
 		Controller subControl = mappings.get(path);
 		subControl.execute(req, resp);
-
 	}
 }

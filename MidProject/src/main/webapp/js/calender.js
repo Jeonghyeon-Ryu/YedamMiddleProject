@@ -162,7 +162,7 @@ function selectDate() {
 	let inDate = document.querySelector('.cal-day1').textContent;
 	let outDate = document.querySelector('.cal-day2').textContent;
 	console.log(inDate + '~' + outDate);
-
+	
 }
 
 let calenderCloseButton = document.querySelector("#checkin-modal .modal-close-button")
