@@ -132,16 +132,16 @@
 						<img src="img/close-20.png">
 					</div>
 					<div class="serparater"><p>로그인페이지 입니다.</p>
-					<p style="color:red; font-weight:bold; display:block;" id="login-error-msg"></p></div>
-					<form class="login">
+					<c:if test="${!empty error }"><p style="color:red; font-weight:bold;">${error }</p></c:if></div>
+					<form action="login.do" class="login">
 						<div class="form-group">
-							<input type="text" placeholder="아이디" name="memberId" id="memberId" class="form-control" autofocus>
+							<input type="text" placeholder="아이디" name="memberId" class="form-control" autofocus>
 						</div>
 						<div class="form-group">
-							<input type="password" placeholder="비밀번호" name="memberPw" id="memberPw" class="form-control">
+							<input type="password" placeholder="비밀번호" name="memberPw" class="form-control">
 						</div>
 						<div class="form-group">
-							<button class="full-btn" onclick="mainLogin()">로그인</button>
+							<button type="submit" class="full-btn">로그인</button>
 						</div>
 					</form>
 					<div class="serparater">아이디/비밀번호가 없거나 잊어버리셨나요?</div>
@@ -200,7 +200,7 @@
 			<div class="mypage-center" id="customer-center">
 				<h2>고객센터</h2>
 				<ul>
-					<li><a href="qnaList.do"><i class="fa-solid fa-circle-question"></i>
+					<li><a href="#"><i class="fa-solid fa-circle-question"></i>
 							QnA<span>></span></a></li>
 					<li><a href="#"><i class="fa-solid fa-headset"></i> 1:1
 							문의<span>></span></a></li>

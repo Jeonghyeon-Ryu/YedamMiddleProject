@@ -35,7 +35,6 @@ public class UpdateMemberInfoController implements Controller {
 				if(!pw.equals(presentPw)) {
 					req.setAttribute("msg", "현재 비밀번호가 옳지 않습니다.");
 					Utils.forward(req, resp, "memberInfo.do");
-					return;
 				}
 				member.setPw(NewPw);
 			}
@@ -56,7 +55,7 @@ public class UpdateMemberInfoController implements Controller {
 			pw = SHA256.encodeSha256(pw);
 			member.setPw(pw);
 			service.modifyMember(member);
-			Utils.forward(req, resp, "main.do");
+			Utils.forward(req, resp, "/WEB-INF/jsp/member/memberLoginForm.jsp");
 		}
 	}
 
