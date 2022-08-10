@@ -20,8 +20,6 @@ public class MemberInfoController implements Controller {
 		String id = (String) session.getAttribute("id");
 		MemberService service = MemberService.getInstance();
 		
-		System.out.println("memberinfocontroller...");
-		
 		Member vo = new Member();
 		vo = service.getMember(id);
 		String[] ph = vo.getPhone().split("-");
