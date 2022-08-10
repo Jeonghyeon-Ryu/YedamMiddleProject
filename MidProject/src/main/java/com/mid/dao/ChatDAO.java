@@ -7,6 +7,66 @@ import java.util.List;
 import com.mid.vo.Chat;
 
 public class ChatDAO extends DAO {
+	
+	//대화 내용 최근 등록 조회
+	public Chat selectLastContent(String myId, String youId) {
+		connect();
+		String sql = "select * from (select content,receiver,sender,checkemoji,currenttime,CHAT_SEQ,to_char(currenttime,'HH24:MI')ct from chat where ((sender = ? AND RECEIVER = ?) OR(sender = ? AND RECEIVER = ?)) ORDER BY CHAT_SEQ desc) where rownum = 1";
+		Chat vo = new Chat();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,myId);
+			pstmt.setString(2,youId);
+			pstmt.setString(3,youId);
+			pstmt.setString(4,myId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				vo.setContent(rs.getString("CONTENT"));
+				vo.setReceiver(rs.getString("RECEIVER"));
+				vo.setSender(rs.getString("SENDER"));
+				vo.setCheckEmoji(rs.getInt("checkemoji"));
+				vo.setCurrentTime(rs.getString("ct"));
+				vo.setCurrentDay(rs.getString("currenttime"));
+			}
+			return vo;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return null;
+	}
+	// 대화 내용 전체 조회
+	public List<Chat> selectContent(String myId, String youId) {
+		connect();
+		String sql = "select content,receiver,sender,checkemoji,currenttime,to_char(currenttime,'HH24:MI')ct from chat where ((sender = ? AND RECEIVER = ?) OR(sender = ? AND RECEIVER = ?)) ORDER BY CHAT_SEQ";
+		List<Chat> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,myId);
+			pstmt.setString(2,youId);
+			pstmt.setString(3,youId);
+			pstmt.setString(4,myId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Chat vo = new Chat();
+				vo.setContent(rs.getString("CONTENT"));
+				vo.setReceiver(rs.getString("RECEIVER"));
+				vo.setSender(rs.getString("SENDER"));
+				vo.setCheckEmoji(rs.getInt("checkemoji"));
+				vo.setCurrentTime(rs.getString("ct"));
+				vo.setCurrentDay(rs.getString("currenttime"));
+				list.add(vo);
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return null;
+	}
+	
 	// 전체 조회
 		public List<Chat> selectAll() {
 			connect();

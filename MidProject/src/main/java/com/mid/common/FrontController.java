@@ -31,6 +31,7 @@ import com.mid.controller.MemberJoinFormController;
 import com.mid.controller.MessageController;
 import com.mid.controller.NaverLoginController;
 import com.mid.controller.NaverSignupFormController;
+import com.mid.controller.OpenContentMessageController;
 import com.mid.controller.QnaInsertController;
 import com.mid.controller.QnaListController;
 import com.mid.controller.SelectAccListController;
@@ -96,6 +97,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/sendContent.do", new SendContentController()); //메세지 전송
 		mappings.put("/addContent.do", new AddContentController());	// 숙소 리스트 출력
 		mappings.put("/businessJoin.do", new BusinessJoincontroller()); //사업자 가입
+		mappings.put("/openContentMessage.do", new OpenContentMessageController()); //사업자 가입
 
 		// 엄정웅
 		mappings.put("/compDetail.do", new CompDetailController());	// 상세페이지 출력 
