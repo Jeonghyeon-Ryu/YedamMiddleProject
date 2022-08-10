@@ -61,6 +61,8 @@
 								</c:choose>
 							</div>
 							<div id="msContentText">
+								<form action="sendContent.do" id="msSendContent"
+									name="msSendContent">
 									<p id="${i.name }AccName"></p>
 									<c:set var="id" value="${id }" />
 									<c:forEach var="i" items="${ctlist }">
@@ -107,21 +109,22 @@
 											</c:when>
 										</c:choose>
 									</c:forEach>
-								
+									<div id="msSendAll">
+										<input id="msSend" name="msSend" value="${id }" type="hidden">
+										<input id="msReceiv" name="msReceiv" type="hidden"> <input
+											id="msSendText" name="msSendText" type="text"> <img
+											id="msSendEmoji" class=msEmoji onclick="openMsEmoji()"
+											src="img/emoji_1.jpg" style="cursor: pointer">
+									</div>
 									<div id="msEmojiAll">
 										<c:forEach var="i" begin="1" end="28">
-											<img id="img/emoji_${i}.gif" class=msEmoji name="img/emoji_${i}.gif" src="img/emoji_${i}.gif"
+											<img id="img/emoji_${i}.gif" class=msEmoji
+												name="img/emoji_${i}.gif" src="img/emoji_${i}.gif"
 												ondblclick="sendEomji(this.id)" style="cursor: pointer">
 										</c:forEach>
 									</div>
+								</form>
 							</div>
-								<div id="msSendAll">
-										<input id="msSend" name="msSend" value="${id }" type="hidden">
-										<input id="msReceiv" name="msReceiv" type="hidden"> 
-										<input id="msSendText" name="msSendText" type="text" onkeyup="if(window.event.keyCode==13){sendText()}"> 
-										<img id="msSendEmoji" class=msEmoji onclick="openMsEmoji()"
-											src="img/emoji_1.jpg" style="cursor: pointer">
-									</div>
 						</div>
 					</div>
 				</div>
