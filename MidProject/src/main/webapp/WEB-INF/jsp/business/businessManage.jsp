@@ -12,10 +12,11 @@
 				<p>사업자 번호 : <span>${business.businessId }</span></p>
 				<p>업체 명 : <span>${business.businessName }</span></p>
 				<p>업제 주소 : <span>${business.businessAddress }</span></p>
-				<p style="display:block;"></p>
+				<p id="business-error" style="color:red; font-weight:bold; display:block;"></p>
 			</div>
 			<div class="business-acc-btns">
 				<button class="business-acc-insert full-btn">추가</button>
+				<button class="business-acc-insert-cancel full-btn" style="display:none; background:#42A5F5;">취소</button>
 				<button class="business-acc-delete full-btn">삭제</button>
 			</div>
 			<c:forEach var="list" items="${resultList }">
@@ -193,8 +194,15 @@
 						body: 'accId=' + accId
 					}).then(result => result.json())
 						.then(result => {
-							console.log(result);
-							location.reload();})
+							if(result.retCode=="success"){
+								location.reload();
+								document.querySelector('#business-error').style.color="blue";
+								document.querySelector('#business-error').innerText="☆ 숙소 삭제 성공 !";
+							} else {
+								document.querySelector('#business-error').style.color="red";
+								document.querySelector('#business-error').innerText="☆ 숙소 삭제 오류가 발생하였습니다. ( 계속해서 발생하면 문의를 남겨주세요 )";
+							}
+						})
 						.catch(err => console.log(err));
 				} else {
 					accForm.remove();
@@ -218,8 +226,15 @@
 						body: 'roomId=' + roomId
 					}).then(result => result.json())
 						.then(result => {
-							console.log(result);
-							location.reload();})
+							if(result.retCode=="success"){
+								location.reload();
+								document.querySelector('#business-error').style.color="blue";
+								document.querySelector('#business-error').innerText="☆ 객실 삭제 성공 !";
+							} else {
+								document.querySelector('#business-error').style.color="red";
+								document.querySelector('#business-error').innerText="☆ 객실 삭제 오류가 발생하였습니다. ( 계속해서 발생하면 문의를 남겨주세요 )";
+							}
+						})
 						.catch(err => console.log(err));
 				} else {
 					
@@ -236,39 +251,46 @@
 				if(!accForm.classList.contains('active-form-group')){
 					accForm.classList.toggle('active-form-group');
 				}
-				let room= accForm.querySelector('.business-room');
-				console.log(room);
-				let cloneRoom = room.cloneNode(true);
-				cloneRoom.querySelector('input[name="roomName"]').value=null;
-				cloneRoom.querySelector('input[name="roomName"]').readOnly=false;
-				cloneRoom.querySelector('input[name="roomPrice"]').value=null;
-				cloneRoom.querySelector('input[name="roomPrice"]').readOnly=false;
-				cloneRoom.querySelector('input[name="roomInfo"]').value=null;
-				cloneRoom.querySelector('input[name="roomInfo"]').readOnly=false;
-				cloneRoom.querySelector('.business-save-room').classList.toggle('active-delete');
-				room.after(cloneRoom);
-				$('.business-room').on("click",".business-save-room",function(e){
-					let accForm = e.target.parentElement;
-					while(!accForm.classList.contains('form-group')){
-						accForm=accForm.parentElement;
-					}
-					let accId = accForm.querySelector('.business-accId').value;
-					
-					$.ajax({
-						url: "setWish.do",
-						data: { "accId" : clickedCard },
-						method: "GET",
-						success: function(result){
-							if(result=="success"){
-								e.target.src = "img/like-redheart-35.png";
-							} else if(result=="delete"){
-								e.target.src = "img/like-heart-35.png";
-							}
-						}, error : function(err){
-							console.log(err);
+			
+				let room= accForm.querySelectorAll('.business-room')[0];
+				if(room.querySelector('input[name="roomName"]').value!=""){
+					let cloneRoom = room.cloneNode(true);
+					cloneRoom.querySelector('input[name="roomName"]').value=null;
+					cloneRoom.querySelector('input[name="roomName"]').readOnly=false;
+					cloneRoom.querySelector('input[name="roomPrice"]').value=null;
+					cloneRoom.querySelector('input[name="roomPrice"]').readOnly=false;
+					cloneRoom.querySelector('input[name="roomInfo"]').value=null;
+					cloneRoom.querySelector('input[name="roomInfo"]').readOnly=false;
+					cloneRoom.querySelector('.business-save-room').classList.toggle('active-delete');
+					document.querySelector('.business-room-btns').after(cloneRoom);
+					$('.business-room').on("click",".business-save-room",function(e){
+						let accForm = e.target.parentElement;
+						while(!accForm.classList.contains('form-group')){
+							accForm=accForm.parentElement;
 						}
+						let accId = accForm.querySelector('.business-accId').value;
+						let roomName = accForm.querySelector('input[name="roomName"]').value;
+						let roomPrice = accForm.querySelector('input[name="roomPrice"]').value;
+						let roomInfo = accForm.querySelector('input[name="roomInfo"]').value;
+						$.ajax({
+							url: "roomInsert.do",
+							data: { "accId" : accId,  "roomName" : roomName, "roomPrice" : roomPrice , "roomInfo" : roomInfo },
+							method: "GET",
+							success: function(result){
+								if(result.retCode=="success"){
+									location.reload();
+									document.querySelector('#business-error').style.color="blue";
+									document.querySelector('#business-error').innerText="☆ 객실 등록 성공 !";
+								} else {
+									document.querySelector('#business-error').style.color="red";
+									document.querySelector('#business-error').innerText="☆ 객실 등록 오류가 발생하였습니다. ( 계속해서 발생하면 문의를 남겨주세요 )";
+								}
+							}, error : function(err){
+								console.log(err);
+							}
+						})
 					})
-				})
+				}
 			})
 		}
 		let insertAccBtn = document.querySelector('.business-acc-insert');
@@ -282,10 +304,9 @@
 				let addBtn = document.querySelector('.business-acc-insert');
 				addBtn.innerText="저장";
 				addBtn.style.background="#42A5F5";
+				document.querySelector('.business-acc-insert-cancel').style.display="block";
 			} else {
 				let addBtn = document.querySelector('.business-acc-insert');
-				addBtn.innerText="추가";
-				addBtn.style.background="#C5C5C5";
 				let addItem = document.querySelectorAll('.form-group')[0];
 				let accName = addItem.querySelector('input[name="accName"]')
 				let accPhone = addItem.querySelector('input[name="accPhone"]')
@@ -303,20 +324,35 @@
 				} else if(accImgUrl.value==""){
 					alert('숙소 이미지 URL을 입력하세요.');
 					accImgUrl.focus();
+				} else {
+					addBtn.innerText="추가";
+					addBtn.style.background="#C5C5C5";
+					fetch('accInsert.do', {
+						method: 'POST',
+						headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+						body: 'accName=' + accName.value + '&accPhone=' + accPhone.value + '&accAddress=' + accAddress.value + '&accImgUrl=' + accImgUrl.value
+					}).then(result => result.json())
+						.then(result => {
+							if(result.retCode=="success"){
+								location.reload();
+								document.querySelector('#business-error').style.color="blue";
+								document.querySelector('#business-error').innerText="☆ 숙소 등록 성공 !";
+							} else {
+								document.querySelector('#business-error').style.color="red";
+								document.querySelector('#business-error').innerText="☆ 숙소 등록 오류가 발생하였습니다. ( 계속해서 발생하면 문의를 남겨주세요 )";
+							}
+						})
+						.catch(err => console.log(err));
 				}
-				fetch('accInsert.do', {
-					method: 'POST',
-					headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-					body: 'accName=' + accName.value + '&accPhone=' + accPhone.value + '&accAddress=' + accAddress.value + '&accImgUrl=' + accImgUrl.value
-				}).then(result => result.json())
-					.then(result => {
-						if(result.retCode=="success"){
-							location.reload();
-						}else{
-							console.log(document.querySelector('.serparater:last-child'))
-						}
-					})
-					.catch(err => console.log(err));
 			}
 		})
+		let accInsertCancel = document.querySelector('.business-acc-insert-cancel');
+		accInsertCancel.addEventListener('click', accInsertCancelFunc);
+		function accInsertCancelFunc() {
+			document.querySelector('.businessManage-container>div>div:nth-child(4)').remove();
+			document.querySelector('.business-acc-insert-cancel').style.display="none";
+			let addBtn = document.querySelector('.business-acc-insert');
+			addBtn.innerText="추가";
+			addBtn.style.background="#C5C5C5";
+		}
 	</script>

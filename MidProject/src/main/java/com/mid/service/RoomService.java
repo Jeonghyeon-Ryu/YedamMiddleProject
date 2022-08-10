@@ -14,6 +14,9 @@ public class RoomService {
 		}
 		return instance;
 	}
+	public boolean insert(Room room) {
+		return new RoomDAO().insert(room);
+	}
 	public boolean update(Room room) {
 		return new RoomDAO().update(room);
 	}

@@ -8,6 +8,11 @@ import com.mid.vo.Room;
 
 public class RoomDAO extends DAO {
 
+	public boolean insert(Room room) {
+		boolean result = false;
+		
+		return result;
+	}
 	public boolean update(Room room) {
 		boolean result = false;
 		try {
