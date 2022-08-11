@@ -12,8 +12,7 @@
 <div class="qna-box">
 	<div class="qna-title">
 		<h2>자주 묻는 질문</h2>
-		<div class="modal-close-button"><a href="main.do">
-			<img src="img/close-20.png"></a>
+		<div class="close-button"><a href="main.do"><img src="img/close-20.png"></a>
 		</div>
 	</div>
 	<div class="qna-content">

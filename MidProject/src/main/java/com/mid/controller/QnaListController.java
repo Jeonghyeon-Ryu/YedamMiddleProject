@@ -14,6 +14,6 @@ public class QnaListController implements Controller {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		Utils.forward(req, resp,"/WEB-INF/jsp/qna/qnaPage.jsp");
+		Utils.forward(req, resp,"qna/qnaPage.tiles");
 	}
 }

@@ -19,7 +19,7 @@
    </div>
    <div class="findInfo-content">
       <form class="findInfo-frm" id="SearchId-frm" name="frm" action="findInfo.do">
-         <h3>아이디 찾기</h3>
+         <br><h5 style='font-weight: bold;'>아이디 찾기</h5>
          <input type="hidden" name="job" value="searchId">
          <div class="searchId">
             <label for="s-memberNm">이름</label>
@@ -39,7 +39,7 @@
       
       <div class="searchedInfo-box" id="searchedId-box">
          <c:if test="${!empty error}">
-            <p style="color:red;">${error}</p>
+            <p style="color:red;">정보가 없습니다.</p>
          </c:if>      
          <c:if test="${!empty list}">
             <c:forEach var="vo" items="${list}">
@@ -49,7 +49,7 @@
       </div>
       
       <form class="findInfo-frm" id="searchPw-frm" name="searchPw-frm" action="findInfo.do">
-         <h3>비밀번호 찾기</h3>
+         <br><h5 style='font-weight: bold;'>비밀번호 찾기</h5>
          <input type="hidden" name="job" value="searchPw">
          <div class="searchPw">
             <label for="s2-memberNm">이름</label>

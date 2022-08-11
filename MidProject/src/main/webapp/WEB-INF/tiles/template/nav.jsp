@@ -192,7 +192,7 @@
 		<!-- Modal Content -->
 		<div class="large-modal-content">
 			<div id="profile-photo">
-				<img src() height="48" width="48">
+				<img src='https://ifh.cc/g/9xPMF4.webp' border='0'height="48" width="48">
 
 				<form action="login.do">
 					<button type="submit" id="mypage-logout">로그아웃</button>
@@ -209,8 +209,7 @@
 					<li><a href="memberInfo.do"><i class="fa-solid fa-user"></i> 개인정보<span>></span></a></li>
 					<li><a href="#"><i class="fa-solid fa-clipboard-list"></i>
 							예약내역<span>></span></a></li>
-					<li><a href="#"><i class="fa-solid fa-file-pen"></i> 후기관리<span>></span></a></li>
-					</ul>
+				</ul>
 			</div>
 			<hr>
 			<div class="mypage-center" id="customer-center">
@@ -218,10 +217,9 @@
 				<ul>
 					<li><a href="qnaList.do"><i class="fa-solid fa-circle-question"></i>
 							QnA<span>></span></a></li>
-					<li><a href="#"><i class="fa-solid fa-headset"></i> 1:1
-							문의<span>></span></a></li>
 				</ul>
 			</div>
+			<hr>
 			<div class="mypage-center" id="customer-center">
 				<h2>사업자</h2>
 				<ul>

@@ -124,13 +124,11 @@ function clickSearchBox(e) {
 		locationModal.classList.toggle('modal-active');
 		let body = document.querySelector('body');
 	body.classList.toggle('modal-active-background');
-	}else if(id == 'checkin-date') {
+	}else if(id == 'checkin-date'||'checkout-date') {
 		let checkinModal = document.querySelector('#checkin-modal');
 		checkinModal.classList.toggle('modal-active');
 		let body = document.querySelector('body');
 		body.classList.toggle('modal-active-background');
-	}else if(id == 'checkout-date') {
-		
 	}else if(id == 'headcount') {
 		let headcountModal = document.querySelector('#headcount-modal');
 		headcountModal.classList.toggle('modal-active');

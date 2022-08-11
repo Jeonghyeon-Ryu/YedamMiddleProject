@@ -31,7 +31,7 @@ public class MemberInfoController implements Controller {
 			e.printStackTrace();
 		}finally {		
 			req.setAttribute("member",vo);
-			Utils.forward(req, resp, "/WEB-INF/jsp/member/memberInfo.jsp");
+			Utils.forward(req, resp, "member/memberInfo.tiles");
 		}
 	}
 

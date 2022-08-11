@@ -17,7 +17,7 @@ public class MypageController implements Controller {
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("id");
 		req.setAttribute("id", id);
-		Utils.forward(req, resp, "/WEB-INF/jsp/member/memberMypage.jsp");
+		Utils.forward(req, resp, "member/memberMypage.tiles");
 	}
 
 }
