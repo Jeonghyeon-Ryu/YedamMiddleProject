@@ -46,8 +46,11 @@ public class LoginOutController implements Controller {
 			resp.getWriter().print(0);
 		} else {
 			// 로그인 성공
+			MemberService mService = MemberService.getInstance();
+			session.setAttribute("businessId", mService.getBusinessId(id));
 			session.setAttribute("id", id);
 			resp.getWriter().print(1);
+		
 		}
 	}
 

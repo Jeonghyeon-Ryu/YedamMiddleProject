@@ -37,8 +37,6 @@ public class ChatDAO extends DAO {
 		return null;
 	}
 
-	
-
 	// 전체 조회
 	public List<Chat> selectAll() {
 		connect();
