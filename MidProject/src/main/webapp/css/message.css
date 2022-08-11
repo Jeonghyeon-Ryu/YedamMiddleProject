@@ -1,170 +1,194 @@
 @charset "UTF-8";
 
-#msModal{
-	margin : 0 auto;
-	width : 100%;
-	padding-top :50px; 
+#msModal {
+	margin: 0 auto;
+	width: 100%;
+	padding-top: 50px;
 }
-#msModal .modal-box{
+
+#msModal .modal-box {
 	margin: 0 auto;
 }
 
-#msModal #msCondition{
-	line-height :50px;
+#msModal #msCondition {
+	line-height: 50px;
 }
 
 #msCondition {
-    position: absolute;
-    left: 20px;
-    top: 0;
+	position: absolute;
+	left: 20px;
+	top: 0;
 }
 
-.modal-title>h5{
-	line-height :50px;
+.msModal-content {
+	display: block;
+	overflow: auto;
+	overflow-x: hidden;
+	border: none;
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
-#msContainer {
-	height:100%;
-padding: 10px 20px 30px;
- overflow: auto;
+
+.modal-title>h5 {
+	line-height: 50px;
+}
+#msContent>div{
+	margin:0;
 }
 #msHeader {
-	margin-bottom:10px;
-	
+	display: flex;
+margin-bottom: 10px;
 }
+
 .msBtn {
-    display: flex;
-    width: 95%;
-    padding: 5px;
-    margin: 10px;
-    background: #ddd;
-    border: 1px solid #c5c5c5;
-    border-radius: 5px;
-    cursor: pointer;
+	display: flex;
+	width: 95%;
+	padding: 5px;
+	margin: 10px;
+	background: #ddd;
+	border: 1px solid #c5c5c5;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
 .msBtn>img {
-    width: 30%;
-    margin-right: 10px;
-}
-.msBtn>p{
-    margin-left: 10px;
+	width: 30%;
+	margin-right: 10px;
 }
 
+.msBtn>p {
+	margin-left: 10px;
+}
+#msUserRoom{
+	margin-top:5px;
+	margin-bottom: 5px;
+}
+#msBmRoom{
+	margin-top:5px;
+	margin-bottom: 5px;
+}
 nav {
-    display: flex;
+	display: flex;
 }
 
 .modal-content {
-    height: 100%;
+	height: 100%;
 }
 
 #receviId {
-    margin-left: auto;
+	margin-left: auto;
 }
 
 #msCondition {
-    position: absolute;
-    left: 20px;
-    top: 0;
+	position: absolute;
+	left: 20px;
+	top: 0;
 }
 
 #msContent {
-    position: absolute;
-    
-    width: 100%;
-    height: 60vh;
-    overflow: auto
+	position: relative;
+	height: 60vh;
+	overflow: auto;
+	margin : 0 ;
 }
 
 #msContentText {
-    position: relative;
+	position: relative;
 }
 
 #msContentText>div {
-    display: none;
+	display: none;
 }
 
 #msSendAll {
-    display: none;
+	display: none;
 }
 
 .msImg {
-    height: 50px;
-    width: 50px;
+	height: 50px;
+	width: 50px;
 }
 
 #msEmojiAll {
-    position: absolute;
-    display: none;
+	position: absolute;
+	display: none;
+	z-index: 999;
+	bottom :60px;
+	width:70%;
+	background : transparent;
 }
 
 #msThisDay {
-    margin-left: 30%;
+	margin-left: 30%;
 }
 
 #msMyLine {
-    display: none;
+	display: none;
 }
 
 #msMyTime {
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: 5px;
+	margin-top: auto;
+	margin-left: auto;
+	margin-right: 5px;
 }
 
 #msMyText {
-    margin-right: 10px;
-    margin-top: 5px;
+	margin-right: 10px;
+	margin-top: 5px;
 }
 
 #msYouLine {
-    display: none;
+	display: none;
 }
 
 #msYouTime {
-    margin-top: auto;
-    margin-right: auto;
-    margin-left: 5px;
+	margin-top: auto;
+	margin-right: auto;
+	margin-left: 5px;
 }
 
 #msYouText {
-    margin-left: 10px;
-    margin-top: 5px;
+	margin-left: 10px;
+	margin-top: 5px;
 }
 
 #msThisDay {
-    display: none;
+	display: none;
 }
 
+#msSendAll{
+	width: 100%;
+}
 #msSendText {
-    padding: 5px;
-    width: 100%;
-    padding-left: 10px;
-    margin-left: 5px;
-    border: 2px solid #c5c5c5;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-right: 0px;
-    outline: none;
+	padding: 5px;
+	width: 100%;
+	padding-left: 10px;
+	margin-left: 5px;
+	border: 2px solid #c5c5c5;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-right: 0px;
+	outline: none;
 }
 
 #msSendEmoji {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border: 2px solid #c5c5c5;
-    border-left: 0px;
-    margin-right: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border: 2px solid #c5c5c5;
+	border-left: 0px;
+	margin-right: 5px;
 }
 
 .msEmoji {
-    width: 50px;
-    height: 50px;
+	width: 50px;
+	height: 50px;
 }
 
 #msSend {
-    border: 0px;
+	border: 0px;
 }
 
 #msReceiv {
-    border: 0px;
+	border: 0px;
 }
