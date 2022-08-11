@@ -3,7 +3,6 @@ let msEmoji = document.getElementById("msEmojiAll")
 
 function openContent(id) {
 	thisId = id
-
 	document.getElementById("msContentText").style.display = 'block'
 	document.getElementById(id).style.display = 'flex'
 	let a = document.getElementsByClassName(thisId)
@@ -14,27 +13,21 @@ function openContent(id) {
 	document.getElementById("msContentRoom").style.display = 'none'
 	document.getElementById("msReceiv").setAttribute("value", thisId);
 	document.getElementById("msContent").scrollTo(0, document.getElementById("msContentText").offsetHeight)
-	document.getElementById("receviId").innerText = "수신 s: " + id;
-
+	document.getElementById("receviId").innerText = "수신 : " + id;
 }
 
 function sendText() {
-	let msContent = document.getElementById("msContent")
-	let content = document.getElementById("msSendText").value
-	fetch('sendContent.do?youId=' + thisId + '&msSendText=' + content)
+	let content = document.getElementById("msSendText")
+	fetch('sendContent.do?youId=' + thisId + '&msSendText=' + content.value)
 		.then(result => result.json())
 		.then(readContent)
-		.then(msClear)
-
 
 	function readContent(result) {
 		var msParent = document.createElement("div")
-		console.log(result.content)
 		if (result.sender == thisId) {
 			msParent.setAttribute("id", "msYouLine")
 			msParent.setAttribute("class", thisId)
 			if (result.checkEmoji == 1) {
-				console.log(result.checkEmoji);
 				var msTime = document.createElement("small")
 				msTime.innerText = result.currentTime
 				var msText = document.createElement("img")
@@ -67,25 +60,22 @@ function sendText() {
 			}
 			msParent.append(msTime)
 			msParent.append(msText);
-
+			document.getElementById("msSendText").value = ""
 		}
 		msParent.style.display = 'flex'
 		document.getElementById("msContentText").append(msParent)
 		document.getElementById("msContent").scrollTo(0, document.getElementById("msContentText").offsetHeight)
-		content = "";
+		document.getElementById("msSendText").value = ""
 	}
-	function msClear() {
-		content = "";
-		console.log('tlqk')
-	}
+	document.getElementById("msSendText").value = ""
 }
 
 function sendEomji(id) {
-	document.getElementById("msSendText").setAttribute("value", id)
+	document.getElementById("msSendText").value = id
 	sendText();
+	document.getElementById("msSendText").value = ""
 }
 function openReContent() {
-
 	let recevi = document.getElementById("exitRecevi").value
 	if (recevi != "") {
 		console.log('start')
@@ -103,7 +93,7 @@ function openAllMs() {
 	}
 	document.getElementById("msContentRoom").style.display = 'block'
 	document.getElementById("receviId").innerText = "";
-
+	openMsEmoji()
 }
 
 function openMsEmoji() {
