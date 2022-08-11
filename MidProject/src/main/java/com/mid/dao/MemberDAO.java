@@ -244,15 +244,16 @@ public class MemberDAO extends DAO {
 			return null;
 		}
 
-	// 수정 : 비밀번호, 연락처
+	// 수정 : 비밀번호, 연락처, 이름
 	public void updateMember(Member vo) {
-		String sql = " UPDATE member SET pw=?, phone=? WHERE id=? ";
+		String sql = " UPDATE member SET name=?, pw=?, phone=? WHERE id=? ";
 		connect();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getPw());
-			pstmt.setString(2, vo.getPhone());
-			pstmt.setString(3, vo.getId());
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getPw());
+			pstmt.setString(3, vo.getPhone());
+			pstmt.setString(4, vo.getId());
 
 			int r = pstmt.executeUpdate();
 			System.out.println(r + "건 변경");
