@@ -9,7 +9,15 @@ public class Reservation {
 	private int reservationDay;
 	private int headcount;
 	private Date paymentDate;
-	private int paymentCost;
+	private String paymentCost;
+
+	
+	
+	@Override
+	public String toString() {
+		return "Reservation [roomId=" + roomId + ", memberId=" + memberId + ", reservationTime=" + reservationTime
+				+ ", reservationDay=" + reservationDay + "]";
+	}
 
 	public int getRoomId() {
 		return roomId;
@@ -59,11 +67,11 @@ public class Reservation {
 		this.paymentDate = paymentDate;
 	}
 
-	public int getPaymentCost() {
+	public String getPaymentCost() {
 		return paymentCost;
 	}
 
-	public void setPaymentCose(int paymentCost) {
+	public void setPaymentCose(String paymentCost) {
 		this.paymentCost = paymentCost;
 	}
 

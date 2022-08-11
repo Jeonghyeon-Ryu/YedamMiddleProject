@@ -17,13 +17,16 @@ public class ReservationService {
 		return instance;
 	}
 	
-
+	public boolean insert(Reservation vo) {
+		return new ReservationDAO().insert(vo);
+	}
 	// 예약 단건 조회
 	public Reservation SelectOne(int roomId) {
 		return new ReservationDAO().selectOne(roomId);
 	}
-	public List<Reservation> selectAll() {
-		return new ReservationDAO().selectAll();
+	// 예약 리스트 가져오기 - RJH
+	public List<Reservation> selectAll(String memberId) {
+		return new ReservationDAO().selectAll(memberId);
 	}
 	// 유저가 예약한곳 조회
 	public List<Accommodation> selectAccommodationLoginId(String id){
@@ -33,5 +36,5 @@ public class ReservationService {
 	public List<Member> selectMemberAccommodation(String id){
 		return new ReservationDAO().selectMemberAccommodation(id);
 	}
-	// 예약 리스트 가져오기 - RJH
+	
 }

@@ -24,27 +24,20 @@
 						<div id="receviId"></div>
 					</div>
 					<hr>
-					<c:set var="userCheck" value="${checkUser }" />
-					<c:set var="trueUser" value="1" />
 					<div id="msContent">
 						<div id="msContentRoom">
-							<c:choose>
-								<c:when test="${checkUser eq trueUser }">
-									<c:forEach var="i" items="${acclist }">
-										<button class="msBtn" id="${i.accId }" style="cursor: pointer"
-											onclick="openContent(this.id)">
+								<c:forEach var="i" items="${acclist }">
+										<button class="msBtn" id="${i.accId }" style="cursor: pointer" onclick="openContent(this.id)">
 											<img class="msImg" src="${i.imgUrl}">
 											<p id="${i.name }Name">${i.name}</p>
 										</button>
 									</c:forEach>
-								</c:when>
-								<c:when test="${checkUser ne trueUser }">
+												
 									<c:forEach var="m" items="${mlist }">
 										<button class="msBtn" id="${m.id }" style="cursor: pointer"
 											onclick="openContent(this.id)"></button>
 									</c:forEach>
-								</c:when>
-							</c:choose>
+							
 						</div>
 						<div id="msContentText">
 							<p id="${i.name }AccName"></p>
@@ -122,4 +115,3 @@
 	</div>
 	<script src="js/message.js">
 	</script>
-

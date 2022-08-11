@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <link rel="stylesheet" type="text/css" href="css/businessManage.css">
 	<div class="businessManage-container">
 		<div class="businessManage-box">
@@ -19,6 +20,7 @@
 				<button class="business-acc-insert-cancel full-btn" style="display:none; background:#42A5F5;">취소</button>
 				<button class="business-acc-delete full-btn">삭제</button>
 			</div>
+			<input class="business-list-size" type="text" value="${fn:length(resultList) }" style="display:none">
 			<c:forEach var="list" items="${resultList }">
 				<div class="form-group">
 					<img class="business-delete-acc" src="img/cancel-40.png">
@@ -79,48 +81,92 @@
 			</div>
 		</div>
 	</template>
+	<template id="business-room-template">
+		<div class="business-room">
+			<input class="business-roomId" type="text" value="" style="display:none">
+			<input type="text" value="" name="roomName" class="form-control" readonly>
+			<input type="text" value="" name="roomPrice" class="form-control" readonly>
+			<input type="text" value="" name="roomInfo" class="form-control" readonly>
+			<img class="business-delete-room" src="img/cancel-40.png">
+			<img class="business-save-room" src="img/save-40.png">
+		</div>
+	</template>
 	<script>
-		let showRoombtns = document.querySelectorAll('.business-show-room');
-		for(showBtn of showRoombtns){
-			showBtn.addEventListener('click',function(e){
-				let accForm = e.target.parentElement;
-				while(!accForm.classList.contains('form-group')){
-					accForm=accForm.parentElement;
-				}
-				accForm.classList.toggle('active-form-group');
-			})
+		window.addEventListener('load',function(){
+			let showRoombtns = document.querySelectorAll('.business-show-room');
+			for(showBtn of showRoombtns){
+				showBtn.addEventListener('click',showRoomFunc)
+			}
+			let deleteAcc = document.querySelector('.business-acc-delete');
+			deleteAcc.addEventListener('click', deleteAccFunc)
+			let deleteAccBtns = document.querySelectorAll('.business-delete-acc');
+			for(deleteAccBtn of deleteAccBtns){
+				deleteAccBtn.addEventListener('click', deleteAccActionFunc);
+			}
+			let deleteRoomBtns = document.querySelectorAll('.business-delete-room');
+			for(deleteRoomBtn of deleteRoomBtns){
+				deleteRoomBtn.addEventListener('click', deleteRoomFunc)
+			}
+			let insertRoomBtns = document.querySelectorAll('.business-insert-room');
+			for(insertRoomBtn of insertRoomBtns){
+				insertRoomBtn.addEventListener('click', roomInsertFunc);
+			}
+			let insertAccBtn = document.querySelector('.business-acc-insert');
+			insertAccBtn.addEventListener('click',accInsertFunc);
+			let accInsertCancel = document.querySelector('.business-acc-insert-cancel');
+			accInsertCancel.addEventListener('click', accInsertCancelFunc);
+			
+			let updateRoomBtns = document.querySelectorAll('.business-update');
+			for(updateBtn of updateRoomBtns){
+				updateBtn.addEventListener('click',updateRoomBtnFunc)
+			}
+			let cancelBtns = document.querySelectorAll('.business-update-reset');
+			for(cancelBtn of cancelBtns) {
+				cancelBtn.addEventListener('click',function(){
+					location.reload();
+				})
+			}
+			let deleteBtns = document.querySelectorAll('.business-delete');
+			for(deletebtn of deleteBtns) {
+				deletebtn.addEventListener('click',deleteBtnFunc)
+			}
+		})
+		
+		function showRoomFunc(e){
+			let accForm = e.target.parentElement;
+			while(!accForm.classList.contains('form-group')){
+				accForm=accForm.parentElement;
+			}
+			accForm.classList.toggle('active-form-group');
 		}
 		
+		function updateRoomBtnFunc(e){
+			let accForm = e.target.parentElement;
+			while(!accForm.classList.contains('form-group')){
+				accForm=accForm.parentElement;
+			}
+			if(!accForm.classList.contains('active-form-group')){
+				accForm.classList.toggle('active-form-group');
+			}
+			let inputs = accForm.querySelectorAll('input[type="text"]');
+			let inputsValue = accForm.querySelectorAll('input[type="text"]').value;
+			
+			if(e.target.classList.contains('active-button')){
+				for(input of inputs) {
+					input.readOnly=true;
+				}
+				e.target.classList.toggle('active-button');
+				accForm.querySelector('.business-update-reset').style.display="none";
+				updateBusiness(accForm);
+			} else {
+				for(input of inputs) {
+					input.readOnly=false;
+				}
+				e.target.classList.toggle('active-button');
+				accForm.querySelector('.business-update-reset').style.display="block";
+			}
+		}
 		
-		let updateRoomBtns = document.querySelectorAll('.business-update');
-		for(updateBtn of updateRoomBtns){
-			updateBtn.addEventListener('click',function(e){
-				let accForm = e.target.parentElement;
-				while(!accForm.classList.contains('form-group')){
-					accForm=accForm.parentElement;
-				}
-				if(!accForm.classList.contains('active-form-group')){
-					accForm.classList.toggle('active-form-group');
-				}
-				let inputs = accForm.querySelectorAll('input[type="text"]');
-				let inputsValue = accForm.querySelectorAll('input[type="text"]').value;
-				
-				if(e.target.classList.contains('active-button')){
-					for(input of inputs) {
-						input.readOnly=true;
-					}
-					e.target.classList.toggle('active-button');
-					accForm.querySelector('.business-update-reset').style.display="none";
-					updateBusiness(accForm);
-				} else {
-					for(input of inputs) {
-						input.readOnly=false;
-					}
-					e.target.classList.toggle('active-button');
-					accForm.querySelector('.business-update-reset').style.display="block";
-				}
-			})
-		} 
 		function updateBusiness(accForm) {
 			let accInfo = accForm.querySelectorAll('.business-acc input');
 			let roomInfo = accForm.querySelectorAll('.business-room input');
@@ -141,31 +187,24 @@
 				.then(result => console.log(result))
 				.catch(err => console.log(err));
 		}
-		let cancelBtns = document.querySelectorAll('.business-update-reset');
-		for(cancelBtn of cancelBtns) {
-			cancelBtn.addEventListener('click',function(){
-				location.reload();
-			})
+		
+		
+		function deleteBtnFunc(e) {
+			let accForm = e.target.parentElement;
+			while(!accForm.classList.contains('form-group')){
+				accForm=accForm.parentElement;
+			}
+			if(!accForm.classList.contains('active-form-group')){
+				accForm.classList.toggle('active-form-group');
+			}
+			let rooms = accForm.querySelectorAll('.business-delete-room')
+			for(room of rooms){
+				room.classList.toggle('active-delete');
+			}
 		}
 		
-		let deleteBtns = document.querySelectorAll('.business-delete');
-		for(deletebtn of deleteBtns) {
-			deletebtn.addEventListener('click',function(e){
-				let accForm = e.target.parentElement;
-				while(!accForm.classList.contains('form-group')){
-					accForm=accForm.parentElement;
-				}
-				if(!accForm.classList.contains('active-form-group')){
-					accForm.classList.toggle('active-form-group');
-				}
-				let rooms = accForm.querySelectorAll('.business-delete-room')
-				for(room of rooms){
-					room.classList.toggle('active-delete');
-				}
-			})
-		}
-		let deleteAcc = document.querySelector('.business-acc-delete');
-		deleteAcc.addEventListener('click',function(e){
+		
+		function deleteAccFunc(e){
 			let accForms = document.querySelectorAll('.businessManage-container .form-group');
 			for(accForm of accForms) {
 				if(!accForm.classList.contains('active-form-group')){
@@ -174,132 +213,131 @@
 				let btn = accForm.querySelector('.business-delete-acc');
 				btn.classList.toggle('active-delete');
 			}
-		})
-		
-		let deleteAccBtns = document.querySelectorAll('.business-delete-acc');
-		for(deleteAccBtn of deleteAccBtns){
-			deleteAccBtn.addEventListener('click', deleteAccActionFunc);
 		}
+		
 		function deleteAccActionFunc(e){
 			let accForm = e.target.parentElement;
 			while(!accForm.classList.contains('form-group')){
 				accForm=accForm.parentElement;
 			}
-			if(confirm('정말로 해당 숙소를 삭제 하시겠습니까 ?')){
-				let accId = accForm.querySelector('.business-accId').value;
-				if(accId!=""){
-					fetch('roomDelete.do', {
-						method: 'POST',
-						headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-						body: 'accId=' + accId
-					}).then(result => result.json())
-						.then(result => {
-							if(result.retCode=="success"){
-								location.reload();
-								document.querySelector('#business-error').style.color="blue";
-								document.querySelector('#business-error').innerText="☆ 숙소 삭제 성공 !";
-							} else {
-								document.querySelector('#business-error').style.color="red";
-								document.querySelector('#business-error').innerText="☆ 숙소 삭제 오류가 발생하였습니다. ( 계속해서 발생하면 문의를 남겨주세요 )";
-							}
-						})
-						.catch(err => console.log(err));
+			if(accForm.querySelector('.business-accId').value!=""){
+				if(confirm('정말로 해당 숙소를 삭제 하시겠습니까 ?')){
+					let accId = accForm.querySelector('.business-accId').value;
+					if(accId!=""){
+						fetch('roomDelete.do', {
+							method: 'POST',
+							headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+							body: 'accId=' + accId
+						}).then(result => result.json())
+							.then(result => {
+								if(result.retCode=="success"){
+									location.reload();
+									document.querySelector('#business-error').style.color="blue";
+									document.querySelector('#business-error').innerText="☆ 숙소 삭제 성공 !";
+								} else {
+									document.querySelector('#business-error').style.color="red";
+									document.querySelector('#business-error').innerText="☆ 숙소 삭제 오류가 발생하였습니다. ( 계속해서 발생하면 문의를 남겨주세요 )";
+								}
+							})
+							.catch(err => console.log(err));
+					} else {
+						accForm.remove();
+					}
 				} else {
-					accForm.remove();
+				
 				}
+			} else {
+				accForm.remove();
+				location.reload();
+			}
+		}
+		function deleteRoomFunc(e){
+			let accForm = e.target.parentElement;
+			while(!accForm.classList.contains('form-group')){
+				accForm=accForm.parentElement;
+			}
+			if(confirm('정말로 해당 객실을 삭제 하시겠습니까 ?')){
+				let roomId = accForm.querySelector('.business-roomId').value;
+				fetch('roomDelete.do', {
+					method: 'POST',
+					headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+					body: 'roomId=' + roomId
+				}).then(result => result.json())
+					.then(result => {
+						if(result.retCode=="success"){
+							location.reload();
+							document.querySelector('#business-error').style.color="blue";
+							document.querySelector('#business-error').innerText="☆ 객실 삭제 성공 !";
+						} else {
+							document.querySelector('#business-error').style.color="red";
+							document.querySelector('#business-error').innerText="☆ 객실 삭제 오류가 발생하였습니다. ( 계속해서 발생하면 문의를 남겨주세요 )";
+						}
+					})
+					.catch(err => console.log(err));
 			} else {
 				
 			}
 		}
-		let deleteRoomBtns = document.querySelectorAll('.business-delete-room');
-		for(deleteRoomBtn of deleteRoomBtns){
-			deleteRoomBtn.addEventListener('click', function(e){
-				let accForm = e.target.parentElement;
-				while(!accForm.classList.contains('form-group')){
-					accForm=accForm.parentElement;
-				}
-				if(confirm('정말로 해당 객실을 삭제 하시겠습니까 ?')){
-					let roomId = accForm.querySelector('.business-roomId').value;
-					fetch('roomDelete.do', {
-						method: 'POST',
-						headers: { 'Content-type': 'application/x-www-form-urlencoded' },
-						body: 'roomId=' + roomId
-					}).then(result => result.json())
-						.then(result => {
+		
+		function roomInsertFunc(e){
+			let accForm = e.target.parentElement;
+			while(!accForm.classList.contains('form-group')){
+				accForm=accForm.parentElement;
+			}
+			if(!accForm.classList.contains('active-form-group')){
+				accForm.classList.toggle('active-form-group');
+			}
+		
+			let room = accForm.querySelectorAll('.business-room')[0];
+			let roomTemplate = document.querySelector('#business-room-template');
+			if(room.querySelector('input[name="roomName"]').value!=""){
+				let cloneRoom = document.importNode(roomTemplate.content,true)
+				cloneRoom.querySelector('input[name="roomName"]').readOnly=false;
+				cloneRoom.querySelector('input[name="roomPrice"]').readOnly=false;
+				cloneRoom.querySelector('input[name="roomInfo"]').readOnly=false;
+				cloneRoom.querySelector('.business-save-room').classList.toggle('active-delete');
+				document.querySelector('.business-room-btns').after(cloneRoom);
+				$('.business-room').on("click",".business-save-room",function(e){
+					let accForm = e.target.parentElement;
+					while(!accForm.classList.contains('form-group')){
+						accForm=accForm.parentElement;
+					}
+					let accId = accForm.querySelector('.business-accId').value;
+					let roomName = accForm.querySelector('input[name="roomName"]').value;
+					let roomPrice = accForm.querySelector('input[name="roomPrice"]').value;
+					let roomInfo = accForm.querySelector('input[name="roomInfo"]').value;
+					$.ajax({
+						url: "roomInsert.do",
+						data: { "accId" : accId,  "roomName" : roomName, "roomPrice" : roomPrice , "roomInfo" : roomInfo },
+						method: "GET",
+						success: function(result){
 							if(result.retCode=="success"){
 								location.reload();
 								document.querySelector('#business-error').style.color="blue";
-								document.querySelector('#business-error').innerText="☆ 객실 삭제 성공 !";
+								document.querySelector('#business-error').innerText="☆ 객실 등록 성공 !";
 							} else {
 								document.querySelector('#business-error').style.color="red";
-								document.querySelector('#business-error').innerText="☆ 객실 삭제 오류가 발생하였습니다. ( 계속해서 발생하면 문의를 남겨주세요 )";
+								document.querySelector('#business-error').innerText="☆ 객실 등록 오류가 발생하였습니다. ( 계속해서 발생하면 문의를 남겨주세요 )";
 							}
-						})
-						.catch(err => console.log(err));
-				} else {
-					
-				}
-			})
-		}
-		let insertRoomBtns = document.querySelectorAll('.business-insert-room');
-		for(insertRoomBtn of insertRoomBtns){
-			insertRoomBtn.addEventListener('click', function(e){
-				let accForm = e.target.parentElement;
-				while(!accForm.classList.contains('form-group')){
-					accForm=accForm.parentElement;
-				}
-				if(!accForm.classList.contains('active-form-group')){
-					accForm.classList.toggle('active-form-group');
-				}
-			
-				let room= accForm.querySelectorAll('.business-room')[0];
-				if(room.querySelector('input[name="roomName"]').value!=""){
-					let cloneRoom = room.cloneNode(true);
-					cloneRoom.querySelector('input[name="roomName"]').value=null;
-					cloneRoom.querySelector('input[name="roomName"]').readOnly=false;
-					cloneRoom.querySelector('input[name="roomPrice"]').value=null;
-					cloneRoom.querySelector('input[name="roomPrice"]').readOnly=false;
-					cloneRoom.querySelector('input[name="roomInfo"]').value=null;
-					cloneRoom.querySelector('input[name="roomInfo"]').readOnly=false;
-					cloneRoom.querySelector('.business-save-room').classList.toggle('active-delete');
-					document.querySelector('.business-room-btns').after(cloneRoom);
-					$('.business-room').on("click",".business-save-room",function(e){
-						let accForm = e.target.parentElement;
-						while(!accForm.classList.contains('form-group')){
-							accForm=accForm.parentElement;
+						}, error : function(err){
+							console.log(err);
 						}
-						let accId = accForm.querySelector('.business-accId').value;
-						let roomName = accForm.querySelector('input[name="roomName"]').value;
-						let roomPrice = accForm.querySelector('input[name="roomPrice"]').value;
-						let roomInfo = accForm.querySelector('input[name="roomInfo"]').value;
-						$.ajax({
-							url: "roomInsert.do",
-							data: { "accId" : accId,  "roomName" : roomName, "roomPrice" : roomPrice , "roomInfo" : roomInfo },
-							method: "GET",
-							success: function(result){
-								if(result.retCode=="success"){
-									location.reload();
-									document.querySelector('#business-error').style.color="blue";
-									document.querySelector('#business-error').innerText="☆ 객실 등록 성공 !";
-								} else {
-									document.querySelector('#business-error').style.color="red";
-									document.querySelector('#business-error').innerText="☆ 객실 등록 오류가 발생하였습니다. ( 계속해서 발생하면 문의를 남겨주세요 )";
-								}
-							}, error : function(err){
-								console.log(err);
-							}
-						})
 					})
-				}
-			})
+				})
+			}
 		}
-		let insertAccBtn = document.querySelector('.business-acc-insert');
-		insertAccBtn.addEventListener('click',function(){
+		function accInsertFunc(){
 			let acc = document.querySelectorAll('.form-group')[0];
-			if(acc.querySelector('.business-accId').value!=""){
+			if(document.querySelector('.business-accId')==null || acc.querySelector('.business-accId').value!=""){
+				
 				let template = document.querySelector('#business-acc-template');
 				let acc = document.importNode(template.content, true);
-				document.querySelectorAll('.form-group')[0].before(acc);
+				if(document.querySelector('.business-accId')!=null){
+					console.log(document.querySelector('.business-accId'));
+					document.querySelectorAll('.form-group')[0].before(acc);
+				} else {
+					document.querySelector('.business-list-size').after(acc);
+				}
 				$('.businessManage-box').on("click",".business-delete-acc",deleteAccActionFunc);
 				let addBtn = document.querySelector('.business-acc-insert');
 				addBtn.innerText="저장";
@@ -345,11 +383,10 @@
 						.catch(err => console.log(err));
 				}
 			}
-		})
-		let accInsertCancel = document.querySelector('.business-acc-insert-cancel');
-		accInsertCancel.addEventListener('click', accInsertCancelFunc);
+		}
+		
 		function accInsertCancelFunc() {
-			document.querySelector('.businessManage-container>div>div:nth-child(4)').remove();
+			document.querySelector('.businessManage-container>div>div:nth-child(5)').remove();
 			document.querySelector('.business-acc-insert-cancel').style.display="none";
 			let addBtn = document.querySelector('.business-acc-insert');
 			addBtn.innerText="추가";

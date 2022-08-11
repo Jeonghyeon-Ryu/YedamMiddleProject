@@ -25,6 +25,7 @@ import com.mid.controller.FindInfoFormController;
 import com.mid.controller.GetQnaListController;
 import com.mid.controller.GetReservationListController;
 import com.mid.controller.InsertAccController;
+import com.mid.controller.InsertReservationController;
 import com.mid.controller.InsertRoomController;
 import com.mid.controller.KakaoLoginController;
 import com.mid.controller.KakaoSignupController;
@@ -118,6 +119,8 @@ public class FrontController extends HttpServlet {
 		mappings.put("/compDetail.do", new CompDetailController());	// 상세페이지 출력 
 		mappings.put("/exTourList.do", new ExTourListController());	// 숙소 리스트 출력
 		mappings.put("/reservationPage.do", new ReservationPageController());
+		mappings.put("/insertReservation.do", new InsertReservationController());
+		
 	}
 
 	@Override

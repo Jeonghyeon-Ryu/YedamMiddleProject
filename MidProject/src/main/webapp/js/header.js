@@ -124,6 +124,7 @@ function clickSearchBox(e) {
 		locationModal.classList.toggle('modal-active');
 		let body = document.querySelector('body');
 	body.classList.toggle('modal-active-background');
+		countResult();
 	}else if(id == 'checkin-date'||'checkout-date') {
 		let checkinModal = document.querySelector('#checkin-modal');
 		checkinModal.classList.toggle('modal-active');

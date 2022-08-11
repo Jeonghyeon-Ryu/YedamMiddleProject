@@ -10,32 +10,51 @@ import com.mid.vo.Reservation;
 
 public class ReservationDAO extends DAO {
 
-	// 전체 조회
-	public List<Reservation> selectAll() {
-		connect();
-		String sql = "select * from Reservation order by 1";
-		List<Reservation> list = new ArrayList<>();
+	public boolean insert(Reservation vo) {
+		boolean result = false;
 		try {
+			connect();
+			String sql = "INSERT INTO reservation VALUES(?,?,?,?,0,SYSDATE,?)";
 			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Reservation vo = new Reservation();
-				vo.setHeadcount(rs.getInt("HEADCOUNT"));
-				vo.setMemberId(rs.getString("MEMBER_ID"));
-				vo.setPaymentCose(rs.getInt("PAYMENT_COST"));
-				vo.setPaymentDate(rs.getDate("PAYMENT_DATE"));
-				vo.setReservationDay(rs.getInt("RESERVATION_DAY"));
-				vo.setReservationTime(rs.getDate("RESERVATION_TIME"));
-				vo.setRoomId(rs.getInt("ROOM_ID"));
-				list.add(vo);
-			}
-			return list;
+			pstmt.setInt(1, vo.getRoomId());
+			pstmt.setString(2, vo.getMemberId());
+			pstmt.setDate(3, vo.getReservationTime());
+			pstmt.setInt(4, vo.getReservationDay());
+			pstmt.setString(5, vo.getPaymentCost());
+			result = (pstmt.executeUpdate()>0)?true:false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			disconnect();
 		}
-		return null;
+		return result;
+	}
+	// 전체 조회
+	public List<Reservation> selectAll(String memberId) {
+		List<Reservation> list = new ArrayList<>();
+		try {
+			connect();
+			String sql = "SELECT * FROM Reservation WHERE member_id = ? ORDER BY 3 DESC";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Reservation vo = new Reservation();
+				vo.setRoomId(rs.getInt("ROOM_ID"));
+				vo.setMemberId(rs.getString("MEMBER_ID"));
+				vo.setReservationTime(rs.getDate("RESERVATION_TIME"));
+				vo.setReservationDay(rs.getInt("RESERVATION_DAY"));
+				vo.setHeadcount(rs.getInt("HEADCOUNT"));
+				vo.setPaymentDate(rs.getDate("PAYMENT_DATE"));
+				vo.setPaymentCose(rs.getString("PAYMENT_COST"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
 	}
 
 	// 단건 조회 - roomId
@@ -50,7 +69,7 @@ public class ReservationDAO extends DAO {
 				Reservation vo = new Reservation();
 				vo.setHeadcount(rs.getInt("HEADCOUNT"));
 				vo.setMemberId(rs.getString("MEMBER_ID"));
-				vo.setPaymentCose(rs.getInt("PAYMENT_COST"));
+				vo.setPaymentCose(rs.getString("PAYMENT_COST"));
 				vo.setPaymentDate(rs.getDate("PAYMENT_DATE"));
 				vo.setReservationDay(rs.getInt("RESERVATION_DAY"));
 				vo.setReservationTime(rs.getDate("RESERVATION_TIME"));

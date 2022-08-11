@@ -9,7 +9,19 @@ window.addEventListener('load',() => {
 	for(plusBtn of headcountModalMinusButton){
 		plusBtn.addEventListener('click',headcountModalMinusAction);
 	}
+	let headcountModal = document.querySelector('#headcount-modal');
+	headcountModal.addEventListener('click',headcountModalClickEvent);
 })
+// 그 외 영역 클릭 처리
+function headcountModalClickEvent(e) {
+	searchBoxRemoveClass();
+	if (e.target.classList.contains("modal-overlay")) {
+		let body = document.querySelector('body');
+		e.target.classList.toggle('modal-active');
+		body.classList.toggle('modal-active-background');
+	}
+	// 그 외 영역 클릭 시 필터 초기화 필요. ( 리셋버튼 Func 재사용 )
+}
 // 닫기
 function headcountModalCloseAction(e) {
 	searchBoxRemoveClass();
