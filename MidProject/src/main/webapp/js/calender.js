@@ -162,10 +162,17 @@ function selectDate() {
 	let outDate = document.querySelector('.cal-day2').textContent;
 	document.querySelector('#checkin-date').value = inDate;
 	document.querySelector('#checkout-date').value = outDate;
+	
 	let checkinModal = document.querySelector('#checkin-modal');
 	checkinModal.classList.toggle('modal-active');
 	let body = document.querySelector('body');
 	body.classList.toggle('modal-active-background');
+	
+	let searchBoxItems = document.querySelectorAll('.search-box-item');
+	for (searchBoxItem of searchBoxItems) {
+		searchBoxItem.classList.remove('search-box-clicked');
+		searchBoxItem.classList.remove('search-box-unclicked');
+	}
 }
 
 let calenderCloseButton = document.querySelector("#checkin-modal .modal-close-button")

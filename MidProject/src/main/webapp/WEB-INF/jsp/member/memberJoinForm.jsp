@@ -55,12 +55,12 @@ width:100%}
 					<div class="mInfo-input">
 						<label for="join-id" style="width:60px;">아이디</label> 
 						<input type="text" id="join-id" name="join-id">&nbsp;
-						<button type="button" id="idCheck" name="idCheck" onclick="javascript:IdCheck();" style="width:60px">체크</button>
+						<button type="button" id="idCheck" name="idCheck" onclick="javascript:IdCheck();" style="width:70px">중복체크</button>
 						<p style="flex-wrap: wrap;" id="idMsg" class="info-error"></p>
 					</div>
 					<div class="mInfo-input">
-						<label for="join-nm" style="width:60px">이름</label> <input type="text" id="join-nm"
-							name="join-nm">
+						<label for="join-nm" style="width:60px">이름</label> 
+						<input type="text" id="join-nm" name="join-nm">
 					</div>
 					<div class="mInfo-input">
 						<label for="identi">주민번호</label> <input type="text" class="identi"
