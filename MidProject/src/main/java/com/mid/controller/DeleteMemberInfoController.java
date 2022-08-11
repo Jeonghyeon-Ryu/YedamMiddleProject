@@ -13,6 +13,7 @@ public class DeleteMemberInfoController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setAttribute("deleteMsg", "page");
 		Utils.forward(req, resp, "/WEB-INF/jsp/member/memberDelete.jsp");
 
 	}

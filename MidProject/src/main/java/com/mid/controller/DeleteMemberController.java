@@ -25,10 +25,11 @@ public class DeleteMemberController implements Controller {
 		
 		//비밀번호가 맞지 않을경우 그냥 리턴
 		if(!pw.equals(member.getPw())) {
-			Utils.forward(req, resp, "deleteMemberInfo.do");
+			req.setAttribute("deleteMsg", "비밀번호가 일치하지 않습니다. 가지마세요..");
+			Utils.forward(req, resp, "/WEB-INF/jsp/member/memberDelete.jsp");
 		}else {
-			req.setAttribute("msg", "success");
-			Utils.forward(req, resp, "deleteMemberInfo.do");
+			req.setAttribute("deleteMsg", "success");
+			Utils.forward(req, resp, "/WEB-INF/jsp/member/memberDelete.jsp");
 		}
 	}
 

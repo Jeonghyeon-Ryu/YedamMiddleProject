@@ -12,7 +12,8 @@
 </style>
 </head>
 <body>
-<c:if test=${!msg eq "success"}>
+
+<c:if test=${!deleteMsg eq "page"}>
 	<form id="newInfo-input" action="deleteMember.do" method="post">
 		<h2>정말 탈퇴하시겠습니까?</h2>
         <h3>회원정보를 삭제를 위해 비밀번호를 재입력해 주세요</h3>
