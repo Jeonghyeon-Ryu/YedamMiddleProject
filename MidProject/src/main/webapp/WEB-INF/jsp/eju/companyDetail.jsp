@@ -32,7 +32,7 @@
 			<br>
 			<div><img src="${imgUrl }"></div>
 			<div><span><b>가격 : ${price }</b></span></div> 
-			<button onclick="location='reservationPage.do?accId=${accId}&checkIn=${checkIn}&checkOut=${checkOut}'">예약하기</button>
+			<button onclick="mycall('${accId }','${checkIn}','${checkOut }')">예약하기</button>
 		</div>
 		<div>
 			<span class="comp-addrs">주소 : ${accAddress }</span>
@@ -82,3 +82,4 @@
 		</div>
 	</div>
 </div>
+<script src="js/companyDetail.js"></script>

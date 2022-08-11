@@ -15,6 +15,7 @@
 	apiURL += "&state=" + state;
 	session.setAttribute("state", state);
  %>
+<link rel="stylesheet" type="text/css" href="css/reservationModal.css">
 <nav>
 	<div class="nav-container">
 		<a href="main.do">
@@ -86,21 +87,6 @@
 		</div>
 	</div>
 </template>
-<template id="reservation-template" style="display:none">
-	<div class="reservation-container">
-		<div class="reservation-img">
-			<img src="">
-		</div>	
-		<div class="reservation-content">
-			<div class="reservation-acc">숙소명 : <strong></strong></div>
-			<div class="reservation-room">방 종류 : <span></span></div>
-			<div class="reservation-address">주소 : <span></span></div>
-			<div class="reservation-date">이용일자 : <span></span><span></span></div>
-			<div class="reservation-phone">업체전화 : <span></span></div>
-			<div class="reservation-price">결제금액 : <span></span></div>
-		</div>
-	</div>
-</template>
 <div id="reservation-modal" class="modal modal-overlay" role="dialog">
 	<div class="large-modal-box">
 		<!-- Modal Title -->
@@ -112,7 +98,23 @@
 		</div>
 		<!-- Modal Content -->
 		<div class="modal-content">
-				
+			<div class="row row-cols-1 row-cols-md-2 g-4">
+				<template id="reservation-template">
+					<div class="col">
+						<div class="card">
+							<img src="" class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title"></h5>
+								<p class="card-text">방 종류 : <span></span></p>
+								<p class="card-text">주소 : <span></span></p>
+								<p class="card-text">이용일자 : <span></span></p>
+								<p class="card-text">업체전화 : <span></span></p>
+								<p class="card-text">결제금액 : <span></span></p>
+							</div>
+						</div>
+					</div>
+				</template>
+			</div>
 		</div>
 	</div>
 </div>

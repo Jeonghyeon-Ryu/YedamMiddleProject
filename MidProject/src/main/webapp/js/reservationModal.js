@@ -9,55 +9,21 @@ function reservationModalOpenAction(e) {
 	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');
 	body.classList.toggle('modal-active-background');
-	
+	let reservationTemplate = document.querySelector('#reservation-template');
 	fetch('getReservationList.do')
 		.then(result => result.json())
 		.then(result => {
-			if(wishResult.retCode=="exist"){
-				card.querySelector('.like').src="img/like-redheart-35.png";
+			for(item of result){
+				let cloneNode = document.importNode(reservationTemplate.content,true);
+				cloneNode.querySelector('.card-title').innerText = item.accommodation.name;
+				cloneNode.querySelectorAll('.card-text span')[0].innerText = item.room.name
+				cloneNode.querySelectorAll('.card-text span')[1].innerText = item.accommodation.address;
+				cloneNode.querySelectorAll('.card-text span')[2].innerText = item.reservation.reservationTime;
+				cloneNode.querySelectorAll('.card-text span')[3].innerText = item.accommodation.phone;
+				cloneNode.querySelectorAll('.card-text span')[4].innerText = item.reservation.paymentCost;
+				cloneNode.querySelector('.card-img-top').src = item.accommodation.imgUrl;
+				document.querySelector('#reservation-modal .row').append(cloneNode);
 			}
-			// 카드 붙이기
-			document.querySelector('main').append(card);
 		}).catch(err => console.log(err));
-	
-	
-	
-	
-	
-	
-	
-	
-	// ajax.
-	fetch('exTourList.do?id=qwe@123')
-   .then(result => result.json())
-   .then(result => {
-      console.log(result)
-     
-      let company = document.getElementById('ex-comp-title');
-      let roomName = document.getElementById('ex-room-name')
-      let checkin = document.getElementById('ex-checkin')
-      let ckeckout = document.getElementById('ex-checkout')
-      let memberName = document.getElementById('ex-name')
-      let phone = document.getElementById('ex-phone')
-      let price = document.getElementById('ex-price')
-      let div = document.createElement('div');
-      for(let itm of result) {
-      company.innerText= itm.name;
-      roomName.innerText=itm.roomName;
-      checkin.innerText = itm.reservationTime;
-      ckeckout.innerText = itm.reservationDay;
-      memberName.innerText = itm.memberName;
-      phone.innerText = itm.phone;
-      price.innerText = itm.paymentCost;
-      }
-   })
-   .catch(err => console.log(err))
-
-	
-	
-}
-
-function reservList(result) {
-	
-}
+	}
 

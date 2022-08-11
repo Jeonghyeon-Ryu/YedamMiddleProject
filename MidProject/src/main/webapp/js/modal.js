@@ -29,10 +29,13 @@ function closeAllModal() {
 }
 function modalOpenAction(e) {
 	closeAllModal();
+	
 	let modal = document.querySelector('#modal');
 	let body = document.querySelector('body');
 	modal.classList.toggle('modal-active');
 	body.classList.toggle('modal-active-background');
+	
+	changePriceCountResult();
 }
 // 필터 모달 X 버튼 이벤트
 function modalCloseAction(e) {
@@ -58,9 +61,13 @@ function modalClickEvent(e) {
 function changeMinPrice() {
 	let minPrice = document.querySelector('#min-price');
 	let maxPrice = document.querySelector('#max-price');
+	console.log("1번 : " + minPrice.value)
+	console.log("2번 : " + maxPrice.value)
 	if(maxPrice.value != ""){
-		if(minPrice.value>maxPrice.value){
-			maxPrice.value="";
+		console.log("3번 : " + minPrice.value);
+		if(+minPrice.value > +maxPrice.value){
+			console.log("4번 : " + minPrice.value);
+			maxPrice.value=null;
 		}
 	}
 	changePriceCountResult();
@@ -70,9 +77,8 @@ function changeMaxPrice() {
 	let minPrice = document.querySelector('#min-price');
 	let maxPrice = document.querySelector('#max-price');
 	if(minPrice.value != ""){
-		if(minPrice.value>maxPrice.value){
-			console.log(minPrice.value);
-			minPrice.value="";
+		if(+minPrice.value > +maxPrice.value){
+			minPrice.value=null;
 		}
 	}
 	changePriceCountResult();

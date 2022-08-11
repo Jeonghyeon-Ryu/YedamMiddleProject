@@ -111,12 +111,12 @@
 				<div class="filter-title">가격 범위</div>
 				<div class="filter-price-content">
 					<label for="min-price" class="min-price">
-						<div>최저 요금</div>
+						<div>최저 가격</div>
 						<input id="min-price" type="number" placeholder="1,000">
 					</label>
 					<div>~</div>
 					<label for="max-price" class="max-price">
-						<div>최저 요금</div>
+						<div>최고 가격</div>
 						<input id="max-price" type="number" placeholder="50,000">
 					</label>
 				</div>

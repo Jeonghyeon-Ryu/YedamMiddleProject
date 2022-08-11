@@ -19,6 +19,7 @@ function checkLocation() {
 	for (let selectedLocation of selectedLocations) {
 		if (selectedLocation.checked) {
 			resultCity = selectedLocation.getAttribute('text');
+			document.querySelector('#location').value=resultCity;
 		}
 	}
 	// Regions
@@ -26,6 +27,7 @@ function checkLocation() {
 	for (let selectedLocation of selectedLocations) {
 		if (selectedLocation.checked) {
 			resultRegion = selectedLocation.getAttribute('value');
+			document.querySelector('#location').value += ' ' + resultRegion;
 		}
 	}
 
