@@ -20,13 +20,12 @@ public class AjaxMemberIdCheck implements Controller {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
 
-		String idCheck = req.getParameter("memberId");
-
+		String idCheck = req.getParameter("joinId");
 		MemberService service = MemberService.getInstance();
 		Member findId = service.getMember(idCheck);
+		System.out.println(idCheck+", 검색값 : "+findId);
 
-		
-		if (findId==null) {
+		if (findId==null||findId.equals("")) {
 			resp.getWriter().print(0);
 		} else {
 			resp.getWriter().print(1);
