@@ -24,7 +24,7 @@ public class UpdateMemberInfoController implements Controller {
 		
 		//이름,전화번호,비밀번호 수정 (로그인중)
 		if(job.equals("infoUpdate")) {
-			String pw = req.getParameter("info-pre-pw-pw");		//입력받은 현재 비번
+			String pw = req.getParameter("info-pre-pw");		//입력받은 현재 비번
 			String NewPw = req.getParameter("info-new-pw");//입력받은 새 비번
 			String presentPw = member.getPw();				//저장되어있는 현재 비번(암호화)
 			String nm = req.getParameter("info-nm");
