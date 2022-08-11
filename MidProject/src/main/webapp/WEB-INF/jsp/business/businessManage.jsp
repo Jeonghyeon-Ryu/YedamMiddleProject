@@ -10,7 +10,7 @@
 				<img src="img/business-100.png" class="far fa-user" />
 			</div>
 			<div class="serparater">
-				<p>사업자 번호 : <span>${business.businessId }</span></p>
+				<p>사업자 번호 : <span>${businessId }</span></p>
 				<p>업체 명 : <span>${business.businessName }</span></p>
 				<p>업제 주소 : <span>${business.businessAddress }</span></p>
 				<p id="business-error" style="color:red; font-weight:bold; display:block;"></p>
@@ -122,16 +122,16 @@
 			}
 			let cancelBtns = document.querySelectorAll('.business-update-reset');
 			for(cancelBtn of cancelBtns) {
-				cancelBtn.addEventListener('click',function(){
-					location.reload();
-				})
+				cancelBtn.addEventListener('click',updateResetFunc)
 			}
 			let deleteBtns = document.querySelectorAll('.business-delete');
 			for(deletebtn of deleteBtns) {
 				deletebtn.addEventListener('click',deleteBtnFunc)
 			}
 		})
-		
+		function updateResetFunc(){
+			location.reload();
+		}
 		function showRoomFunc(e){
 			let accForm = e.target.parentElement;
 			while(!accForm.classList.contains('form-group')){
@@ -224,7 +224,7 @@
 				if(confirm('정말로 해당 숙소를 삭제 하시겠습니까 ?')){
 					let accId = accForm.querySelector('.business-accId').value;
 					if(accId!=""){
-						fetch('roomDelete.do', {
+						fetch('accDelete.do', {
 							method: 'POST',
 							headers: { 'Content-type': 'application/x-www-form-urlencoded' },
 							body: 'accId=' + accId
@@ -289,8 +289,10 @@
 			}
 		
 			let room = accForm.querySelectorAll('.business-room')[0];
+			console.log(room);
 			let roomTemplate = document.querySelector('#business-room-template');
-			if(room.querySelector('input[name="roomName"]').value!=""){
+			if(room==null && room.querySelector('input[name="roomName"]').value!=""){
+				console.log(roomTemplate)
 				let cloneRoom = document.importNode(roomTemplate.content,true)
 				cloneRoom.querySelector('input[name="roomName"]').readOnly=false;
 				cloneRoom.querySelector('input[name="roomPrice"]').readOnly=false;
@@ -338,7 +340,12 @@
 				} else {
 					document.querySelector('.business-list-size').after(acc);
 				}
-				$('.businessManage-box').on("click",".business-delete-acc",deleteAccActionFunc);
+				$('.business-room-btns').on("click",".business-delete-acc",deleteAccActionFunc);
+				$('.business-room-btns').on("click",".business-show-room",showRoomFunc);
+				$('.business-room-btns').on("click",".business-insert-room",roomInsertFunc);
+				$('.business-room-btns').on("click",".business-update",updateRoomBtnFunc);
+				$('.business-room-btns').on("click",".business-update-reset",updateResetFunc);
+				$('.business-room-btns').on("click",".business-delete",deleteBtnFunc);
 				let addBtn = document.querySelector('.business-acc-insert');
 				addBtn.innerText="저장";
 				addBtn.style.background="#42A5F5";

@@ -18,14 +18,17 @@ public class InsertAccController implements Controller {
 		String accPhone = req.getParameter("accPhone");
 		String accAddress = req.getParameter("accAddress");
 		String accImgUrl = req.getParameter("accImgUrl");
-		String businessId = (String) req.getSession().getAttribute("businessId");
+		System.out.println(accName+ " " + accPhone + " " + accAddress + " " + accImgUrl);
+		int businessId = (Integer) req.getSession().getAttribute("businessId");
+		System.out.println(businessId);
 		
 		Accommodation acc = new Accommodation();
 		acc.setName(accName);
 		acc.setPhone(accPhone);
 		acc.setAddress(accAddress);
 		acc.setImgUrl(accImgUrl);
-		acc.setBusiness_id(Integer.parseInt(businessId));
+//		acc.setBusiness_id(Integer.parseInt(businessId));
+		acc.setBusiness_id(businessId);
 		
 		AccommodationService service = AccommodationService.getInstance();
 		boolean result = service.insert(acc);

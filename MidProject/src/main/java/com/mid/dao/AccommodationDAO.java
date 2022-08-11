@@ -11,7 +11,7 @@ public class AccommodationDAO extends DAO {
 		boolean result = false;
 		try {
 			connect();
-			String sql = "INSERT INTO accommodation VALUES(acc_seq.NEXTVAL,?,?,0,?,1,0,0,sysdate,?,?)";
+			String sql = "INSERT INTO accommodation VALUES((select MAX(acc_id)+1 from accommodation),?,?,0,?,1,0,0,sysdate,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, acc.getName());
 			pstmt.setString(2, acc.getAddress());
