@@ -59,7 +59,7 @@ public class FindInfoController implements Controller {
 			} else{
 				req.setAttribute("msg","fail");
 			}
-			Utils.forward(req, resp, "/WEB-INF/jsp/member/findInfo.jsp");
+			Utils.forward(req, resp, "member/findInfo.tiles");
 		}
 	}
 

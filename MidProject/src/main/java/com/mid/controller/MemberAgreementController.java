@@ -14,7 +14,7 @@ public class MemberAgreementController implements Controller {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		Utils.forward(req, resp, "/WEB-INF/jsp/member/memberAgreements.jsp");
+		Utils.forward(req, resp, "member/memberAgreements.tiles");
 
 	}
 

@@ -6,15 +6,16 @@
 <meta charset="EUC-KR">
 <title>qnaDetail.jsp</title>
 <link href="${pageContext.request.contextPath}/css/qna.css" rel="stylesheet">
-
 </head>
 <body>
 <div class="qna-box">
 	<div class="qna-detail-title">
 		<h3>${qna.title}</h3>
+		<div class="close-button" style="float:right"><a href="qnaList.do"><img src="img/close-20.png"></a>
+		</div>
 	</div>
 	<hr>
-	<div class="qna-detail-content">
+	<div class="qna-detail-content" style="margin:20px">
 		<p>${qna.content}</p>
 	</div>
 </div>

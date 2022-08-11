@@ -228,6 +228,7 @@ public class MemberDAO extends DAO {
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
 					Member vo = new Member();
+					vo.setName(name);
 					vo.setId(rs.getString("id"));
 					vo.setPw(rs.getString("pw"));
 					vo.setIdentification(rs.getString("identification"));

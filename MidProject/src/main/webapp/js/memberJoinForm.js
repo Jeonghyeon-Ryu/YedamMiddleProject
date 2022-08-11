@@ -1,10 +1,10 @@
-let memberId = document.getElementById("memberId");
+let joinId = document.getElementById("join-id");
 let idchekbnt = document.getElementById('idCheck');
-let pw1 = document.getElementById("memberPw");
-let pw2 = document.getElementById("memberPw2");
+let pw1 = document.getElementById("join-pw");
+let pw2 = document.getElementById("join-pw2");
 
 
-memberId.onchange = chkChange;
+joinId.onchange = chkChange;
 pw2.onchange = pw2Chk;
 pw1.onchange = pwChk;
 
@@ -15,16 +15,16 @@ function chkChange() {
 function IdCheck() {
 	idchekbnt.clicked= true;
 	let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-	document.getElementById("idMsg").style.display = 'flex';
+	document.getElementById("idMsg").style.display = 'block';
 
-	fetch('idcheckAjax.do?memberId=' + memberId.value)
+	fetch('idcheckAjax.do?joinId=' + joinId.value)
 	.then(result => result.text())
 	.then(result => {
 		if (result == 1) {
 			document.getElementById("idMsg").style.color = 'red';
 			document.getElementById('idMsg').innerText = '중복된 아이디입니다.';
 		} else {
-			if (!regExp.test(memberId.value)) {
+			if (!regExp.test(joinId.value)) {
 				document.getElementById("idMsg").style.color = 'red';
 				document.getElementById('idMsg').innerText = "아이디는 이메일 형식으로 입력하세요.";
 			} else {

@@ -30,7 +30,6 @@ import com.mid.controller.InsertRoomController;
 import com.mid.controller.KakaoLoginController;
 import com.mid.controller.KakaoSignupController;
 import com.mid.controller.KakaoSignupFormController;
-import com.mid.controller.LoginFormController;
 import com.mid.controller.LoginOutController;
 import com.mid.controller.MainController;
 import com.mid.controller.MemberAgreementController;
@@ -92,7 +91,6 @@ public class FrontController extends HttpServlet {
 	
 		
 		// 최유리
-		mappings.put("/loginForm.do", new LoginFormController());	// 로그인폼
 		mappings.put("/login.do", new LoginOutController());		// 로그인,로그아웃
 		mappings.put("/memberJoinForm.do", new MemberJoinFormController());	//회원가입폼
 		mappings.put("/memberJoin.do", new MemberJoinController());	//회원가입 처리
@@ -102,8 +100,8 @@ public class FrontController extends HttpServlet {
 		mappings.put("/findInfo.do", new FindInfoController());	//회원정보검색
 		mappings.put("/memberInfo.do", new MemberInfoController());	// 상세 정보
 		mappings.put("/updateMemberInfo.do", new UpdateMemberInfoController());	//정보수정
-		mappings.put("/deleteMemberInfo.do", new DeleteMemberInfoController());	//정보수정
-		mappings.put("/deleteMember.do", new DeleteMemberController());
+		mappings.put("/deleteMemberInfo.do", new DeleteMemberInfoController());	//회원탈퇴폼
+		mappings.put("/deleteMember.do", new DeleteMemberController());	//회원탈퇴
 		mappings.put("/idcheckAjax.do", new AjaxMemberIdCheck()); // 아이디 중복 체크.	
 		mappings.put("/qnaList.do", new QnaListController());      //qna페이지로
 	    mappings.put("/getQnaList.do", new GetQnaListController());   //선택한 카테고리의 qna 리스트반환

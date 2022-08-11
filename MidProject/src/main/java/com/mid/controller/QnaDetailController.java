@@ -19,7 +19,7 @@ public class QnaDetailController implements Controller {
 		Qna qna = service.selectOne(Integer.parseInt(qnaId));
 		
 		req.setAttribute("qna",qna);
-		Utils.forward(req, resp, "/WEB-INF/jsp/qna/qnaDetail.jsp");
+		Utils.forward(req, resp, "qna/qnaDetail.tiles");
 
 	}
 

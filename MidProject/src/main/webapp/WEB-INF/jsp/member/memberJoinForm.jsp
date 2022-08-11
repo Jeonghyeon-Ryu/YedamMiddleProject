@@ -12,20 +12,26 @@
 	border-bottom: 1px solid lightgray;
 	padding: 10px;
 	text-align: left;
+	width:100%;
+	margin:0;
+	display:flex;
+	flex-wrap: wrap;
 }
-
+#agree-frm{
+width:100%}
 .mInfo-input input {
-	border: none;
-}
+	border:1px solid lightgray;
+	border-radius:3px;
+	}
 
 .mInfo-input p {
 	text-align: center;
 	font-size: 0.9em;
 	color: red;
 }
-
+	
 .mInfo-input label {
-	width: 180px
+	width: 100px;
 }
 
 .identi, .phone {
@@ -36,6 +42,7 @@
 .joinForm-bnt {
 	text-align: center;
 }
+.agreement-box .big-btn{width:40%}
 </style>
 <body>
 	<div class="agreement-box">
@@ -46,14 +53,14 @@
 				<form id="agree-frm" name="mInfo-frm" action="memberJoin.do"
 					method="post">
 					<div class="mInfo-input">
-						<label for="memberId">아이디</label> <input type="text" id="memberId"
-							name="memberId">&nbsp;
-						<button type="button" id="idCheck" name="idCheck" onclick="javascript:IdCheck();">중복체크</button>
-						<p style="display: none;" id="idMsg" class="info-error"></p>
+						<label for="join-id" style="width:60px;">아이디</label> 
+						<input type="text" id="join-id" name="join-id">&nbsp;
+						<button type="button" id="idCheck" name="idCheck" onclick="javascript:IdCheck();" style="width:60px">체크</button>
+						<p style="flex-wrap: wrap;" id="idMsg" class="info-error"></p>
 					</div>
 					<div class="mInfo-input">
-						<label for="memberNm">이름</label> <input type="text" id="memberNm"
-							name="memberNm">
+						<label for="join-nm" style="width:60px">이름</label> <input type="text" id="join-nm"
+							name="join-nm">
 					</div>
 					<div class="mInfo-input">
 						<label for="identi">주민번호</label> <input type="text" class="identi"
@@ -64,13 +71,13 @@
 						</p>
 					</div>
 					<div class="mInfo-input">
-						<label for="memberPw">비밀번호</label> <input type="password"
-							id="memberPw" name="memberPw">
+						<label for="join-pw">비밀번호</label> <input type="password"
+							id="join-pw" name="join-pw">
 						<p style="display: none;" id="pw-error" class="info-error"></p>
 					</div>
 					<div class="mInfo-input">
-						<label for="memberPw2">비밀번호 확인</label> <input type="password"
-							id="memberPw2" name="memberPw2">
+						<label for="join-pw2">비밀번호 확인</label> <input type="password"
+							id="join-pw2" name="join-pw2">
 						<p style="display: none;" id="pw2-error" class="info-error"></p>
 					</div>
 					<div class="mInfo-input">
@@ -85,11 +92,10 @@
 
 					<br>
 					<div class="joinForm-bnt">
-						<button type="button" onclick="frmChk();">회원가입</button>
+						<button type="button" class="big-btn" onclick="frmChk();">회원가입</button>
 						&nbsp;&nbsp;&nbsp;
-						<button type="reset">다시입력</button>
+						<button type="reset" class="big-btn">다시입력</button>
 						&nbsp;&nbsp;&nbsp;
-						<button type="button" onclick="location.href='main.do'">홈</button>
 					</div>
 				</form>
 			</div>

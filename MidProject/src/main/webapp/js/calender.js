@@ -153,7 +153,6 @@ $calBody.addEventListener('click', (e) => {
 				e.target.classList.add('day-active');
 				dateTag2 = e.target;
 				init.activeDate2.setDate(day);
-				selectDate();
 			}
 		}
 	}
@@ -161,8 +160,12 @@ $calBody.addEventListener('click', (e) => {
 function selectDate() {
 	let inDate = document.querySelector('.cal-day1').textContent;
 	let outDate = document.querySelector('.cal-day2').textContent;
-	console.log(inDate + '~' + outDate);
-
+	document.querySelector('#checkin-date').value = inDate;
+	document.querySelector('#checkout-date').value = outDate;
+	let checkinModal = document.querySelector('#checkin-modal');
+	checkinModal.classList.toggle('modal-active');
+	let body = document.querySelector('body');
+	body.classList.toggle('modal-active-background');
 }
 
 let calenderCloseButton = document.querySelector("#checkin-modal .modal-close-button")
@@ -176,5 +179,4 @@ function calenderCloseAction(e) {
 		let body = document.querySelector('body');
 		modal.classList.toggle('modal-active');
 		body.classList.toggle('modal-active-background');
-	
 }

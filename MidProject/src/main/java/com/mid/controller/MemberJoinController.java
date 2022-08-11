@@ -20,11 +20,11 @@ public class MemberJoinController implements Controller {
 		MemberService service = MemberService.getInstance();
 		Member vo = new Member();
 
-		String memId = req.getParameter("memberId");
-		String nm = req.getParameter("memberNm");
+		String memId = req.getParameter("join-id");
+		String nm = req.getParameter("join-nm");
 		String id1 = req.getParameter("identi");
 		String id2 = req.getParameter("identi2");
-		String pw = req.getParameter("memberPw");
+		String pw = req.getParameter("join-pw");
 		String pn1 = req.getParameter("phone1");
 		String pn2 = req.getParameter("phone2");
 		String pn3 = req.getParameter("phone3");

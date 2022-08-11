@@ -14,7 +14,7 @@ public class MemberJoinFormController implements Controller {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Utils.forward(req, resp, "/WEB-INF/jsp/member/memberJoinForm.jsp");
+		Utils.forward(req, resp, "member/memberJoinForm.tiles");
 
 	}
 
