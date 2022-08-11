@@ -345,12 +345,12 @@ public class MemberDAO extends DAO {
 		public int getBusinessId(String MEMBER_ID) {
 			try {
 				connect();
-				String sql = "select BUSINESS_ID from member where MEMBER_ID =?";
+				String sql = "select BUSINESS_ID from BUSINESS where MEMBER_ID =?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, MEMBER_ID);
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
-					return rs.getInt("BUSINESS_MAN");
+					return rs.getInt("BUSINESS_ID");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
