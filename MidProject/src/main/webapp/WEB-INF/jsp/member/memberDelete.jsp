@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-<c:if test=${empty delete }>
+<c:if test=${!msg eq "success"}>
 	<form id="newInfo-input" action="deleteMember.do" method="post">
 		<h2>정말 탈퇴하시겠습니까?</h2>
         <h3>회원정보를 삭제를 위해 비밀번호를 재입력해 주세요</h3>
@@ -24,7 +24,7 @@
         <input type="button" id="home-btn" onclick="location.href='main.do'" value="홈으로">
      </form>
 </c:if>
-<c:if test=${msg eq "delete" }>
+<c:if test=${msg eq "success" }>
 	<h3>탈퇴 완료되었습니다.</h3>
 	<h3>이용해 주셔서 감사합니다.</h3>
 </c:if>

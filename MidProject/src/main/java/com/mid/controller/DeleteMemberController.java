@@ -27,7 +27,7 @@ public class DeleteMemberController implements Controller {
 		if(!pw.equals(member.getPw())) {
 			Utils.forward(req, resp, "deleteMemberInfo.do");
 		}else {
-			req.setAttribute("delete", "success");
+			req.setAttribute("msg", "success");
 			Utils.forward(req, resp, "deleteMemberInfo.do");
 		}
 	}
