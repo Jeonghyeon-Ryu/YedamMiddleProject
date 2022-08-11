@@ -51,7 +51,7 @@ public class MessageController implements Controller {
 			req.setAttribute("checkUser", 1);
 		}
 		req.setAttribute("ctlist", ctlist);
-		Utils.forward(req, resp, "/WEB-INF/jsp/message/message.jsp");
+		Utils.forward(req, resp, "/message/message.tiles");
 
 	}
 
