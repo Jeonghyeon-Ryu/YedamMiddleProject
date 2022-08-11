@@ -49,10 +49,20 @@
 .findInfo-frm{
 	margin-bottom:100px;
 }
-.findInfo-frm input{
+.findInfo-frm label{
+	width :60px;
+}
+.findInfo-frm input,.searchedInfo-box input{
+	padding:3px;
+	border-radius:3px;
+	border:1px solid gray;
 	clear:both;
 	margin : 5px;
 }
+.searchedInfo-box label{
+	width :110px;
+}
+
 .agreement-box .findInfo-content{
 	clear:both;
 }
@@ -140,4 +150,8 @@
    color:white;
    background: black;
    box-shadow: 5px 5px 5px #ccc, 10px 10px 10px #c5c5c5;
+}
+.findInfo-frm input[type="submit"]:hover{
+	background:black;
+	color:white;
 }

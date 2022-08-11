@@ -38,12 +38,12 @@ public class FindInfoController implements Controller {
 					list.add(member);
 				}
 			}
-			if(getList==null) {
-				req.setAttribute("error", "정보가 없습니다.");
+			if(getList.size()==0) {
+				req.setAttribute("infoError", "정보를 찾을 수 없습니다.");
 			}else{
 				req.setAttribute("list",list);
 			}
-			Utils.forward(req, resp, "/WEB-INF/jsp/member/findInfo.jsp");
+			Utils.forward(req, resp, "member/findInfo.tiles");
 		}
 		//비밀번호 찾기
 		else {

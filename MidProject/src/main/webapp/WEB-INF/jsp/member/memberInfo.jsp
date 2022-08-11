@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>findInfo.jsp</title>
 <style>
 .update-info {
 	margin : 20px;
@@ -43,7 +47,8 @@
 }
 .update-info-frm p{margin-left:20px;}
 </style>
-
+</head>
+<body>
 <div class="update-info" id="info">
 	<div id="update-title">
    		<h2 style="float:left">개인 정보</h2>
@@ -76,23 +81,25 @@
 		    	<input type="hidden" name="job" value="infoUpdate">
 		        <button onclick="upDatePwChk()" style="float:left" name="role" value="memberPw">수정</button>
 		  </form>
-			<button onclick="location.href='deleteMemberInfo.do'" style="float:right">탈퇴</button>
+			<button onclick="location.href='deleteMemberInfo.do'" style="float:right;color:lightgray">회원탈퇴</button>
 	  </div>
 </div>
 
 <script>
+let infoPw=document.getElementById("info-new-pw");
+infoPw.onchage=InfoPwChk;
 
-function pwChk() {
-	const pw = document.getElementById("info-new-pw");
+function InfoPwChk() {
+	console.log(infoPw.value)
 	document.getElementById('info-pw-error').innerText="";
 	let regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
-	if (pw.value.length1 < 8 || pw.value.length1 > 16) {
+	if (infoPw.value.length1 < 8 || infoPw.value.length1 > 16) {
 		document.getElementById('info-pw-error').innerText = "8자리 ~ 16자리 이내로 입력해주세요.";
-		pw1.value = "";
+		infoPw.value = "";
 		return false;
-	} else if (!regExp.test(pw.value)) {
+	} else if (!regExp.test(infoPw.value)) {
 		document.getElementById('info-pw-error').innerText = "영문,숫자,특수문자를 포함하여 입력하세요.";
-		pw1.value = "";
+		infoPw.value = "";
 		return false;
 	} else {
 		document.getElementById("info-pw-error").innerText="";
@@ -101,11 +108,10 @@ function pwChk() {
 }
 
 function upDatePwChk(){
-	const pw = document.getElementById("info-new-pw");
-	if(!pw.value.equals("")){
-		pwChk;
-		if(pwChk()){
+	if(!infoPw.value.equals("")||infoPw.value==null){
+		if(InfoPwChk()){
 			document.getElementById('update-info-frm').submit();
+			InfoPwChk;
 		}
 	}else{
 		document.getElementById('update-info-frm').submit();
@@ -113,4 +119,6 @@ function upDatePwChk(){
 }
 
 </script>
+ </body>
+ </html>
  

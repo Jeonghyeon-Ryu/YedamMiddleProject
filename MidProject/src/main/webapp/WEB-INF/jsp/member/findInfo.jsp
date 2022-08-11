@@ -38,8 +38,8 @@
       </form>
       
       <div class="searchedInfo-box" id="searchedId-box">
-         <c:if test="${!empty error}">
-            <p style="color:red;">정보가 없습니다.</p>
+         <c:if test="${!empty infoError}">
+            <p style="color:red;">${infoError}</p>
          </c:if>      
          <c:if test="${!empty list}">
             <c:forEach var="vo" items="${list}">
@@ -76,11 +76,11 @@
             <form id="newInfo-input" action="updateMemberInfo.do" method="post">
                <h3>'${id}'님의 비밀번호 재설정</h3>
                <label for="memberPw">새로운 비밀번호</label> 
-               <input type="password" id="memberPw" name="memberPw"><br><br>
-               <p style="display: none;" id="pw-error" class="info-error"></p>
+               <input type="password" id="memberPw" name="memberPw"><br>
+               <p style="display: none;color:red" id="pw-error" class="info-error"></p>
                <label for="memberPw2">비밀번호 확인</label> <input type="password"
                   id="memberPw2" name="memberPw2">
-               <p style="display: none;" id="pw2-error" class="info-error"></p>
+               <p style="display: none;color:red" id="pw2-error" class="info-error"></p>
                
                <input type="hidden" name="memberId" value="${id }">
                <input type="hidden" name="job" value="pwUpdate">
