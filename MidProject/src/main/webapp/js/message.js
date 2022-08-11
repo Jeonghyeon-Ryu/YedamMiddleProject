@@ -74,6 +74,7 @@ function sendEomji(id) {
 	document.getElementById("msSendText").value = id
 	sendText();
 	document.getElementById("msSendText").value = ""
+			document.getElementById("msContent").scrollTo(0, document.getElementById("msContentText").offsetHeight)
 }
 function openReContent() {
 	let recevi = document.getElementById("exitRecevi").value
@@ -93,7 +94,7 @@ function openAllMs() {
 	}
 	document.getElementById("msContentRoom").style.display = 'block'
 	document.getElementById("receviId").innerText = "";
-	openMsEmoji()
+	document.getElementById("msEmojiAll").style.display = 'none'
 }
 
 function openMsEmoji() {
@@ -105,6 +106,6 @@ function openMsEmoji() {
 	} else {
 		msEmoji.style.display = 'block'
 	}
-	document.getElementById("msSendContent").scrollTop = document.getElementById("msSendContent").scrollHeight;
+		document.getElementById("msContent").scrollTo(0, document.getElementById("msContentText").offsetHeight)
 }
 
