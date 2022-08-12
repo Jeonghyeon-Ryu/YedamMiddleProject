@@ -71,15 +71,15 @@
 		        	<input type="hidden" id="info-presentPw" value="${member.pw}">
 		        <hr >
 		        <label for="info-new-pw" style="float:left">새 비밀번호</label>
-		        	<input type="password" id="info-new-pw" name="info-new-pw">
+		        	<input type="password" onchange="InfopwChk()" id="info-new-pw" name="info-new-pw">
 		        <p style="color:red" id="info-pw-error" class="info-error" style="cleat:both"></p>
 		        <hr>
-				<c:if test="${empty infoMsg }">
+				<c:if test="${!empty infoMsg }">
 					<p style="color:red" style="cleat:both">${infoMsg}</p>
 				</c:if>
 			    <p style="color:red" id="no-pw-error" class="info-error" style="cleat:both"></p>
 		    	<input type="hidden" name="job" value="infoUpdate">
-		        <button onclick="upDatePwChk()" style="float:left" name="role" value="memberPw">수정</button>
+		        <button onclick="updatePwChk()" style="float:left" name="role" value="memberPw">수정</button>
 		  </form>
 			<button onclick="location.href='deleteMemberInfo.do'" style="float:right;color:lightgray">회원탈퇴</button>
 	  </div>
@@ -87,13 +87,9 @@
 
 <script>
 let infoPw=document.getElementById("info-new-pw");
-infoPw.onchage=InfoPwChk;
-
-function InfoPwChk() {
-	console.log(infoPw.value)
-	document.getElementById('info-pw-error').innerText="";
+function InfopwChk() {
 	let regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
-	if (infoPw.value.length1 < 8 || infoPw.value.length1 > 16) {
+	if (infoPw.value.length < 8 || infoPw.value.length > 16) {
 		document.getElementById('info-pw-error').innerText = "8자리 ~ 16자리 이내로 입력해주세요.";
 		infoPw.value = "";
 		return false;
@@ -107,11 +103,15 @@ function InfoPwChk() {
 	}
 }
 
-function upDatePwChk(){
-	if(!infoPw.value.equals("")||infoPw.value==null){
-		if(InfoPwChk()){
+function updatePwChk(){
+	console.log("test")
+	if(!(infoPw.value.equals("")||infoPw.value==null)){
+		InfopwChk;
+		if(InfopwChk()){
 			document.getElementById('update-info-frm').submit();
-			InfoPwChk;
+			InfopwChk;
+		}else{
+			event.preventDefault();
 		}
 	}else{
 		document.getElementById('update-info-frm').submit();
