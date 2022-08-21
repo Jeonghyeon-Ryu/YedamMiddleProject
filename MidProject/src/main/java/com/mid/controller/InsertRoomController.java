@@ -18,7 +18,10 @@ public class InsertRoomController implements Controller {
 		String roomName = req.getParameter("roomName");
 		String roomPrice = req.getParameter("roomPrice");
 		String roomInfo = req.getParameter("roomInfo");
-		
+		System.out.println(accId);
+		System.out.println(roomName);
+		System.out.println(roomPrice);
+		System.out.println(roomInfo);
 		Room room = new Room();
 		room.setAccId(Integer.parseInt(accId));
 		room.setName(roomName);
@@ -27,7 +30,7 @@ public class InsertRoomController implements Controller {
 		
 		RoomService service = RoomService.getInstance();
 		boolean result = service.insert(room);
-		
+		System.out.println("result : " +result);
 		String retCode = "{\"retCode\":\"";
 		if(result) {
 			resp.getWriter().print(retCode + "success" + "\"}");

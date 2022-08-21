@@ -23,8 +23,14 @@ public class InsertReservationController implements Controller {
 		Date resultCheckIn = Date.valueOf(checkIn.replace('.','-'));
 		Date tempCheckOut = Date.valueOf(checkOut.replace('.','-'));
 		int resultCheckOut = (int) ((tempCheckOut.getTime()-resultCheckIn.getTime())/1000/60/60/24);
-		String resultPrice = price.substring(0,price.indexOf("원"));
+		String resultPrice ="";
+		if(price.indexOf("원")>=0) {
+			resultPrice = price.substring(0,price.indexOf("원"));
+		}else {
+			resultPrice = price;
+		}
 		resultPrice = resultPrice.replaceAll(",","");
+		System.out.println(resultCheckIn);
 		resultPrice = String.valueOf(Integer.parseInt(resultPrice)*resultCheckOut);
 		Reservation vo = new Reservation();
 		vo.setRoomId(Integer.parseInt(roomId));

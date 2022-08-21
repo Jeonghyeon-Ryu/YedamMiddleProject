@@ -342,22 +342,4 @@ public class MemberDAO extends DAO {
 			}
 			return 0;
 		}
-		// 사업자 id 가져오기
-		public int getBusinessId(String MEMBER_ID) {
-			try {
-				connect();
-				String sql = "select BUSINESS_ID from BUSINESS where MEMBER_ID =?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, MEMBER_ID);
-				rs = pstmt.executeQuery();
-				if(rs.next()) {
-					return rs.getInt("BUSINESS_ID");
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				disconnect();
-			}
-			return 0;
-		}
 }

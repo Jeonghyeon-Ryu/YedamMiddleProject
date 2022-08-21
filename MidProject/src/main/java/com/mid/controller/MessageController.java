@@ -6,12 +6,11 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.mid.common.Controller;
 import com.mid.common.Utils;
+import com.mid.service.BusinessService;
 import com.mid.service.ChatService;
-import com.mid.service.MemberService;
 import com.mid.service.ReservationService;
 import com.mid.vo.Accommodation;
 import com.mid.vo.Chat;
@@ -23,8 +22,8 @@ public class MessageController implements Controller {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id = (String) req.getSession().getAttribute("id");
-		MemberService mService = MemberService.getInstance();
-		String bmId = Integer.toString(mService.getBusinessId(id));
+		BusinessService bService = BusinessService.getInstance();
+		String bmId = Integer.toString(bService.getBusinessId(id));
 
 		ReservationService reService = ReservationService.getInstance();
 		ChatService ctService = ChatService.getInstance();

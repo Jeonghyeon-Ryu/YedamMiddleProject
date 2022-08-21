@@ -10,7 +10,20 @@ public class RoomDAO extends DAO {
 
 	public boolean insert(Room room) {
 		boolean result = false;
-		
+		try {
+			connect();
+			String sql = "INSERT INTO room(room_id,acc_id,name,price,is_reservation,info,status) VALUES((SELECT MAX(room_id)+1 FROM room),?,?,?,0,?,1)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, room.getAccId());
+			pstmt.setString(2, room.getName());
+			pstmt.setString(3, room.getPrice());
+			pstmt.setString(4, room.getInfo());
+			result = (pstmt.executeUpdate()>0)?true:false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
 		return result;
 	}
 	public boolean update(Room room) {

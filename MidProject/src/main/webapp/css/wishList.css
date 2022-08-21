@@ -58,7 +58,7 @@
 }
 @media screen and (max-width : 799px) {
 	.wish-container {
-		width:90vw;
+		width:100%;
 		height:100px;
 	}
 	.wish-container .wish-img{

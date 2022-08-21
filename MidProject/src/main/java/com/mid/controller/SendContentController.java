@@ -11,9 +11,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.mid.common.Controller;
-import com.mid.common.Utils;
+import com.mid.service.BusinessService;
 import com.mid.service.ChatService;
-import com.mid.service.MemberService;
 import com.mid.vo.Chat;
 
 public class SendContentController implements Controller {
@@ -24,9 +23,9 @@ public class SendContentController implements Controller {
 		resp.setContentType("text/json;charset=utf-8");
 		HttpSession session = req.getSession();
 		String send = (String) session.getAttribute("id");
-		MemberService mService = MemberService.getInstance();
+		BusinessService bService = BusinessService.getInstance();
 		String recevi = req.getParameter("youId");
-		String sendBmId = Integer.toString(mService.getBusinessId(send));
+		String sendBmId = Integer.toString(bService.getBusinessId(send));
 		String content = req.getParameter("msSendText");
 		
 		if (!(recevi.charAt(0) >= '0' && recevi.charAt(0) <= '9')) {

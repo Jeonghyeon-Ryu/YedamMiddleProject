@@ -63,6 +63,25 @@ let checkOut = document.querySelector('.check-out').innerText;
 let price = document.querySelector('#rv-payment').innerText;
 let merchantName = document.querySelector('.rv-comp-title b').innerText+ ' ' + document.querySelector('.rv-room-name').innerText;
 console.log(merchantName);
+
+/* $("#check-module").click(function () {
+	$.ajax({
+		url: "insertReservation.do",
+		data: { "roomId" : roomId, "checkIn": checkIn, "checkOut": checkOut, "price": price },
+		method: "GET",
+		success: function(result){
+			result = JSON.parse(result);
+			if(result.retCode=="success"){
+				location.href="main.do";
+				reservationModalOpenAction();
+			} else if(result.retCode=="fail"){
+				alert('결제실패 ( 계속되면 관리자에게 문의하세요. )');
+			}
+		}, error : function(err){
+			console.log(err);
+		}
+	})
+}); */
 // 방이름 날짜 
 $("#check-module").click(function () {
     var IMP = window.IMP;

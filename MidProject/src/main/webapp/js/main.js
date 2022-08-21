@@ -160,4 +160,3 @@ window.addEventListener('scroll',() => {
 		scrollIsStop=false;
 	}
 },{ passive:true })
-
