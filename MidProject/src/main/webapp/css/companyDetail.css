@@ -7,6 +7,7 @@
 #company-container h2 {
 	text-align:center;
 	line-height:50px;
+	border: 1px solid black;
 }
 #company-container #company-img-div {
 	width:100%;
@@ -50,5 +51,24 @@
 #company-container .comp-room{
 	font-size:1.4rem;
 	font-weight:bold;
-	padding:10px 20px;
+	margin-bottom: 5px
+}
+#company-container #rv-button {
+	border-radius: 5px;
+	background-color: #e2e2e2;
+	margin-right: 10px;
+	border: none;
+	float: right;
+}
+#company-container .comp-info{
+	padding:10px 10px 0 20px;
+}
+#company-container #comp-price{
+	justify-content: space-between;
+	display: flex;
+	margin: 10px 0 10px 0;
+
+}
+#company-container #detail-review {
+	margin: 10px 0 10px 0;	
 }
