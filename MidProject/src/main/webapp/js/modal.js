@@ -61,12 +61,8 @@ function modalClickEvent(e) {
 function changeMinPrice() {
 	let minPrice = document.querySelector('#min-price');
 	let maxPrice = document.querySelector('#max-price');
-	console.log("1번 : " + minPrice.value)
-	console.log("2번 : " + maxPrice.value)
 	if(maxPrice.value != ""){
-		console.log("3번 : " + minPrice.value);
 		if(+minPrice.value > +maxPrice.value){
-			console.log("4번 : " + minPrice.value);
 			maxPrice.value=null;
 		}
 	}
@@ -87,7 +83,6 @@ function changeMaxPrice() {
 function changePriceCountResult() {
 	checkLocation();
 	checkFilterBox();
-	console.log('city=' + resultCity + '&region=' + resultRegion + '&reservationDay=' + reservationDay + '&reservationTime=' + reservationTime + resultFilter)
 	fetch('accListCount.do', {
 		method: 'POST',
 		headers: { 'Content-type': 'application/x-www-form-urlencoded' },

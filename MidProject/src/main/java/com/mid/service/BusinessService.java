@@ -31,9 +31,12 @@ public class BusinessService {
 	public Business selectOne(int businessId) {
 		return new BusinessDAO().selectOne(businessId);
 	}
-
 	public void signUpBuisness(String memberId) {
 		new MemberDAO().updateBusiness(memberId);
+	}
+	// 사업자 id
+	public int getBusinessId(String id) {
+		return new BusinessDAO().getBusinessId(id);
 	}
 }
 

@@ -4,7 +4,15 @@ public class ReservationInfo {
 	private Reservation reservation;
 	private Accommodation accommodation;
 	private Room room;
+	private Review review;
 	
+	
+	public Review getReview() {
+		return review;
+	}
+	public void setReview(Review review) {
+		this.review = review;
+	}
 	public Reservation getReservation() {
 		return reservation;
 	}

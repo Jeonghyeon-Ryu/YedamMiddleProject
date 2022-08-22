@@ -1,25 +1,112 @@
 @charset "UTF-8";
-#reservation-modal{
-	overflow:hidden;
+
+#reservation-modal {
+	overflow: hidden;
 }
-#reservation-modal .modal-content{
-	max-height:100%;
-	overflow-y:auto;
-	padding-bottom:120px;
+
+#reservation-modal .modal-content {
+	max-height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding-bottom: 120px;
 }
 
 #reservation-modal::-webkit-scrollbar {
-    background-color: #fff;
-    width: 16px;
+	background-color: #fff;
+	width: 16px;
 }
+
 #reservation-modal::-webkit-scrollbar-track {
-    background-color: #fff;
+	background-color: #fff;
 }
+
 #reservation-modal::-webkit-scrollbar-thumb {
-    background-color: #babac0;
-    border-radius: 16px;
-    border: 4px solid #fff;
+	background-color: #babac0;
+	border-radius: 16px;
+	border: 4px solid #fff;
 }
+
 #reservation-modal::-webkit-scrollbar-button {
-    display:none;
+	display: none;
+}
+
+#reservation-modal .modal-content button {
+	position: absolute;
+	right: 16px;
+	bottom: 16px;
+	padding: 5px 10px;
+	color: #1c5169;
+	background:transparent;
+	text-decoration: none;
+	overflow: hidden;
+	transition: 0.2s;
+	font-size:0.8rem;
+	border:none;
+}
+
+#reservation-modal button:hover {
+	color: #2196f3;
+	/* background: #86dbff; */
+	box-shadow: 0 0 10px #3cc6d8, 0 0 40px #3cc6d8, 0 0 80px #3cc6d8;
+	transition-delay: 0.7s;
+}
+
+#reservation-modal button span {
+	position: absolute;
+	display: block;
+}
+
+#reservation-modal button span:nth-child(1) {
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, #1c5169);
+}
+
+#reservation-modal button:hover span:nth-child(1) {
+	left: 100%;
+	transition: 0.25s;
+}
+
+#reservation-modal button span:nth-child(3) {
+	bottom: 0;
+	right: -100%;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(270deg, transparent, #1c5169);
+}
+
+#reservation-modal button:hover span:nth-child(3) {
+	right: 100%;
+	transition: 0.25s;
+	transition-delay: 0.4s;
+}
+
+#reservation-modal button span:nth-child(2) {
+	top: -100%;
+	right: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(180deg, transparent, #1c5169);
+}
+
+#reservation-modal button:hover span:nth-child(2) {
+	top: 100%;
+	transition: 0.25s;
+	transition-delay: 0.2s;
+}
+
+#reservation-modal button span:nth-child(4) {
+	bottom: -100%;
+	left: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(0deg, transparent, #1c5169);
+}
+
+#reservation-modal button:hover span:nth-child(4) {
+	bottom: 100%;
+	transition: 0.25s;
+	transition-delay: 0.6s;
 }

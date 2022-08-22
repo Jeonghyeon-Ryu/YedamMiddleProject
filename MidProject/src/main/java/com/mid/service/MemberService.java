@@ -92,10 +92,6 @@ public class MemberService {
 		return new MemberDAO().checkBusiness(id);
 	}
 
-	// 사업자 id
-	public int getBusinessId(String id) {
-		return new MemberDAO().getBusinessId(id);
-	}
 //	public Accommodation getCompDetail(Accommodation accommodation) {
 //		return new AccommodationDAO.selectOne(accommodation);
 //	}

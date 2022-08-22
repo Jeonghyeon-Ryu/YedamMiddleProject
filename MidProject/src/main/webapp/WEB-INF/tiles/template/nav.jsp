@@ -99,23 +99,32 @@
 		<!-- Modal Content -->
 		<div class="modal-content">
 			<div class="row row-cols-1 row-cols-md-2 g-4">
-				<template id="reservation-template">
-					<div class="col">
-						<div class="card">
-							<img src="" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title"></h5>
-								<p class="card-text">방 종류 : <span></span></p>
-								<p class="card-text">주소 : <span></span></p>
-								<p class="card-text">이용일자 : <span></span></p>
-								<p class="card-text">업체전화 : <span></span></p>
-								<p class="card-text">결제금액 : <span></span></p>
-							</div>
-						</div>
-					</div>
-				</template>
 			</div>
 		</div>
+		<template id="reservation-template">
+			<div class="col">
+				<div class="card">
+					<img src="" class="card-img-top" style="width:100%; height:300px;" alt="...">
+					<div class="card-body">
+						<h5 class="card-title"></h5>
+						<p class="card-text">방 종류 : <span></span></p>
+						<p class="card-text">주소 : <span></span></p>
+						<p class="card-text">체크인 : <span></span></p>
+						<p class="card-text">이용날짜 : <span></span></p>
+						<p class="card-text">업체전화 : <span></span></p>
+						<p class="card-text">결제금액 : <span></span></p>
+						<p class="card-text acc-id" style="display:none;"><span></span></p>
+						<p class="card-text room-id" style="display:none;"><span></span></p>
+						<button type="button">후기작성
+							<span></span>
+					        <span></span>
+					        <span></span>
+					        <span></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</template>
 	</div>
 </div>
 <template id="ex-template">
@@ -225,12 +234,14 @@
 			<div class="mypage-center" id="customer-center">
 				<h2>사업자</h2>
 				<ul>
-				<c:if test="${empty businessId}">
+				<c:if test="${businessId<0}">
 					<li><a href="businessJoin.do"><i class="fa-solid fa-circle-question"></i>
 							사업자등록<span>></span></a></li>
-							</c:if>
+				</c:if>
+				<c:if test="${businessId>=0}">
 					<li><a href="businessManage.do"><i class="fa-solid fa-circle-question"></i>
 							사업관리<span>></span></a></li>
+				</c:if>
 				</ul>
 			</div>
 		</div>

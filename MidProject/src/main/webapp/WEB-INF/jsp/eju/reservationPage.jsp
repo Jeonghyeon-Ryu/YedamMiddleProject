@@ -56,53 +56,62 @@
 </div>
 
 <script>
-	let memberId = document.querySelector('#rv-memberid').innerText;
-	let memberName = document.querySelector('.rv-member-name').value;
-	let memberPhone = document.querySelector('.rv-member-phone').value;
-	let roomId = document.querySelector('#rv-roomId').innerText;
-	let checkIn = document.querySelector('.check-in').innerText;
-	let checkOut = document.querySelector('.check-out').innerText;
-	let price = document.querySelector('#rv-payment').innerText;
-	let merchantName = document.querySelector('.rv-comp-title b').innerText
-			+ ' ' + document.querySelector('.rv-room-name').innerText;
-	console.log(merchantName);
-	// 방이름 날짜 
-	$("#check-module").click(function() {
-		var IMP = window.IMP;
-		IMP.init('imp77170587');
-		IMP.request_pay({
-			pg : 'html5_inicis',
-			pay_method : 'card',
-			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : '주문명:' + merchantName, // 업체이름 --
-			amount : 1000, // 가격 --
-			buyer_email : memberId, // 구매자 이메일 ( 아이디 ) -- 
-			buyer_name : memberName, // 구매자 이름 --
-			buyer_tel : memberPhone, // 구매자 핸드폰 번호 --
-			m_redirect_url : 'http://localhost:8088/MidProject/'
-		}, function(rsp) {
-			console.log(rsp);
-			// roomId, memberid checkIn,checkout, 결제일, 결제금액
-			$.ajax({
-				url : "insertReservation.do",
-				data : {
-					"roomId" : roomId,
-					"checkIn" : checkIn,
-					"checkOut" : checkOut,
-					"price" : price
-				},
-				method : "GET",
-				success : function(result) {
-					result = JSON.parse(result);
-					if (result.retCode == "success") {
-						location.href = "main.do";
-						reservationModalOpenAction();
-					} else if (result.retCode == "fail") {
-						alert('결제실패 ( 계속되면 관리자에게 문의하세요. )');
-					}
-				},
-				error : function(err) {
-					console.log(err);
+let memberId = document.querySelector('#rv-memberid').innerText;
+let memberName = document.querySelector('.rv-member-name').value;
+let memberPhone = document.querySelector('.rv-member-phone').value;
+let roomId = document.querySelector('#rv-roomId').innerText;
+let checkIn = document.querySelector('.check-in').innerText;
+let checkOut = document.querySelector('.check-out').innerText;
+let price = document.querySelector('#rv-payment').innerText;
+let merchantName = document.querySelector('.rv-comp-title b').innerText+ ' ' + document.querySelector('.rv-room-name').innerText;
+console.log(merchantName);
+
+/* $("#check-module").click(function () {
+	$.ajax({
+		url: "insertReservation.do",
+		data: { "roomId" : roomId, "checkIn": checkIn, "checkOut": checkOut, "price": price },
+		method: "GET",
+		success: function(result){
+			result = JSON.parse(result);
+			if(result.retCode=="success"){
+				location.href="main.do";
+				reservationModalOpenAction();
+			} else if(result.retCode=="fail"){
+				alert('결제실패 ( 계속되면 관리자에게 문의하세요. )');
+			}
+		}, error : function(err){
+			console.log(err);
+		}
+	})
+}); */
+// 방이름 날짜 
+$("#check-module").click(function () {
+    var IMP = window.IMP;
+    IMP.init('imp77170587');
+    IMP.request_pay({
+        pg: 'html5_inicis',
+        pay_method: 'card',
+        merchant_uid: 'merchant_' + new Date().getTime(),
+        name: '주문명:' + merchantName , // 업체이름 --
+        amount: 1000,  // 가격 --
+        buyer_email: memberId, // 구매자 이메일 ( 아이디 ) -- 
+        buyer_name: memberName,	// 구매자 이름 --
+        buyer_tel: memberPhone, // 구매자 핸드폰 번호 --
+        m_redirect_url: 'http://localhost:8088/MidProject/'
+    }, function (rsp) {
+        console.log(rsp);
+        // roomId, memberid checkIn,checkout, 결제일, 결제금액
+        $.ajax({
+			url: "insertReservation.do",
+			data: { "roomId" : roomId, "checkIn": checkIn, "checkOut": checkOut, "price": price },
+			method: "GET",
+			success: function(result){
+				result = JSON.parse(result);
+				if(result.retCode=="success"){
+					location.href="main.do";
+					reservationModalOpenAction();
+				} else if(result.retCode=="fail"){
+					alert('결제실패 ( 계속되면 관리자에게 문의하세요. )');
 				}
 			})
 		});

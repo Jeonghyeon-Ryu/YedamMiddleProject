@@ -1,6 +1,9 @@
 @charset "UTF-8";
+#login-modal{
+	padding-bottom:60px;
+}
 #login-modal .login-modal-box{
-	height:70%;
+	height:90%;
 }
 
 #login-modal .modal-content {
@@ -12,6 +15,11 @@
 }
 #login-modal .login-box{
 	margin-top:50px;
+}
+#login-modal .login .form-group button,
+#login-modal .login .form-group input,
+#login-modal .social-login{
+	font-size:0.8rem;
 }
 #login-modal #login-sns {
 	display:flex;
