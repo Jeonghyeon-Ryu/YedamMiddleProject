@@ -30,6 +30,9 @@ public class ReviewService {
 	public boolean delete(int roomId, String memberId) {
 		return new ReviewDAO().delete(roomId, memberId);
 	}
+	public int getReviewScore(int accId) {
+		return new ReviewDAO().getReviewScore(accId);
+	}
 	
 	ReviewDAO rvdao = new ReviewDAO();
 

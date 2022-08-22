@@ -1,6 +1,7 @@
 package com.mid.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,14 @@ public class ReservationPageController implements Controller {
 		String checkIn = req.getParameter("checkIn");
 		String checkOut = req.getParameter("checkOut");
 
+		int resultCheckOut = 0;
+		if(!checkIn.equals("") && !checkOut.equals("")) {		
+			Date resultCheckIn = Date.valueOf(checkIn.replace('.','-'));
+			Date tempCheckOut = Date.valueOf(checkOut.replace('.','-'));
+			resultCheckOut = (int) ((tempCheckOut.getTime()-resultCheckIn.getTime())/1000/60/60/24);
+		}
+		req.setAttribute("reservationDate", resultCheckOut);
+		
 		AccommodationService acService = AccommodationService.getInstance();
 		RoomService rmService = RoomService.getInstance();
 		MemberService mbService = MemberService.getInstance();
@@ -33,9 +42,20 @@ public class ReservationPageController implements Controller {
 
 		Accommodation acc = acService.getCompDetail(Integer.parseInt(accId));
 		System.out.println(Integer.parseInt(accId));
-		Room room = rmService.getRoomOne(Integer.parseInt(accId));
+		Room room = rmService.selectOneAcc(Integer.parseInt(accId));
 		Member member = mbService.getMember(id);
 
+		String price = room.getPrice();
+		String resultPrice ="";
+		if(price.indexOf("원")>=0) {
+			resultPrice = price.substring(0,price.indexOf("원"));
+		}else {
+			resultPrice = price;
+		}
+		resultPrice = resultPrice.replaceAll(",","");
+		resultPrice = String.valueOf(Integer.parseInt(resultPrice)*resultCheckOut);
+		room.setPrice(resultPrice);
+		
 		req.setAttribute("accId", acc.getAccId());
 		req.setAttribute("accName", acc.getName());
 		req.setAttribute("accAddress", acc.getAddress());

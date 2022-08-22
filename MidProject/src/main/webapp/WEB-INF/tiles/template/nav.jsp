@@ -6,7 +6,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String clientId = "KBVX39Y4TiVNOKxAvsL2";//애플리케이션 클라이언트 아이디값";
-	String redirectURI = URLEncoder.encode("http://localhost:8088/MidProject/naverLogin.do", "UTF-8");
+	String redirectURI = URLEncoder.encode("http://192.168.0.123:8088/MidProject/naverLogin.do", "UTF-8");
 	SecureRandom random = new SecureRandom();
 	String state = new BigInteger(130, random).toString();
 	String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -23,12 +23,15 @@
 				<img src="img/nav-home-25.png">
 			</div>
 			<div>홈으로</div>
-		</a> <a id="nav-wishlist">
-			<div>
-				<img src="img/nav-heart-25.png">
-			</div>
-			<div>위시리스트</div>
-		</a>
+		</a> 
+		<c:if test="${!empty id }">
+			<a id="nav-wishlist">
+				<div>
+					<img src="img/nav-heart-25.png">
+				</div>
+				<div>위시리스트</div>
+			</a>
+		</c:if>
 		<c:if test="${empty id }">
 			<a id="nav-login">
 				<div>
@@ -178,7 +181,7 @@
 					</div>
 					<div class="serparater">소셜 간편 로그인 및 회원가입</div>
 					<div id="login-sns">
-						<button type="button" id="kakao-login-bnt" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8088/MidProject/kakaoLogin.do?cmd=callback&response_type=code'" class="btn-kakao">
+						<button type="button" id="kakao-login-bnt" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://192.168.0.123:8088/MidProject/kakaoLogin.do?cmd=callback&response_type=code'" class="btn-kakao">
 							<img src="img/kakao_login_medium_narrow.png">
 						</button>
 						<br>
@@ -218,8 +221,6 @@
 				<h2>나의 정보</h2>
 				<ul>
 					<li><a href="memberInfo.do"><i class="fa-solid fa-user"></i> 개인정보<span>></span></a></li>
-					<li><a href="#"><i class="fa-solid fa-clipboard-list"></i>
-							예약내역<span>></span></a></li>
 				</ul>
 			</div>
 			<hr>
@@ -227,7 +228,7 @@
 				<h2>고객센터</h2>
 				<ul>
 					<li><a href="qnaList.do"><i class="fa-solid fa-circle-question"></i>
-							QnA<span>></span></a></li>
+							FAQ<span>></span></a></li>
 				</ul>
 			</div>
 			<hr>

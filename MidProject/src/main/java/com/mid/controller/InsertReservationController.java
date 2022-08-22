@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mid.common.Controller;
+import com.mid.service.ChatService;
 import com.mid.service.ReservationService;
+import com.mid.vo.Chat;
 import com.mid.vo.Reservation;
 
 public class InsertReservationController implements Controller {
@@ -30,7 +32,6 @@ public class InsertReservationController implements Controller {
 			resultPrice = price;
 		}
 		resultPrice = resultPrice.replaceAll(",","");
-		System.out.println(resultCheckIn);
 		resultPrice = String.valueOf(Integer.parseInt(resultPrice)*resultCheckOut);
 		Reservation vo = new Reservation();
 		vo.setRoomId(Integer.parseInt(roomId));
@@ -38,12 +39,19 @@ public class InsertReservationController implements Controller {
 		vo.setReservationTime(resultCheckIn);
 		vo.setReservationDay(resultCheckOut);
 		vo.setPaymentCose(resultPrice);
-		
+		ChatService cService = ChatService.getInstance();
 		ReservationService service = ReservationService.getInstance();
+		
 		boolean result = service.insert(vo);
 		
 		String retCode = "{\"retCode\":\"";
 		if(result) {
+			String msContent = "예약되었습니다.";
+			Chat chat = new Chat();
+	        chat.setSender(roomId);
+	        chat.setReceiver(memberId);
+	        chat.setContent(msContent);
+	        cService.insert(chat);
 			resp.getWriter().print(retCode + "success" + "\"}");
 		} else {
 			resp.getWriter().print(retCode + "fail" + "\"}");

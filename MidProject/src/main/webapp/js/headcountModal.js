@@ -11,7 +11,20 @@ window.addEventListener('load',() => {
 	}
 	let headcountModal = document.querySelector('#headcount-modal');
 	headcountModal.addEventListener('click',headcountModalClickEvent);
+	let headcountConfirm = document.querySelector('#headcount-modal .headcount-confirm');
+	headcountConfirm.addEventListener('click',headcountModalConfirmEvent);
+	let headcountReset = document.querySelector('#headcount-modal .headcount-reset');
+	headcountReset.addEventListener('click',headcountModalResetEvent);
 })
+function headcountModalResetEvent(e){
+	let spans = document.querySelectorAll('.headcount-updown-button span');
+	for(span of spans){
+		span.innerText=0;
+	}
+}
+function headcountModalConfirmEvent(e){
+	headcountModalCloseAction(e);
+}
 // 그 외 영역 클릭 처리
 function headcountModalClickEvent(e) {
 	searchBoxRemoveClass();

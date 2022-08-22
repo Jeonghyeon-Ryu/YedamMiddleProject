@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.mid.common.Controller;
 import com.mid.common.SHA256;
 import com.mid.service.BusinessService;
+import com.mid.service.ChatService;
 import com.mid.service.MemberService;
 import com.mid.vo.Member;
 
@@ -46,11 +47,11 @@ public class LoginOutController implements Controller {
 		} else {
 			// 로그인 성공
 			BusinessService bService = BusinessService.getInstance();
-			session.setAttribute("businessId", bService.getBusinessId(id));
+			ChatService cService =ChatService.getInstance();
+	        cService.deleteContent();
+        	session.setAttribute("businessId", bService.getBusinessId(id));
 			session.setAttribute("id", id);
 			resp.getWriter().print(1);
-		
 		}
 	}
-
 }

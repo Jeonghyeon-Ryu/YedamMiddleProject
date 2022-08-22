@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.min.js">
-	
-</script>
-<script type="text/javascript"
-	src="https://service.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" type="text/css" href="css/businessManage.css">
@@ -25,7 +21,7 @@
 			<div class="rv-ckin-ckout">
 				<span class="check-in">${checkIn}</span>~<span class="check-out">${checkOut }</span>
 			</div>
-			<div class="rv-price">가격 : ${price }</div>
+			<div class="rv-price">가격 : ${reservationDate}박 ${price }원</div>
 		</div>
 		<div id="rv-second" class="rv-content-box">
 			<div>
@@ -46,12 +42,10 @@
 				<div>
 					<b>총 결제 금액</b>
 				</div>
-				<div id="rv-payment">${price }</div>
+				<div id="rv-payment">${price }원</div>
 			</div>
-			<div id="check-module" style="display: block; text-align: right;">
-				<button id="checkOut-btn" type="button">결제</button> </div>
+			<button id="check-module" type="button">결제</button>
 		</div>
-		<!-- 				<button id="check-module" type="button">결제</button> -->
 	</div>
 </div>
 
@@ -64,8 +58,6 @@ let checkIn = document.querySelector('.check-in').innerText;
 let checkOut = document.querySelector('.check-out').innerText;
 let price = document.querySelector('#rv-payment').innerText;
 let merchantName = document.querySelector('.rv-comp-title b').innerText+ ' ' + document.querySelector('.rv-room-name').innerText;
-console.log(merchantName);
-
 /* $("#check-module").click(function () {
 	$.ajax({
 		url: "insertReservation.do",
@@ -95,25 +87,29 @@ $("#check-module").click(function () {
         name: '주문명:' + merchantName , // 업체이름 --
         amount: 1000,  // 가격 --
         buyer_email: memberId, // 구매자 이메일 ( 아이디 ) -- 
-        buyer_name: memberName,	// 구매자 이름 --
+        buyer_name: memberName,   // 구매자 이름 --
         buyer_tel: memberPhone, // 구매자 핸드폰 번호 --
         m_redirect_url: 'http://localhost:8088/MidProject/'
     }, function (rsp) {
         console.log(rsp);
         // roomId, memberid checkIn,checkout, 결제일, 결제금액
         $.ajax({
-			url: "insertReservation.do",
-			data: { "roomId" : roomId, "checkIn": checkIn, "checkOut": checkOut, "price": price },
-			method: "GET",
-			success: function(result){
-				result = JSON.parse(result);
-				if(result.retCode=="success"){
-					location.href="main.do";
-					reservationModalOpenAction();
-				} else if(result.retCode=="fail"){
-					alert('결제실패 ( 계속되면 관리자에게 문의하세요. )');
-				}
-			})
-		});
-	});
+         url: "insertReservation.do",
+         data: { "roomId" : roomId, "checkIn": checkIn, "checkOut": checkOut, "price": price },
+         method: "GET",
+         success: function(result){
+            result = JSON.parse(result);
+            if(result.retCode=="success"){
+            	alert('예약완료! ( 메인 페이지로 이동합니다 )');
+            	location.href="main.do";
+            	reservationModalOpenAction();
+            } else if(result.retCode=="fail"){
+               alert('결제실패 ( 계속되면 관리자에게 문의하세요. )');
+            }
+         }, error : function(err){
+            console.log(err);
+         }
+      })
+    });
+});
 </script>

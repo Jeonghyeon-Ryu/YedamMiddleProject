@@ -87,9 +87,23 @@ function createCard(result) {
 				card.querySelector('.like').src="img/like-redheart-35.png";
 			}
 			// 카드 붙이기
+		}).catch(err => console.log(err));
+		fetch('getReviewScore.do',{
+			method: 'POST',
+			headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+			body: 'accId=' + result.list[i].accId
+		}).then(reviewResult => reviewResult.json())
+		.then(reviewResult => {
+			if(reviewResult.retCode > 0){
+				let reviewScore = reviewResult.retCode;
+				let stars = card.querySelectorAll('a');
+				for(let i=0; i < +reviewScore; i++){
+					stars[i].classList.toggle("active-star-rated");
+				}
+			}
+			// 카드 붙이기
 			document.querySelector('main').append(card);
 		}).catch(err => console.log(err));
-		
 		// 동적 생성된 Card Click 이벤트 생성
 		$('main').on("click","#"+result.list[i].accId,function(e){
 			let clickedCard = e.target;
@@ -150,10 +164,10 @@ function clearAccList() {
 window.addEventListener('scroll',() => {
 	// scrollY:스크롤 상단 + innerHeight:현재화면 높이 = 현재까지 스크롤된 부분 하단
 	let currScrollY = window.innerHeight + window.scrollY;
-	if( (currScrollY >= (document.body.offsetHeight-200)) && scrollIsStop!=true && Criteria.page<=Criteria.endPageNo){
+	if( (currScrollY >= (document.body.offsetHeight-100)) && scrollIsStop!=true && Criteria.page<=Criteria.endPageNo){
 		// 200 남기고 ajax 호출 필요.
-		getAccList();
 		scrollIsStop=true;
+		getAccList();
 		// 만약 모든 Card 출력 후  위로올라가는 스크롤이면 ajax 호출안되게 해야됨. ( 완료 ) 
 		// 더 Append 할 데이터가 남은게 있는지 없는지 확인하여야함. ( 완료 )
 	} else {

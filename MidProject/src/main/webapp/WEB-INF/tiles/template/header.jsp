@@ -366,8 +366,8 @@
 		</div>
 		<!-- Modal Footer(Optional) -->
 		<div class="modal-footer">
-			<button type="reset">전체 해제</button>
-			<button type="button">적용</button>
+			<button class="headcount-reset" type="reset">전체 해제</button>
+			<button class="headcount-confirm" type="button">적용</button>
 		</div>
 	</div>
 </div>

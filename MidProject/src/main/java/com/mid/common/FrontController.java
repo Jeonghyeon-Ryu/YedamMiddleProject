@@ -24,6 +24,7 @@ import com.mid.controller.FindInfoController;
 import com.mid.controller.FindInfoFormController;
 import com.mid.controller.GetQnaListController;
 import com.mid.controller.GetReservationListController;
+import com.mid.controller.GetReviewScoreController;
 import com.mid.controller.InsertAccController;
 import com.mid.controller.InsertReservationController;
 import com.mid.controller.InsertRoomController;
@@ -96,6 +97,7 @@ public class FrontController extends HttpServlet {
 		mappings.put("/reviewInsert.do", new ReviewInsertController());	// 리뷰 작성
 		mappings.put("/reviewUpdate.do", new ReviewUpdateController());	// 리뷰 수정
 		mappings.put("/reviewDelete.do", new ReviewDeleteController());	// 리뷰 삭제
+		mappings.put("/getReviewScore.do", new GetReviewScoreController());	// 리뷰 삭제
 	
 		
 		// 최유리

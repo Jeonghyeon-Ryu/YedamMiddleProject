@@ -13,11 +13,11 @@
 			<div>
 				<div class="comp-title">${accName }</div>
 				<div class="star-rated">
-					<img src="img/star-empty-20.png" class="first-star"> <img
-						src="img/star-empty-20.png" class="second-star"> <img
-						src="img/star-empty-20.png" class="third-star"> <img
-						src="img/star-empty-20.png" class="fourth-star"> <img
-						src="img/star-empty-20.png" class="fifth-star">
+					<a class="star-1" href="#1">★</a>
+					<a class="star-2" href="#2">★</a>
+					<a class="star-3" href="#3">★</a>
+					<a class="star-4" href="#4">★</a>
+			    	<a class="star-5" href="#5">★</a>
 				</div>
 				<div class="comp-info">
 					<span class="comp-addrs">주소 : ${accAddress }</span>
@@ -51,7 +51,8 @@
 			</div>
 			<div id="comp-price">
 				<div>
-					<b>가격 : ${price }</b>
+					<c:if test="${reservationDate!=0 }"><b>가격 : ${reservationDate}박 ${price }원</b></c:if>
+					<c:if test="${reservationDate==0 }"><b>가격 : 1박 ${price }원</b></c:if>
 				</div>
 				<div>
 					<button id="rv-button" onclick="mycall('${accId }','${checkIn}','${checkOut }')">예약하기</button>
@@ -92,5 +93,6 @@
 			</div>
 		</div>
 	</div>
+	<div class='member-id' style="display:none;">${id }</div>
 </div>
 <script src="js/companyDetail.js"></script>

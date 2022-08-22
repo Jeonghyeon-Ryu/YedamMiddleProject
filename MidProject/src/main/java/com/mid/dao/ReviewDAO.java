@@ -13,7 +13,7 @@ public class ReviewDAO extends DAO {
 		boolean result=false;
 		try {
 			connect();
-			String sql = "INSERT INTO review(review_id,member_id,acc_id,room_id,review_score,review_content,review_date) values((SELECT NVL(MAX(review_id),1) FROM review),?,?,?,?,?,SYSDATE)";
+			String sql = "INSERT INTO review(review_id,member_id,acc_id,room_id,review_score,review_content,review_date) values((SELECT NVL(MAX(review_id)+1,1) FROM review),?,?,?,?,?,SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, review.getMemberId());
 			pstmt.setInt(2, review.getAccId());
@@ -89,6 +89,24 @@ public class ReviewDAO extends DAO {
 			disconnect();
 		}
 		return review;
+	}
+	public int getReviewScore(int accId) {
+		int reviewScore = 0;
+		try {
+			connect();
+			String sql = "SELECT AVG(review_score) FROM review WHERE acc_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, accId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reviewScore = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return reviewScore;
 	}
 	// 전체 조회
 	public List<Review> selectAll() {

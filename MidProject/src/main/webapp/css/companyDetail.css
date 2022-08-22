@@ -31,12 +31,26 @@
 	cursor:pointer;
 }
 #company-container .comp-title {
-	font-size:2rem;
+	font-size:1.5rem;
 	font-weight:bold;
 	padding:10px 10px 0 20px;
 }
 #company-container .star-rated{
 	padding-left:20px;
+}
+#company-container .star-rated a{
+	text-decoration: none;
+	color:#bbb;
+	font-size:1.2rem;
+	margin-top:-10px;
+	overflow:hidden;
+	transition:color 0.5s;
+}
+#company-container .star-rated a:visited{
+	color:#bbb;
+}
+#company-container .active-star-rated {
+	color:orange !important;
 }
 #company-container a {
 	text-decoration:none;
@@ -45,13 +59,14 @@
 	color:black;
 }
 #company-container .comp-review {
-	padding:0 0 10px 20px;
+	padding:10px 0 10px 20px;
 	cursor:pointer;
 }
 #company-container .comp-room{
-	font-size:1.4rem;
+	display:inline-block;
+	font-size:1.2rem;
 	font-weight:bold;
-	margin-bottom: 5px
+	padding:10px 10px 0 20px;
 }
 #company-container #rv-button {
 	border-radius: 5px;

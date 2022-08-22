@@ -28,6 +28,9 @@ public class RoomService {
 	public Room getRoomOne(int roomId) {
 		return new RoomDAO().selectOne(roomId);
 	}
+	public Room selectOneAcc(int accId) {
+		return new RoomDAO().selectOneAcc(accId);
+	}
 	public List<Room> selectAllForBusiness(int accId) {
 		return new RoomDAO().selectAllForBusiness(accId);
 	}

@@ -20,14 +20,19 @@ public class ChatService {
 
 	ChatDAO cDAO = new ChatDAO();
 
+	public void deleteContent() {
+		new ChatDAO().delete();
+	}
+
 	public void insert(Chat chat) {
 		new ChatDAO().insert(chat);
 	}
-	
-	public List<Chat> selectAll(){
+
+	public List<Chat> selectAll() {
 		return new ChatDAO().selectAll();
 	}
-	public Chat selectLastContent(String myId,String youId) {
-		return  new ChatDAO().selectLastContent(myId,youId);
+
+	public Chat selectLastContent(String myId, String youId) {
+		return new ChatDAO().selectLastContent(myId, youId);
 	}
 }

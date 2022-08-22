@@ -33,13 +33,12 @@ public class SelectAccListController implements Controller {
 		String f9 = req.getParameter("f9");
 		String minPrice = req.getParameter("minPrice");
 		String maxPrice = req.getParameter("maxPrice");
-		
-		if(city!=null) {
+		if(city!="") {
 			city = "a.address LIKE '%"+ city + "%'";
 		} else {
 			city = "";
 		}
-		if(region!=null) {
+		if(region!="") {
 			region = "a.address LIKE '%" + region + "%'";
 		} else {
 			region ="";

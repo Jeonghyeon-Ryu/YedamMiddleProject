@@ -14,12 +14,12 @@
                 <div class="card-body">
                     <h5 class="card-title"></h5>
                     <div class="star-rated">
-                        <img src="img/star-empty-20.png" class="first-star">
-                        <img src="img/star-empty-20.png" class="second-star">
-                        <img src="img/star-empty-20.png" class="third-star">
-                        <img src="img/star-empty-20.png" class="fourth-star">
-                        <img src="img/star-empty-20.png" class="fifth-star">
-                    </div>
+						<a class="star-1" href="#1">★</a>
+						<a class="star-2" href="#2">★</a>
+						<a class="star-3" href="#3">★</a>
+						<a class="star-4" href="#4">★</a>
+				    	<a class="star-5" href="#5">★</a>
+					</div>
                     <p class="card-address"><strong>주소 :</strong></p>
                     <p class="card-text"><small class="text-muted">Last updated</small></p>
                 </div>
