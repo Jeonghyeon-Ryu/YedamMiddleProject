@@ -38,6 +38,7 @@ public class UpdateMemberInfoController implements Controller {
 			if(!(NewPw.equals("")||NewPw==null)) {
 				pw = SHA256.encodeSha256(pw);
 				NewPw = SHA256.encodeSha256(NewPw);
+				System.out.println(pw+","+NewPw);
 				//현재 비밀번호 체크
 				if(!pw.equals(presentPw)) {
 					req.setAttribute("infoMsg", "현재 비밀번호가 옳지 않습니다.");
@@ -46,7 +47,7 @@ public class UpdateMemberInfoController implements Controller {
 				else {
 					member.setPw(NewPw);
 					service.modifyMember(member);
-					req.setAttribute("infoMsg", "수정 완료되었습니다.");
+					req.setAttribute("infoMsg", "개인정보 수정 완료되었습니다.");
 					Utils.forward(req, resp, "memberInfo.do");
 				}
 			}else {

@@ -54,6 +54,7 @@
          <h2 style="float:left">개인 정보</h2>
     </div>
     <div class="update-content" style="clear:both">
+
         <form id="update-info-frm" action="updateMemberInfo.do">
              <label for="memberId" style="float:left">아이디</label> 
                  <input type="text" name="memberId" value="${member.id}" readonly>
