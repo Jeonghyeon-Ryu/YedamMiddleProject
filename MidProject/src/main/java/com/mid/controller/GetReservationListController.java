@@ -13,10 +13,12 @@ import com.google.gson.GsonBuilder;
 import com.mid.common.Controller;
 import com.mid.service.AccommodationService;
 import com.mid.service.ReservationService;
+import com.mid.service.ReviewService;
 import com.mid.service.RoomService;
 import com.mid.vo.Accommodation;
 import com.mid.vo.Reservation;
 import com.mid.vo.ReservationInfo;
+import com.mid.vo.Review;
 import com.mid.vo.Room;
 
 public class GetReservationListController implements Controller {
@@ -29,16 +31,19 @@ public class GetReservationListController implements Controller {
 		ReservationService reserService = ReservationService.getInstance();
 		RoomService roomService = RoomService.getInstance();
 		AccommodationService accService = AccommodationService.getInstance();
+		ReviewService reviewService = ReviewService.getInstance();
 		List<ReservationInfo> resultList = new ArrayList<>();
 		
 		List<Reservation> list = reserService.selectAll(memberId);
 		list.forEach(x -> {
 			Room room = roomService.getRoomOne(x.getRoomId());
 			Accommodation acc = accService.getCompDetail(room.getAccId());
+			Review review = reviewService.selectOneOfMember(room.getRoomId(), memberId);
 			ReservationInfo info = new ReservationInfo();
 			info.setReservation(x);
 			info.setAccommodation(acc);
 			info.setRoom(room);
+			info.setReview(review);
 			resultList.add(info);
 		});
 		

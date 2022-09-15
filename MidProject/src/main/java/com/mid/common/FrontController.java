@@ -24,6 +24,7 @@ import com.mid.controller.FindInfoController;
 import com.mid.controller.FindInfoFormController;
 import com.mid.controller.GetQnaListController;
 import com.mid.controller.GetReservationListController;
+import com.mid.controller.GetReviewScoreController;
 import com.mid.controller.InsertAccController;
 import com.mid.controller.InsertReservationController;
 import com.mid.controller.InsertRoomController;
@@ -43,6 +44,10 @@ import com.mid.controller.NaverSignupFormController;
 import com.mid.controller.QnaDetailController;
 import com.mid.controller.QnaListController;
 import com.mid.controller.ReservationPageController;
+import com.mid.controller.ReviewDeleteController;
+import com.mid.controller.ReviewInsertController;
+import com.mid.controller.ReviewOpenController;
+import com.mid.controller.ReviewUpdateController;
 import com.mid.controller.SelectAccListController;
 import com.mid.controller.SelectAccListCountController;
 import com.mid.controller.SendContentController;
@@ -88,6 +93,11 @@ public class FrontController extends HttpServlet {
 		mappings.put("/accInsert.do", new InsertAccController());	// Business 페이지 Acc insert
 		mappings.put("/roomInsert.do", new InsertRoomController());	// Business 페이지 Room insert
 		mappings.put("/getReservationList.do", new GetReservationListController());	// 예약 리스트 가져오기
+		mappings.put("/reviewOpen.do", new ReviewOpenController());	// 리뷰 작성 페이지 열기
+		mappings.put("/reviewInsert.do", new ReviewInsertController());	// 리뷰 작성
+		mappings.put("/reviewUpdate.do", new ReviewUpdateController());	// 리뷰 수정
+		mappings.put("/reviewDelete.do", new ReviewDeleteController());	// 리뷰 삭제
+		mappings.put("/getReviewScore.do", new GetReviewScoreController());	// 리뷰 삭제
 	
 		
 		// 최유리

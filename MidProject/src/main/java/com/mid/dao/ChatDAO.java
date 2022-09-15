@@ -7,7 +7,19 @@ import java.util.List;
 import com.mid.vo.Chat;
 
 public class ChatDAO extends DAO {
-
+   //대화 삭제
+	public void delete() {
+		String sql = "delete from chat where currenttime < trunc(sysdate-30)";
+		connect();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
 	// 마지막 대화 내용 조회
 	public Chat selectLastContent(String myId,String youId) {
 		connect();

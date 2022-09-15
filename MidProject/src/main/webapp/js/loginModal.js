@@ -5,7 +5,6 @@ window.addEventListener('load', () => {
 
 
 
-
 function loginModalOpenAction(e) {
 	closeAllModal();
 	let modal = document.querySelector('#login-modal');

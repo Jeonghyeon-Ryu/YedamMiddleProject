@@ -138,6 +138,10 @@ function clickLocationModalReset() {
 	for (x of document.querySelectorAll('#location-modal input[type="radio"]')) {
 		x.checked = false;
 	}
+	resultCity='';
+	resultRegion='';
+	document.querySelector('#location').value = '';
+	countResult();
 }
 
 function clickLocationModalConfirm() {

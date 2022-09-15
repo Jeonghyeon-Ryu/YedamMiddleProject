@@ -1,17 +1,20 @@
-#rv-container{
-	background-color: rgb(192, 192, 192);
+#rv-container {
 	margin: 0 auto;
+	background-color: white;
+	max-height: 100%;
 }
-#rv-center-page{
+
+#rv-center-page {
 	max-width: 50%;
 	margin: 0 auto;
-	height: 100%;
 }
-.rv-product-name{
+
+.rv-product-name {
 	margin-bottom: 20px;
 }
 
-.rv-header-fixed{
+#rv-header-fixed {
+	max-width: 100%;
 	background-color: white;
 	color: black;
 	position: fixed;
@@ -19,36 +22,55 @@
 	margin: 10px;
 	font-weight: bold;
 }
-.rv-content-box{
+
+.rv-content-box {
 	background-color: white;
 	margin: 5px;
 	padding: 10px;
+	border: 1px solid black;
 }
-.rv-checkInOut{
+
+.rv-checkInOut {
 	font-size: small;
 }
-.rv-price{
+
+.rv-price {
 	text-align: right;
 	font-weight: bold;
 }
-.rv-user-name-phone{
+
+.rv-user-name-phone {
 	font-size: small;
 	margin-bottom: 15px;
 	margin-top: 15px;
 }
-#rv-user-info{
+
+#rv-user-info {
 	margin-bottom: 15px;
 	margin-top: 15px;
 	font-weight: bold;
 }
-.rv-payment-price{
+
+.rv-payment-price {
 	font-weight: bold;
 }
-.rv-total-price{
+
+.rv-total-price {
 	justify-content: space-between;
 	display: flex;
 	margin-top: 10px
 }
-#rv-payment{
+
+#rv-payment {
 	font-weight: bold;
+}
+
+#check-module {
+	display: block;
+	text-align: right;
+}
+#checkOut-btn{
+	border-radius: 5px;
+	border: none;
+	margin-top: 10px;
 }

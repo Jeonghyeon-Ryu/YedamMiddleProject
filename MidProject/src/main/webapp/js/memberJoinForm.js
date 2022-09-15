@@ -84,7 +84,7 @@ function identiChk() {
 function pwChk() {
 	let regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
 
-	if (pw1.value.length1 < 8 || pw1.value.length1 > 16) {
+	if (pw1.value.length < 8 || pw1.value.length > 16) {
 		document.getElementById("pw-error").style.display = 'flex';
 		document.getElementById('pw-error').innerText = "8자리 ~ 16자리 이내로 입력해주세요.";
 		pw1.value = "";

@@ -1,16 +1,16 @@
 package com.mid.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mid.common.Controller;
 import com.mid.common.SHA256;
+import com.mid.service.BusinessService;
+import com.mid.service.ChatService;
 import com.mid.service.MemberService;
 import com.mid.vo.Member;
 
@@ -46,12 +46,12 @@ public class LoginOutController implements Controller {
 			resp.getWriter().print(0);
 		} else {
 			// 로그인 성공
-			MemberService mService = MemberService.getInstance();
-			session.setAttribute("businessId", mService.getBusinessId(id));
+			BusinessService bService = BusinessService.getInstance();
+			ChatService cService =ChatService.getInstance();
+	        cService.deleteContent();
+        	session.setAttribute("businessId", bService.getBusinessId(id));
 			session.setAttribute("id", id);
 			resp.getWriter().print(1);
-		
 		}
 	}
-
 }

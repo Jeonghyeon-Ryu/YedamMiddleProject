@@ -56,9 +56,18 @@ body::-webkit-scrollbar-button {
 }
 .card-title {
 	font-weight: bold;
+	margin:0;
 }
-.star-rated {
-    padding-bottom: 8px;
+.card .star-rated a{
+		text-decoration: none;
+		color:#bbb;
+		font-size:1.2rem;
+		margin-top:-10px;
+		overflow:hidden;
+		transition:color 0.5s;
+	}
+.card .active-star-rated {
+	color:orange !important;
 }
 .card-body p {
     font-size: 14px;

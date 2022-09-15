@@ -1,6 +1,7 @@
 package com.mid.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -27,17 +28,39 @@ public class CompDetailController implements Controller {
 		String id = req.getParameter("id");
 		String checkIn =req.getParameter("checkIn");
 		String checkOut =req.getParameter("checkOut");
-	
+		int resultCheckOut = 0;
+		if(!checkIn.equals("") && !checkOut.equals("")) {		
+			Date resultCheckIn = Date.valueOf(checkIn.replace('.','-'));
+			Date tempCheckOut = Date.valueOf(checkOut.replace('.','-'));
+			resultCheckOut = (int) ((tempCheckOut.getTime()-resultCheckIn.getTime())/1000/60/60/24);
+		}
 		AccommodationService acService = AccommodationService.getInstance();
 		RoomService rmService = RoomService.getInstance();
 		ReviewService rvService = ReviewService.getInstance();
 		MemberService mbService = MemberService.getInstance();
 		
 		Accommodation acInfo = acService.getCompDetail(Integer.parseInt(accId));
-		Room rmInfo = rmService.getRoomOne(Integer.parseInt(accId));
+		Room rmInfo = rmService.selectOneAcc(Integer.parseInt(accId));
 		List<Review> rvInfo =  rvService.getReviewAllAcc(Integer.parseInt(accId));
 		Member mbInfo = mbService.getMember(id);
-
+		
+		String price = rmInfo.getPrice();
+		String resultPrice ="";
+		if(price.indexOf("원")>=0) {
+			resultPrice = price.substring(0,price.indexOf("원"));
+		}else {
+			resultPrice = price;
+		}
+		resultPrice = resultPrice.replaceAll(",","");
+		if(resultCheckOut!=0) {
+			resultPrice = String.valueOf(Integer.parseInt(resultPrice)*resultCheckOut);
+		} else {
+			resultPrice = String.valueOf(Integer.parseInt(resultPrice));
+		}
+		rmInfo.setPrice(resultPrice);
+		
+		req.setAttribute("reservationDate", resultCheckOut);
+		
 		req.setAttribute("checkIn", checkIn);
 		req.setAttribute("checkOut", checkOut);
 		req.setAttribute("accId", acInfo.getAccId());
@@ -56,7 +79,6 @@ public class CompDetailController implements Controller {
 			req.setAttribute("isReservation", rmInfo.getIsReservation());
 			req.setAttribute("price", rmInfo.getPrice());
 			req.setAttribute("reservationTime", rmInfo.getReservationTime());
-			req.setAttribute("price", rmInfo.getPrice());
 		}
 		Utils.forward(req, resp, "eju/companyDetail.tiles");
 	}

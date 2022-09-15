@@ -7,9 +7,11 @@ public class Room {
 	private int accId;
 	private String name;
 	private String price;
+	// 0:예약안됨 , 1:예약됨	
 	private int isReservation;
 	private Date reservationTime;
 	private String info;
+	// 0:사용불가 , 1:사용가능
 	private int status;
 
 	

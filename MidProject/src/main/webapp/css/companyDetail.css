@@ -7,6 +7,7 @@
 #company-container h2 {
 	text-align:center;
 	line-height:50px;
+	border: 1px solid black;
 }
 #company-container #company-img-div {
 	width:100%;
@@ -30,12 +31,26 @@
 	cursor:pointer;
 }
 #company-container .comp-title {
-	font-size:2rem;
+	font-size:1.5rem;
 	font-weight:bold;
 	padding:10px 10px 0 20px;
 }
 #company-container .star-rated{
 	padding-left:20px;
+}
+#company-container .star-rated a{
+	text-decoration: none;
+	color:#bbb;
+	font-size:1.2rem;
+	margin-top:-10px;
+	overflow:hidden;
+	transition:color 0.5s;
+}
+#company-container .star-rated a:visited{
+	color:#bbb;
+}
+#company-container .active-star-rated {
+	color:orange !important;
 }
 #company-container a {
 	text-decoration:none;
@@ -44,11 +59,31 @@
 	color:black;
 }
 #company-container .comp-review {
-	padding:0 0 10px 20px;
+	padding:10px 0 10px 20px;
 	cursor:pointer;
 }
 #company-container .comp-room{
-	font-size:1.4rem;
+	display:inline-block;
+	font-size:1.2rem;
 	font-weight:bold;
-	padding:10px 20px;
+	padding:10px 10px 0 20px;
+}
+#company-container #rv-button {
+	border-radius: 5px;
+	background-color: #e2e2e2;
+	margin-right: 10px;
+	border: none;
+	float: right;
+}
+#company-container .comp-info{
+	padding:10px 10px 0 20px;
+}
+#company-container #comp-price{
+	justify-content: space-between;
+	display: flex;
+	margin: 10px 0 10px 0;
+
+}
+#company-container #detail-review {
+	margin: 10px 0 10px 0;	
 }

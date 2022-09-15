@@ -6,7 +6,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String clientId = "KBVX39Y4TiVNOKxAvsL2";//애플리케이션 클라이언트 아이디값";
-	String redirectURI = URLEncoder.encode("http://localhost:8088/MidProject/naverLogin.do", "UTF-8");
+	String redirectURI = URLEncoder.encode("http://192.168.0.123:8088/MidProject/naverLogin.do", "UTF-8");
 	SecureRandom random = new SecureRandom();
 	String state = new BigInteger(130, random).toString();
 	String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -23,12 +23,15 @@
 				<img src="img/nav-home-25.png">
 			</div>
 			<div>홈으로</div>
-		</a> <a id="nav-wishlist">
-			<div>
-				<img src="img/nav-heart-25.png">
-			</div>
-			<div>위시리스트</div>
-		</a>
+		</a> 
+		<c:if test="${!empty id }">
+			<a id="nav-wishlist">
+				<div>
+					<img src="img/nav-heart-25.png">
+				</div>
+				<div>위시리스트</div>
+			</a>
+		</c:if>
 		<c:if test="${empty id }">
 			<a id="nav-login">
 				<div>
@@ -99,23 +102,32 @@
 		<!-- Modal Content -->
 		<div class="modal-content">
 			<div class="row row-cols-1 row-cols-md-2 g-4">
-				<template id="reservation-template">
-					<div class="col">
-						<div class="card">
-							<img src="" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title"></h5>
-								<p class="card-text">방 종류 : <span></span></p>
-								<p class="card-text">주소 : <span></span></p>
-								<p class="card-text">이용일자 : <span></span></p>
-								<p class="card-text">업체전화 : <span></span></p>
-								<p class="card-text">결제금액 : <span></span></p>
-							</div>
-						</div>
-					</div>
-				</template>
 			</div>
 		</div>
+		<template id="reservation-template">
+			<div class="col">
+				<div class="card">
+					<img src="" class="card-img-top" style="width:100%; height:300px;" alt="...">
+					<div class="card-body">
+						<h5 class="card-title"></h5>
+						<p class="card-text">방 종류 : <span></span></p>
+						<p class="card-text">주소 : <span></span></p>
+						<p class="card-text">체크인 : <span></span></p>
+						<p class="card-text">이용날짜 : <span></span></p>
+						<p class="card-text">업체전화 : <span></span></p>
+						<p class="card-text">결제금액 : <span></span></p>
+						<p class="card-text acc-id" style="display:none;"><span></span></p>
+						<p class="card-text room-id" style="display:none;"><span></span></p>
+						<button type="button">후기작성
+							<span></span>
+					        <span></span>
+					        <span></span>
+					        <span></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</template>
 	</div>
 </div>
 <template id="ex-template">
@@ -169,7 +181,7 @@
 					</div>
 					<div class="serparater">소셜 간편 로그인 및 회원가입</div>
 					<div id="login-sns">
-						<button type="button" id="kakao-login-bnt" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://localhost:8088/MidProject/kakaoLogin.do?cmd=callback&response_type=code'" class="btn-kakao">
+						<button type="button" id="kakao-login-bnt" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=858c8fa25fe1eb7607a39eb252e16d9a&redirect_uri=http://192.168.0.123:8088/MidProject/kakaoLogin.do?cmd=callback&response_type=code'" class="btn-kakao">
 							<img src="img/kakao_login_medium_narrow.png">
 						</button>
 						<br>
@@ -209,8 +221,6 @@
 				<h2>나의 정보</h2>
 				<ul>
 					<li><a href="memberInfo.do"><i class="fa-solid fa-user"></i> 개인정보<span>></span></a></li>
-					<li><a href="#"><i class="fa-solid fa-clipboard-list"></i>
-							예약내역<span>></span></a></li>
 				</ul>
 			</div>
 			<hr>
@@ -218,19 +228,21 @@
 				<h2>고객센터</h2>
 				<ul>
 					<li><a href="qnaList.do"><i class="fa-solid fa-circle-question"></i>
-							QnA<span>></span></a></li>
+							FAQ<span>></span></a></li>
 				</ul>
 			</div>
 			<hr>
 			<div class="mypage-center" id="customer-center">
 				<h2>사업자</h2>
 				<ul>
-				<c:if test="${empty businessId}">
+				<c:if test="${businessId<0}">
 					<li><a href="businessJoin.do"><i class="fa-solid fa-circle-question"></i>
 							사업자등록<span>></span></a></li>
-							</c:if>
+				</c:if>
+				<c:if test="${businessId>=0}">
 					<li><a href="businessManage.do"><i class="fa-solid fa-circle-question"></i>
 							사업관리<span>></span></a></li>
+				</c:if>
 				</ul>
 			</div>
 		</div>

@@ -186,4 +186,10 @@ function calenderCloseAction(e) {
 		let body = document.querySelector('body');
 		modal.classList.toggle('modal-active');
 		body.classList.toggle('modal-active-background');
+		
+	let searchBoxItems = document.querySelectorAll('.search-box-item');
+	for (searchBoxItem of searchBoxItems) {
+		searchBoxItem.classList.remove('search-box-clicked');
+		searchBoxItem.classList.remove('search-box-unclicked');
+	}
 }
